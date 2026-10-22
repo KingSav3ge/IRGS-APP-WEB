@@ -154,6 +154,41 @@ async function test(name,fn){await fn();results.push('PASS '+name);}
    assert(h.calls.at(-1).path.includes('q=Agincourt'));assert(h.calls.at(-1).path.includes('offset=20'));
    h.setFetch(()=>new Promise(resolve=>release=()=>resolve(h.reply({results:[{row:1,title:'LATE_REFERENCE'}]}))));const pending=h.run('searchHistoricalReference()');h.run("workspaceMode='player';view='home';$('#content').innerHTML='<p>Player home</p>';");release();await pending;assert(!h.elements.get('content').innerHTML.includes('LATE_REFERENCE'));assert(h.calls.every(call=>!call.body));
  });
+ await test('Historical Details explains every unavailable state and retries without searching placeholder metadata',async()=>{
+   for(const [status,message] of [['not_attached','No archive attached'],['incomplete','Archive incomplete'],['corrupt','Archive verification failed'],['unavailable','Archive unavailable']]){
+     const h=environment();h.run("workspaceMode='creator';view='feature:historical-reference-library';token='token';");
+     h.setFetch(()=>h.reply({status}));await h.run('renderHistoricalReference()');
+     assert(h.elements.get('content').innerHTML.includes('Historical Details'));assert(h.elements.get('content').innerHTML.includes(message));
+     assert(h.elements.get('content').innerHTML.includes('metadata alone'));assert(!h.elements.has('historical-reference-search'));assert.equal(h.calls.length,1);
+     h.setFetch(path=>h.reply(path.includes('/search?')?{results:[]}:{status:'attached_read_only',source_kind:'catalog_multipart',title:'Grand Archive',collections:[{id:'chronology',title:'Chronology'}]}));
+     await h.elements.get('reference-retry').click();assert(h.elements.get('content').innerHTML.includes('Complete Catalog archive verified'));assert(h.elements.has('historical-reference-search'));assert(h.calls.every(call=>!call.body));
+   }
+ });
+ await test('An empty attached archive does not request an invented collection',async()=>{
+   const h=environment();h.run("workspaceMode='creator';view='feature:historical-reference-library';");h.setFetch(()=>h.reply({status:'attached_read_only',title:'Archive',collections:[]}));
+   await h.run('renderHistoricalReference()');assert.equal(h.calls.length,1);assert(h.elements.get('content').innerHTML.includes('No searchable collections'));assert(!h.elements.has('historical-reference-search'));
+ });
+ await test('Historical search and detail retry retain literal queries, source rows and the current campaign',async()=>{
+   const h=environment(),before=projection('A');h.run("workspaceMode='creator';view='feature:historical-reference-library';current="+JSON.stringify(before)+';');
+   h.setFetch(path=>h.reply(path.includes('/search?')?{results:[]}:{status:'attached_read_only',title:'Archive',collections:[{id:'figures',title:'Figures'}]}));await h.run('renderHistoricalReference()');
+   h.elements.get('reference-query').value='[Henry.*] <script> & ?';h.setFetch(()=>h.failure(503));await h.elements.get('historical-reference-search').requestSubmit();assert(h.elements.has('reference-search-retry'));
+   h.setFetch(()=>h.reply({results:[{row:7,title:'Reference',dates:{},source_status:{}}]}));await h.elements.get('reference-search-retry').click();
+   const query=new URL('http://local'+h.calls.at(-1).path).searchParams;assert.equal(query.get('q'),'[Henry.*] <script> & ?');assert.equal(query.get('collection'),'figures');
+   h.setFetch(()=>h.failure(503));await h.context.document.querySelectorAll('[data-reference-row]')[0].click();assert(h.elements.has('reference-record-retry'));
+   h.setFetch(()=>h.reply({title:'Original',record:{statement:'Uncertain original'},sources:[{id:'S',status:'found',record:{title:'Source',url:'https://example.invalid/citation'},rights:[{disposition:'reference_only'}]}]}));await h.elements.get('reference-record-retry').click();
+   assert(h.calls.at(-1).path.includes('collection=figures&row=7'));const detail=h.elements.get('inspect-content').innerHTML;assert(detail.includes('Uncertain original'));assert(detail.includes('https://example.invalid/citation'));assert(detail.includes('reference_only'));
+   assert.equal(h.run('JSON.stringify(current)'),JSON.stringify(before));assert(h.calls.every(call=>!call.body));
+ });
+ await test('Closing and reopening the historical inspector rejects an older source response',async()=>{
+   const h=environment();let release;h.run("workspaceMode='creator';view='feature:historical-reference-library';");h.setFetch(()=>new Promise(resolve=>release=()=>resolve(h.reply({title:'STALE_RECORD',record:{}}))));
+   const pending=h.run('inspectHistoricalReference("figures",1)');h.elements.get('inspect-dialog').close();h.elements.get('inspect-dialog').showModal();release();await pending;
+   assert(!h.elements.get('inspect-content').innerHTML.includes('STALE_RECORD'));
+ });
+ await test('A late archive status cannot replace campaign discovery or a newer archive check',async()=>{
+   const h=environment();let release;h.run("workspaceMode='creator';view='feature:historical-reference-library';");h.setFetch(()=>new Promise(resolve=>release=()=>resolve(h.reply({status:'corrupt',notice:'STALE_STATUS'}))));
+   const pending=h.run('renderHistoricalReference()');h.setFetch(()=>h.reply({status:'not_attached'}));await h.run('renderHistoricalReference()');release();await pending;assert(!h.elements.get('content').innerHTML.includes('STALE_STATUS'));
+   h.setFetch(()=>new Promise(resolve=>release=()=>resolve(h.reply({status:'incomplete',notice:'LATE_STATUS'}))));const leaving=h.run('renderHistoricalReference()');h.run("view='content-library';$('#content').innerHTML='<p>Campaign discovery</p>';");release();await leaving;assert.equal(h.elements.get('content').innerHTML,'<p>Campaign discovery</p>');
+ });
  await test('The full portfolio filters type, genre, setting, period, place and perspective without changing a world',async()=>{
    const h=environment(),fixture=discoveryFixture(),portfolio=JSON.parse(fs.readFileSync(catalogRoot+'/data/campaign_portfolio.json','utf8'));
    portfolio.counts={total:44,launch:31,future:12,systems:1,free_launch_stories:18,available_slices:1};

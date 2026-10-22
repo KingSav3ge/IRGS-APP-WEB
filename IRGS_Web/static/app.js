@@ -68,7 +68,7 @@ async function openCampaign(id,options={}){
     loadDraft();render();restoreScroll();return true;
   }catch(error){if(request!==campaignRequest||$('#campaign').value!==selected||workspaceMode!==mode)return false;loadingCampaign=false;render();throw error;}
 }
-function changeView(next,options={}){rememberScroll();stashDraft();view=next;if($('#inspect-dialog').open)$('#inspect-dialog').close();document.body.classList.remove('nav-open');$('#toggle-nav').setAttribute('aria-expanded','false');if(options.route!==false)updateViewRoute(next,options.featureId);render();restoreScroll();}
+function changeView(next,options={}){rememberScroll();stashDraft();++historicalReferenceRequest;++inspectorRequest;view=next;if($('#inspect-dialog').open)$('#inspect-dialog').close();document.body.classList.remove('nav-open');$('#toggle-nav').setAttribute('aria-expanded','false');if(options.route!==false)updateViewRoute(next,options.featureId);render();restoreScroll();}
 function empty(){return '<div class="empty adventure-welcome"><div class="welcome-copy"><span class="eyebrow">HISTORY IS ONLY THE BEGINNING</span><h2>Find your place.<br>Choose your path.</h2><p>A life at the edge of a changing world. Begin with a character, a moment in history, and a choice.</p><button id="empty-create" class="primary">Find your adventure <span aria-hidden="true">→</span></button><small>All 37 Century of Conflict starts offer an optional local Solo opening.</small></div><span class="art-caption">Illustrative campaign artwork</span></div>';}
 function render(){
   document.body.dataset.workspace=view;
@@ -265,23 +265,29 @@ function applyCurrentRoute(){
 let historicalReferenceRequest=0;
 let historicalReferenceQuery={collection:'chronology',q:'',offset:0};
 function historicalReferenceActive(){return workspaceMode==='creator'&&view==='feature:historical-reference-library';}
+function historicalReferenceUnavailable(info){
+  const states={not_attached:['No archive attached','No historical archive is attached on this installation.'],incomplete:['Archive incomplete','The Catalog archive is incomplete. Historical records are unavailable until every required part is present.'],corrupt:['Archive verification failed','The archive failed verification. Historical records are unavailable until the source is repaired.'],unavailable:['Archive unavailable','The selected archive cannot be read on this installation.']};
+  const [title,message]=states[info.status]||states.unavailable;
+  $('#content').innerHTML='<section class="panel"><span class="eyebrow">CREATOR REFERENCE · READ ONLY</span><h2>Historical Details</h2><h3>'+esc(title)+'</h3><p>'+esc(info.notice||message)+'</p><p class="note">Archive metadata alone is not the historical archive. A complete Catalog archive or an explicitly attached local ZIP is required. Browsing creates no campaign facts or character knowledge.</p><button class="quiet" id="reference-retry">Check again</button></section>';
+  $('#reference-retry').onclick=renderHistoricalReference;
+}
 async function renderHistoricalReference(){
   if(!historicalReferenceActive())return;
   const request=++historicalReferenceRequest;
-  $('#content').innerHTML='<section class="panel"><p>Opening the historical reference library…</p></section>';
+  $('#content').innerHTML='<section class="panel"><p>Opening Historical Details…</p></section>';
   try{
     const info=await api('historical-reference',undefined,{creator:true});
     if(request!==historicalReferenceRequest||!historicalReferenceActive())return;
-    if(info.status!=='attached_read_only'){
-      $('#content').innerHTML='<section class="panel"><span class="eyebrow">CREATOR REFERENCE</span><h2>Historical Reference Library</h2><p>'+esc(info.notice||'Attach the existing source archive on this installation to browse it here.')+'</p><p class="note">Project source attachments stay separate from campaign saves. A cloud installation needs its own accessible source attachment.</p></section>';return;
-    }
+    if(info.status!=='attached_read_only'){historicalReferenceUnavailable(info);return;}
     const collections=info.collections||[];
-    if(!collections.some(item=>item.id===historicalReferenceQuery.collection))historicalReferenceQuery.collection=collections[0]?.id||'chronology';
-    $('#content').innerHTML='<section class="panel"><span class="eyebrow">CREATOR REFERENCE · READ ONLY</span><h2>'+esc(info.title)+' · '+esc(info.edition)+'</h2><p class="reference-note">'+esc(info.notice)+'</p><p>'+esc(info.scope)+'</p><form id="historical-reference-search" class="reference-search"><label>Collection<select id="reference-collection">'+collections.map(item=>'<option value="'+esc(item.id)+'">'+esc(item.title)+'</option>').join('')+'</select></label><label>Find a person, place or subject<input id="reference-query" type="search" maxlength="200" placeholder="Henry, Agincourt, 1415…"></label><button class="primary" type="submit">Search archive</button></form><p class="note">Dates, estimates and disputed identities keep their source wording. Results do not establish availability in a campaign.</p><div id="historical-reference-results" aria-live="polite"></div></section>';
+    if(!collections.some(item=>item.id===historicalReferenceQuery.collection))historicalReferenceQuery.collection=collections[0]?.id||'';
+    $('#content').innerHTML='<section class="panel"><span class="eyebrow">CREATOR REFERENCE · READ ONLY</span><h2>Historical Details</h2><h3>'+esc(info.title)+(info.edition?' · '+esc(info.edition):'')+'</h3><p class="reference-note">'+esc(info.notice)+'</p><p>'+esc(info.scope||'')+'</p><p class="note">'+esc(info.source_kind==='catalog_multipart'?'Complete Catalog archive verified for read-only browsing.':'Explicitly attached local ZIP · read-only reference.')+'</p>'+(collections.length?'<form id="historical-reference-search" class="reference-search"><label>Collection<select id="reference-collection">'+collections.map(item=>'<option value="'+esc(item.id)+'">'+esc(item.title)+'</option>').join('')+'</select></label><label>Find a person, place or subject<input id="reference-query" type="search" maxlength="200" placeholder="Henry, Agincourt, 1415…"></label><button class="primary" type="submit">Search archive</button></form>':'<p class="note">No searchable collections are supplied by this archive.</p>')+'<p class="note">Dates, estimates and disputed identities keep their source wording. Results do not establish availability in a campaign.</p><button class="quiet" id="reference-retry">Check archive again</button><div id="historical-reference-results" aria-live="polite"></div></section>';
+    $('#reference-retry').onclick=renderHistoricalReference;
+    if(!collections.length)return;
     $('#reference-collection').value=historicalReferenceQuery.collection;$('#reference-query').value=historicalReferenceQuery.q;
-    $('#historical-reference-search').onsubmit=event=>{event.preventDefault();historicalReferenceQuery={collection:$('#reference-collection').value,q:$('#reference-query').value,offset:0};return searchHistoricalReference();};
+    $('#historical-reference-search').onsubmit=event=>{event.preventDefault();if($('#inspect-dialog').open)$('#inspect-dialog').close();historicalReferenceQuery={collection:$('#reference-collection').value,q:$('#reference-query').value,offset:0};return searchHistoricalReference();};
     await searchHistoricalReference();
-  }catch(error){if(request===historicalReferenceRequest&&historicalReferenceActive())$('#content').innerHTML='<section class="panel"><h2>Historical Reference Library</h2><p>'+esc(error.message)+'</p><button class="quiet" id="reference-retry">Retry</button></section>';if($('#reference-retry'))$('#reference-retry').onclick=renderHistoricalReference;}
+  }catch(error){if(request!==historicalReferenceRequest||!historicalReferenceActive())return;historicalReferenceUnavailable({status:'unavailable',notice:error.message});}
 }
 async function searchHistoricalReference(){
   if(!historicalReferenceActive()||!$('#historical-reference-results'))return;
@@ -296,7 +302,7 @@ async function searchHistoricalReference(){
     document.querySelectorAll('[data-reference-row]').forEach(button=>button.onclick=()=>inspectHistoricalReference(selection.collection,Number(button.dataset.referenceRow)));
     $('#reference-previous').onclick=()=>{historicalReferenceQuery={...selection,offset:Math.max(0,selection.offset-20)};return searchHistoricalReference();};
     $('#reference-next').onclick=()=>{if(result.has_more){historicalReferenceQuery={...selection,offset:result.next_offset};return searchHistoricalReference();}};
-  }catch(error){if(request===historicalReferenceRequest&&historicalReferenceActive()&&$('#historical-reference-results'))$('#historical-reference-results').innerHTML='<p class="reference-note">'+esc(error.message)+'</p>';}
+  }catch(error){if(request!==historicalReferenceRequest||!historicalReferenceActive()||!$('#historical-reference-results'))return;$('#historical-reference-results').innerHTML='<p class="reference-note">'+esc(error.message)+'</p><button class="quiet" id="reference-search-retry">Retry search</button>';$('#reference-search-retry').onclick=searchHistoricalReference;}
 }
 function historicalCitationMarkup(source){
   const record=source.record||{};let payload={};try{payload=JSON.parse(record.payload_json||'{}');}catch{}
@@ -311,7 +317,7 @@ async function inspectHistoricalReference(collection,row){
     const result=await api('historical-reference/record?'+new URLSearchParams({collection,row}),undefined,{creator:true});
     if(request!==inspectorRequest||!historicalReferenceActive()||!$('#inspect-dialog').open)return;
     $('#inspect-content').innerHTML='<h3>'+esc(result.title)+'</h3><p class="reference-note">'+esc(result.notice)+'</p>'+'<p>'+esc(result.dates?.date_text||result.dates?.period_text||'')+'</p><p>'+esc(result.record?.payload?.statement||result.record?.statement||result.record?.significance_text||'')+'</p><h3>Citations and rights</h3>'+((result.sources||[]).map(historicalCitationMarkup).join('')||'<p class="note">No resolved citation is supplied for this record. Original references remain in the source payload.</p>')+'<details><summary>Source qualifications and date fields</summary>'+facts(result.source_status)+facts(result.dates)+'</details><details><summary>Original record and provenance</summary><pre class="reference-source-record">'+esc(JSON.stringify(result.record,null,2))+'</pre>'+facts(result.reference)+'</details>';
-  }catch(error){if(request===inspectorRequest&&historicalReferenceActive()&&$('#inspect-dialog').open)$('#inspect-content').innerHTML='<p>'+esc(error.message)+'</p>';}
+  }catch(error){if(request!==inspectorRequest||!historicalReferenceActive()||!$('#inspect-dialog').open)return;$('#inspect-content').innerHTML='<p>'+esc(error.message)+'</p><button class="quiet" id="reference-record-retry">Retry source record</button>';$('#reference-record-retry').onclick=()=>inspectHistoricalReference(collection,row);}
 }
 function renderFeature(id){
   const feature=features.find(item=>item.id===id&&featureAllowed(item));
@@ -725,7 +731,7 @@ function loadProfiles(){
 
 document.querySelectorAll('[data-view]').forEach(button=>button.onclick=()=>changeView(button.dataset.view));
 document.querySelectorAll('[role=tab]').forEach(button=>button.onkeydown=event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const tabs=[...document.querySelectorAll('[role=tab]')],index=tabs.indexOf(button),next=event.key==='Home'?0:event.key==='End'?tabs.length-1:(index+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;changeView(tabs[next].dataset.view);tabs[next].focus();});
-bindInspectors();$('#close-inspector').onclick=()=>$('#inspect-dialog').close();
+bindInspectors();$('#inspect-dialog').addEventListener('close',()=>{++inspectorRequest;});$('#close-inspector').onclick=()=>$('#inspect-dialog').close();
 $('#toggle-nav').onclick=()=>{const open=document.body.classList.toggle('nav-open');$('#toggle-nav').setAttribute('aria-expanded',String(open));};
 $('#toggle-context').onclick=()=>{const open=document.body.classList.toggle('context-open');$('#toggle-context').setAttribute('aria-expanded',String(open));if(open)$('#close-context').focus();};
 $('#close-context').onclick=()=>{document.body.classList.remove('context-open');$('#toggle-context').setAttribute('aria-expanded','false');$('#toggle-context').focus();};

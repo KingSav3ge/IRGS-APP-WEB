@@ -39,8 +39,8 @@ FEATURES = [
     _feature('developer', 'Developer / Administration', 90, roles=('developer',), description='Local-owner diagnostics and planned administration; each data route remains independently guarded.'),
     _feature('creator', 'Creator tools', 91, roles=('creator',), lifecycle='functional', backend='creator_mode', description='Explicit full inspection and sourced Core event tools for the local owner.'),
     _feature('library', 'Engines & technical libraries', 92, roles=('creator',), lifecycle='functional', backend='api/catalog', description='Installed reference infrastructure, separate from playable campaign listings.'),
-    _feature('historical-reference-library', 'Historical Reference Library', 92.5, roles=('creator',), lifecycle='functional',
-        backend='api/historical-reference', description='Search the attached historical source archive. Research remains separate from live campaigns and character knowledge.'),
+    _feature('historical-reference-library', 'Historical Details', 92.5, roles=('creator',), lifecycle='functional',
+        backend='api/historical-reference', description='Browse the verified Catalog archive or an explicitly attached local historical ZIP. Research remains separate from live campaigns and character knowledge.'),
     _feature('trash', 'Campaign Trash', 93, lifecycle='functional', backend='api/trash', description='Recoverable saved campaigns; restore never overwrites another save.'),
 ]
 

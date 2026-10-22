@@ -20,3 +20,8 @@ Run `python -B -m unittest discover -s IRGS_Web/tests -v` and `node IRGS_Web/tes
 The library offers 44 expanded v0.5 concept previews with filters, 37 supported Century dates, the limited fictional Rise founding slice and the adopted Kira v0.5 world guide. Proposed campaigns remain unreleased. Kira has no playable snapshot. The full C2 resolver, general freeform/combat resolution and the complete institutional cycle remain work.
 
 See [catalogue implementation](Catalog/IRGS_Catalog/design/campaign_catalogue/README.md), [App details](IRGS_Web/README.md), and [joined integration instructions](https://github.com/KingSav3ge/IRGS/blob/main/COMPONENT_REPOSITORIES.md).
+
+[Development status](DEVELOPMENT.md) tracks completed, active, blocked and remaining
+App work. The Creator's **Historical Details** entry preserves explicit local ZIP
+browsing; final multipart Engine/Catalog qualification remains pending as recorded
+in the [coordinator report](COORDINATOR_REPORT.md).
