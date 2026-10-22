@@ -22,6 +22,27 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class CampaignPortfolioTests(unittest.TestCase):
+    def test_expanded_v05_records_preserve_copy_and_prior_adoption_boundaries(self):
+        portfolio = content_library()['portfolio']
+        self.assertEqual(portfolio['version'], '0.5')
+        raw = json.loads((CATALOG_ROOT / 'design/catalogue_v0_5/catalogue.json').read_text())
+        source = {e['catalogue_id']: e for e in raw['records']}
+        self.assertEqual(set(source), {e['catalogue_id'] for e in portfolio['entries']})
+        for entry in portfolio['entries']:
+            original = source[entry['catalogue_id']]
+            self.assertEqual(entry['featured_systems'], original['public']['featured_irgs_systems'])
+            self.assertEqual(entry['design_review']['acceptance_checks'], original['design']['acceptance_checks'])
+            self.assertEqual(entry['design_review']['risk_notes'], original['design']['risk_notes'])
+            self.assertFalse(entry['design_review']['runtime_certified'])
+            if entry['catalogue_id'] != 'GC-01':
+                self.assertEqual(entry['synopsis'], [original['public']['synopsis']])
+        kira = next(e for e in portfolio['entries'] if e['catalogue_id'] == 'GC-01')
+        self.assertIn('adopted working setting canon', ' '.join(kira['synopsis']))
+        self.assertFalse(kira['available_slice'])
+        rise = next(e for e in portfolio['entries'] if e['catalogue_id'] == 'CSS-01')
+        self.assertEqual(rise['current_display_title'], 'The Rise of... You')
+        self.assertTrue(rise['available_slice'])
+
     def test_complete_slate_preserves_source_and_proposal_boundaries(self):
         portfolio = content_library()['portfolio']
         self.assertEqual(portfolio['counts'], {'total': 44, 'launch': 31, 'future': 12,

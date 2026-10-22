@@ -17,6 +17,6 @@ Run `python -B -m unittest discover -s IRGS_Web/tests -v` and `node IRGS_Web/tes
 
 `Engine/` is a pinned dependency, not a second App-owned simulation. Engine work belongs in its own repository. To test a newer Engine, check out its explicit commit in the submodule, verify the pair, then commit the pointer update. `IRGS_ENGINE_ROOT` can select an explicit Core directory for qualification; joined IRGS uses sibling `IRGS_3_3/`.
 
-The library offers 44 concept previews with filters, 37 supported Century dates, the limited fictional Rise founding slice and the adopted Kira v0.5 world guide. Proposed campaigns remain unreleased. Kira has no playable snapshot. The full C2 resolver, general freeform/combat resolution and the complete institutional cycle remain work.
+The library offers 44 expanded v0.5 concept previews with filters, 37 supported Century dates, the limited fictional Rise founding slice and the adopted Kira v0.5 world guide. Proposed campaigns remain unreleased. Kira has no playable snapshot. The full C2 resolver, general freeform/combat resolution and the complete institutional cycle remain work.
 
 See [catalogue implementation](Catalog/IRGS_Catalog/design/campaign_catalogue/README.md), [App details](IRGS_Web/README.md), and [joined integration instructions](https://github.com/KingSav3ge/IRGS/blob/main/COMPONENT_REPOSITORIES.md).

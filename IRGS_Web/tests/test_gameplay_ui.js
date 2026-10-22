@@ -148,7 +148,7 @@ async function test(name,fn){await fn();results.push('PASS '+name);}
    assert(h.elements.get('catalogue-result-count').textContent.includes('44 of 44'));
    h.elements.get('catalogue-type').value='short_story';h.elements.get('catalogue-type').onchange();
    assert.equal(h.context.document.querySelectorAll('[data-catalogue-preview]').length,19);
-   h.elements.get('catalogue-search').value='retainer servant';h.elements.get('catalogue-search').oninput();
+   h.elements.get('catalogue-search').value='Japan retainer servant';h.elements.get('catalogue-search').oninput();
    assert(h.elements.get('catalogue-result-count').textContent.includes('1 of 44'));
    assert(h.elements.get('catalogue-results').innerHTML.includes('The Long Road Home'));
    h.elements.get('catalogue-reset').click();assert.equal(h.context.document.activeElement.id,'catalogue-search');
@@ -172,7 +172,7 @@ async function test(name,fn){await fn();results.push('PASS '+name);}
    portfolio.entries[0].available_slice=true;portfolio.entries[0].current_campaign_id='hundred-years-war';portfolio.entries[0].playable=true;
    h.run("token='token';view='content-library';");h.setFetch(()=>h.reply(fixture.data));await h.run('renderContentLibrary()');
    await h.run('inspectCatalogueConcept("SS-01")');const preview=h.elements.get('inspect-content').innerHTML;
-   assert(h.elements.get('inspect-dialog').open);assert(preview.includes('The Long Road Home'));assert(preview.includes('retainer or the servant'));
+   assert(h.elements.get('inspect-dialog').open);assert(preview.includes('The Long Road Home'));assert(preview.includes('Retainer; Servant'));assert(preview.includes('Companion acts without overriding player'));
    assert(preview.includes('Proposed free Short Story at launch'));assert(preview.includes('working proposal'));
    assert(!preview.includes('data-start-entry'));assert(!preview.includes('data-rise-setup'));
    assert(!h.elements.get('create-dialog').open);assert.equal(h.calls.filter(c=>c.body).length,0);
@@ -180,13 +180,13 @@ async function test(name,fn){await fn();results.push('PASS '+name);}
  await test('Catalogue text is escaped and draft classification cannot inject markup or style classes',async()=>{
    const h=environment(),fixture=discoveryFixture(),portfolio=JSON.parse(fs.readFileSync(catalogRoot+'/data/campaign_portfolio.json','utf8'));
    portfolio.counts={total:44,launch:31,future:12,systems:1,free_launch_stories:18};fixture.data.portfolio=portfolio;
-   const e=portfolio.entries[0];e.title='<script>bad title</script>';e.tagline='<img src=x onerror=bad>';e.synopsis=['<svg onload=bad>'];e.perspectives='<script>bad role</script>';e.campaign_type='bad" onmouseover="bad';
+   const e=portfolio.entries[0];e.title='<script>bad title</script>';e.tagline='<img src=x onerror=bad>';e.synopsis=['<svg onload=bad>'];e.perspectives='<script>bad role</script>';e.campaign_type='bad" onmouseover="bad';e.design_review={acceptance_checks:['<script>bad check</script>'],risk_notes:['<img src=x onerror=bad>']};
    h.run("token='token';view='content-library';");h.setFetch(()=>h.reply(fixture.data));await h.run('renderContentLibrary()');
    await h.run('inspectCatalogueConcept("SS-01")');
    for(const text of [h.elements.get('catalogue-results').innerHTML,h.elements.get('inspect-content').innerHTML]){
      assert(!text.includes('<script>'));assert(!text.includes('<img src'));assert(!text.includes('<svg onload'));assert(!text.includes('onmouseover="bad'));
    }
-   assert(h.elements.get('inspect-content').innerHTML.includes('&lt;svg'));assert.equal(h.calls.filter(c=>c.body).length,0);
+   assert(h.elements.get('inspect-content').innerHTML.includes('&lt;svg'));assert(h.elements.get('inspect-content').innerHTML.includes('Acceptance checks still required'));assert(h.elements.get('inspect-content').innerHTML.includes('&lt;script&gt;bad check'));assert.equal(h.calls.filter(c=>c.body).length,0);
  });
  await test('A catalogue preview preserves verified historical review and closes before opening character setup',async()=>{
    const h=environment(),fixture=discoveryFixture(),portfolio=JSON.parse(fs.readFileSync(catalogRoot+'/data/campaign_portfolio.json','utf8'));
