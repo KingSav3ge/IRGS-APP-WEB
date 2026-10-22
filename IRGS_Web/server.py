@@ -8,6 +8,7 @@ import secrets
 import sys
 import threading
 import uuid
+import zipfile
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse, parse_qs
@@ -348,7 +349,7 @@ class Store:
         return result
 
 
-def make_server(port=8765, folder=None):
+def make_server(port=8765, folder=None, *, reference_library=None, reference_error=None):
     store = Store(folder or ROOT / 'saves')
     token = secrets.token_urlsafe(32)
 
@@ -385,6 +386,28 @@ def make_server(port=8765, folder=None):
             query = parse_qs(urlparse(self.path).query)
             mode=query.get('mode',['player'])[0]
             try:
+                if path in ('/api/historical-reference', '/api/historical-reference/search', '/api/historical-reference/record'):
+                    self.creator(mode)
+                    if reference_library is None:
+                        if path != '/api/historical-reference':
+                            raise ValueError('Attach a historical archive before searching')
+                        return self.reply(200, {'status': 'unavailable' if reference_error else 'not_attached',
+                            'title': 'Historical Grand Archive', 'campaign_effects': False,
+                            'notice': 'No historical reference archive is available. Attach the existing source ZIP with IRGS_Web/register_historical_archive.py.'})
+                    try:
+                        if path == '/api/historical-reference':
+                            result = reference_library.status()
+                        elif path.endswith('/search'):
+                            result = reference_library.search(query.get('collection', ['chronology'])[0],
+                                query.get('q', [''])[0], offset=int(query.get('offset', ['0'])[0]),
+                                limit=int(query.get('limit', ['20'])[0]))
+                        else:
+                            result = reference_library.record(query.get('collection', [''])[0],
+                                int(query.get('row', ['0'])[0]))
+                    except (OSError, KeyError, ValueError, zipfile.BadZipFile) as err:
+                        # Avoid exposing the owner's local source path through errors.
+                        raise ValueError('Historical reference unavailable or invalid. Check the attachment and search parameters.') from err
+                    return self.reply(200, result)
                 with store.lock:
                     if path.startswith('/api/playthrough/'):
                         self.session()
@@ -589,6 +612,7 @@ if __name__ == '__main__':
         raise SystemExit('IRGS requires Python validation: do not launch with -O.')
     parser = argparse.ArgumentParser()
     parser.add_argument('--port', type=int, default=8765)
+    parser.add_argument('--reference-config', type=Path, default=ROOT / 'cache/reference_sources.json')
     args = parser.parse_args()
     from release_integrity import verify_release
     verify_release()
@@ -596,7 +620,14 @@ if __name__ == '__main__':
     verify_app()
     from catalog_paths import verify_catalog
     verify_catalog()
-    server = make_server(args.port)
+    reference_library, reference_error = None, None
+    if args.reference_config.exists():
+        from historical_archive import from_registration
+        try:
+            reference_library = from_registration(args.reference_config)
+        except (OSError, ValueError, KeyError, TypeError):
+            reference_error = True
+    server = make_server(args.port, reference_library=reference_library, reference_error=reference_error)
     print(f'IRGS ready at http://127.0.0.1:{server.server_port}', flush=True)
     try:
         server.serve_forever()

@@ -262,8 +262,60 @@ function applyCurrentRoute(){
   const next=featureView(feature);if(routeFeatureId===feature.id&&view===next)return;
   routeFeatureId=feature.id;expandFeatureAncestors(feature.id);changeView(next,{route:false});drawFeatureNav();if(['character','inventory'].includes(feature.id)&&current)openInspector(feature.id);
 }
+let historicalReferenceRequest=0;
+let historicalReferenceQuery={collection:'chronology',q:'',offset:0};
+function historicalReferenceActive(){return workspaceMode==='creator'&&view==='feature:historical-reference-library';}
+async function renderHistoricalReference(){
+  if(!historicalReferenceActive())return;
+  const request=++historicalReferenceRequest;
+  $('#content').innerHTML='<section class="panel"><p>Opening the historical reference library…</p></section>';
+  try{
+    const info=await api('historical-reference',undefined,{creator:true});
+    if(request!==historicalReferenceRequest||!historicalReferenceActive())return;
+    if(info.status!=='attached_read_only'){
+      $('#content').innerHTML='<section class="panel"><span class="eyebrow">CREATOR REFERENCE</span><h2>Historical Reference Library</h2><p>'+esc(info.notice||'Attach the existing source archive on this installation to browse it here.')+'</p><p class="note">Project source attachments stay separate from campaign saves. A cloud installation needs its own accessible source attachment.</p></section>';return;
+    }
+    const collections=info.collections||[];
+    if(!collections.some(item=>item.id===historicalReferenceQuery.collection))historicalReferenceQuery.collection=collections[0]?.id||'chronology';
+    $('#content').innerHTML='<section class="panel"><span class="eyebrow">CREATOR REFERENCE · READ ONLY</span><h2>'+esc(info.title)+' · '+esc(info.edition)+'</h2><p class="reference-note">'+esc(info.notice)+'</p><p>'+esc(info.scope)+'</p><form id="historical-reference-search" class="reference-search"><label>Collection<select id="reference-collection">'+collections.map(item=>'<option value="'+esc(item.id)+'">'+esc(item.title)+'</option>').join('')+'</select></label><label>Find a person, place or subject<input id="reference-query" type="search" maxlength="200" placeholder="Henry, Agincourt, 1415…"></label><button class="primary" type="submit">Search archive</button></form><p class="note">Dates, estimates and disputed identities keep their source wording. Results do not establish availability in a campaign.</p><div id="historical-reference-results" aria-live="polite"></div></section>';
+    $('#reference-collection').value=historicalReferenceQuery.collection;$('#reference-query').value=historicalReferenceQuery.q;
+    $('#historical-reference-search').onsubmit=event=>{event.preventDefault();historicalReferenceQuery={collection:$('#reference-collection').value,q:$('#reference-query').value,offset:0};return searchHistoricalReference();};
+    await searchHistoricalReference();
+  }catch(error){if(request===historicalReferenceRequest&&historicalReferenceActive())$('#content').innerHTML='<section class="panel"><h2>Historical Reference Library</h2><p>'+esc(error.message)+'</p><button class="quiet" id="reference-retry">Retry</button></section>';if($('#reference-retry'))$('#reference-retry').onclick=renderHistoricalReference;}
+}
+async function searchHistoricalReference(){
+  if(!historicalReferenceActive()||!$('#historical-reference-results'))return;
+  const request=++historicalReferenceRequest,selection={...historicalReferenceQuery};
+  $('#historical-reference-results').innerHTML='<p>Searching source records…</p>';
+  try{
+    const params=new URLSearchParams({...selection,limit:20});
+    const result=await api('historical-reference/search?'+params.toString(),undefined,{creator:true});
+    if(request!==historicalReferenceRequest||!historicalReferenceActive()||!$('#historical-reference-results'))return;
+    const records=result.results||[];
+    $('#historical-reference-results').innerHTML='<p class="note">'+esc(records.length?'Showing matches '+(selection.offset+1)+'–'+(selection.offset+records.length):'No source records match this search.')+'</p>'+records.map(row=>'<article class="record-card"><h3>'+esc(row.title)+'</h3><small>'+esc(row.source_id??row.record_type)+'</small>'+'<p class="note">'+esc(row.dates?.date_text||row.dates?.period_text||(row.dates?.year!==undefined?String(row.dates.year):''))+'</p><p>'+esc(row.excerpt||'')+'</p><details><summary>Source qualifications</summary>'+facts(row.source_status)+facts(row.dates)+'</details><button class="quiet" data-reference-row="'+esc(row.row)+'">Read source record & citations</button></article>').join('')+'<div class="buttons"><button id="reference-previous" class="quiet" '+(selection.offset?'':'disabled')+'>Previous</button><button id="reference-next" class="quiet" '+(result.has_more?'':'disabled')+'>Next</button></div>';
+    document.querySelectorAll('[data-reference-row]').forEach(button=>button.onclick=()=>inspectHistoricalReference(selection.collection,Number(button.dataset.referenceRow)));
+    $('#reference-previous').onclick=()=>{historicalReferenceQuery={...selection,offset:Math.max(0,selection.offset-20)};return searchHistoricalReference();};
+    $('#reference-next').onclick=()=>{if(result.has_more){historicalReferenceQuery={...selection,offset:result.next_offset};return searchHistoricalReference();}};
+  }catch(error){if(request===historicalReferenceRequest&&historicalReferenceActive()&&$('#historical-reference-results'))$('#historical-reference-results').innerHTML='<p class="reference-note">'+esc(error.message)+'</p>';}
+}
+function historicalCitationMarkup(source){
+  const record=source.record||{};let payload={};try{payload=JSON.parse(record.payload_json||'{}');}catch{}
+  const url=safeHttpUrl(record.url||payload.url),title=record.title||payload.title||source.id;
+  return '<section><h4>'+(url?'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(title)+'</a>':esc(title))+'</h4><p>'+esc(payload.citation||'')+'</p>'+facts({source_id:source.id,status:source.status,rights_status:record.rights_status||payload.rights_status||'Not established',access_status:record.access_status||payload.access_status||'Not established'})+(source.rights||[]).map(right=>'<p class="note">'+esc(right.disposition)+' · '+esc(right.scope||'')+'</p>').join('')+'</section>';
+}
+async function inspectHistoricalReference(collection,row){
+  if(!historicalReferenceActive())return;
+  const request=++inspectorRequest;
+  $('#inspect-title').textContent='Historical source · Creator reference';$('#inspect-content').innerHTML='<p>Reading the source record…</p>';if(!$('#inspect-dialog').open)$('#inspect-dialog').showModal();
+  try{
+    const result=await api('historical-reference/record?'+new URLSearchParams({collection,row}),undefined,{creator:true});
+    if(request!==inspectorRequest||!historicalReferenceActive()||!$('#inspect-dialog').open)return;
+    $('#inspect-content').innerHTML='<h3>'+esc(result.title)+'</h3><p class="reference-note">'+esc(result.notice)+'</p>'+'<p>'+esc(result.dates?.date_text||result.dates?.period_text||'')+'</p><p>'+esc(result.record?.payload?.statement||result.record?.statement||result.record?.significance_text||'')+'</p><h3>Citations and rights</h3>'+((result.sources||[]).map(historicalCitationMarkup).join('')||'<p class="note">No resolved citation is supplied for this record. Original references remain in the source payload.</p>')+'<details><summary>Source qualifications and date fields</summary>'+facts(result.source_status)+facts(result.dates)+'</details><details><summary>Original record and provenance</summary><pre class="reference-source-record">'+esc(JSON.stringify(result.record,null,2))+'</pre>'+facts(result.reference)+'</details>';
+  }catch(error){if(request===inspectorRequest&&historicalReferenceActive()&&$('#inspect-dialog').open)$('#inspect-content').innerHTML='<p>'+esc(error.message)+'</p>';}
+}
 function renderFeature(id){
   const feature=features.find(item=>item.id===id&&featureAllowed(item));
+  if(feature&&workspaceMode==='creator'&&id==='historical-reference-library'){renderHistoricalReference();return;}
   if(feature&&workspaceMode==='creator'&&['historical-comparison','historical-inspector'].includes(id)){renderHistoricalPlans(id);return;}
   if(!feature){$('#content').innerHTML='<div class="empty"><h2>Section unavailable</h2><p>This route is not available in the current workspace.</p></div>';return;}
   const children=features.filter(item=>item.parentId===id),dependencies=(feature.dependencyIds||[]).map(dep=>features.find(item=>item.id===dep)?.label).filter(Boolean),status=LIFECYCLE_LABEL[feature.lifecycle]||feature.lifecycle;

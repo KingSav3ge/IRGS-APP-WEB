@@ -25,7 +25,7 @@ class CampaignPortfolioTests(unittest.TestCase):
     def test_expanded_v05_records_preserve_copy_and_prior_adoption_boundaries(self):
         portfolio = content_library()['portfolio']
         self.assertEqual(portfolio['version'], '0.5')
-        raw = json.loads((CATALOG_ROOT / 'design/catalogue_v0_5/catalogue.json').read_text())
+        raw = json.loads((CATALOG_ROOT / 'design/catalogue_v0_5/catalogue.json').read_text(encoding='utf-8'))
         source = {e['catalogue_id']: e for e in raw['records']}
         self.assertEqual(set(source), {e['catalogue_id'] for e in portfolio['entries']})
         for entry in portfolio['entries']:

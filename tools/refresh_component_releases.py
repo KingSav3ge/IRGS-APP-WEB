@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-EXCLUDED = {'__pycache__', 'saves', 'trash', 'live', '.git', '.pytest_cache', 'tmp', 'temp'}
+EXCLUDED = {'__pycache__', 'saves', 'trash', 'live', '.git', '.pytest_cache', 'tmp', 'temp', 'cache', 'caches', '.cache'}
 
 
 def source_files(root):
