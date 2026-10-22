@@ -30,3 +30,7 @@ The root launcher defaults to port 8765 and can reuse an already running valid I
 ## Component verification
 
 Read README.md for current commands. Refresh only this component with tools/refresh_component_releases.py and verify with tools/verify_components.py. Run the relevant runtime or Web/interface checks. Refreshing hashes does not establish behavioral qualification. No user saves, credentials, runtime logs or caches belong in source. Keep one authoritative world and existing owners.
+
+## Coordinator work orders
+
+The user assigns cross-component coordination and unified integration to **IRGS Enviroment**. Read `COORDINATOR_WORK_ORDER.md` before selecting the next increment. This chat pushes only its component repository. Report the exact commit and executed checks to the coordinator. Only the coordinator integrates a reviewed Engine/App/Catalog set into joined IRGS/main. Keep this component's development plan current. Work orders and plan edits alone do not complete a component deliverable.
