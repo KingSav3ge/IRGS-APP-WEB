@@ -594,6 +594,8 @@ if __name__ == '__main__':
     verify_release()
     from app_integrity import verify_app
     verify_app()
+    from catalog_paths import verify_catalog
+    verify_catalog()
     server = make_server(args.port)
     print(f'IRGS ready at http://127.0.0.1:{server.server_port}', flush=True)
     try:

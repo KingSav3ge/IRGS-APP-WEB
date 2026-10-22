@@ -14,6 +14,7 @@ from urllib.request import Request, urlopen
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from campaign_portfolio import PORTFOLIO_PATH, campaign_portfolio
+from catalog_paths import CATALOG_ROOT
 from server import Store, make_server
 from features import content_library
 
@@ -31,7 +32,7 @@ class CampaignPortfolioTests(unittest.TestCase):
             {'short_story': 18, 'curated': 9, 'full': 6, 'major': 6, 'grand': 4, 'simulation_system': 1})
         self.assertEqual(Counter(e['campaign_type'] for e in entries if e['slate'] == 'launch'),
             {'short_story': 18, 'curated': 6, 'full': 4, 'major': 2, 'grand': 1})
-        self.assertEqual(hashlib.sha256((ROOT / portfolio['source']['path']).read_bytes()).hexdigest(),
+        self.assertEqual(hashlib.sha256((CATALOG_ROOT.parent / portfolio['source']['path']).read_bytes()).hexdigest(),
             portfolio['source']['sha256'])
         self.assertEqual([e['catalogue_id'] for e in entries if e['available_slice']], ['MC-01', 'CSS-01'])
         for e in entries:

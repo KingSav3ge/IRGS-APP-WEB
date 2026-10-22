@@ -3,9 +3,9 @@ import copy
 import json
 import re
 from collections import Counter
-from pathlib import Path
+from catalog_paths import CATALOG_ROOT
 
-PORTFOLIO_PATH = Path(__file__).resolve().parent / 'data/campaign_portfolio.json'
+PORTFOLIO_PATH = CATALOG_ROOT / 'data/campaign_portfolio.json'
 TYPES = {'SS': 'short_story', 'CC': 'curated', 'FC': 'full', 'MC': 'major',
          'GC': 'grand', 'CSS': 'simulation_system'}
 # These connect existing discovery records, never a supplied concept's launch flag.

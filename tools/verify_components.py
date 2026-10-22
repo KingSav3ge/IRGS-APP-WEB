@@ -1,4 +1,4 @@
-"""Verify independent Engine/App pins and an App's checked-out Engine dependency."""
+"""Verify independent Engine/App/Catalog pins and an App's checked-out dependencies."""
 import argparse
 import json
 from pathlib import Path
@@ -16,6 +16,8 @@ def run(command):
 
 
 def verify(component):
+    if component == 'catalog':
+        return json.loads(run([sys.executable, '-B', str(ROOT / 'IRGS_Catalog/verify_catalog.py')]))
     if component == 'engine':
         core = ROOT / 'IRGS_3_3'
     else:
@@ -25,7 +27,14 @@ def verify(component):
     checks = {'engine': json.loads(run([sys.executable, '-B', str(core / 'runtime/irgs.py'), 'verify']))}
     if component == 'app':
         checks['app'] = json.loads(run([sys.executable, '-B', str(ROOT / 'IRGS_Web/app_integrity.py')]))
+        from catalog_paths import CATALOG_ROOT, verify_catalog
+        checks['catalog'] = verify_catalog()
         if (ROOT / '.gitmodules').exists():
+            expected_catalog = run(['git', 'rev-parse', 'HEAD:Catalog']).strip()
+            actual_catalog = run(['git', '-C', str(ROOT / 'Catalog'), 'rev-parse', 'HEAD']).strip()
+            if expected_catalog != actual_catalog:
+                raise RuntimeError('Catalog checkout differs from the App commit pin')
+            checks['catalog_commit'] = actual_catalog
             expected = run(['git', 'rev-parse', 'HEAD:Engine']).strip()
             actual = run(['git', '-C', str(ROOT / 'Engine'), 'rev-parse', 'HEAD']).strip()
             if expected != actual:
@@ -36,5 +45,5 @@ def verify(component):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--component', choices=('engine', 'app'), required=True)
+    parser.add_argument('--component', choices=('engine', 'app', 'catalog'), required=True)
     print(json.dumps(verify(parser.parse_args().component)))

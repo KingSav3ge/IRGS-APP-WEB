@@ -1,4 +1,4 @@
-"""Refresh explicit Engine/App integrity pins after intentional source edits."""
+"""Refresh explicit Engine/App/Catalog integrity pins after intentional source edits."""
 import argparse
 import hashlib
 import json
@@ -24,6 +24,11 @@ def refresh(component):
             paths.update(source_files(base / directory))
         release.pop('host_sha256', None)
         release['component'] = 'IRGS-Engine'
+    elif component == 'catalog':
+        base = ROOT / 'IRGS_Catalog'
+        release = {'schema_version': 1, 'component': 'IRGS-Catalog',
+            'scope': 'Campaign discovery and design source; no runtime or release authorization.'}
+        paths = set(source_files(base)) - {base / 'release.json'}
     else:
         base = ROOT / 'IRGS_Web'
         release = {'schema_version': 1, 'component': 'IRGS-APP-WEB', 'selected_core': '3.3',
@@ -37,6 +42,6 @@ def refresh(component):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--component', choices=('engine', 'app', 'both'), default='both')
+    parser.add_argument('--component', choices=('engine', 'app', 'catalog', 'both', 'all'), default='both')
     args = parser.parse_args()
-    print(json.dumps([refresh(c) for c in ('engine', 'app') if args.component in (c, 'both')]))
+    print(json.dumps([refresh(c) for c in ('engine', 'app', 'catalog') if args.component == c or args.component == 'all' or (args.component == 'both' and c != 'catalog')]))

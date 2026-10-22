@@ -5,13 +5,13 @@ an entitlement. A registered route grants no access to its underlying data.
 """
 import copy
 import json
-from pathlib import Path
+from catalog_paths import CATALOG_ROOT
 
 from historical_campaigns import historical_catalogue, historical_entry
 from campaign_worlds import WORLD_FILES, world_listing
 from campaign_portfolio import campaign_portfolio
 
-LISTINGS_PATH = Path(__file__).resolve().parent / 'data/campaign_listings.json'
+LISTINGS_PATH = CATALOG_ROOT / 'data/campaign_listings.json'
 LIFECYCLES = ('planned', 'scaffold', 'in_development', 'functional', 'deferred')
 
 

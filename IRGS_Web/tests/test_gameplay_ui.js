@@ -4,6 +4,7 @@ const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
 const source=fs.readFileSync('IRGS_Web/static/app.js','utf8');
 const html=fs.readFileSync('IRGS_Web/static/index.html','utf8');
 const results=[];
+const catalogRoot=process.env.IRGS_CATALOG_ROOT||(fs.existsSync('IRGS_Catalog/data')?'IRGS_Catalog':'Catalog/IRGS_Catalog');
 const engineRoot=process.env.IRGS_ENGINE_ROOT||(fs.existsSync('IRGS_3_3/runtime')?'IRGS_3_3':'Engine/IRGS_3_3');
 const publicFeatures=[{id:'home',route:'#/home',label:'Home',lifecycle:'functional',availableTo:['player']},{id:'content-library',route:'#/content-library',label:'Content Library',lifecycle:'functional',availableTo:['player']},{id:'play',route:'#/play',label:'Play',lifecycle:'functional',availableTo:['player']},{id:'story',route:'#/story',parentId:'play',label:'Story',lifecycle:'functional',availableTo:['player']},{id:'world',route:'#/world',parentId:'play',label:'World',lifecycle:'functional',availableTo:['player']},{id:'economy',route:'#/economy',parentId:'world',label:'Economy',lifecycle:'planned',availableTo:['player']}];
 function discoveryFixture(hash='a'.repeat(64)){const entry={id:'hyw-1415',year:1415,title:'Verified opening',description:'Detailed dated context',ready:true,playable:true,snapshot_sha256:hash,profile_id:'military',scenario_id:'hundred-years-war',readiness:'Verified opening',scenarios:[{id:'individual',title:'Solo individual',ready:true,playable:true},{id:'ast',title:'A Scot’s Tale',ready:false,playable:false,status:'needs_date_reconciliation',reason:'The saved checkpoint civil date is not reconciled.'}]};return {entry,data:{campaigns:[{id:'hundred-years-war',title:'The Hundred Years’ War',period:'1337–1453',summary:'Reference opening',entry_count:37,playable_entry_count:1,periods:[{id:'period',name:'Period',range:'1415',entries:[entry,{id:'hyw-1360',year:1360,title:'Proposed',ready:false,playable:false,readiness:'Snapshot unavailable'}]}]}]}};}
@@ -138,7 +139,7 @@ async function test(name,fn){await fn();results.push('PASS '+name);}
  await test('Players see campaign controls while technical bindings stay in the creator workspace',async()=>{const h=environment();h.run("token='token';current="+JSON.stringify(projection('A'))+";$('#campaign').value='A';workspaceMode='player';syncControls();");assert.equal(h.elements.get('binding-badge').hidden,true);assert.equal(h.elements.get('library-nav').hidden,true);h.run("workspaceMode='creator';syncControls();");assert.equal(h.elements.get('binding-badge').hidden,false);assert.equal(h.elements.get('library-nav').hidden,false);assert.equal(h.calls.length,0);});
  await test('Rise retains a committed material quantity without inventing an unknown unit',async()=>{const h=environment(),p=projection('R');p.settlement={region:'Reach',opening_date:'Spring',location:'commons',elapsed_seconds:0,household_name:'Our household',people:['Ari'],inventory:[{material:'water',quantity:2,available:2,unit:null,unit_status:'unconfigured',reserved_for_work:0}],seed_reserve:0,projects:[],receipts:[],actions:[],limits:[]};h.setFetch(()=>h.reply(p));await h.run("openCampaign('R')");const text=h.elements.get('content').innerHTML;assert(text.includes('2 water'));assert(text.includes('unit not configured'));assert(!text.includes('litres'));assert.equal(h.calls.filter(c=>c.body).length,0);});
  await test('The full portfolio filters type, genre, setting, period, place and perspective without changing a world',async()=>{
-   const h=environment(),fixture=discoveryFixture(),portfolio=JSON.parse(fs.readFileSync('IRGS_Web/data/campaign_portfolio.json','utf8'));
+   const h=environment(),fixture=discoveryFixture(),portfolio=JSON.parse(fs.readFileSync(catalogRoot+'/data/campaign_portfolio.json','utf8'));
    portfolio.counts={total:44,launch:31,future:12,systems:1,free_launch_stories:18,available_slices:1};
    portfolio.entries.forEach(e=>e.available_slice=e.catalogue_id==='MC-01');fixture.data.portfolio=portfolio;
    h.run("token='token';view='content-library';current="+JSON.stringify(projection('A'))+';');
@@ -166,7 +167,7 @@ async function test(name,fn){await fn();results.push('PASS '+name);}
    assert.equal(h.run('JSON.stringify(current)'),before);assert.equal(h.calls.length,1);assert(!h.calls[0].body);
  });
  await test('New concept previews show the supplied scope without offering a forged launch or entitlement',async()=>{
-   const h=environment(),fixture=discoveryFixture(),portfolio=JSON.parse(fs.readFileSync('IRGS_Web/data/campaign_portfolio.json','utf8'));
+   const h=environment(),fixture=discoveryFixture(),portfolio=JSON.parse(fs.readFileSync(catalogRoot+'/data/campaign_portfolio.json','utf8'));
    portfolio.counts={total:44,launch:31,future:12,systems:1,free_launch_stories:18};fixture.data.portfolio=portfolio;
    portfolio.entries[0].available_slice=true;portfolio.entries[0].current_campaign_id='hundred-years-war';portfolio.entries[0].playable=true;
    h.run("token='token';view='content-library';");h.setFetch(()=>h.reply(fixture.data));await h.run('renderContentLibrary()');
@@ -177,7 +178,7 @@ async function test(name,fn){await fn();results.push('PASS '+name);}
    assert(!h.elements.get('create-dialog').open);assert.equal(h.calls.filter(c=>c.body).length,0);
  });
  await test('Catalogue text is escaped and draft classification cannot inject markup or style classes',async()=>{
-   const h=environment(),fixture=discoveryFixture(),portfolio=JSON.parse(fs.readFileSync('IRGS_Web/data/campaign_portfolio.json','utf8'));
+   const h=environment(),fixture=discoveryFixture(),portfolio=JSON.parse(fs.readFileSync(catalogRoot+'/data/campaign_portfolio.json','utf8'));
    portfolio.counts={total:44,launch:31,future:12,systems:1,free_launch_stories:18};fixture.data.portfolio=portfolio;
    const e=portfolio.entries[0];e.title='<script>bad title</script>';e.tagline='<img src=x onerror=bad>';e.synopsis=['<svg onload=bad>'];e.perspectives='<script>bad role</script>';e.campaign_type='bad" onmouseover="bad';
    h.run("token='token';view='content-library';");h.setFetch(()=>h.reply(fixture.data));await h.run('renderContentLibrary()');
@@ -188,7 +189,7 @@ async function test(name,fn){await fn();results.push('PASS '+name);}
    assert(h.elements.get('inspect-content').innerHTML.includes('&lt;svg'));assert.equal(h.calls.filter(c=>c.body).length,0);
  });
  await test('A catalogue preview preserves verified historical review and closes before opening character setup',async()=>{
-   const h=environment(),fixture=discoveryFixture(),portfolio=JSON.parse(fs.readFileSync('IRGS_Web/data/campaign_portfolio.json','utf8'));
+   const h=environment(),fixture=discoveryFixture(),portfolio=JSON.parse(fs.readFileSync(catalogRoot+'/data/campaign_portfolio.json','utf8'));
    portfolio.counts={total:44,launch:31,future:12,systems:1,free_launch_stories:18};fixture.data.portfolio=portfolio;
    h.run("token='token';view='content-library';");h.setFetch(path=>path.startsWith('/api/content-library')?h.reply(fixture.data):h.reply({entries:[fixture.entry],featured_years:[1415]}));
    await h.run('renderContentLibrary()');await h.run('inspectCatalogueConcept("MC-01")');
@@ -198,7 +199,7 @@ async function test(name,fn){await fn();results.push('PASS '+name);}
    assert.equal(h.run('setupEntryContext.snapshot_sha256'),fixture.entry.snapshot_sha256);assert.equal(h.calls.filter(c=>c.body).length,0);
  });
  await test('The separate Rise system preview opens only the reviewed fictional founding workflow',async()=>{
-   const h=environment(),fixture=discoveryFixture(),portfolio=JSON.parse(fs.readFileSync('IRGS_Web/data/campaign_portfolio.json','utf8'));
+   const h=environment(),fixture=discoveryFixture(),portfolio=JSON.parse(fs.readFileSync(catalogRoot+'/data/campaign_portfolio.json','utf8'));
    portfolio.counts={total:44,launch:31,future:12,systems:1,free_launch_stories:18};fixture.data.portfolio=portfolio;
    fixture.data.campaigns.push({id:'rise',kind:'settlement_system',title:'The Rise of... You',templates:[{id:'R00',ready:true}]});
    h.run("token='token';view='content-library';");h.setFetch(()=>h.reply(fixture.data));await h.run('renderContentLibrary()');await h.run('inspectCatalogueConcept("CSS-01")');
