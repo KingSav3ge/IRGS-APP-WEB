@@ -98,5 +98,19 @@ An invalid explicit attachment is reported rather than silently substituted.
 Empty, unavailable and failed-verification states offer **Check again**. Search
 and source-detail failures offer their own retries. Source text, uncertainty,
 original row identities, citation and rights records remain reference material.
-See [development status](../DEVELOPMENT.md) for multipart delivery and exact
-coordinator-reviewed dependency qualification still required by this cycle.
+The default source is the pinned Catalog's
+`historical_details/manifest.json`, using its exact SHA-256 from Catalog's release
+record. Engine verifies/reconstructs all parts into ignored
+`IRGS_Web/cache/historical_details/`; App never copies an editable content tree.
+An explicit ZIP registration takes precedence, including when it is broken.
+The complete archive includes books, assets and its central database, while the
+browser exposes ten structured collections. Preservation and reading establish
+no new historical truth, license, campaign fact or player knowledge.
+
+Run `python3 -B tools/qualify_historical_details.py --output /tmp/irgs-app-qualification.json`
+from the repository root to repeat actual full-archive HTTP qualification. It
+uses temporary synthetic saves/cache and reports exact dependency commits,
+source hashes and collection probes. Catalog's own
+`historical_details_package.py verify` checks every source member and binding.
+See [development status](../DEVELOPMENT.md) for executed evidence, coordinator
+review and the sequenced AI provider backlog.

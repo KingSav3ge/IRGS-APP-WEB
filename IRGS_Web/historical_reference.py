@@ -96,6 +96,14 @@ class HistoricalReferences:
             try:
                 library, kind = self._open()
                 result = library.verify_collections()
+                if result.get('storage') == 'catalog_parts':
+                    kind = 'catalog_multipart'
+                if kind == 'catalog_multipart':
+                    result = {**result, 'scope':
+                        'The complete original archive is preserved in Catalog. '
+                        'This browser exposes ten structured reference collections. '
+                        'Books, source assets and the central database remain preserved '
+                        'in the archive; they are not browsed by this view.'}
                 return {**result, 'source_kind': kind, 'campaign_effects': False,
                         'adoption_performed': False}
             except (ReferenceUnavailable, *SOURCE_ERRORS) as error:

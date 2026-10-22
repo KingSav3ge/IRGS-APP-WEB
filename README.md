@@ -23,5 +23,5 @@ See [catalogue implementation](Catalog/IRGS_Catalog/design/campaign_catalogue/RE
 
 [Development status](DEVELOPMENT.md) tracks completed, active, blocked and remaining
 App work. The Creator's **Historical Details** entry preserves explicit local ZIP
-browsing; final multipart Engine/Catalog qualification remains pending as recorded
+browsing and the complete Catalog multipart archive. Candidate qualification and review are recorded
 in the [coordinator report](COORDINATOR_REPORT.md).

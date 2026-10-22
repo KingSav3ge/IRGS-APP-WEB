@@ -148,8 +148,8 @@ class HistoricalReferenceSelectionHTTPTests(unittest.TestCase):
             open_source.assert_not_called()
 
     def test_engine_multipart_failure_codes_are_safe_and_retriable(self):
-        # Boundary contract only: actual multipart bytes require the new Engine
-        # commit. These exceptions deliberately include a private source path.
+        # Error normalization only; test_historical_multipart exercises real
+        # Engine assembly. These exceptions deliberately include a private path.
         class PartFailure(ValueError):
             def __init__(self, code):
                 self.code = code

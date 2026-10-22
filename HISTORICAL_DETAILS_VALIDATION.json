@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "cycle_id": "historical-details-01",
+  "date": "2026-10-22",
+  "status": "app_candidate_qualified_pending_coordinator_review",
+  "dependencies": {
+    "engine": "b3e7d760a2cf3712292b09328566cf1ed0d78c97",
+    "catalog": "58ce55672bdd75076b94882bd8715a1d2a1f383a"
+  },
+  "checks": {
+    "web": {
+      "run": 166,
+      "passed": 159,
+      "skipped": 7,
+      "failed": 0,
+      "skip_reason": "Windows PowerShell launchers on Linux"
+    },
+    "frontend": {
+      "passed": 72,
+      "kind": "synthetic DOM and delayed transport"
+    },
+    "app_tooling": {
+      "passed": 1
+    },
+    "engine_historical_family": {
+      "run": 65,
+      "passed": 65,
+      "skipped": 0,
+      "failed": 0
+    },
+    "catalog_integrity": {
+      "status": "verified",
+      "concepts": 44
+    },
+    "catalog_complete_payload": {
+      "status": "verified",
+      "parts": 32,
+      "archive": {
+        "name": "IRGS_Historical_Grand_Archive_v1_1.zip",
+        "bytes": 533064680,
+        "sha256": "51246eb6898a228f42f0794ed19ce69af275a2a4661c0fb6a1d3baebe3efc773"
+      },
+      "archive_coverage": "complete",
+      "members_verified": 5146,
+      "delivery_bindings_verified": 5145,
+      "collection_bindings_verified": 10,
+      "unbound_members": [
+        "IRGS_Historical_Grand_Archive_v1_1/07_Verification/delivery_manifest.json"
+      ],
+      "historical_truth_verified": false,
+      "campaign_adoption_performed": false
+    },
+    "app_actual_archive_HTTP": {
+      "status": "passed",
+      "engine_commit": "b3e7d760a2cf3712292b09328566cf1ed0d78c97",
+      "catalog_commit": "58ce55672bdd75076b94882bd8715a1d2a1f383a",
+      "archive_bytes": 533064680,
+      "archive_sha256": "51246eb6898a228f42f0794ed19ce69af275a2a4661c0fb6a1d3baebe3efc773",
+      "app_release_sha256": "ac2676a384b93e375f13a4752533f658ca707e45ce2bd898239815f208967736",
+      "qualifier_sha256": "6773a59fdab08f90433fa0cd4e51773a079500f5d48444add8c0e0daae25a103",
+      "manifest_sha256": "1543cd65b5c4b3ed6f160565b4e4bf01d09dd44a392d53c7036efcd5c0dcf21f",
+      "parts": 32,
+      "collections": {
+        "chronology": {
+          "row": 1,
+          "source_id": "GRAND1_0:GHA-COMP01-E0001",
+          "citations": 1
+        },
+        "figures": {
+          "row": 1,
+          "source_id": "IRGS-HC-WFI01-0001",
+          "citations": 0
+        },
+        "research": {
+          "row": 1,
+          "source_id": "IRGS-RESEARCH-SUPP-20261022:CA-MEDIA",
+          "citations": 1
+        },
+        "claims": {
+          "row": 1,
+          "source_id": "HC-ISLAM-ORIGIN",
+          "citations": 1
+        },
+        "sources": {
+          "row": 1,
+          "source_id": "IRGS-RESEARCH-SUPP-20261022:MPD2023",
+          "citations": 0
+        },
+        "rights": {
+          "row": 1,
+          "source_id": "SUPPLEMENT-RIGHTS:001",
+          "citations": 0
+        },
+        "concepts": {
+          "row": 1,
+          "source_id": "CK3:bookmark:bm_867_persia",
+          "citations": 0
+        },
+        "places": {
+          "row": 1,
+          "source_id": 190226,
+          "citations": 0
+        },
+        "routes": {
+          "row": 1,
+          "source_id": "9",
+          "citations": 0
+        },
+        "population": {
+          "row": 1,
+          "source_id": 2,
+          "citations": 0
+        }
+      },
+      "elapsed_seconds": 2.56,
+      "creator_boundary_denials": 6,
+      "campaign_save_bytes_unchanged": true,
+      "source_parts_unchanged": true,
+      "cache_reused": true,
+      "no_reference_POSTs": true,
+      "scope": "Actual complete reconstruction and ten collection search/detail probes; synthetic neighboring campaign only."
+    },
+    "actual_archive_Chromium": {
+      "status": "passed",
+      "source": "actual complete 32-part Catalog archive",
+      "collections": 10,
+      "creator_navigation": true,
+      "search_detail_retry": true,
+      "protected_deep_link_reload": true,
+      "save_bytes_unchanged": true,
+      "POST_requests": 0,
+      "browser_errors": 0
+    }
+  },
+  "source_safety": {
+    "user_saves_used": false,
+    "component_source_copied_into_app": false,
+    "joined_integration_performed": false,
+    "AI_provider_calls": 0,
+    "executed_model_evaluations": 0
+  },
+  "limits": [
+    "Coordinator approval and joined qualification pending.",
+    "Windows and complete Engine runtime suite not run for this App increment.",
+    "App HTTP probes a first record in each collection; Catalog verifies the complete payload and collection counts.",
+    "Byte identity does not authenticate history, expand rights or adopt campaign facts."
+  ]
+}

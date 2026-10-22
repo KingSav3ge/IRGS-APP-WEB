@@ -53,20 +53,33 @@ temporary saves, never private playthroughs.
   broken explicit attachment never silently falls back to another source.
 - [x] Reject stale responses after navigation, newer requests or inspector close.
 
-### Active / blocked
+### Completed multipart qualification
 
-- [ ] Bind the Catalog multipart source to the delivered Engine reader contract
-  and exercise complete, missing and corrupt parts through the HTTP interface.
-  The App adapter is prepared for `from_catalog_manifest(path, sha256,
-  cache_dir=...)`; the currently selected Engine does not publish this API.
-  Metadata without a compatible reader/payload remains unavailable. Failure-code
-  tests use a test double and do not qualify multipart reconstruction.
-- [ ] Pin and qualify the exact coordinator-reviewed Engine and Catalog commits.
-  The work order names no approved final SHAs; these are required for final
-  cross-component acceptance.
-- [ ] Actual full-archive qualification requires the accessible original ZIP or
-  the complete Catalog parts. The 533,064,680-byte source is absent from this
-  installation; synthetic fixtures do not establish full-data coverage.
+- [x] Connect the actual Engine `from_catalog_manifest(path, sha256, cache_dir=...)`
+  contract to the Catalog release's exact manifest pin.
+- [x] Reconstruct and verify the actual 533,064,680-byte archive from all 32 parts.
+  Catalog verification checked all 5,146 files, 5,145 delivery bindings and ten
+  collection bindings. The delivery manifest excludes itself from its inventory.
+- [x] Search and inspect a real record from each of the ten collections through
+  Creator HTTP, preserving original archive/row identity, citations and rights.
+- [x] Test missing/corrupt parts, recovery, incomplete metadata, authorization
+  before cache assembly and unchanged synthetic campaign saves with the real
+  Engine reader. No multipart test double substitutes for those seven HTTP tests.
+- [x] Describe the full preserved archive separately from the ten browsable
+  collections. Books, assets and the central database remain preserved.
+- [x] Exercise the actual full-data Creator UI in Chromium: navigation,
+  search/detail/retry and protected deep-link reload; no POSTs or save changes.
+
+### Active / awaiting coordinator decision
+
+The concrete tested dependency pair is Engine
+`b3e7d760a2cf3712292b09328566cf1ed0d78c97` and Catalog
+`58ce55672bdd75076b94882bd8715a1d2a1f383a`. Engine's candidate has coordinator
+scoped checks; the coordinator's published gate still marks source review and
+integration approval pending. The completed Catalog source supersedes the
+coordinator's earlier blocked-source observation. Do not label a tested candidate
+as a coordinator-approved release. Exact dependency selection and joined
+integration remain subject to the current work order's coordinator review.
 
 ### Remaining work outside this increment
 
@@ -98,19 +111,50 @@ Report test counts and platform skips explicitly. Synthetic DOM checks and
 browser checks are separate evidence; neither establishes full archive content
 verification or coordinator approval.
 
-### This increment's executed checks (2026-10-22)
+### Current increment's executed checks (2026-10-22)
 
-- Web: 159 run, 152 passed, seven Windows PowerShell launcher skips on Linux.
+- Web: 166 run, 159 passed, seven Windows PowerShell launcher skips on Linux.
 - Interface: 72 checks passed using the synthetic DOM and delayed transport.
 - App tooling: one attachment-exclusion test passed.
-- Existing pinned Engine ZIP reader: six tests passed.
-- Chromium: Player boundary, Creator navigation, attachment/retry, literal
-  search, escaped source detail, protected deep-link reload and return to Player
-  passed with synthetic source and temporary saves; zero POST requests or saves.
-- Refreshed only App hashes and passed App/Engine/Catalog component integrity.
+- Selected Engine historical archive/parts/plans family: 65 tests passed.
+- Complete Catalog integrity and package verification passed: 32 parts, 5,146
+  files, 5,145 delivery bindings, ten collection bindings, 44 concept previews.
+- `tools/qualify_historical_details.py` passed actual archive reconstruction,
+  first-row search/detail for all ten collections, six authorization denials,
+  cache reuse, unchanged source parts and unchanged synthetic campaign saves.
+- Chromium passed the actual Catalog Creator flow with no POSTs, save changes
+  or browser errors. Earlier synthetic escaping/retry checks also remain valid.
 
-Qualified here with existing pins: Engine
-`2c5590bcb2d7ee7e02f597526c3cb341841bd2dd`, Catalog
-`c70dc16d4e48493b833dba5a0f68f43a972bdcb5`.
-Final multipart pins, actual full-archive verification, Windows execution and
-joined integration are not claimed. See [coordinator report](COORDINATOR_REPORT.md).
+The full Engine suite, Windows execution and joined package/integration were not
+run for this increment. Byte identity does not authenticate historical claims,
+expand licenses or adopt campaign facts. See [coordinator report](COORDINATOR_REPORT.md).
+
+## Sequenced AI provider backlog — not implemented
+
+Read the coordinator's [master-spec addendum](https://github.com/KingSav3ge/IRGS/blob/main/AI_PROVIDER_STRATEGY.md),
+[checked research](https://github.com/KingSav3ge/IRGS/blob/main/AI_PROVIDER_REVIEW.md)
+and [16 required evaluation cases](https://github.com/KingSav3ge/IRGS/blob/main/provenance/qa/ai_provider_strategy/EVALUATION_CASES.json).
+Historical Details remains the current delivery. The existing supported gameplay
+and reviewed Engine provider contract precede player integration. The Python host
+and JavaScript UI remain; no gateway or framework rewrite has been selected.
+
+| Requirement | App responsibility after Engine delivery | Status |
+| --- | --- | --- |
+| AIP-01 registry | Protected server-fed developer status; distinguish developer, gateway, host, model and tested workload. | Planned |
+| AIP-02 adapter | Honest disabled, unconfigured and provider-error presentation; keys/configuration stay server-side. | Planned |
+| AIP-03 specialists | Display the existing six Director categories and logical responsibilities without a second registry. | Planned |
+| AIP-04 routing | Consume Engine decisions; no App router or technical routing in campaign selection. | Planned |
+| AIP-05 validation | Show unresolved/rejected/stale results truthfully and preserve editable player intent and agency. | Planned |
+| AIP-06 ledger | Permission-checked requested/actual routes, reported/estimated usage, retries, failures and unknown charges. | Planned |
+| AIP-07 evaluations | Report executed versus unrun cases, disclosed human review and measured evidence; no fabricated winners. | Planned |
+| AIP-08 migration | Fence stale responses after navigation, state changes and restore; preserve previous receipts. | Planned |
+| AIP-09 access | Enforce developer diagnostics and actor information boundaries; never send source data or credentials through browser controls. | Planned |
+
+AIP-S1 begins with disabled-by-default/offline contracts and protected status.
+Connect one already supported player action only after its Engine flow is
+qualified. Missing credentials, denial/timeout, unsafe output, stale responses and
+duplicate submission need checks against the exact selected Engine. Provider
+model evaluation cases remain unrun; existing Web tests are not live model
+benchmarks. No paid inference, subscription, active narrator or autonomous
+Director network is enabled by these plan entries. No Catalog record selects a
+model or authorizes external processing.
