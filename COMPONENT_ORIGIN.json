@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "component": "IRGS-APP-WEB",
+  "source_repository": "https://github.com/KingSav3ge/IRGS.git",
+  "source_commit": "5fbc2ad22f94737846cd63a5a0dc5e63b1de277d",
+  "history": "Original development history remains in joined IRGS/main; this repository begins with its component snapshot."
+}

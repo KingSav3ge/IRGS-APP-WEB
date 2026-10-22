@@ -1,0 +1,14 @@
+**/__pycache__/
+*.py[cod]
+IRGS_Web/saves/
+IRGS_Web/tmp*/
+IRGS_3_3/live/
+IRGS_3_3/backups/
+development_results/
+dist/
+node_modules/
+.venv/
+.env
+.env.*
+*.pem
+*.key

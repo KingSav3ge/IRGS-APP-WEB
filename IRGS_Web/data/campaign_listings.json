@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "visible_campaign_ids": ["hundred-years-war", "world-of-kira", "rise"],
+  "starting_scenario_references": [
+    {
+      "id": "ast",
+      "campaign_id": "hundred-years-war",
+      "entry_id": "hyw-1415",
+      "title": "A Scot's Tale",
+      "kind": "named_character_start",
+      "legacy_profile_id": "ast",
+      "status": "needs_date_reconciliation",
+      "can_launch": false,
+      "reason": "The preserved personal checkpoint has no verified civil date. It cannot inherit the generic 11 August opening or its world circumstances.",
+      "maintenance": "Named 1415 starting reference; reusable mechanics belong to shared Core and genre handlers."
+    }
+  ],
+  "scope": "Player campaign discovery, separate from installed technical profiles and saved playthroughs.",
+  "source": "User-supplied Stage-One historical campaign design and Kira world archive with six map references and author clarifications, reconciled for the canonical website.",
+  "legacy_profiles_preserved": true,
+  "registration_alone_grants_listing": false
+}

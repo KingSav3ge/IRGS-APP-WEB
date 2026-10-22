@@ -1,0 +1,2912 @@
+{
+  "schema_version": 1,
+  "id": "irgs-campaign-portfolio",
+  "version": "0.4",
+  "source": {
+    "path": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+    "sha256": "6ce0298f5a6157414d30f345c21907725d25257fa24e3d98ba9527a4e2d5952b",
+    "kind": "user_supplied_catalogue_concept_draft"
+  },
+  "scope": "Catalogue previews and development requirements only. Counts describe concepts and launch targets, not available games.",
+  "approval_policy": "Preview publication authorized by the user. Working descriptions, settings, system requirements and free launch positioning remain proposals; no new release, entitlement or simulation capability is approved.",
+  "excluded_titles": [
+    {
+      "title": "The Age of Realms",
+      "reason": "Superseded as the proposed first Grand Campaign by The World of Kira; retained only in source idea history."
+    }
+  ],
+  "entries": [
+    {
+      "catalogue_id": "SS-01",
+      "title": "The Long Road Home",
+      "tagline": "Two survivors. Hostile territory. One uncertain road home.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Japan",
+      "period": "Sengoku period",
+      "setting_kind": "historical",
+      "era": "medieval",
+      "setting": "Sengoku-period Japan, with the exact province, date, and military affiliations established through historical configuration.",
+      "genres": [
+        "Survival",
+        "Action",
+        "Adventure",
+        "Thriller",
+        "Historical"
+      ],
+      "synopsis": [
+        "An ambush separates a Japanese retainer and his loyal servant from their military force. Stranded beyond friendly lines, they must survive unfamiliar territory, manage their dwindling supplies, and attempt to return home. Villages, patrols, travelers, temples, and rival forces may offer danger, opportunity, or assistance."
+      ],
+      "perspectives": "The retainer or the servant. The unselected character becomes an independently acting companion.",
+      "core_experiences": "The same journey changes considerably depending on which member of the pair the player controls. Social status, training, and authority affect available options.",
+      "featured_systems": [
+        "Character relationships",
+        "survival",
+        "injuries",
+        "travel",
+        "stealth",
+        "equipment",
+        "supplies",
+        "navigation",
+        "reputation",
+        "NPC autonomy"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Character relationships, survival, injuries, travel, stealth, equipment, supplies, navigation, reputation, and NPC autonomy.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-01",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "SS-02",
+      "title": "Before the Battle",
+      "tagline": "Every battle begins long before the armies meet.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Configurable feudal societies",
+      "period": "Configurable feudal period",
+      "setting_kind": "historical",
+      "era": "medieval",
+      "setting": "Player-configurable feudal conflict, with one or two historically appropriate nations or political powers on each side.",
+      "genres": [
+        "Historical",
+        "Military",
+        "Action",
+        "Slice of Life",
+        "Variable"
+      ],
+      "synopsis": [
+        "Two opposing alliances prepare for battle. Join either side in any feasible occupation, from soldier, knight, commander, or archer to blacksmith, cook, merchant, messenger, or engineer. Experience recruitment, preparation, supply difficulties, military planning, ordinary camp life, battle, and aftermath."
+      ],
+      "perspectives": "Any eligible military or civilian role associated with the armies and their support networks.",
+      "core_experiences": "The player's role determines how they experience the event, but the armies and wider battle continue operating independently.",
+      "featured_systems": [
+        "Military organization",
+        "command",
+        "logistics",
+        "economy",
+        "occupations",
+        "equipment",
+        "morale",
+        "battle simulation",
+        "casualty continuity"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Military organization, command, logistics, economy, occupations, equipment, morale, battle simulation, and casualty continuity.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-02",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "SS-03",
+      "title": "First Encounters",
+      "tagline": "Two worlds meet. Neither knows what comes next.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "North America",
+      "period": "Encounter period to be researched",
+      "setting_kind": "historical",
+      "era": "variable",
+      "setting": "Historically supported North American region and encounter period, selected during scenario configuration.",
+      "genres": [
+        "Historical",
+        "Drama",
+        "Exploration",
+        "Diplomacy",
+        "Variable"
+      ],
+      "synopsis": [
+        "Experience an early encounter between a First Nations community and European arrivals. Choose the societies, circumstances, and individual perspective. The encounter may involve trade, diplomacy, uncertainty, cultural exchange, competition, hostility, or attempts at cooperation."
+      ],
+      "perspectives": "Indigenous community members or European newcomers in historically feasible roles.",
+      "core_experiences": "Neither side automatically understands the other's intentions. Both communities have their own interests, histories, political relationships, and decision-making.",
+      "featured_systems": [
+        "Culture",
+        "languages",
+        "translation",
+        "knowledge",
+        "diplomacy",
+        "institutions",
+        "trade",
+        "social relationships",
+        "information transmission"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Culture, languages, translation, knowledge, diplomacy, institutions, trade, social relationships, and information transmission.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Specific Indigenous nations, their perspectives, land relationships, and documented histories require dedicated research and appropriate consultation."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-03",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "SS-04",
+      "title": "The Hunted",
+      "tagline": "In the wilderness, the danger is already moving.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Configurable forest",
+      "period": "Contemporary introductory proposal",
+      "setting_kind": "variable",
+      "era": "modern",
+      "setting": "Configurable forested environment; contemporary realism is the proposed introductory setting.",
+      "genres": [
+        "Horror",
+        "Survival",
+        "Thriller",
+        "Action"
+      ],
+      "synopsis": [
+        "A dangerous pursuit unfolds in an isolated region. Experience the situation as the person being hunted or as the killer. Surrounding terrain, weather, buildings, available equipment, other people, and incomplete information influence how the encounter develops."
+      ],
+      "perspectives": "The hunted individual or the killer.",
+      "core_experiences": "Neither perspective receives omniscient knowledge. The characters must act on what they can observe, infer, remember, or learn.",
+      "featured_systems": [
+        "Perception",
+        "stealth",
+        "navigation",
+        "evidence",
+        "fatigue",
+        "stress",
+        "injuries",
+        "autonomous opponents",
+        "environmental conditions"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Perception, stealth, navigation, evidence, fatigue, stress, injuries, autonomous opponents, and environmental conditions.",
+        "foundation": "Reconciled authored setting, geography, institutions and starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-04",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "SS-05",
+      "title": "The Northern Frontier",
+      "tagline": "An ordinary day on Rome's frontier becomes a fight for survival.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Roman Britannia · Hadrian’s Wall",
+      "period": "Late second century proposed",
+      "setting_kind": "historical",
+      "era": "ancient",
+      "setting": "Hadrian's Wall, Roman Britannia, with a proposed late-second-century starting period.",
+      "genres": [
+        "Historical",
+        "Military",
+        "Action",
+        "Survival"
+      ],
+      "synopsis": [
+        "Serve as a Roman garrison soldier on the empire's northern frontier. Carry out normal military duties, interact with fellow soldiers and civilians, and experience the disruption of an attack by northern forces. Your actual assignment, location, training, equipment, and available orders determine your involvement."
+      ],
+      "perspectives": "A Roman garrison soldier, with eligible ranks and duties determined during character setup.",
+      "core_experiences": "The garrison is an operational institution, not merely the backdrop for a scripted fight.",
+      "featured_systems": [
+        "Garrison routines",
+        "military discipline",
+        "fortifications",
+        "command",
+        "equipment",
+        "injuries",
+        "logistics",
+        "coordinated combat"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Garrison routines, military discipline, fortifications, command, equipment, injuries, logistics, and coordinated combat.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-05",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "SS-06",
+      "title": "The Initiation",
+      "tagline": "Membership has a price. Whether you pay it is another matter.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Fictional city",
+      "period": "Contemporary",
+      "setting_kind": "fictional",
+      "era": "modern",
+      "setting": "Configurable urban criminal environment, with a contemporary fictional city as the introductory option.",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller",
+        "Social Simulation"
+      ],
+      "synopsis": [
+        "A prospective gang member approaches an initiation ceremony that may alter their place within a criminal organization. Meet existing members, understand internal expectations, manage relationships, and respond to the initiation and its consequences."
+      ],
+      "perspectives": "A prospective or affiliated member, with selectable personal background, sponsorship, and existing relationships.",
+      "core_experiences": "The initiation is a living social event. Players may cooperate, refuse, negotiate, or pursue other feasible choices.",
+      "featured_systems": [
+        "Reputation",
+        "organizational hierarchy",
+        "membership",
+        "loyalty",
+        "coercion",
+        "personal relationships",
+        "obligations",
+        "criminal consequences",
+        "social autonomy"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Reputation, organizational hierarchy, membership, loyalty, coercion, personal relationships, obligations, criminal consequences, and social autonomy.",
+        "foundation": "Reconciled authored setting, geography, institutions and starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-06",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "SS-07",
+      "title": "The Price of Bread",
+      "tagline": "When food becomes scarce, every household feels the consequences.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Mesopotamia",
+      "period": "c. 1800 BCE proposed",
+      "setting_kind": "historical",
+      "era": "ancient",
+      "setting": "Proposed ancient Mesopotamian community, around 1800 BCE.",
+      "genres": [
+        "Historical",
+        "Economic Drama",
+        "Slice of Life",
+        "Survival"
+      ],
+      "synopsis": [
+        "A difficult harvest threatens the food supply of a functioning community. Farmers, millers, traders, laborers, officials, and families respond according to their own resources and circumstances. Prices, wages, storage, obligations, and trade may change as shortages develop."
+      ],
+      "perspectives": "Farmer, baker or food producer, merchant, worker, official, or ordinary household member.",
+      "core_experiences": "The crisis is resolved through the actual movement and use of resources rather than an arbitrary economic event counter.",
+      "featured_systems": [
+        "Agricultural production",
+        "storage",
+        "markets",
+        "household budgets",
+        "labor",
+        "taxation",
+        "contracts",
+        "scarcity"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Agricultural production, storage, markets, household budgets, labor, taxation, contracts, and scarcity.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-07",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "SS-08",
+      "title": "The Broken Compass",
+      "tagline": "The ocean does not care where you intended to go.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Pacific Ocean",
+      "period": "Late eighteenth century proposed",
+      "setting_kind": "historical",
+      "era": "early_modern",
+      "setting": "Proposed late-eighteenth-century Pacific voyage.",
+      "genres": [
+        "Maritime",
+        "Survival",
+        "Adventure",
+        "Drama"
+      ],
+      "synopsis": [
+        "A ship suffers a major disruption while traveling across open water. Damage, weather, supplies, navigation, and crew competence determine its changing circumstances. Characters must deal with the immediate emergency and the longer-term challenge of reaching safety."
+      ],
+      "perspectives": "Captain, navigator, sailor, carpenter, passenger, or another suitable role aboard the vessel.",
+      "core_experiences": "The ship is a functioning mobile environment with interdependent systems and finite resources.",
+      "featured_systems": [
+        "Sailing",
+        "navigation",
+        "weather",
+        "structural damage",
+        "shipboard hierarchy",
+        "provisions",
+        "maintenance",
+        "travel"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Sailing, navigation, weather, structural damage, shipboard hierarchy, provisions, maintenance, and travel.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-08",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "SS-09",
+      "title": "An Empty Throne",
+      "tagline": "A ruler has died. Authority remains, but certainty does not.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "West African Sahel",
+      "period": "Thirteenth–fourteenth century proposed",
+      "setting_kind": "historical",
+      "era": "medieval",
+      "setting": "Proposed thirteenth- or fourteenth-century West African Sahelian polity, to be selected through historical research.",
+      "genres": [
+        "Politics",
+        "Historical Drama",
+        "Intrigue",
+        "Social Simulation"
+      ],
+      "synopsis": [
+        "The death of a ruler creates uncertainty concerning succession, property, offices, and political loyalties. Members of the court and wider society respond according to their relationships, knowledge, legal traditions, and personal interests."
+      ],
+      "perspectives": "Eligible claimant, relative, official, court servant, merchant, military representative, or other connected individual.",
+      "core_experiences": "The player need not seek the throne. Ordinary lives continue while political institutions negotiate the transition.",
+      "featured_systems": [
+        "Political legitimacy",
+        "succession",
+        "institutions",
+        "diplomacy",
+        "relationships",
+        "information",
+        "property",
+        "authority"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Political legitimacy, succession, institutions, diplomacy, relationships, information, property, and authority.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-09",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "SS-10",
+      "title": "The Last Crossing",
+      "tagline": "The river is rising, and the community must decide what to save.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "China",
+      "period": "c. 1700 proposed · Qing era",
+      "setting_kind": "historical",
+      "era": "early_modern",
+      "setting": "Proposed Qing-era Chinese river settlement, around 1700.",
+      "genres": [
+        "Disaster",
+        "Survival",
+        "Historical Drama"
+      ],
+      "synopsis": [
+        "Severe flooding threatens homes, fields, storage sites, and transport routes. Residents and authorities act according to available information, local procedures, equipment, and competing obligations."
+      ],
+      "perspectives": "Ferryman, farmer, laborer, merchant, resident, local official, or other feasible participant.",
+      "core_experiences": "The flood behaves as a developing environmental event. Different characters face different practical responsibilities and consequences.",
+      "featured_systems": [
+        "Water and environmental hazards",
+        "infrastructure",
+        "evacuation",
+        "transport",
+        "property",
+        "rescue",
+        "labor coordination",
+        "institutional response"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Water and environmental hazards, infrastructure, evacuation, transport, property, rescue, labor coordination, and institutional response.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-10",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "SS-11",
+      "title": "A Wedding in Spring",
+      "tagline": "Two lives come together, bringing two households with them.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Korea",
+      "period": "c. 1700 proposed · Joseon",
+      "setting_kind": "historical",
+      "era": "early_modern",
+      "setting": "Proposed Joseon Korea, around 1700.",
+      "genres": [
+        "Slice of Life",
+        "Romance",
+        "Family",
+        "Historical Drama"
+      ],
+      "synopsis": [
+        "A marriage approaches, bringing together relatives, guests, household responsibilities, finances, traditions, and personal relationships. Preparations proceed alongside everyday work, changing expectations, and family obligations."
+      ],
+      "perspectives": "Either prospective spouse, a relative, guest, household worker, or another participant with an appropriate connection.",
+      "core_experiences": "A peaceful social event receives the same simulation depth ordinarily reserved for dangerous or military scenarios.",
+      "featured_systems": [
+        "Households",
+        "family relationships",
+        "marriage institutions",
+        "ceremonies",
+        "inheritance",
+        "expenses",
+        "reputation",
+        "daily routines"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Households, family relationships, marriage institutions, ceremonies, inheritance, expenses, reputation, and daily routines.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-11",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "SS-12",
+      "title": "Ashes on the Waterfront",
+      "tagline": "One fire can change an entire neighborhood.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "East African Indian Ocean port",
+      "period": "c. 1600 proposed",
+      "setting_kind": "historical",
+      "era": "early_modern",
+      "setting": "Proposed East African Indian Ocean port, around 1600.",
+      "genres": [
+        "Disaster",
+        "Action",
+        "Historical Drama",
+        "Investigation"
+      ],
+      "synopsis": [
+        "A fire spreads through a populated waterfront district. Buildings, cargo, weather, access routes, emergency resources, and the decisions of residents determine the consequences. The player may become involved in rescue, containment, evacuation, protecting livelihoods, or subsequent investigation."
+      ],
+      "perspectives": "Merchant, dockworker, sailor, watchman, property owner, resident, or local official.",
+      "core_experiences": "The emergency affects a functioning local economy rather than an isolated encounter zone.",
+      "featured_systems": [
+        "Fire propagation",
+        "construction materials",
+        "inventory",
+        "rescue",
+        "injuries",
+        "property damage",
+        "commercial losses",
+        "coordinated response"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Fire propagation, construction materials, inventory, rescue, injuries, property damage, commercial losses, and coordinated response.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-12",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "SS-13",
+      "title": "Across the Pass",
+      "tagline": "Goods, people, and promises must cross the mountains together.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Central Asia",
+      "period": "c. 1100 proposed",
+      "setting_kind": "historical",
+      "era": "medieval",
+      "setting": "Proposed Central Asian trade route, around 1100.",
+      "genres": [
+        "Adventure",
+        "Commerce",
+        "Travel",
+        "Survival"
+      ],
+      "synopsis": [
+        "A caravan must complete a difficult journey through mountainous terrain. Weather, pack animals, provisions, market conditions, local authorities, and relationships among travelers influence progress."
+      ],
+      "perspectives": "Trader, guide, guard, porter, animal handler, passenger, or another feasible caravan participant.",
+      "core_experiences": "Commerce and cooperation are as important as danger. Successful travel requires accounting for people, animals, cargo, and time.",
+      "featured_systems": [
+        "Logistics",
+        "transport",
+        "animal care",
+        "trade",
+        "weather",
+        "road conditions",
+        "contracts",
+        "navigation"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Logistics, transport, animal care, trade, weather, road conditions, contracts, and navigation.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-13",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "SS-14",
+      "title": "The Magistrate's Table",
+      "tagline": "Every dispute has a history. Every judgment has consequences.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Ottoman Anatolia",
+      "period": "c. 1600 proposed",
+      "setting_kind": "historical",
+      "era": "early_modern",
+      "setting": "Proposed Ottoman Anatolia, around 1600.",
+      "genres": [
+        "Legal Drama",
+        "Historical",
+        "Politics",
+        "Slice of Life"
+      ],
+      "synopsis": [
+        "A local court hears disputes concerning property, contracts, responsibilities, personal conduct, or other matters within its jurisdiction. Evidence, legal procedure, institutional authority, witnesses, and social relationships influence the proceedings."
+      ],
+      "perspectives": "Magistrate or other eligible judicial officer, clerk, claimant, respondent, witness, legal representative, or observer.",
+      "core_experiences": "A noncombat scenario tests whether IRGS can represent meaningful procedural and institutional decisions.",
+      "featured_systems": [
+        "Legal institutions",
+        "documentation",
+        "testimony",
+        "evidence",
+        "property",
+        "obligations",
+        "reputation",
+        "enforcement"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Legal institutions, documentation, testimony, evidence, property, obligations, reputation, and enforcement.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-14",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "SS-15",
+      "title": "The Last Train Through",
+      "tagline": "The journey has stopped. The danger has not.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Andean railway",
+      "period": "c. 1910 proposed",
+      "setting_kind": "historical",
+      "era": "modern",
+      "setting": "Proposed early-twentieth-century Andean railway, around 1910.",
+      "genres": [
+        "Historical",
+        "Survival",
+        "Thriller",
+        "Industrial Drama"
+      ],
+      "synopsis": [
+        "A railway journey is interrupted in a remote and physically demanding environment. Mechanical problems, weather, access routes, crew expertise, passenger needs, and available materials shape the response."
+      ],
+      "perspectives": "Engineer, conductor, maintenance worker, passenger, railway official, or other appropriate character.",
+      "core_experiences": "Technical competence and routine procedures can avert disaster without requiring arbitrary failure rolls or forced escalation.",
+      "featured_systems": [
+        "Industrial equipment",
+        "mechanical failures",
+        "transport scheduling",
+        "repairs",
+        "environmental conditions",
+        "supplies",
+        "group coordination"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Industrial equipment, mechanical failures, transport scheduling, repairs, environmental conditions, supplies, and group coordination.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-15",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "SS-16",
+      "title": "Blackout Shift",
+      "tagline": "When essential systems fail, the people keeping them running matter most.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "West African city",
+      "period": "Contemporary proposed",
+      "setting_kind": "contemporary_realism",
+      "era": "modern",
+      "setting": "Proposed contemporary West African urban hospital.",
+      "genres": [
+        "Medical Drama",
+        "Modern",
+        "Disaster",
+        "Slice of Life"
+      ],
+      "synopsis": [
+        "A hospital experiences a serious infrastructure disruption during an active shift. Clinical and facilities personnel must respond within their qualifications, available resources, institutional procedures, and obligations to patients."
+      ],
+      "perspectives": "Nurse, physician, technician, facilities worker, administrator, patient, or another feasible participant.",
+      "core_experiences": "The scenario tests skilled professional activity and complex resource dependencies outside warfare.",
+      "featured_systems": [
+        "Organizations",
+        "occupations",
+        "healthcare resources",
+        "time-sensitive decisions",
+        "infrastructure",
+        "maintenance",
+        "supply chains",
+        "institutional coordination"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Organizations, occupations, healthcare resources, time-sensitive decisions, infrastructure, maintenance, supply chains, and institutional coordination.",
+        "foundation": "A researched, authored contemporary hospital, its institutions, people, procedures and initial state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-16",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "SS-17",
+      "title": "Pressure Falling",
+      "tagline": "In orbit, every system matters.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Orbital facility",
+      "period": "Twenty-third century proposed",
+      "setting_kind": "science_fiction",
+      "era": "future",
+      "setting": "Original science-fiction orbital facility, proposed twenty-third century.",
+      "genres": [
+        "Science Fiction",
+        "Survival",
+        "Thriller",
+        "Technical Drama"
+      ],
+      "synopsis": [
+        "An orbital station suffers a serious technical failure affecting its ability to operate safely. Crew members, passengers, and automated systems respond according to their knowledge and capabilities. The situation may be stabilized, worsen, or develop unexpected but causally supported consequences."
+      ],
+      "perspectives": "Engineer, maintenance technician, medical worker, security officer, station administrator, or passenger.",
+      "core_experiences": "Physical dependencies and coordinated technical work are central to the scenario.",
+      "featured_systems": [
+        "Life support",
+        "engineering",
+        "technical diagnostics",
+        "environmental hazards",
+        "communications",
+        "equipment",
+        "finite resources"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Life support, engineering, technical diagnostics, environmental hazards, communications, equipment, and finite resources.",
+        "foundation": "Reconciled authored setting, geography, institutions and starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-17",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "SS-18",
+      "title": "The Missing Manuscript",
+      "tagline": "A missing book may reveal far more than its contents.",
+      "campaign_type": "short_story",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Baghdad",
+      "period": "c. 950 proposed",
+      "setting_kind": "historical",
+      "era": "medieval",
+      "setting": "Proposed tenth-century Baghdad, around 950.",
+      "genres": [
+        "Mystery",
+        "Investigation",
+        "Historical Drama",
+        "Scholarship"
+      ],
+      "synopsis": [
+        "A valuable manuscript disappears from a scholarly or private collection. Its loss creates questions involving ownership, access, institutional relationships, scholarly interests, and the credibility of witnesses."
+      ],
+      "perspectives": "Scholar, scribe, librarian, patron, investigator, attendant, or another connected individual.",
+      "core_experiences": "The mystery must be solvable through consistent records and actor knowledge, without changing established evidence to fit the player's suspicions.",
+      "featured_systems": [
+        "Knowledge",
+        "literacy",
+        "records",
+        "evidence",
+        "memory",
+        "investigation",
+        "social networks",
+        "property",
+        "information security"
+      ],
+      "scope": "A focused personal situation and its connected surroundings.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Knowledge, literacy, records, evidence, memory, investigation, social networks, property, and information security.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "SS-18",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "free",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "CC-01",
+      "title": "The Nile's Ledger",
+      "tagline": "A community survives through the labor of its people and the rhythm of the river.",
+      "campaign_type": "curated",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Egypt",
+      "period": "c. 200 BCE proposed · Ptolemaic",
+      "setting_kind": "historical",
+      "era": "ancient",
+      "setting": "Ptolemaic Egypt, proposed c. 200 BCE.",
+      "genres": [
+        "Historical",
+        "Life Simulation",
+        "Economy",
+        "Society"
+      ],
+      "synopsis": [
+        "Experience the daily functioning of an Egyptian agricultural community. Households cultivate land, maintain livelihoods, participate in markets, interact with authorities, and manage obligations within an established political and economic system. The condition of the river, agricultural productivity, trade, and administrative decisions affect individual opportunities."
+      ],
+      "perspectives": "Farmers, craftworkers, merchants, laborers, officials, household members, and other historically eligible individuals.",
+      "core_experiences": "Demonstrates a persistent agricultural economy in which the player can pursue civilian life rather than an imposed political adventure.",
+      "featured_systems": [
+        "Household continuity",
+        "property",
+        "agriculture",
+        "irrigation",
+        "production",
+        "taxation",
+        "labor",
+        "trade",
+        "administration",
+        "environmental effects"
+      ],
+      "scope": "A central community and its surrounding farms, markets, households, and administrative relationships, with six connected experience domains.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Household continuity, property, agriculture, irrigation, production, taxation, labor, trade, administration, and environmental effects.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "CC-01",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "CC-02",
+      "title": "Courts of Ujjain",
+      "tagline": "Wealth, knowledge, work, and reputation shape life in a great city.",
+      "campaign_type": "curated",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Ujjain · India",
+      "period": "c. 400 proposed · Gupta",
+      "setting_kind": "historical",
+      "era": "ancient",
+      "setting": "Gupta-period India, proposed c. AD 400.",
+      "genres": [
+        "Historical",
+        "Social Simulation",
+        "Commerce",
+        "Scholarship"
+      ],
+      "synopsis": [
+        "In and around Ujjain, individuals participate in a living society of households, crafts, commerce, scholarship, religious institutions, administration, and local politics. Economic position, education, family relationships, institutional standing, and individual capabilities influence the opportunities available to each character."
+      ],
+      "perspectives": "Artisan, student, scholar, merchant, household member, administrator, religious practitioner, or other feasible resident.",
+      "core_experiences": "Introduces a developed civic and scholarly environment where advancement can emerge through peaceful occupations and social relationships.",
+      "featured_systems": [
+        "Careers",
+        "education",
+        "social status",
+        "institutions",
+        "property",
+        "contracts",
+        "commercial production",
+        "cultural customs",
+        "interpersonal relationships"
+      ],
+      "scope": "Connected urban neighborhoods, markets, learning environments, household networks, and nearby rural communities.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Careers, education, social status, institutions, property, contracts, commercial production, cultural customs, and interpersonal relationships.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "CC-02",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "CC-03",
+      "title": "Winter at Blackwater",
+      "tagline": "The cold is coming. Every household has a part to play.",
+      "campaign_type": "curated",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "North Atlantic community",
+      "period": "c. 1050 proposed · Norse-inspired",
+      "setting_kind": "historical_inspired",
+      "era": "medieval",
+      "setting": "Fictional Norse-era North Atlantic community, proposed c. AD 1050.",
+      "genres": [
+        "Historical-Inspired",
+        "Survival",
+        "Slice of Life",
+        "Family"
+      ],
+      "synopsis": [
+        "A remote agricultural community approaches a demanding winter. Food production, livestock, property, household relationships, weather, seasonal occupations, and shared resources create a changing network of responsibilities. Some families may prosper while others struggle, negotiate assistance, or pursue different responses."
+      ],
+      "perspectives": "Farmer, fisher, craftworker, trader, household member, community representative, or newcomer.",
+      "core_experiences": "Sustains a living community through ordinary routines and seasonal pressures without requiring continuous crises.",
+      "featured_systems": [
+        "Weather",
+        "seasonal production",
+        "households",
+        "nutrition",
+        "health",
+        "stored resources",
+        "inheritance",
+        "transport",
+        "community cooperation"
+      ],
+      "scope": "A central settlement, neighboring farms, resource sites, and local institutions across multiple seasons.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Weather, seasonal production, households, nutrition, health, stored resources, inheritance, transport, and community cooperation.",
+        "foundation": "Reconciled authored setting, geography, institutions and starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "CC-03",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "CC-04",
+      "title": "Kilwa: The Monsoon Port",
+      "tagline": "Across the ocean come goods, travelers, stories, and opportunity.",
+      "campaign_type": "curated",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Kilwa · Swahili coast",
+      "period": "c. 1400 proposed",
+      "setting_kind": "historical",
+      "era": "medieval",
+      "setting": "Medieval Swahili coast, proposed c. AD 1400.",
+      "genres": [
+        "Historical",
+        "Maritime",
+        "Economic",
+        "Cultural Drama"
+      ],
+      "synopsis": [
+        "Experience a coastal trading community linked to wider Indian Ocean networks. Merchants, sailors, artisans, households, religious institutions, and authorities participate in a society shaped by maritime commerce and local relationships. Trade voyages, cargo ownership, family enterprises, construction, and negotiations influence the settlement's development."
+      ],
+      "perspectives": "Sailor, trader, craftworker, household member, port worker, religious scholar, or official.",
+      "core_experiences": "Demonstrates that a living local community can be deeply integrated into a much wider world without simulating that entire world at equal detail.",
+      "featured_systems": [
+        "Trade",
+        "maritime transport",
+        "commercial credit",
+        "institutions",
+        "languages",
+        "households",
+        "social hierarchy",
+        "production",
+        "infrastructure"
+      ],
+      "scope": "Kilwa's urban community, port facilities, nearby settlements, commercial institutions, and connected maritime activities.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Trade, maritime transport, commercial credit, institutions, languages, households, social hierarchy, production, and infrastructure.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "CC-04",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "CC-05",
+      "title": "The Ambassador's Household",
+      "tagline": "Nations negotiate through people, and people have lives beyond diplomacy.",
+      "campaign_type": "curated",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Istanbul",
+      "period": "c. 1600 proposed · Ottoman",
+      "setting_kind": "historical",
+      "era": "early_modern",
+      "setting": "Ottoman Istanbul, proposed c. AD 1600.",
+      "genres": [
+        "Historical",
+        "Political Drama",
+        "Diplomacy",
+        "Slice of Life"
+      ],
+      "synopsis": [
+        "A diplomatic household operates within a complex foreign city. Its residents and staff manage correspondence, finances, social obligations, appointments, commercial interests, and relationships with local institutions. Diplomatic events unfold alongside the personal lives of servants, translators, merchants, officials, and visiting travelers."
+      ],
+      "perspectives": "Ambassador or authorized representative, interpreter, secretary, attendant, servant, merchant, official, or other connected individual.",
+      "core_experiences": "Shows an institution operating through individual people, procedures, and communication rather than abstract diplomatic menus.",
+      "featured_systems": [
+        "Diplomacy",
+        "law",
+        "organizational hierarchy",
+        "correspondence",
+        "intelligence",
+        "cultural knowledge",
+        "households",
+        "employment",
+        "finance"
+      ],
+      "scope": "One diplomatic household and its relationships with the city's relevant institutions, neighborhoods, courts, and commercial networks.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Diplomacy, law, organizational hierarchy, correspondence, intelligence, cultural knowledge, households, employment, and finance.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "CC-05",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "CC-06",
+      "title": "Midnight in Meridian",
+      "tagline": "A modern city has thousands of stories. Choose yours.",
+      "campaign_type": "curated",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Meridian · fictional North American city",
+      "period": "Contemporary",
+      "setting_kind": "fictional",
+      "era": "modern",
+      "setting": "Original contemporary North American city.",
+      "genres": [
+        "Modern Life",
+        "Drama",
+        "Crime",
+        "Business",
+        "Social Simulation"
+      ],
+      "synopsis": [
+        "Meridian is a functioning urban district of homes, workplaces, stores, public services, transport networks, social communities, and competing organizations. The player enters an ordinary life with extraordinary possibilities, or simply continues building a livelihood and relationships."
+      ],
+      "perspectives": "Employee, business owner, student, resident, public-sector worker, contractor, criminal associate, professional, or other feasible individual.",
+      "core_experiences": "Demonstrates modern-day civilian freedom through a persistent urban population rather than a fixed crime or action narrative.",
+      "featured_systems": [
+        "Housing",
+        "employment",
+        "education",
+        "finance",
+        "contracts",
+        "policing",
+        "healthcare",
+        "transport",
+        "social relationships",
+        "local governance"
+      ],
+      "scope": "Several interconnected neighborhoods and local institutions, with persistent residents, jobs, enterprises, and property.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Housing, employment, education, finance, contracts, policing, healthcare, transport, social relationships, and local governance.",
+        "foundation": "Reconciled authored setting, geography, institutions and starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "CC-06",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "FC-01",
+      "title": "Britannia: Edge of Empire",
+      "tagline": "Beyond Rome's roads and forts lies a province alive with its own ambitions.",
+      "campaign_type": "full",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Roman Britannia",
+      "period": "150–250 proposed",
+      "setting_kind": "historical",
+      "era": "ancient",
+      "setting": "Roman Britain, proposed playable foundations between AD 150 and 250.",
+      "genres": [
+        "Historical",
+        "Political",
+        "Military",
+        "Society",
+        "Economic Simulation"
+      ],
+      "synopsis": [
+        "Explore Roman Britannia as a living province rather than a collection of military encounters. Forts, towns, rural estates, roads, markets, religious communities, and political authorities depend upon one another. Citizens, provincial inhabitants, soldiers, merchants, workers, and local communities pursue lives within and around Roman institutions."
+      ],
+      "perspectives": "Soldier, veteran, farmer, merchant, administrator, craftworker, household member, traveler, and other historically eligible roles.",
+      "core_experiences": "The actions of one fort, estate, or town can affect other communities through actual trade, taxation, transport, and government activity.",
+      "featured_systems": [
+        "Regional economics",
+        "military logistics",
+        "taxation",
+        "households",
+        "labor",
+        "law",
+        "settlement development",
+        "institutions",
+        "communications"
+      ],
+      "scope": "Frontier communities; urban society; rural estates and agriculture; transport and commerce; provincial administration.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Regional economics, military logistics, taxation, households, labor, law, settlement development, institutions, and communications.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "FC-01",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "FC-02",
+      "title": "The Four Quarters",
+      "tagline": "Across the Andes, communities are joined by roads, obligations, and empires.",
+      "campaign_type": "full",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Tawantinsuyu · Andes",
+      "period": "1450–1532 proposed",
+      "setting_kind": "historical",
+      "era": "medieval",
+      "setting": "Tawantinsuyu and associated Andean societies, proposed c. AD 1450–1532.",
+      "genres": [
+        "Historical",
+        "Social",
+        "Political",
+        "Economic",
+        "Exploration"
+      ],
+      "synopsis": [
+        "Enter a network of highland and regional communities whose livelihoods connect agriculture, infrastructure, administration, craft production, religious life, and relationships between local populations and imperial institutions. Roads, storage facilities, regional labor demands, and environmental conditions influence the movement of people and resources."
+      ],
+      "perspectives": "Community member, agricultural worker, craftsperson, messenger, local administrator, authorized official, caravan worker, or another feasible role.",
+      "core_experiences": "Demonstrates sophisticated regional integration through institutions and economic practices distinct from European feudal or monetary systems.",
+      "featured_systems": [
+        "Regional labor",
+        "infrastructure",
+        "resource redistribution",
+        "transport",
+        "administration",
+        "environment",
+        "households",
+        "institutional authority"
+      ],
+      "scope": "Local communities; agricultural production; roads and communications; regional administrative centers; ceremonial and political institutions.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Regional labor, infrastructure, resource redistribution, transport, administration, environment, households, and institutional authority.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "FC-02",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "FC-03",
+      "title": "Provinces at War",
+      "tagline": "In an age of rival lords, life continues far beyond the battlefield.",
+      "campaign_type": "full",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Japan",
+      "period": "1540–1600 proposed · Sengoku",
+      "setting_kind": "historical",
+      "era": "early_modern",
+      "setting": "Sengoku-period Japan, proposed c. AD 1540–1600.",
+      "genres": [
+        "Historical",
+        "Military",
+        "Political",
+        "Economy",
+        "Life Simulation"
+      ],
+      "synopsis": [
+        "Experience several interconnected Japanese provinces amid competing territorial powers. Castle towns, villages, merchants, agricultural communities, religious institutions, samurai households, and military forces operate within shifting political relationships. War can disrupt ordinary life, but political and military service are not mandatory career paths."
+      ],
+      "perspectives": "Farmer, craftworker, merchant, retainer, independent contractor, religious practitioner, official, household member, or other feasible character.",
+      "core_experiences": "Multiple provinces respond autonomously to changing political, social, and economic circumstances.",
+      "featured_systems": [
+        "Land rights",
+        "agricultural production",
+        "taxation",
+        "command",
+        "regional logistics",
+        "trade",
+        "settlement relationships",
+        "diplomacy",
+        "political succession"
+      ],
+      "scope": "Rural settlements; castle domains; commercial towns; religious institutions; military and administrative organizations.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Land rights, agricultural production, taxation, command, regional logistics, trade, settlement relationships, diplomacy, and political succession.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "FC-03",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "FC-04",
+      "title": "The Jovian Corridor",
+      "tagline": "Humanity has reached Jupiter. Living there is another matter.",
+      "campaign_type": "full",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Jovian transport network",
+      "period": "2250–2300 proposed",
+      "setting_kind": "science_fiction",
+      "era": "future",
+      "setting": "Original science-fiction outer Solar System, proposed c. AD 2250–2300.",
+      "genres": [
+        "Science Fiction",
+        "Exploration",
+        "Industrial",
+        "Political",
+        "Life Simulation"
+      ],
+      "synopsis": [
+        "Travel among inhabited stations, industrial facilities, spacecraft, and communities linked through the Jovian transport network. Residents depend upon finite resources, functioning life-support infrastructure, commercial agreements, technical labor, and institutional cooperation."
+      ],
+      "perspectives": "Engineer, technician, worker, pilot, merchant, researcher, administrator, security employee, entrepreneur, or ordinary habitat resident.",
+      "core_experiences": "Demonstrates the same Core economic and institutional principles under unfamiliar physical and technological conditions.",
+      "featured_systems": [
+        "Environmental engineering",
+        "infrastructure",
+        "logistics",
+        "labor",
+        "finance",
+        "orbital transport",
+        "communications",
+        "production",
+        "interdependent settlements"
+      ],
+      "scope": "Habitat communities; extraction and production; transport and trade; science and technology; regional government and institutions.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Environmental engineering, infrastructure, logistics, labor, finance, orbital transport, communications, production, and interdependent settlements.",
+        "foundation": "Reconciled authored setting, geography, institutions and starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "FC-04",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "MC-01",
+      "title": "Century of Conflict: The Hundred-Years' War",
+      "tagline": "A century of conflict. Thousands of lives. History is not yet written.",
+      "campaign_type": "major",
+      "slate": "launch",
+      "development_status": "in_development",
+      "geography": "Medieval Western Europe",
+      "period": "1337–1453 · 37 supported dated starts",
+      "setting_kind": "historical",
+      "era": "medieval",
+      "setting": "Medieval Western Europe, beginning at supported historical entry points between 1337 and 1453, with persistent continuation thereafter.",
+      "genres": [
+        "Historical",
+        "Military",
+        "Political",
+        "Economic",
+        "Life Simulation",
+        "Adventure"
+      ],
+      "synopsis": [
+        "Inhabit the world of the Hundred Years' War through the lives of nobles, commoners, merchants, soldiers, independent contractors, officials, scholars, households, and institutions. Historical events establish starting conditions, but the world's development responds to actual decisions and circumstances. Kingdoms and armies act beyond the player's immediate experience."
+      ],
+      "perspectives": "Independently chosen backgrounds, occupations, institutions, affiliations, and eligible character or organizational perspectives. No mandatory faction service.",
+      "core_experiences": "A historically grounded world with supported historical entry points and extensive scope for alternate outcomes. Its central historical focus is the Hundred Years' War, making Major Campaign the adopted classification.",
+      "featured_systems": [
+        "Diplomacy",
+        "taxation",
+        "warfare",
+        "logistics",
+        "regional administration",
+        "historical information",
+        "dynastic succession",
+        "social mobility",
+        "production",
+        "generational history"
+      ],
+      "scope": "Four interconnected Full Campaign-equivalent domains representing appropriate political, military, economic, and civilian theaters.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Diplomacy, taxation, warfare, logistics, regional administration, historical information, dynastic succession, social mobility, production, and generational history.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "MC-01",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "Existing 37 dated starts and bounded optional fictional openings remain available; the full Major Campaign is in development."
+      }
+    },
+    {
+      "catalogue_id": "MC-02",
+      "title": "The Bronze Age Powers",
+      "tagline": "Empires trade, negotiate, fight, and depend upon one another.",
+      "campaign_type": "major",
+      "slate": "launch",
+      "development_status": "planned",
+      "geography": "Eastern Mediterranean · Ancient Near East",
+      "period": "1400–1150 BCE proposed",
+      "setting_kind": "historical",
+      "era": "ancient",
+      "setting": "Eastern Mediterranean and Ancient Near East, proposed c. 1400–1150 BCE.",
+      "genres": [
+        "Historical",
+        "Civilization",
+        "Political",
+        "Military",
+        "Economic Simulation"
+      ],
+      "synopsis": [
+        "Explore the interconnected societies of ancient Egypt, Anatolia, the Levant, and Mesopotamia during a period of powerful kingdoms, regional trade, diplomacy, and institutional change. Royal courts, local communities, temples, workshops, caravans, military organizations, and agricultural production interact across political borders."
+      ],
+      "perspectives": "Farmer, merchant, craftworker, soldier, scribe, diplomatic representative, administrator, religious official, household member, or another historically grounded participant.",
+      "core_experiences": "Demonstrates complex multistate simulation with ancient technologies and institutions. Historical crises may develop, but the simulation does not force a predetermined civilizational collapse.",
+      "featured_systems": [
+        "Interstate diplomacy",
+        "agriculture",
+        "palace and temple economies",
+        "taxation",
+        "military organization",
+        "resource dependencies",
+        "production",
+        "legal authority",
+        "regional trade"
+      ],
+      "scope": "Egypt and the Nile; Anatolia; Levantine states and cities; Mesopotamian states and communities.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Interstate diplomacy, agriculture, palace and temple economies, taxation, military organization, resource dependencies, production, legal authority, and regional trade.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "MC-02",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "GC-01",
+      "title": "The World of Kira",
+      "tagline": "Anyone. Anywhere. Anyhow.",
+      "campaign_type": "grand",
+      "slate": "launch",
+      "development_status": "in_development",
+      "geography": "World of Kira · Larius and TalmahKah",
+      "period": "Supported chronology under development",
+      "setting_kind": "fantasy",
+      "era": "variable",
+      "setting": "The established fictional World of Kira, with supported historical periods and regions developed from its existing lore.",
+      "genres": [
+        "Open-World Fantasy",
+        "Life Simulation",
+        "Political",
+        "Military",
+        "Economic",
+        "Adventure",
+        "Civilization Simulation"
+      ],
+      "synopsis": [
+        "The World of Kira is a persistent, inhabited world in which individuals, households, settlements, organizations, kingdoms, and civilizations pursue their own goals and respond to changing circumstances. Players choose who they are, where they begin, and how they wish to live.",
+        "Its established lore includes the Akarian Empire, Sadion, Everwood, Kyrinus, Estru, and the wider geographic and cultural foundations associated with Larius and TalmahKah. These foundations will be expanded while preserving existing canon and documenting deliberate changes.",
+        "A player may seek employment, build a household, establish commercial enterprises, travel, study, serve an institution, pursue political influence, participate in military affairs, or choose a quieter life."
+      ],
+      "perspectives": "Any setting-feasible individual or eligible institutional perspective, with no predetermined protagonist, faction allegiance, or required career.",
+      "core_experiences": "Kira is not a story about one war, kingdom, dynasty, or individual. It is a living world in which the player's story emerges through participation.",
+      "featured_systems": [
+        "The integrated Core simulation",
+        "autonomous civilizations",
+        "households",
+        "relationships",
+        "production",
+        "commerce",
+        "institutions",
+        "warfare",
+        "diplomacy",
+        "culture",
+        "technology",
+        "knowledge",
+        "ecology",
+        "persistent historical continuity"
+      ],
+      "scope": "Multiple interdependent civilizations and regions operating simultaneously across extensive geographic and chronological scales.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "The integrated Core simulation, autonomous civilizations, households, relationships, production, commerce, institutions, warfare, diplomacy, culture, technology, knowledge, ecology, and persistent historical continuity.",
+        "foundation": "Adopted Kira v0.5 Larius lorebook and Kieran dossier; original documents are a superseded creative archive.",
+        "specific_review": "Working canon was explicitly adopted by the user on 22 October 2026. Dated entry snapshots, resource inventories, permissions, geography scale and numerical magic rules remain to be authored and qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "GC-01",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "Existing Kira world guide is available; no playable Kira starting snapshot."
+      },
+      "adopted_foundation": {
+        "version": "0.5",
+        "path": "IRGS_3_3/catalog/campaigns/kira/canon.json",
+        "status": "user_confirmed_working_canon"
+      }
+    },
+    {
+      "catalogue_id": "CC-P01",
+      "title": "The Greywater Chronicles",
+      "tagline": "Every street has a history. Every household has a story.",
+      "campaign_type": "curated",
+      "slate": "future",
+      "development_status": "planned",
+      "geography": "Greywater · fictional European market town",
+      "period": "c. 1300 proposed",
+      "setting_kind": "historical_inspired",
+      "era": "medieval",
+      "setting": "A fictional but historically grounded medieval European market town, c. AD 1300.",
+      "genres": [
+        "Historical-Inspired",
+        "Life Simulation",
+        "Economy",
+        "Social Drama"
+      ],
+      "synopsis": [
+        "Greywater is a prosperous but changing settlement of farmers, craftspeople, traders, officials, religious institutions, households, and travelers. Players may establish livelihoods, participate in community affairs, experience disputes, form families, or pursue individual ambitions while the town evolves around them."
+      ],
+      "perspectives": "Resident, newcomer, merchant, artisan, laborer, official, household member, or other eligible character.",
+      "core_experiences": "One community is simulated deeply enough that changes to businesses, households, and institutions have observable consequences across multiple generations.",
+      "featured_systems": [
+        "Local production",
+        "commerce",
+        "family relationships",
+        "property",
+        "taxation",
+        "urban infrastructure",
+        "reputation",
+        "local governance"
+      ],
+      "scope": "Household life; crafts and employment; markets and trade; property and local law; community institutions; town development.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Local production, commerce, family relationships, property, taxation, urban infrastructure, reputation, and local governance.",
+        "foundation": "Reconciled authored setting, geography, institutions and starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "CC-P01",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "CC-P02",
+      "title": "The Salt Road",
+      "tagline": "Across the desert, wealth travels with those willing to carry it.",
+      "campaign_type": "curated",
+      "slate": "future",
+      "development_status": "planned",
+      "geography": "Trans-Saharan trade network",
+      "period": "1200–1500 proposed",
+      "setting_kind": "historical",
+      "era": "medieval",
+      "setting": "Trans-Saharan trade network, c. AD 1200–1500, with a specific region and participating societies to be researched.",
+      "genres": [
+        "Historical",
+        "Commerce",
+        "Travel",
+        "Adventure",
+        "Society"
+      ],
+      "synopsis": [
+        "Explore life within a network of merchants, caravan workers, trading communities, transport specialists, households, and political authorities. Goods travel between distant markets through a sequence of commercial relationships and physically demanding journeys."
+      ],
+      "perspectives": "Trader, caravan organizer, guide, pack-animal handler, market worker, guard, accountant, or resident of a connected settlement.",
+      "core_experiences": "The movement of goods and people provides the campaign's organizing structure. Commerce, not conquest, drives the connected gameplay.",
+      "featured_systems": [
+        "Trade",
+        "logistics",
+        "contracts",
+        "pricing",
+        "transport",
+        "environmental conditions",
+        "professions",
+        "commercial networks"
+      ],
+      "scope": "Caravan organization; desert travel; commercial markets; transport labor; settlement economies; political and trading relationships.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Trade, logistics, contracts, pricing, transport, environmental conditions, professions, and commercial networks.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "CC-P02",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "CC-P03",
+      "title": "The Port of Seven Flags",
+      "tagline": "Ships come from many shores. Their people do not always agree.",
+      "campaign_type": "curated",
+      "slate": "future",
+      "development_status": "planned",
+      "geography": "Fictional Indian Ocean port",
+      "period": "c. 1700 proposed",
+      "setting_kind": "historical_inspired",
+      "era": "early_modern",
+      "setting": "A fictional Indian Ocean trading port inspired by early-modern maritime networks, c. AD 1700.",
+      "genres": [
+        "Maritime",
+        "Trade",
+        "Politics",
+        "Crime",
+        "Social Simulation"
+      ],
+      "synopsis": [
+        "A growing port community attracts sailors, merchants, craftspeople, travelers, administrators, and people seeking new opportunities. Different languages, institutions, commercial interests, and political allegiances intersect through the city's harbor and neighborhoods."
+      ],
+      "perspectives": "Sailor, shipowner, trader, laborer, merchant agent, official, craftworker, interpreter, resident, or visitor.",
+      "core_experiences": "A single port links multiple external economies and political actors while retaining a detailed, independently functioning resident population.",
+      "featured_systems": [
+        "Maritime logistics",
+        "business ownership",
+        "contracts",
+        "social relationships",
+        "law",
+        "politics",
+        "multilingual communication",
+        "infrastructure"
+      ],
+      "scope": "Harbor work; maritime commerce; neighborhoods and households; port administration; diplomacy and law; shipping and transport.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Maritime logistics, business ownership, contracts, social relationships, law, politics, multilingual communication, and infrastructure.",
+        "foundation": "Reconciled authored setting, geography, institutions and starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "CC-P03",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "FC-P01",
+      "title": "Cities of the Mediterranean",
+      "tagline": "Between three continents lies a sea of opportunity.",
+      "campaign_type": "full",
+      "slate": "future",
+      "development_status": "planned",
+      "geography": "Mediterranean basin",
+      "period": "Late medieval or early modern proposed",
+      "setting_kind": "historical",
+      "era": "variable",
+      "setting": "Mediterranean basin, with late-medieval or early-modern historical starting periods.",
+      "genres": [
+        "Historical",
+        "Maritime",
+        "Economic",
+        "Political",
+        "Society"
+      ],
+      "synopsis": [
+        "Explore interconnected coastal cities, ports, islands, rural hinterlands, and shipping routes. Merchants, families, civic officials, sailors, workers, religious institutions, and competing political powers interact through travel, trade, diplomacy, and conflict.",
+        "A player's livelihood might involve local industry, urban politics, agriculture, scholarship, maritime commerce, or long-distance travel."
+      ],
+      "perspectives": "Any historically feasible civilian, commercial, political, religious, or military role supported by the chosen entry period.",
+      "core_experiences": "Multiple developed urban economies interact through a shared maritime environment, allowing players to experience local lives and wider regional consequences.",
+      "featured_systems": [
+        "Interregional commerce",
+        "navigation",
+        "port infrastructure",
+        "political relationships",
+        "households",
+        "regional administration",
+        "financial institutions"
+      ],
+      "scope": "Western Mediterranean ports; Italian and central Mediterranean trade; eastern Mediterranean cities; maritime transport networks; coastal hinterlands and institutions.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Interregional commerce, navigation, port infrastructure, political relationships, households, regional administration, and financial institutions.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "FC-P01",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "FC-P02",
+      "title": "Beyond the Frontier",
+      "tagline": "Past the known roads, another society is taking shape.",
+      "campaign_type": "full",
+      "slate": "future",
+      "development_status": "planned",
+      "geography": "Original fantasy frontier",
+      "period": "Authored chronology pending",
+      "setting_kind": "fantasy",
+      "era": "variable",
+      "setting": "Authored original fantasy world, with a defined frontier region and established surrounding societies.",
+      "genres": [
+        "Fantasy",
+        "Exploration",
+        "Settlement",
+        "Economy",
+        "Political Adventure"
+      ],
+      "synopsis": [
+        "Enter a developed but changing borderland where established settlements, independent communities, commercial interests, political authorities, and unexplored areas interact. Exploration may reveal resources and opportunities, while existing inhabitants maintain legitimate interests in the land and its future."
+      ],
+      "perspectives": "Resident, explorer, merchant, craftworker, contractor, farmer, scholar, institutional representative, or traveler.",
+      "core_experiences": "Unlike *Rise of \\_\\_\\_\\_\\_\\_*, this is a specifically authored world with its own geography, histories, inhabitants, and ongoing regional situation. Settlement founding is an option rather than the defining objective.",
+      "featured_systems": [
+        "Exploration",
+        "settlements",
+        "land rights",
+        "resource development",
+        "logistics",
+        "households",
+        "institutions",
+        "regional politics"
+      ],
+      "scope": "Established settlements; frontier communities; transport and commercial routes; regional political authorities; exploration territories.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Exploration, settlements, land rights, resource development, logistics, households, institutions, and regional politics.",
+        "foundation": "Reconciled authored setting, geography, institutions and starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "FC-P02",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "MC-P01",
+      "title": "The Roman World",
+      "tagline": "An empire is more than its legions.",
+      "campaign_type": "major",
+      "slate": "future",
+      "development_status": "planned",
+      "geography": "Roman Empire and neighboring societies",
+      "period": "100–300 proposed",
+      "setting_kind": "historical",
+      "era": "ancient",
+      "setting": "Roman Empire and neighboring societies, with an initial imperial-era focus around AD 100–300.",
+      "genres": [
+        "Historical",
+        "Civilization",
+        "Military",
+        "Economy",
+        "Political",
+        "Life Simulation"
+      ],
+      "synopsis": [
+        "Experience an interconnected Roman world containing provinces, cities, rural communities, military establishments, commercial networks, religious institutions, and diverse peoples. The empire's economic and political systems extend across vast territories while local societies retain their own structures and interests."
+      ],
+      "perspectives": "Resident, merchant, soldier, farmer, administrator, politician, laborer, dependent household member, traveler, or other historically appropriate individual.",
+      "core_experiences": "The Roman Empire is simulated as an interacting political and economic system rather than a succession of military campaigns.",
+      "featured_systems": [
+        "Imperial administration",
+        "provincial governance",
+        "military logistics",
+        "transportation",
+        "law",
+        "citizenship",
+        "taxation",
+        "social status",
+        "slavery",
+        "commerce",
+        "households"
+      ],
+      "scope": "Italy and imperial government; western provinces; eastern provinces; frontiers and neighboring societies.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Imperial administration, provincial governance, military logistics, transportation, law, citizenship, taxation, social status, slavery, commerce, and households.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "MC-P01",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "MC-P02",
+      "title": "The Crowns of Britain",
+      "tagline": "Crowns change hands. Lands, loyalties, and lives endure.",
+      "campaign_type": "major",
+      "slate": "future",
+      "development_status": "planned",
+      "geography": "Britain and Ireland",
+      "period": "900–1250 proposed",
+      "setting_kind": "historical",
+      "era": "medieval",
+      "setting": "Britain and Ireland, primarily AD 900–1250, deliberately distinct from the later Hundred Years' War focus.",
+      "genres": [
+        "Historical",
+        "Political",
+        "Dynastic",
+        "Military",
+        "Life Simulation"
+      ],
+      "synopsis": [
+        "Experience the kingdoms, lordships, settlements, households, religious institutions, and commercial networks of medieval Britain and Ireland. Political authorities compete and cooperate while civilian populations continue developing their livelihoods, estates, relationships, and communities."
+      ],
+      "perspectives": "Farmer, merchant, religious scholar, retainer, craftworker, noble, official, itinerant professional, or other eligible character.",
+      "core_experiences": "The campaign explores interacting societies and long-term political development before the principal Hundred Years' War period.",
+      "featured_systems": [
+        "State formation",
+        "dynastic succession",
+        "property and tenure",
+        "warfare",
+        "diplomacy",
+        "households",
+        "religious institutions",
+        "law",
+        "regional commerce"
+      ],
+      "scope": "England and its developing institutions; Scotland and northern polities; Wales and marcher relationships; Ireland and wider Irish Sea networks.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "State formation, dynastic succession, property and tenure, warfare, diplomacy, households, religious institutions, law, and regional commerce.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "MC-P02",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "MC-P03",
+      "title": "The Age of Sail",
+      "tagline": "Across the oceans, commerce and empire reshape the world.",
+      "campaign_type": "major",
+      "slate": "future",
+      "development_status": "planned",
+      "geography": "Atlantic · Indian Ocean · Pacific",
+      "period": "1600–1800 proposed",
+      "setting_kind": "historical",
+      "era": "early_modern",
+      "setting": "Interconnected Atlantic, Indian Ocean, and Pacific maritime worlds, with starting periods between approximately AD 1600 and 1800.",
+      "genres": [
+        "Historical",
+        "Maritime",
+        "Exploration",
+        "Commerce",
+        "Political",
+        "Military"
+      ],
+      "synopsis": [
+        "Enter an era of expanding long-distance shipping, international trade, naval competition, port communities, migration, and colonial expansion. Experience events from varied regional and social perspectives, including those of Indigenous societies and populations affected by imperial activity."
+      ],
+      "perspectives": "Sailor, navigator, merchant, port worker, Indigenous community member, settler, shipbuilder, administrator, soldier, diplomatic representative, or other feasible individual.",
+      "core_experiences": "A multiocean historical simulation in which distant events influence markets, migration, policy, and civilian livelihoods.",
+      "featured_systems": [
+        "Navigation",
+        "shipping",
+        "maritime logistics",
+        "diplomacy",
+        "colonial institutions",
+        "labor systems",
+        "commerce",
+        "warfare",
+        "cultural interaction"
+      ],
+      "scope": "Atlantic maritime networks; Indian Ocean commerce; Pacific encounters and navigation; European and other connected state and commercial institutions.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Navigation, shipping, maritime logistics, diplomacy, colonial institutions, labor systems, commerce, warfare, and cultural interaction.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "MC-P03",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "MC-P04",
+      "title": "The Shattered Kingdoms",
+      "tagline": "The old order has fractured. The future remains unwritten.",
+      "campaign_type": "major",
+      "slate": "future",
+      "development_status": "planned",
+      "geography": "Original fantasy successor states",
+      "period": "Authored chronology pending",
+      "setting_kind": "fantasy",
+      "era": "variable",
+      "setting": "Original fantasy world with several developed political regions and competing institutions.",
+      "genres": [
+        "Fantasy",
+        "Political",
+        "Military",
+        "Economic",
+        "Civilization Simulation"
+      ],
+      "synopsis": [
+        "A once-connected political landscape has fragmented into multiple states, regional powers, independent cities, and communities. Existing institutions, commercial networks, households, and cultural relationships continue operating while new political arrangements emerge."
+      ],
+      "perspectives": "Any setting-feasible individual, including civilian residents, merchants, scholars, household members, travelers, soldiers, officials, or rulers.",
+      "core_experiences": "An original fantasy political simulation whose world develops through competing institutions and individual decisions rather than a compulsory reunification story.",
+      "featured_systems": [
+        "Autonomous states",
+        "diplomacy",
+        "trade",
+        "legal authority",
+        "warfare",
+        "institutions",
+        "population movement",
+        "cultural continuity"
+      ],
+      "scope": "Successor kingdoms; autonomous cities and commercial networks; independent frontier regions; religious and political institutions.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Autonomous states, diplomacy, trade, legal authority, warfare, institutions, population movement, and cultural continuity.",
+        "foundation": "Reconciled authored setting, geography, institutions and starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "MC-P04",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "GC-P01",
+      "title": "From Republic to Empire",
+      "tagline": "The world changes as Rome changes.",
+      "campaign_type": "grand",
+      "slate": "future",
+      "development_status": "planned",
+      "geography": "Roman Mediterranean and neighboring societies",
+      "period": "Late Republic and imperial periods proposed",
+      "setting_kind": "historical",
+      "era": "variable",
+      "setting": "Roman Mediterranean and neighboring societies, beginning with supported periods of the late Roman Republic and continuing through imperial development.",
+      "genres": [
+        "Historical",
+        "Political",
+        "Civilization",
+        "Military",
+        "Economic",
+        "Social Simulation"
+      ],
+      "synopsis": [
+        "Explore the Roman world across major transformations in governance, society, economy, and military organization. Political institutions develop alongside provincial expansion, commercial networks, local communities, religious traditions, and the lives of ordinary inhabitants."
+      ],
+      "perspectives": "Any historically and socially feasible individual or institutional perspective supported by the selected period.",
+      "core_experiences": "Political evolution is part of the world's historical foundation, but the outcomes of player-influenced events are not required to reproduce the documented historical sequence.",
+      "featured_systems": [
+        "Long-term political transformation",
+        "demographic development",
+        "institutional change",
+        "military administration",
+        "social hierarchy",
+        "taxation",
+        "economic networks",
+        "historical continuity"
+      ],
+      "scope": "Multiple major historical regions operating simultaneously over a long chronology, including Italy, the western Mediterranean, the eastern Mediterranean, and frontier societies.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Long-term political transformation, demographic development, institutional change, military administration, social hierarchy, taxation, economic networks, and historical continuity.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "GC-P01",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "GC-P02",
+      "title": "The Age of Revolutions",
+      "tagline": "Ideas cross borders. Institutions fall. People build what follows.",
+      "campaign_type": "grand",
+      "slate": "future",
+      "development_status": "planned",
+      "geography": "Interconnected historical world",
+      "period": "1750–1900 proposed",
+      "setting_kind": "historical",
+      "era": "modern",
+      "setting": "Interconnected historical world, with principal supported periods around AD 1750–1900.",
+      "genres": [
+        "Historical",
+        "Political",
+        "Social",
+        "Industrial",
+        "Economic",
+        "Civilization Simulation"
+      ],
+      "synopsis": [
+        "Experience an era of major political, economic, social, and technological transformations. Governments, industrial enterprises, agricultural communities, organized movements, households, and international trade networks interact across continents."
+      ],
+      "perspectives": "Worker, artisan, farmer, merchant, scholar, inventor, political representative, administrator, soldier, community member, business owner, or other historically feasible individual.",
+      "core_experiences": "A civilization-scale historical environment where technological and institutional changes transform the opportunities available to successive generations.",
+      "featured_systems": [
+        "Industrial production",
+        "institutional reform",
+        "population change",
+        "commerce",
+        "state finance",
+        "technology diffusion",
+        "transport",
+        "political movements",
+        "autonomous historical development"
+      ],
+      "scope": "Multiple interconnected continental theaters, supporting political revolutions, industrialization, migration, labor transformation, abolition movements, imperial expansion, resistance, and changes in education and technology.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Industrial production, institutional reform, population change, commerce, state finance, technology diffusion, transport, political movements, and autonomous historical development.",
+        "foundation": "Verified historical research and dated starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "GC-P02",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "GC-P03",
+      "title": "Worlds of the Frontier",
+      "tagline": "Humanity's future belongs to more than one world.",
+      "campaign_type": "grand",
+      "slate": "future",
+      "development_status": "planned",
+      "geography": "Original interstellar civilization",
+      "period": "Authored future chronology pending",
+      "setting_kind": "science_fiction",
+      "era": "future",
+      "setting": "Original interstellar science-fiction civilization, with its own developed chronology, technologies, and political foundations.",
+      "genres": [
+        "Science Fiction",
+        "Civilization",
+        "Exploration",
+        "Political",
+        "Economic",
+        "Life Simulation"
+      ],
+      "synopsis": [
+        "Inhabit an interconnected civilization spread across multiple star systems. Settlements, planets, stations, enterprises, governments, and social communities operate at very different scales while depending upon transport, information exchange, energy, industry, and local resources."
+      ],
+      "perspectives": "Any supported individual or institutional perspective, including ordinary residents, workers, pilots, researchers, merchants, diplomats, colonists, administrators, and political leaders.",
+      "core_experiences": "Extends the full Core simulation into a civilization-scale science-fiction setting in which changing technology and enormous distances shape causality.",
+      "featured_systems": [
+        "Interplanetary and interstellar logistics",
+        "technical infrastructure",
+        "long-distance information",
+        "population movements",
+        "economies",
+        "autonomous governments",
+        "scientific progress",
+        "generational continuity"
+      ],
+      "scope": "Multiple inhabited worlds and star systems with autonomous populations, institutions, economies, environmental conditions, and historical developments.",
+      "configuration": null,
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "Interplanetary and interstellar logistics, technical infrastructure, long-distance information, population movements, economies, autonomous governments, scientific progress, and generational continuity.",
+        "foundation": "Reconciled authored setting, geography, institutions and starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "GC-P03",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "No campaign release qualification is supplied by this concept record."
+      }
+    },
+    {
+      "catalogue_id": "CSS-01",
+      "title": "Rise of ______",
+      "tagline": "Choose where you begin. Build what comes next. Decide what rises.",
+      "campaign_type": "simulation_system",
+      "slate": "system",
+      "development_status": "in_development",
+      "geography": "Configurable historical and fictional regions",
+      "period": "Configurable · fictional R00 available",
+      "setting_kind": "variable",
+      "era": "variable",
+      "setting": "Configurable historical and compatible fictional settings.",
+      "genres": [
+        "Settlement",
+        "Dynasty",
+        "Life Simulation",
+        "Historical",
+        "Survival",
+        "Economy",
+        "Variable"
+      ],
+      "synopsis": [
+        "Rise of ______ is a configurable household and settlement simulation designed to support play across different historical periods, geographic regions, cultures, and compatible fictional worlds.",
+        "Begin alone or accompanied by family, workers, friends, or other households. Arrive with recognized land rights, a founding grant, temporary permission, or no authorization at all. Secure a livelihood, establish a home, negotiate with existing institutions, and determine whether a larger settlement emerges.",
+        "The world does not wait for the player to build it. Neighboring populations, local authorities, traders, households, and existing settlements continue acting according to their circumstances."
+      ],
+      "perspectives": "Period; location; geography; ecology; native cultures; political environment; household composition; starting relationships; land rights; resources; occupations; personal starting role.",
+      "core_experiences": "The player names what rises and determines its ambitions. A family farmstead, village, trading settlement, or multigenerational dynasty can develop naturally without a predetermined storyline.",
+      "featured_systems": [
+        "World configuration",
+        "households",
+        "construction",
+        "agriculture",
+        "economic development",
+        "land tenure",
+        "settlement governance",
+        "migration",
+        "family succession",
+        "institutions",
+        "generational continuity"
+      ],
+      "scope": "Configurable persistent household and settlement instances.",
+      "configuration": "Period; location; geography; ecology; native cultures; political environment; household composition; starting relationships; land rights; resources; occupations; personal starting role.",
+      "content_dependencies": {
+        "status": "requirements_only",
+        "core": "Shared IRGS Core 3.3; one authoritative world and existing owners.",
+        "routines_and_content": "World configuration, households, construction, agriculture, economic development, land tenure, settlement governance, migration, family succession, institutions, and generational continuity.",
+        "foundation": "Reconciled authored setting, geography, institutions and starting state.",
+        "specific_review": "Campaign-specific rules, initial population, resource balances, actor knowledge, recovery and acceptance checks remain to be qualified."
+      },
+      "provenance": {
+        "source": "IRGS_Web/design/campaign_catalogue/IRGS_Complete_Campaign_Catalogue_v0_4.md",
+        "section": "CSS-01",
+        "copy_status": "working_proposal",
+        "preview_authorization": "User requested app catalogue and previews; implementation is not release approval."
+      },
+      "availability": {
+        "preview": true,
+        "release_approved": false,
+        "launch_target_access": "unannounced",
+        "entitlement_active": false
+      },
+      "cover_artwork": {
+        "status": "typographic_placeholder",
+        "approved_image": null
+      },
+      "version": "0.4",
+      "readiness": {
+        "full_campaign_ready": false,
+        "verification": "Existing fictional R00 founding slice remains available as The Rise of... You. Eight design families and the full configurable system remain in development."
+      },
+      "current_display_title": "The Rise of... You"
+    }
+  ]
+}
