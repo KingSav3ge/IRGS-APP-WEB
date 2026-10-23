@@ -83,3 +83,7 @@ truth, new rights, provider-processing permission or campaign adoption.
   provider keys, active Director network or general narrator is enabled.
 - This session has no direct chat-send tool. This repository report is the handoff
   to IRGS Enviroment; no direct message is claimed.
+
+## Coordinator dependency selection
+
+The coordinator reviewed the newer Engine and Catalog source and qualified their runtime pair against this App: Engine `7fe99a55bab7d731674f56d8adde2b84ae73a860`, Catalog `3e898acb2179f18a41d7967817bedf429df29d3f`. The dependency pointers now select that pair. `COORDINATOR_PIN_REVIEW.json` records fresh executed checks and their exact source commits; the subsequent Engine edit changes reference wording only. Joined source/package qualification remains the coordinator’s next gate. Validation excerpts record opaque third-party source identifiers by hash; original archive records retain their provenance.
