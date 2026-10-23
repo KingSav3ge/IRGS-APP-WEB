@@ -2,7 +2,7 @@
   "schema_version": 1,
   "reviewed_on": "2026-10-22",
   "scope": "Coordinator dependency selection and documentation cleanup; App/Core runtime bytes unchanged from qualified candidates.",
-  "engine_commit": "7fe99a55bab7d731674f56d8adde2b84ae73a860",
+  "engine_commit": "723627e629231b5e90f38b9d52b65c9a3967b92a",
   "catalog_commit": "3e898acb2179f18a41d7967817bedf429df29d3f",
   "tested_app_source_commit": "b486c1f1ecd55efc9891c3c5f2e48fcf301c1c47",
   "tested_engine_runtime_commit": "9d45e28d9e16b26161e9ed970a061eac627e7090",
@@ -103,5 +103,10 @@
     }
   },
   "joined_integration_approved_by_this_record": false,
-  "user_saves_used": false
+  "user_saves_used": false,
+  "editorial_maintenance": {
+    "scope": "A library summary uses the current IRGS campaign title; original S1 and all campaign mechanics/content remain unchanged.",
+    "component_integrity": "verified",
+    "fresh_joined_qualification": "Recorded separately by the coordinator after completion."
+  }
 }
