@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "cycle_id": "solo-runtime-01",
+  "date": "2026-10-23",
+  "target_iteration": "3.4.0",
+  "status": "app_review_and_unavailable_status_implemented_provider_connection_pending",
+  "runtime_dependencies": {
+    "engine": "723627e629231b5e90f38b9d52b65c9a3967b92a",
+    "catalog": "3e898acb2179f18a41d7967817bedf429df29d3f"
+  },
+  "app_release_sha256": "c3298184e81b41d5b4e6c51d4fa671761d549ff43fe76debb28b8d2fc255e8b7",
+  "qualifier_sha256": "7a153ebf2631ab142b861a84aed154c6c1d79db03389b3f439109089bf0434a8",
+  "checks": {
+    "web": {
+      "run": 170,
+      "passed": 163,
+      "skipped": 7,
+      "failed": 0,
+      "skip_reason": "Windows PowerShell launcher checks on Linux"
+    },
+    "synthetic_frontend": {
+      "passed": 80
+    },
+    "attachment_tooling": {
+      "passed": 1
+    },
+    "catalog_fixture_actual_HTTP": {
+      "status": "passed",
+      "fixture_id": "irgs-solo-r00-eval-v1",
+      "fixture_catalog_commit": "2e4f389882df0807fc8064c1a0b533aaa3b1bcd3",
+      "fixture_manifest_sha256": "2d30e863c4f769f0e2039469807ca0c6eeef3f30edd17d96778cebcba65bdbe5",
+      "runtime_engine_commit": "723627e629231b5e90f38b9d52b65c9a3967b92a",
+      "runtime_catalog_commit": "3e898acb2179f18a41d7967817bedf429df29d3f",
+      "cases": 10,
+      "accepted_Core_actions": 5,
+      "atomic_rejections": 4,
+      "host_restarts": 5,
+      "concurrent_retries_per_accepted_action": 2,
+      "lost_acknowledgements_recovered": 5,
+      "Trash_restore_preserves_exact_save_bytes": true,
+      "oracle_absent_from_actor_inputs_HTTP_requests_and_player_views": true,
+      "provider_calls": 0,
+      "provider_action_contract_qualified": false
+    },
+    "actual_Core_Chromium": {
+      "status": "passed",
+      "scenario": "Catalog solo_r00_v1 through selected real Core",
+      "fixture_catalog_commit": "2e4f389882df0807fc8064c1a0b533aaa3b1bcd3",
+      "lost_acknowledgement_recovered": true,
+      "two_consecutive_commits": 2,
+      "denied_attempts": 1,
+      "cancel_and_edit_no_effect": true,
+      "independent_draft_preserved_across_reload": true,
+      "protected_developer_status": true,
+      "provider_calls": 0,
+      "browser_errors": 0
+    }
+  },
+  "scope": {
+    "private_user_saves_used": false,
+    "provider_calls": 0,
+    "model_evaluations": 0,
+    "AI_interpretation_implemented": false,
+    "general_narration_implemented": false,
+    "dependency_pointers_changed": false,
+    "joined_integration_performed": false
+  },
+  "remaining": [
+    "Published Engine provider/action contract and reviewed compatible new pins.",
+    "Actor-scoped interpreted proposal and grounded narration through that contract.",
+    "Provider failure/budget/accounting/restore and late-output qualification.",
+    "Windows, joined clean extraction and conditional live smoke."
+  ]
+}

@@ -1,93 +1,91 @@
-# App report to IRGS Enviroment — historical-details-01
+# App report to IRGS Enviroment — solo-runtime-01
 
-Date: 2026-10-22. Repository: `KingSav3ge/IRGS-APP-WEB`, delivered on `main`.
-This implemented App candidate connects the complete Catalog archive to the
-published Engine reader. The delivery response gives the exact pushed App SHA.
-Coordinator source approval and isolated joined qualification remain separate;
-this report does not assert either approval or an integrated release.
+23 October 2026. Target: IRGS 3.4.0 development, with executable Core 3.3.
+Push destination: `KingSav3ge/IRGS-APP-WEB/main`. This is an executable App review,
+availability and recovery increment. It does not complete AI-assisted Solo play.
+The delivery response supplies the full pushed commit SHA.
 
-## Resulting behavior
+## Implemented behavior
 
-The Creator's **Historical Details** entry uses the Catalog release's pinned
-manifest and Engine's `from_catalog_manifest(..., cache_dir=...)` API. All 32
-parts and the exact original ZIP are verified before records become available.
-App owns no reconstruction algorithm or second editable source tree. Derived
-ZIPs use an ignored installation cache.
+Equipment, authored opening and Rise choices now open an explicit review.
+Selection and cancellation send nothing. The player may edit the words or keep
+them in the existing response editor without submitting. Different wording
+disables confirmation of the original structured action; an unsent independent
+response survives review and action execution. Only explicit confirmation calls
+the existing selected Core handler. No resource or interpretation logic moves
+into App.
 
-The complete original archive is preserved, including books, assets and its
-central database. This browser exposes ten structured reference collections;
-its scope text now distinguishes browsing coverage from archive preservation.
-Explicit multipart registration receives the correct storage label. Explicit
-local ZIP registration remains supported and takes precedence, including when
-broken. Registration changes and repaired parts can recover without a restart.
+Review validity checks the campaign, actor, selected campaign control, revision,
+request generation, current view, pending request and character availability.
+Navigation/reload/mode changes discard stale reviews. Confirmation reuses the
+existing durable request and result recovery, including lost acknowledgements.
 
-Status, literal search, paging, source details and retries remain Creator/session
-restricted. Reading does not adopt history, initialize a campaign, submit an event,
-change a save or grant player knowledge. Original records, row/archive identity,
-uncertainty, citations and rights retain their meanings and safe rendering.
+Player availability reports that AI assistance is not connected. Supported
+existing actions still run, and unsupported freeform remains unresolved. The
+session-bound `/api/ai/status` exposes no diagnostic fields to Player mode;
+Creator-only Providers & Models reports bounded unavailable diagnostics. Unknown
+configuration fields are not rendered, source/status text is escaped, late status
+responses are fenced, and checking status makes no inference request. No keys,
+provider router, paid dispatch or fictitious benchmark is introduced.
 
-## Exact candidate dependency pins
+## Exact source selection
 
-- Engine: `b3e7d760a2cf3712292b09328566cf1ed0d78c97`.
-- Catalog: `58ce55672bdd75076b94882bd8715a1d2a1f383a`.
-- Manifest SHA-256: `1543cd65b5c4b3ed6f160565b4e4bf01d09dd44a392d53c7036efcd5c0dcf21f`.
-- Original ZIP: 533,064,680 bytes;
-  `51246eb6898a228f42f0794ed19ce69af275a2a4661c0fb6a1d3baebe3efc773`.
+Runtime dependency pointers remain the currently reviewed pair:
 
-These are tested candidate selections for coordinator review, not a claim of
-coordinator-approved dependency release. The coordinator's published gate still
-marks source review/integration approval pending. Catalog's complete delivery
-supersedes the older missing-source observation. No missing archive input remains.
-Only App source and its two dependency pointers are published by this chat;
-no Engine/Catalog product source or joined repository is changed or pushed.
+- Engine: `723627e629231b5e90f38b9d52b65c9a3967b92a`.
+- Catalog: `3e898acb2179f18a41d7967817bedf429df29d3f`.
+
+Fixture qualification explicitly reads Catalog commit
+`2e4f389882df0807fc8064c1a0b533aaa3b1bcd3`, fixture
+`irgs-solo-r00-eval-v1`, manifest SHA-256
+`2d30e863c4f769f0e2039469807ca0c6eeef3f30edd17d96778cebcba65bdbe5`.
+It reads the exact Git objects into a temporary evaluator directory without
+moving the runtime pin or installing another editable content tree. Evaluator
+setup/oracle remains outside host request payloads. The host receives reviewed
+setup choices and explicit actor/action/request fields, using the real Core.
 
 ## Executed checks
 
 | Check | Result |
 | --- | --- |
-| `python3 -B -m unittest discover -s IRGS_Web/tests -v` | 166 run; 159 passed; seven Windows PowerShell launcher skips on Linux |
-| `node IRGS_Web/tests/test_gameplay_ui.js` | 72 passed; synthetic DOM/transport, including stale responses and escaped source text |
-| `python3 -B -m unittest discover -s tools/tests -v` | One attachment-exclusion test passed |
-| `python3 -B -m unittest discover -s Engine/IRGS_3_3/runtime -p 'test_historical*.py' -v` | 65 passed |
-| `python3 -B Catalog/IRGS_Catalog/verify_catalog.py` | Catalog integrity, 44 concepts and the complete archive verified |
-| `python3 -B Catalog/IRGS_Catalog/historical_details_package.py verify Catalog/IRGS_Catalog/historical_details/manifest.json` | 32 parts; 5,146 files; 5,145 delivery bindings; ten collection bindings verified |
-| `python3 -B tools/qualify_historical_details.py` | Actual exact reconstruction plus real search/detail from all ten collections; six authorization denials; cache reuse; unchanged source and synthetic campaign save bytes |
-| Chromium/Playwright against the actual full-data App host | Creator navigation, all ten collection options, literal search, details, retry and protected deep-link reload passed; zero reference POSTs, save changes or browser errors |
-| App source refresh and component verification | App hashes refreshed; exact App/Engine/Catalog source identities checked |
+| Full Web regressions | 170 run, 163 passed, seven Windows PowerShell launcher skips on Linux |
+| Interface regressions | 80 passed, including explicit review/cancel/edit, two actions, double confirmation, stale reviews, safe status and existing lost-ack/reload checks |
+| Attachment packaging tooling | One passed |
+| `tools/qualify_solo_review.py --catalog-commit 2e4f389882df0807fc8064c1a0b533aaa3b1bcd3` | Ten actual fixture cases: five accepted Core actions, four unchanged-save rejections, one exact original-result replay |
+| Recovery in that HTTP qualification | Five host restarts and saved-result lookups; two concurrent retries for each accepted action; original receipts/save bytes retained; exact Trash/restore bytes |
+| Information and conservation | Evaluator markers/private identifiers absent from actor exports, HTTP action requests and Player views; actual finite stocks plus consumption conserved at every fixture step |
+| Chromium/Playwright with the Catalog R00 setup | Two consecutive Core actions; cancel/edit sends nothing; denied build leaves save unchanged; deliberately aborted accepted HTTP acknowledgement recovers by result lookup without another effect; draft survives reload; protected status works |
+| App source integrity | Only App hashes refreshed; App and the exact pinned Engine/Catalog verified |
 
-The Web count includes seven new HTTP tests using real Engine multipart assembly
-with synthetic parts. They exercise missing/corrupt parts before and after caching,
-repair/retry, release-pinned default selection, explicit multipart registration,
-incomplete metadata, authorization before reconstruction and read-only operation
-beside an existing synthetic playthrough and current campaign discovery. Earlier
-error-normalization tests still use isolated test doubles; they are not the new
-multipart assembly evidence.
+Browser and HTTP evidence are distinct from synthetic DOM transport checks.
+No private user campaign was opened, migrated or restored. Qualification's
+restore is recoverable Campaign Trash restoration; it does not certify a future
+provider task's behavior after arbitrary world-snapshot restore.
 
-[HISTORICAL_DETAILS_VALIDATION.json](HISTORICAL_DETAILS_VALIDATION.json) records
-structured evidence and exact source identities. The complete member inventory
-includes the delivery manifest itself; it is the one file explicitly excluded
-from its own delivery bindings. Checksums establish byte identity, not historical
-truth, new rights, provider-processing permission or campaign adoption.
+Structured evidence: [SOLO_RUNTIME_VALIDATION.json](SOLO_RUNTIME_VALIDATION.json).
+Previous Historical Details completion remains recorded in
+[COORDINATOR_PIN_REVIEW.json](COORDINATOR_PIN_REVIEW.json) and
+[HISTORICAL_DETAILS_VALIDATION.json](HISTORICAL_DETAILS_VALIDATION.json).
+The complete archive and current catalogue remain unchanged.
 
-## Remaining review and unrun scope
+## Remaining requirements and prerequisites
 
-- Coordinator source review/approval of the exact pair and App commit, followed by
-  isolated joined assembly/package qualification. Joined integration stays held.
-- Windows launcher execution and the complete Engine runtime suite were not run
-  for this App increment. The relevant historical family and all Web flows passed.
-- App probes search/detail for a first record in each collection; they do not
-  adjudicate every historical statement. Catalog's verifier processes the full
-  payload, file bindings and collection row counts.
-- AI provider work is now a sequenced, unimplemented AIP-01–AIP-09 backlog in
-  DEVELOPMENT.md. The 16 model evaluation cases remain unrun. No paid inference,
-  provider keys, active Director network or general narrator is enabled.
-- This session has no direct chat-send tool. This repository report is the handoff
-  to IRGS Enviroment; no direct message is claimed.
+Engine has not published the new provider/action API at the reviewed runtime
+pin. Its latest fetched commit `e2d7fd3d2c3aef436fda280c45c0e4508c02618a`
+adds the 3.4.0 iteration label, not a provider runtime. App therefore returns
+unavailable rather than inventing a second contract or a fake successful result.
 
-## Coordinator dependency selection
+Next: consume the published scoped Engine API; qualify the Catalog actor export
+against it; connect interpreted proposal, explicit acceptance, committed result
+and grounded narration. Provider absence/denial/timeout, cancellation, malformed
+output, budget/usage and post-restore stale tasks still need that exact contract.
+The fixture qualification uses explicit structured operations, not interpreted
+natural-language intents. No provider model or semantic quality is certified.
 
-The coordinator reviewed the newer Engine and Catalog source and qualified their runtime pair against this App: Engine `7fe99a55bab7d731674f56d8adde2b84ae73a860`, Catalog `3e898acb2179f18a41d7967817bedf429df29d3f`. The dependency pointers now select that pair. `COORDINATOR_PIN_REVIEW.json` records fresh executed checks and their exact source commits; the subsequent Engine edit changes reference wording only. Joined source/package qualification remains the coordinator’s next gate. Validation excerpts record opaque third-party source identifiers by hash; original archive records retain their provenance.
-
-### Current editorial-maintenance pin
-
-Engine `723627e629231b5e90f38b9d52b65c9a3967b92a` replaces the prior Engine pin for the user-requested library-summary wording cleanup. Catalog remains `3e898acb2179f18a41d7967817bedf429df29d3f`. The original source, campaign content and executable gameplay code remain unchanged. The coordinator records the fresh joined qualification independently.
+No complete Engine suite, Windows execution, joined clean extraction or live
+provider smoke was run for this App increment. Live smoke later requires configured
+server credentials, an eligible exact route/model and a finite approved budget;
+those credentials are not required for the remaining offline implementation.
+Only the coordinator can approve a new dependency/update set and integrate joined
+IRGS. This chat publishes only App. Its direct chat-send tool remains unavailable;
+this repository report is the handoff, with no direct message claimed.

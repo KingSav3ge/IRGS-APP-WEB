@@ -25,6 +25,7 @@ from gameplay_views import playthrough, controlled_actor, pending_declaration, s
 from features import feature_registry, content_library, validate_player_creation
 from campaign_worlds import world_reference
 from historical_reference import HistoricalReferences
+from assistance import assistance_status
 
 
 class Store:
@@ -391,6 +392,11 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
             query = parse_qs(urlparse(self.path).query)
             mode=query.get('mode',['player'])[0]
             try:
+                if path == '/api/ai/status':
+                    self.session()
+                    if mode == 'creator':
+                        self.creator(mode)
+                    return self.reply(200, assistance_status(developer=mode == 'creator'))
                 if path in ('/api/historical-reference', '/api/historical-reference/search', '/api/historical-reference/record'):
                     self.creator(mode)
                     if path == '/api/historical-reference':
@@ -407,8 +413,10 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                     if path.startswith('/api/playthrough/'):
                         self.session()
                         if mode=='creator':self.creator(mode)
-                        return self.reply(200,playthrough(store.read(path.rsplit('/',1)[1]),
-                                          query.get('actor_id',[None])[0],mode=mode))
+                        projection = playthrough(store.read(path.rsplit('/',1)[1]),
+                            query.get('actor_id',[None])[0],mode=mode)
+                        projection['assistance'] = assistance_status()
+                        return self.reply(200, projection)
                     if path=='/api/rise/templates':
                         self.session()
                         from settlement_setup import templates
@@ -508,7 +516,7 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                     if path.startswith('/api/binding/'):
                         self.creator(mode)
                         return self.reply(200, presentation_binding(store.read(path.rsplit('/', 1)[1])['state']))
-                files = {'/': ('index.html', 'text/html'), '/app.js': ('app.js', 'text/javascript'), '/style.css': ('style.css', 'text/css'), '/voyage.svg': ('voyage.svg', 'image/svg+xml'), '/rise.js': ('rise.js', 'text/javascript'), '/catalogue.js': ('catalogue.js', 'text/javascript')}
+                files = {'/': ('index.html', 'text/html'), '/app.js': ('app.js', 'text/javascript'), '/style.css': ('style.css', 'text/css'), '/voyage.svg': ('voyage.svg', 'image/svg+xml'), '/rise.js': ('rise.js', 'text/javascript'), '/catalogue.js': ('catalogue.js', 'text/javascript'), '/solo.js': ('solo.js', 'text/javascript')}
                 if path not in files:
                     return self.reply(404, {'error': 'Not found'})
                 name, mime = files[path]

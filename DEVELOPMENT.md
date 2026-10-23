@@ -9,7 +9,7 @@ component commits and performs joined integration separately.
 
 ## Active priority — 23 October 2026
 
-Complete the AI-assisted Solo player round trip under [the new work order](COORDINATOR_WORK_ORDER.md): editable intention, supported proposal, explicit submit, actual Core outcome, grounded narration and next action. Consume the Engine API with honest unconfigured/error states and protected diagnostics; reuse current request/recovery identities. Engine owns all resolution and provider routing. Historical Details is integrated at the currently committed Engine/Catalog pins; its old approval blockers are resolved. No provider runtime or new player flow is implemented by this priority update.
+Complete the AI-assisted Solo player round trip under [the new work order](COORDINATOR_WORK_ORDER.md): editable intention, supported proposal, explicit submit, actual Core outcome, grounded narration and next action. Consume the Engine API with honest unconfigured/error states and protected diagnostics; reuse current request/recovery identities. Engine owns all resolution and provider routing. Historical Details is integrated at the currently committed Engine/Catalog pins; its old approval blockers are resolved. The explicit action review and unavailable-status increment below is implemented; the Engine provider round trip remains pending.
 
 ## Ownership and setup
 
@@ -45,6 +45,60 @@ temporary saves, never private playthroughs.
 - [x] Creator-only historical source search, paging, original records, uncertainty,
   citations and rights; safe text and HTTP(S) links; no source adoption or save
   changes. Existing reference routes and bookmarks remain supported.
+
+## solo-runtime-01 — App review and availability increment
+
+Target iteration: **IRGS 3.4.0**. The selected executable Core remains 3.3.
+
+### Completed
+
+- [x] Listed equipment, authored opening and Rise choices open a local action
+  review. Selection, cancellation and editing send nothing. Only explicit
+  confirmation submits the exact existing structured operation.
+- [x] Edited review text can be kept as an exact editable response. It disables
+  confirmation of the original listed action until its original wording is
+  restored. An independent existing response draft survives action confirmation.
+- [x] Fence reviews by campaign, actor, selected campaign control, revision,
+  request generation, navigation, pending request and current availability.
+- [x] Reuse current durable request IDs, saved-result lookup and transport recovery.
+  No action/proposal execution or provider router is duplicated in App.
+- [x] Public session-bound assistance availability remains honest: no provider is
+  connected. Creator-only Providers & Models reports safe diagnostics; inspection
+  performs no inference. Player projections contain no developer diagnostics.
+- [x] Qualify Catalog fixture `irgs-solo-r00-eval-v1` at exact source
+  `2e4f389882df0807fc8064c1a0b533aaa3b1bcd3` through the actual HTTP handlers.
+  All ten cases passed: five accepted Core actions, four atomic rejections and
+  the original-result replay. Each accepted action survived a host restart,
+  result lookup and two concurrent retries. Trash/restore retained exact bytes.
+- [x] Chromium: two consecutive real fixture actions; cancellation/editing;
+  denial; a deliberately discarded HTTP acknowledgement with saved-result
+  recovery; draft retention across reload; protected diagnostics; zero providers.
+
+### Active / remaining
+
+- [ ] Consume the published Engine provider/action contract and connect scoped
+  interpretation, explicit proposal acceptance and grounded narration. The
+  reviewed Engine pin does not contain that API. The unavailable status is
+  executable behavior, not a provider runtime or a mocked successful provider.
+- [ ] Qualify provider absence, denial, timeout, cancellation, budget exhaustion,
+  malformed output and stale asynchronous proposals against the delivered Engine.
+  Current review/transport regressions do not certify those provider cases.
+- [ ] Test the exact reviewed new Engine/Catalog pair before moving dependency
+  pointers. Runtime pins remain Engine `723627e629231b5e90f38b9d52b65c9a3967b92a`
+  and Catalog `3e898acb2179f18a41d7967817bedf429df29d3f`; the newer Catalog
+  fixture is selected explicitly from Git for qualification only.
+- [ ] Coordinator review, isolated joined clean extraction and any conditional
+  live smoke. No paid request, live model quality or full Solo completion is claimed.
+
+### Executed evidence (2026-10-23)
+
+Web: 170 run, 163 passed, seven Windows launcher skips on Linux. Interface:
+80 checks passed. App tooling: one attachment-exclusion check passed.
+`tools/qualify_solo_review.py --catalog-commit 2e4f389882df0807fc8064c1a0b533aaa3b1bcd3`
+passed the ten actual HTTP/recovery fixture cases with synthetic saves only.
+See [current coordinator report](COORDINATOR_REPORT.md) and
+[structured validation](SOLO_RUNTIME_VALIDATION.json). These are separate from
+live model evaluations, the complete Engine suite and joined release checks.
 
 ## historical-details-01
 
@@ -135,7 +189,7 @@ The full Engine suite, Windows execution and joined package/integration were not
 run for this increment. Byte identity does not authenticate historical claims,
 expand licenses or adopt campaign facts. See [coordinator report](COORDINATOR_REPORT.md).
 
-## Sequenced AI provider backlog — not implemented
+## Sequenced AI provider backlog — bounded App work above; provider integration pending
 
 Read the coordinator's [master-spec addendum](https://github.com/KingSav3ge/IRGS/blob/main/AI_PROVIDER_STRATEGY.md),
 [checked research](https://github.com/KingSav3ge/IRGS/blob/main/AI_PROVIDER_REVIEW.md)
@@ -147,10 +201,10 @@ and JavaScript UI remain; no gateway or framework rewrite has been selected.
 | Requirement | App responsibility after Engine delivery | Status |
 | --- | --- | --- |
 | AIP-01 registry | Protected server-fed developer status; distinguish developer, gateway, host, model and tested workload. | Planned |
-| AIP-02 adapter | Honest disabled, unconfigured and provider-error presentation; keys/configuration stay server-side. | Planned |
+| AIP-02 adapter | Unavailable status and protected diagnostics delivered; Engine interpretation/error connection remains pending. | Partial |
 | AIP-03 specialists | Display the existing six Director categories and logical responsibilities without a second registry. | Planned |
 | AIP-04 routing | Consume Engine decisions; no App router or technical routing in campaign selection. | Planned |
-| AIP-05 validation | Show unresolved/rejected/stale results truthfully and preserve editable player intent and agency. | Planned |
+| AIP-05 validation | Explicit listed-action review and stale-review fences delivered; provider result validation remains Engine work. | Partial |
 | AIP-06 ledger | Permission-checked requested/actual routes, reported/estimated usage, retries, failures and unknown charges. | Planned |
 | AIP-07 evaluations | Report executed versus unrun cases, disclosed human review and measured evidence; no fabricated winners. | Planned |
 | AIP-08 migration | Fence stale responses after navigation, state changes and restore; preserve previous receipts. | Planned |

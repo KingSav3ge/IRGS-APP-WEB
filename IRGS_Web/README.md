@@ -114,3 +114,35 @@ source hashes and collection probes. Catalog's own
 `historical_details_package.py verify` checks every source member and binding.
 See [development status](../DEVELOPMENT.md) for executed evidence, coordinator
 review and the sequenced AI provider backlog.
+
+
+## Solo action review — 3.4.0 development
+
+Listed equipment, opening and Rise choices now open a review before submission.
+Canceling or editing changes no world state. **Confirm and submit action** invokes
+the same existing Core operation and durable request recovery. Editing the listed
+wording disables that structured confirmation; **Keep as editable draft** copies
+the exact words into your response without sending them. A separate response
+already being drafted survives confirmation or cancellation.
+
+AI assistance currently reports unavailable. Listed actions remain usable and
+freeform declarations remain unresolved. Creator workspace → AI Network →
+Providers & Models shows protected availability, not an active Director graph or
+model benchmark. `/api/ai/status` requires the local session; diagnostic fields
+require explicit Creator mode. No credentials, provider route or budget is
+configured through the browser, and status checks make no provider calls.
+
+Engine owns the forthcoming interpretation/proposal/validation/ledger API. This
+App increment contains no replacement simulator or provider router. Qualification
+uses the published Catalog scenario through temporary synthetic saves:
+
+```bash
+python3 -B tools/qualify_solo_review.py --catalog-commit 2e4f389882df0807fc8064c1a0b533aaa3b1bcd3 --output /tmp/irgs-solo-qualification.json
+```
+
+Fetch that Catalog commit into the dependency before running the command. It
+selects the exact fixture files from Git into a temporary directory without
+moving the committed dependency or installing content. Only evaluator code reads
+the oracle. The host receives setup choices and explicit structured requests;
+no fixture oracle, raw save or archive is sent to a provider. The selected Core
+remains 3.3; 3.4.0 identifies this development iteration, not a new rules version.
