@@ -5,6 +5,10 @@ viewer. Push App work to `KingSav3ge/IRGS-APP-WEB/main`. Follow
 [the current work order](COORDINATOR_WORK_ORDER.md); IRGS Enviroment reviews exact
 component commits and performs joined integration separately.
 
+## Active priority — 23 October 2026
+
+Complete the AI-assisted Solo player round trip under [the new work order](COORDINATOR_WORK_ORDER.md): editable intention, supported proposal, explicit submit, actual Core outcome, grounded narration and next action. Consume the Engine API with honest unconfigured/error states and protected diagnostics; reuse current request/recovery identities. Engine owns all resolution and provider routing. Historical Details is integrated at the currently committed Engine/Catalog pins; its old approval blockers are resolved. No provider runtime or new player flow is implemented by this priority update.
+
 ## Ownership and setup
 
 - `Engine/` pins IRGS-Engine. Simulation, world rules and historical archive
@@ -70,7 +74,7 @@ temporary saves, never private playthroughs.
 - [x] Exercise the actual full-data Creator UI in Chromium: navigation,
   search/detail/retry and protected deep-link reload; no POSTs or save changes.
 
-### Active / awaiting coordinator decision
+### Historical qualification record — superseded by completed integration
 
 The concrete tested dependency pair is Engine
 `b3e7d760a2cf3712292b09328566cf1ed0d78c97` and Catalog
@@ -79,7 +83,7 @@ scoped checks; the coordinator's published gate still marks source review and
 integration approval pending. The completed Catalog source supersedes the
 coordinator's earlier blocked-source observation. Do not label a tested candidate
 as a coordinator-approved release. Exact dependency selection and joined
-integration remain subject to the current work order's coordinator review.
+integration were subsequently completed at the current reviewed pins. This paragraph preserves the earlier candidate identities; it is not a current blocker.
 
 ### Remaining work outside this increment
 
@@ -134,7 +138,7 @@ expand licenses or adopt campaign facts. See [coordinator report](COORDINATOR_RE
 Read the coordinator's [master-spec addendum](https://github.com/KingSav3ge/IRGS/blob/main/AI_PROVIDER_STRATEGY.md),
 [checked research](https://github.com/KingSav3ge/IRGS/blob/main/AI_PROVIDER_REVIEW.md)
 and [16 required evaluation cases](https://github.com/KingSav3ge/IRGS/blob/main/provenance/qa/ai_provider_strategy/EVALUATION_CASES.json).
-Historical Details remains the current delivery. The existing supported gameplay
+Historical Details is integrated. `solo-runtime-01` is now the active delivery. The existing supported gameplay
 and reviewed Engine provider contract precede player integration. The Python host
 and JavaScript UI remain; no gateway or framework rewrite has been selected.
 

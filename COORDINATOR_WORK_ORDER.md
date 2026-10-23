@@ -1,40 +1,31 @@
-# IRGS App/Website work order — historical-details-01
+# IRGS App/Website work order — solo-runtime-01
 
-Assigned by the user through IRGS Enviroment on 2026-10-22. Owner: **IRGS App/Website**. Repository: `KingSav3ge/IRGS-APP-WEB`.
+Assigned through IRGS Enviroment on 23 October 2026 following the user's direction to complete the systems needed to run IRGS. Owner: **IRGS App/Website**. Push only to `KingSav3ge/IRGS-APP-WEB/main`.
 
-## Current state
+## Baseline and priority
 
-The joined baseline selects App `3980e5665814847d3cd02c0f0b86417a231e2be6`. Its Engine and Catalog pins remain the previous qualified set. The Creator Historical Reference browser exists; there is no Catalog multipart payload yet. Catalogue v0.5 has 44 previews, not 44 released campaigns.
+Reviewed integrated App: `d8dc35ed653e516ccd0cacf91ee9693258491032`. Its reviewed dependency pins are Engine `723627e629231b5e90f38b9d52b65c9a3967b92a` and Catalog `3e898acb2179f18a41d7967817bedf429df29d3f`. Historical Details is integrated; the previous work order is preserved in `COORDINATOR_WORK_ORDER_HISTORICAL_DETAILS_01.md`. No archive payload or coordinator pin input is missing for that completed work.
 
-## Deliverable
+Read the coordinator's [Solo completion plan](https://github.com/KingSav3ge/IRGS/blob/main/SOLO_COMPLETION_PLAN.md). Complete the player round trip against the Engine-owned provider/action contract. Keep the existing Python host and JavaScript interface and current reviewed campaign behavior.
 
-Provide the **Historical Details** reference entry backed by the Catalog's complete manifest and the reviewed Engine reader. Keep technical reference browsing in Creator mode. Explain attached/ready, incomplete, corrupt and unavailable states without claiming that placeholder metadata is the archive. Preserve explicit existing local ZIP attachment support. Do not copy a second editable content tree into App.
+## Implementation
 
-Keep campaign discovery and player-known information separate from raw source records. Preserve literal search, paging, original records, citations, uncertainty and safe text/link rendering. New reference controls must not adopt history, initialize a world, submit an event or change a save. Preserve catalogue previews, current Century/Rise launch rules and adopted Kira canon.
+1. Preserve the player's editable exact intention and existing submission/recovery identities. Display unconfigured, pending, denied, failed, unresolved and committed outcomes honestly. Missing AI configuration must leave supported existing actions usable and retain unsent drafts.
+2. Consume Engine's scoped provider/action API. Build truthful unavailable/error handling and protected developer diagnostics while Engine implements its API; do not invent a second provider router or simulator. For candidate qualification, select exact Engine/Catalog snapshots explicitly; commit dependency pointers only for a reviewed compatible pair.
+3. Wire actor-known input → interpreted supported proposal → explicit player acceptance → Core execution → durable outcome → grounded narration → next action. Choosing or editing a suggestion commits no effect. Show the accepted action and its actual status separately from provider prose. An unsupported freeform/combat declaration must remain unresolved.
+4. Keys, provider configuration, budgets and detailed usage stay server-side behind existing Creator/developer permissions. Keep ordinary campaign controls focused on player decisions. Escape provider text and reject stale responses after navigation, state change, restore, newer requests and inspector closure. Source text is display data, never executable instructions.
+5. Reuse current lost-acknowledgement, reload, Trash/restore and duplicate-submit recovery. A provider error cannot trigger an implicit fresh paid attempt or repeat an accepted Core effect. Preserve current player/Creator information boundaries and actor-scoped views.
 
-## Acceptance
+## Required evidence
 
-- App pins the exact coordinator-reviewed Engine and Catalog commits; test that combination.
-- Creator/session restrictions, escaped source text, stale-request handling and navigation are tested.
-- Missing/corrupt part messages and the empty/unattached state are exercised.
-- Search/detail/retry remain read-only and work beside current campaign flows.
-- Run Web and interface tests; report platform skips accurately.
-- Make `DEVELOPMENT.md` reflect completed, active and remaining App work, with valid Catalog paths and separate dependency ownership.
+Use the reviewed synthetic scenario from Catalog and the real selected Engine handlers. Execute two consecutive supported actions, editable intent and cancellation before submit, denied/unsupported actions, provider absence/denial/timeout, a lost acknowledgement, concurrent retry, restart/restore and stale output/navigation. Verify actor-hidden evaluator data never reaches player rendering or request payloads. Run Web/interface regressions and a real browser round trip; report Windows/platform skips accurately.
 
-## Delivery and review
+The full flow may use fake provider transport for offline integration, with that scope explicit. Live AI play is a separate conditional check requiring configured server credentials, an eligible exact model and finite budget. No live credentials are required to implement and test the App flow. Hosted accounts, purchases, Co-op, Marketplace and extra viewer sections are queued behind this runtime delivery.
 
-Work only in your component repository and push its `main`. Do not publish component source to joined IRGS, change another component, or reset existing work. Read repository instructions and current plans first. Keep completed, active and remaining work explicit. Preserve accurate source attribution and distinguish implemented behavior, design requirements and reference data.
+## Delivery and coordinator review
 
-Return the full pushed commit SHA, changed behavior, dependency commits, checks actually executed, skipped/unrun checks, open findings and any missing input to the coordinator chat **IRGS Enviroment**. Update the development plan with that increment. A planning-only commit is not the requested viable component update.
+Work in your own component repository on `main`. Preserve existing work and adopted content. Return the exact pushed commit, changed executable behavior or validated test content, tested dependencies, executed checks, skips, remaining requirements and live prerequisites to **IRGS Enviroment**. Update completed, active and remaining work. Documentation and hash-only changes are not a viable runtime delivery.
 
-The coordinator reviews exact commits. When Engine, App and Catalog each have an approved viable update for this cycle, and the App pins exactly those Engine and Catalog commits, the coordinator tests an isolated joined candidate and imports it into `KingSav3ge/IRGS/main`. Until then the existing integrated component set remains selected. Changes requested by the user take precedence.
+The coordinator reviews an actual Engine/App/Catalog update set, checks exact App pins and tests an isolated joined candidate before integrating product source. No previous-cycle approval applies to a new commit. Test with temporary synthetic saves only. The original Historical Grand Archive remains exact, and no private campaign or reference payload is sent to a provider by this work order.
 
-## Additional backlog — AI provider presentation and integration
-
-Read the coordinator's [master-spec addendum](https://github.com/KingSav3ge/IRGS/blob/main/AI_PROVIDER_STRATEGY.md), [checked research](https://github.com/KingSav3ge/IRGS/blob/main/AI_PROVIDER_REVIEW.md) and [16 evaluation cases](https://github.com/KingSav3ge/IRGS/blob/main/provenance/qa/ai_provider_strategy/EVALUATION_CASES.json). Carry the App portions of AIP-01–AIP-09 in the development plan without marking them implemented. Historical Details remains the current component deliverable; provider work follows the supported gameplay and Engine contracts.
-
-Keep the Python host and current JavaScript viewer. Vercel's Python/HTTP support makes it a candidate without a hosting or framework rewrite; no gateway has won a comparison. Consume the reviewed Engine provider contract instead of creating a second router, registry or simulator in App. The first increment should show truthful disabled/unconfigured/provider-error states and permission-checked developer status, then connect one already supported action only after its Engine flow is qualified.
-
-Keys and provider configuration stay on the server. Developer diagnostics distinguish requested and actual routes, estimates and reported usage, failures, retries and unrun benchmarks. Player views retain editable intent, agency, actor-known information and honest unresolved outcomes. Do not expose technical routing in ordinary campaign selection or gate intelligence quality/mechanics by access tier. Fake responses cannot justify an active Director network or a complete narrator claim.
-
-Exercise missing credentials, provider denial/timeout, stale responses after navigation or state change, protected diagnostics, safe output rendering and duplicate submission against the exact pinned Engine. Keep Catalog pins explicit. No subscriptions, paid inference or new campaign facts are activated by this planning addition. Return the exact commit, actual checks and pending live prerequisites to the coordinator.
+The coordinator can read these chats and publish repository work orders but has no direct chat-start/send tool. This file is the assignment; publication does not claim that your chat was resumed. The QA monitor tests pushed source, not development activity.
