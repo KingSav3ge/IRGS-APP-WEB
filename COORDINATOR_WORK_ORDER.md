@@ -1,5 +1,7 @@
 # IRGS App/Website work order — solo-runtime-01
 
+Target iteration: **IRGS 3.4.0 — in development**. Use 3.4.0 for this iteration's delivery and release notes. Apply the coordinated App/build identity when the integrated release is qualified. Existing dependency pins, compatibility IDs, content/schema versions and historical qualification labels retain their actual identities.
+
 Assigned through IRGS Enviroment on 23 October 2026 following the user's direction to complete the systems needed to run IRGS. Owner: **IRGS App/Website**. Push only to `KingSav3ge/IRGS-APP-WEB/main`.
 
 ## Baseline and priority

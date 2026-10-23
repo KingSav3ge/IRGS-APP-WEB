@@ -1,5 +1,7 @@
 # App / Website development
 
+Target iteration: **IRGS 3.4.0 — in development**. See the active Solo runtime work order and completion plan. Previously qualified versions and evidence retain their recorded identities.
+
 This repository owns `IRGS_Web/`, the local Solo host, interface and catalogue
 viewer. Push App work to `KingSav3ge/IRGS-APP-WEB/main`. Follow
 [the current work order](COORDINATOR_WORK_ORDER.md); IRGS Enviroment reviews exact
