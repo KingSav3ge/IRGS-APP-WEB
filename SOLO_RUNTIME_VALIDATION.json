@@ -1,25 +1,25 @@
 {
   "schema_version": 1,
   "cycle_id": "solo-runtime-01",
-  "date": "2026-10-23",
+  "date": "2026-10-24",
   "target_iteration": "3.4.0",
-  "status": "app_review_and_unavailable_status_implemented_provider_connection_pending",
+  "status": "offline_app_engine_bridge_qualified_candidate_review_pending",
   "runtime_dependencies": {
     "engine": "723627e629231b5e90f38b9d52b65c9a3967b92a",
     "catalog": "3e898acb2179f18a41d7967817bedf429df29d3f"
   },
-  "app_release_sha256": "c3298184e81b41d5b4e6c51d4fa671761d549ff43fe76debb28b8d2fc255e8b7",
+  "app_release_sha256": "507903fb4e85079c6883b46953fa888e44962f8da04167775ec5aafbc3e45e5b",
   "qualifier_sha256": "7a153ebf2631ab142b861a84aed154c6c1d79db03389b3f439109089bf0434a8",
   "checks": {
     "web": {
-      "run": 170,
+      "run": 180,
       "passed": 163,
-      "skipped": 7,
+      "skipped": 17,
       "failed": 0,
-      "skip_reason": "Windows PowerShell launcher checks on Linux"
+      "skip_reason": "Seven Windows PowerShell launchers; ten Solo API cases require explicit candidate Engine"
     },
     "synthetic_frontend": {
-      "passed": 80
+      "passed": 85
     },
     "attachment_tooling": {
       "passed": 1
@@ -53,22 +53,53 @@
       "independent_draft_preserved_across_reload": true,
       "protected_developer_status": true,
       "provider_calls": 0,
+      "browser_errors": 0,
+      "executed_date": "2026-10-23"
+    },
+    "candidate_web": {
+      "run": 180,
+      "passed": 173,
+      "skipped": 7,
+      "failed": 0,
+      "skip_reason": "Windows PowerShell launcher checks on Linux",
+      "includes_app_solo_bridge_HTTP_cases": 10
+    },
+    "selected_engine_provider_API": {
+      "passed": 22,
+      "full_engine_suite_run": false
+    },
+    "candidate_Chromium": {
+      "status": "passed",
+      "fixture": "Engine authored-scene synthetic fixture; Catalog R00 proposal path unsupported",
+      "two_consecutive_core_actions": 2,
+      "offline_provider_calls": 6,
+      "live_provider_calls": 0,
+      "editable_exact_intent": true,
+      "cancel_and_edit_no_effect": true,
+      "provider_denied_no_effect": true,
+      "lost_acknowledgement_recovered": true,
+      "late_navigation_fenced": true,
+      "elapsed_seconds": 35,
       "browser_errors": 0
     }
   },
   "scope": {
     "private_user_saves_used": false,
-    "provider_calls": 0,
     "model_evaluations": 0,
-    "AI_interpretation_implemented": false,
+    "AI_interpretation_implemented": "Engine validated proposal bridge; fake transport only; semantic model quality untested",
     "general_narration_implemented": false,
     "dependency_pointers_changed": false,
-    "joined_integration_performed": false
+    "joined_integration_performed": false,
+    "live_provider_calls": 0,
+    "offline_provider_transport": true
   },
   "remaining": [
-    "Published Engine provider/action contract and reviewed compatible new pins.",
-    "Actor-scoped interpreted proposal and grounded narration through that contract.",
-    "Provider failure/budget/accounting/restore and late-output qualification.",
-    "Windows, joined clean extraction and conditional live smoke."
-  ]
+    "Coordinator review of compatible new dependency set and joined clean extraction.",
+    "Engine support for interpreted Catalog R00 settlement actions (current API supports authored opening scene actions only).",
+    "Engine direct adapter, configured route/credentials/finite budget and conditional live smoke.",
+    "Semantic/voice evaluation, general narration/dialogue, detailed developer usage display and Windows execution."
+  ],
+  "candidate_engine_commit": "500ab4286aed5354719a78006195922316b41023",
+  "browser_qualifier_sha256": "b06ca972e7be96628f8d7745f5a3086e3350a255072dd101e8b027d825d5e04b",
+  "browser_host_sha256": "56a186dfad09b94444c46203da13f01a308bf85bbfcf59a55212f59db5156651"
 }

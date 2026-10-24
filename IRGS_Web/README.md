@@ -125,24 +125,53 @@ wording disables that structured confirmation; **Keep as editable draft** copies
 the exact words into your response without sending them. A separate response
 already being drafted survives confirmation or cancellation.
 
-AI assistance currently reports unavailable. Listed actions remain usable and
+The default host reports unconfigured assistance. Listed actions remain usable and
 freeform declarations remain unresolved. Creator workspace → AI Network →
-Providers & Models shows protected availability, not an active Director graph or
-model benchmark. `/api/ai/status` requires the local session; diagnostic fields
-require explicit Creator mode. No credentials, provider route or budget is
-configured through the browser, and status checks make no provider calls.
+Providers & Models shows protected status. Status checks make no provider calls;
+credentials, route approval and budgets are never configured in the browser.
 
-Engine owns the forthcoming interpretation/proposal/validation/ledger API. This
-App increment contains no replacement simulator or provider router. Qualification
-uses the published Catalog scenario through temporary synthetic saves:
+An explicitly configured host can use Engine's optional Solo API. The server-only
+`SoloConfiguration` passed to `make_server` supplies a broker factory, transport,
+approved route/policy/configuration, finite deadline/output limit and private
+technical directory. Engine owns route eligibility, reservations, validation and
+execution. Keep its ledger and host scope metadata outside campaign saves and
+product source. Use one host writer per save directory. No implicit environment
+key discovery, paid retry, route fallback or live adapter is provided here.
+
+**Review with assistance** sends the exact editable intention to the selected
+Engine builder. The player sees the proposed structured action and received
+source references before accepting. Editing invalidates that proposal; cancellation
+and navigation fence late output. Only explicit acceptance invokes Core. The
+committed outcome summary/observations come from its handler; provider prose
+cannot create world facts. Unknown replies offer lookup of the same identity,
+not automatic new inference. Existing action-result recovery handles accepted
+responses lost during delivery. Trash/restore rotates a private restore identity
+before restoring even identical save bytes.
+
+The reviewed Engine pin predates this API and safely stays unconfigured. Candidate
+`500ab4286aed5354719a78006195922316b41023` supports authored opening actions,
+not Catalog's R00 settlement actions. Its full offline App regression and real
+browser flow can be qualified explicitly without moving dependency pointers:
+
+```bash
+# Export that exact Engine commit's IRGS_3_3 directory to /tmp/irgs-engine-500 first.
+IRGS_ENGINE_ROOT=/tmp/irgs-engine-500/IRGS_3_3 python3 -B -m unittest discover -s IRGS_Web/tests -v
+IRGS_ENGINE_ROOT=/tmp/irgs-engine-500/IRGS_3_3 node tools/qualify_solo_browser.js /tmp/irgs-solo-browser.json
+```
+
+The browser qualifier requires Playwright and Chromium (`IRGS_CHROMIUM` may select
+its executable). It owns temporary synthetic saves and an offline fake transport;
+it performs no live inference and cleans up its own host. The complete Engine
+suite, model semantic/voice evaluation and joined package qualification are separate.
+
+The Catalog R00 fixture is separately qualified through its real structured
+handlers and temporary evaluator-only oracle:
 
 ```bash
 python3 -B tools/qualify_solo_review.py --catalog-commit 2e4f389882df0807fc8064c1a0b533aaa3b1bcd3 --output /tmp/irgs-solo-qualification.json
 ```
 
-Fetch that Catalog commit into the dependency before running the command. It
-selects the exact fixture files from Git into a temporary directory without
-moving the committed dependency or installing content. Only evaluator code reads
-the oracle. The host receives setup choices and explicit structured requests;
-no fixture oracle, raw save or archive is sent to a provider. The selected Core
-remains 3.3; 3.4.0 identifies this development iteration, not a new rules version.
+Fetch that Catalog commit into the dependency before running the command. Exact
+fixture files are selected from Git into a temporary directory without moving the
+committed dependency. This does not certify R00 interpretation through the new API.
+Core remains 3.3; 3.4.0 identifies this development iteration.

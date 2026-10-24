@@ -38,7 +38,7 @@ function restoreScroll(){const key=viewKey();requestAnimationFrame(()=>{if(key==
 function draftKey(){return current?`irgs-draft:${current.id}:${current.actor_id||'none'}`:null;}
 function pendingKey(){return current?`irgs-pending:${current.id}:${current.actor_id||'none'}`:null;}
 function stashDraft(){const key=draftKey();if(key)writeLocal(key,$('#declaration').value||'');}
-function loadDraft(){const key=draftKey();$('#declaration').value=key?readLocal(key,''):'';transportPending=pendingKey()?readLocal(pendingKey()):null;}
+function loadDraft(){const key=draftKey();$('#declaration').value=key?readLocal(key,''):'';transportPending=pendingKey()?readLocal(pendingKey()):null;loadSoloAttempt();}
 function displayTime(){if(current?.settlement)return current.settlement.opening_date+' \u00b7 '+riseElapsedLabel(current.settlement.elapsed_seconds)+' since arrival';const time=current?.campaign_time||{};return [time.date||time.calendar_date||(time.day!==undefined?'Day '+time.day:null),time.time||'time unknown',time.precision&&time.precision!=='exact'?time.precision:null].filter(Boolean).join(' · ');}
 async function refreshList(selected){const data=await api('campaigns');token=data.token;$('#campaign').innerHTML='<option value="">Choose a campaign</option>'+data.campaigns.map(campaign=>`<option value="${esc(campaign.id)}">${esc(campaign.name)}</option>`).join('');if(selected)$('#campaign').value=selected;return data.campaigns;}
 function syncControls(){
@@ -449,10 +449,10 @@ async function renderHistoricalPlans(featureId){
 }
 function syncComposer(){
   syncActionReview();
-  $('#assistance-state').textContent=current?.assistance?.message||'AI assistance is not connected. Listed actions remain available; freeform declarations remain unresolved.';
+  syncAssistanceControls();
   const player=workspaceMode==='player'&&current&&!loadingCampaign&&view==='story';$('#composer-form').hidden=!player;
   $('#own-response-panel').hidden=!player;if(player&&(current.pending_declaration||transportPending))$('#own-response-panel').open=true;
-  const accepted=current?.pending_declaration,allowed=Boolean(current?.capabilities?.can_declare)&&!accepted&&!transportPending;
+  const accepted=current?.pending_declaration,allowed=Boolean(current?.capabilities?.can_declare)&&!accepted&&!transportPending&&!soloAttempt;
   $('#send-declaration').disabled=busy||!player||!allowed||!$('#declaration').value.trim();
   $('#retry-action').hidden=!transportPending;$('#retry-action').disabled=busy;
   $('#withdraw-action').hidden=!accepted||Boolean(transportPending);$('#withdraw-action').disabled=busy;
@@ -485,7 +485,7 @@ async function deliverAction(pending,checkFirst=false){
   }catch(error){notice(error.message,true);}finally{setBusy(false);}
 }
 async function submitDeclaration(){
-  if(busy||!current?.capabilities?.can_declare||current.pending_declaration||transportPending)return;
+  if(busy||!current?.capabilities?.can_declare||current.pending_declaration||transportPending||soloAttempt)return;
   const declaration=$('#declaration').value;if(!declaration.trim())return;
   stashDraft();const pending={endpoint:'declaration',body:{id:current.id,revision:current.revision,request_id:crypto.randomUUID(),actor:current.actor_id,declaration}};storeTransport(pending);await deliverAction(pending);
 }
@@ -741,7 +741,7 @@ $('#close-context').onclick=()=>{document.body.classList.remove('context-open');
 document.addEventListener('keydown',event=>{if(event.key!=='Escape'||document.querySelector('dialog[open]'))return;if(document.body.classList.contains('context-open')){$('#close-context').click();event.preventDefault();}else if(document.body.classList.contains('nav-open')){document.body.classList.remove('nav-open');$('#toggle-nav').setAttribute('aria-expanded','false');$('#toggle-nav').focus();event.preventDefault();}});
 $('#settings').onclick=openSettings;$('#close-settings').onclick=()=>$('#preferences-dialog').close();$('#preferences-form').onsubmit=event=>event.preventDefault();
 $('#preferences-form').oninput=event=>{const control=event.target;if(control.name){preferences[control.name]=control.type==='range'?Number(control.value):control.value;applyPreferences();document.querySelectorAll('.mechanical-detail').forEach(detail=>detail.open=preferences.mechanics==='expanded');}};
-$('#declaration').oninput=()=>{stashDraft();syncComposer();};$('#declaration').onkeydown=event=>{const submit=event.key==='Enter'&&(preferences.submitKey==='enter'?!event.shiftKey:(event.ctrlKey||event.metaKey));if(submit){event.preventDefault();if(!$('#send-declaration').disabled)$('#composer-form').requestSubmit();}};
+$('#declaration').oninput=()=>{invalidateSoloProposal();stashDraft();syncComposer();};$('#declaration').onkeydown=event=>{const submit=event.key==='Enter'&&(preferences.submitKey==='enter'?!event.shiftKey:(event.ctrlKey||event.metaKey));if(submit){event.preventDefault();if(!$('#send-declaration').disabled)$('#composer-form').requestSubmit();}};
 $('#composer-form').onsubmit=event=>{event.preventDefault();return submitDeclaration();};$('#retry-action').onclick=()=>{if(transportPending)deliverAction(transportPending,true);};$('#withdraw-action').onclick=withdrawDeclaration;
 $('#campaign').onchange=()=>{if(busy){$('#campaign').value=current?.id||'';return;}openCampaign($('#campaign').value).catch(error=>notice(error.message,true));};
 $('#player-character').onchange=()=>{if(busy){$('#player-character').value=current?.actor_id||'';return;}if(current)openCampaign(current.id,{actorId:$('#player-character').value}).catch(error=>notice(error.message,true));};

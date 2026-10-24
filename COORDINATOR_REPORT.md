@@ -1,91 +1,95 @@
 # App report to IRGS Enviroment — solo-runtime-01
 
-23 October 2026. Target: IRGS 3.4.0 development, with executable Core 3.3.
-Push destination: `KingSav3ge/IRGS-APP-WEB/main`. This is an executable App review,
-availability and recovery increment. It does not complete AI-assisted Solo play.
-The delivery response supplies the full pushed commit SHA.
+24 October 2026. Target: **IRGS 3.4.0 development**, executable Core compatibility
+3.3. Delivery repository: `KingSav3ge/IRGS-APP-WEB/main` only. The delivery response
+supplies its full pushed SHA. This delivers the bounded offline App proposal flow;
+it does not claim a qualified live AI release or complete Solo/C2 coverage.
 
-## Implemented behavior
+## Executable behavior
 
-Equipment, authored opening and Rise choices now open an explicit review.
-Selection and cancellation send nothing. The player may edit the words or keep
-them in the existing response editor without submitting. Different wording
-disables confirmation of the original structured action; an unsent independent
-response survives review and action execution. Only explicit confirmation calls
-the existing selected Core handler. No resource or interpretation logic moves
-into App.
+Listed equipment, authored opening and Rise choices require explicit review.
+Selection, editing and cancellation commit no world effect. Edited words can be
+kept as an unsent draft; an independent response survives action execution.
 
-Review validity checks the campaign, actor, selected campaign control, revision,
-request generation, current view, pending request and character availability.
-Navigation/reload/mode changes discard stale reviews. Confirmation reuses the
-existing durable request and result recovery, including lost acknowledgements.
+`SoloService` optionally consumes Engine's server-only builder, capability broker,
+ledger and acceptance API. `make_server(..., solo_configuration=...)` takes explicit
+trusted configuration; the default host is unconfigured and makes no provider
+request. No App router, validator, alternate rules or world store was introduced.
+Keys, approval, routes, limits and accounting stay server-side. Creator status is
+protected and allowlisted; Player projections contain no developer diagnostics.
 
-Player availability reports that AI assistance is not connected. Supported
-existing actions still run, and unsupported freeform remains unresolved. The
-session-bound `/api/ai/status` exposes no diagnostic fields to Player mode;
-Creator-only Providers & Models reports bounded unavailable diagnostics. Unknown
-configuration fields are not rendered, source/status text is escaped, late status
-responses are fenced, and checking status makes no inference request. No keys,
-provider router, paid dispatch or fictitious benchmark is introduced.
+The connected flow retains exact editable intention, shows a supported action
+and received source references, then requires explicit acceptance. Core's actual
+handler commits once. Its outcome summary/observations supply grounded text;
+provider prose has no authority. Unsupported freeform/combat remains unresolved.
 
-## Exact source selection
+Proposal lookup cannot create a fresh inference attempt. Stable accepted requests
+reuse existing action-result recovery across lost acknowledgements and restart.
+World plus public receipt share one atomic, flushed save replacement under the
+single host writer lock. Technical cancellation and restore identities live
+outside saves/source. Restore rotates identity before identical-byte restoration.
+Engine and browser fences reject late output after state change, navigation,
+actor/campaign change, edited intent or review closure. Provider I/O holds no save
+lock, so cancellation and unrelated actions can proceed.
 
-Runtime dependency pointers remain the currently reviewed pair:
+## Exact dependencies and remaining integration gap
 
-- Engine: `723627e629231b5e90f38b9d52b65c9a3967b92a`.
-- Catalog: `3e898acb2179f18a41d7967817bedf429df29d3f`.
+Committed dependency pointers remain the reviewed pair:
 
-Fixture qualification explicitly reads Catalog commit
-`2e4f389882df0807fc8064c1a0b533aaa3b1bcd3`, fixture
+- Engine `723627e629231b5e90f38b9d52b65c9a3967b92a`.
+- Catalog `3e898acb2179f18a41d7967817bedf429df29d3f`.
+
+Engine candidate **`500ab4286aed5354719a78006195922316b41023`** was exported from
+its exact Git objects to temporary storage and selected through `IRGS_ENGINE_ROOT`
+for offline HTTP/browser qualification. It currently prepares and accepts only
+`scene_actions`. Catalog's synthetic R00 fixture targets `settlement_runtime`;
+**its interpreted proposal path remains unsupported**. App does not supply a
+second executor to disguise this gap. The full interpreted flow is proven using
+Engine's synthetic authored opening, not the R00 scenario.
+
+Catalog fixture **`2e4f389882df0807fc8064c1a0b533aaa3b1bcd3`**, fixture
 `irgs-solo-r00-eval-v1`, manifest SHA-256
-`2d30e863c4f769f0e2039469807ca0c6eeef3f30edd17d96778cebcba65bdbe5`.
-It reads the exact Git objects into a temporary evaluator directory without
-moving the runtime pin or installing another editable content tree. Evaluator
-setup/oracle remains outside host request payloads. The host receives reviewed
-setup choices and explicit actor/action/request fields, using the real Core.
+`2d30e863c4f769f0e2039469807ca0c6eeef3f30edd17d96778cebcba65bdbe5`,
+was separately qualified through real existing R00 structured handlers. Its exact
+files were read into temporary evaluator storage without changing the runtime
+pin. Only evaluator code reads the private oracle; no private campaign or archive
+is sent to a model.
 
-## Executed checks
+## Executed evidence
 
 | Check | Result |
 | --- | --- |
-| Full Web regressions | 170 run, 163 passed, seven Windows PowerShell launcher skips on Linux |
-| Interface regressions | 80 passed, including explicit review/cancel/edit, two actions, double confirmation, stale reviews, safe status and existing lost-ack/reload checks |
+| Full Web on reviewed pins | 180 run, 163 passed, 17 skipped: seven Windows PowerShell launchers, ten optional Solo API checks absent from the older Engine |
+| Full Web on exact Engine candidate above | 180 run, 173 passed, seven Windows launcher skips |
+| App Solo HTTP cases within that candidate suite | Ten passed: two actions, exact intent, privacy, explicit/unchanged acceptance, malformed/unsupported output, denial, timeout, durable cancellation, state/restore fencing, failed save, lost ack/restart and concurrent acceptance retries |
+| Selected Engine provider API suite | 22 passed; complete Engine suite not rerun by App |
+| Synthetic interface regressions | 85 passed, including new proposal acceptance/edit/cancel/stale/uncertain/reload checks |
 | Attachment packaging tooling | One passed |
-| `tools/qualify_solo_review.py --catalog-commit 2e4f389882df0807fc8064c1a0b533aaa3b1bcd3` | Ten actual fixture cases: five accepted Core actions, four unchanged-save rejections, one exact original-result replay |
-| Recovery in that HTTP qualification | Five host restarts and saved-result lookups; two concurrent retries for each accepted action; original receipts/save bytes retained; exact Trash/restore bytes |
-| Information and conservation | Evaluator markers/private identifiers absent from actor exports, HTTP action requests and Player views; actual finite stocks plus consumption conserved at every fixture step |
-| Chromium/Playwright with the Catalog R00 setup | Two consecutive Core actions; cancel/edit sends nothing; denied build leaves save unchanged; deliberately aborted accepted HTTP acknowledgement recovers by result lookup without another effect; draft survives reload; protected status works |
-| App source integrity | Only App hashes refreshed; App and the exact pinned Engine/Catalog verified |
+| Exact R00 HTTP qualification | Ten cases: five actual accepted Core actions, four unchanged-save rejections, one exact result replay; five restarts, two concurrent retries per acceptance; conserved finite stock and oracle exclusion; zero providers |
+| Chromium/Playwright offline proposal flow | Two consecutive real Core actions; exact editable intent; cancel/edit and provider denial commit nothing; deliberately aborted accepted response recovers by result lookup; reload and late navigation fenced; six fake transport calls, zero live calls, zero browser errors |
+| App/component integrity | Only App hashes refreshed; App and exact committed Engine/Catalog verified |
 
-Browser and HTTP evidence are distinct from synthetic DOM transport checks.
-No private user campaign was opened, migrated or restored. Qualification's
-restore is recoverable Campaign Trash restoration; it does not certify a future
-provider task's behavior after arbitrary world-snapshot restore.
+Reproduce the candidate checks with an exact Engine export selected through
+`IRGS_ENGINE_ROOT`, `python3 -B -m unittest discover -s IRGS_Web/tests -v`, and
+`node tools/qualify_solo_browser.js /tmp/irgs-solo-browser.json`. The browser
+qualifier owns and removes its temporary synthetic host/save; Playwright and
+Chromium are required. Reproduce R00 with
+`python3 -B tools/qualify_solo_review.py --catalog-commit 2e4f389882df0807fc8064c1a0b533aaa3b1bcd3`.
 
 Structured evidence: [SOLO_RUNTIME_VALIDATION.json](SOLO_RUNTIME_VALIDATION.json).
-Previous Historical Details completion remains recorded in
-[COORDINATOR_PIN_REVIEW.json](COORDINATOR_PIN_REVIEW.json) and
-[HISTORICAL_DETAILS_VALIDATION.json](HISTORICAL_DETAILS_VALIDATION.json).
-The complete archive and current catalogue remain unchanged.
+Historical Details evidence remains in [COORDINATOR_PIN_REVIEW.json](COORDINATOR_PIN_REVIEW.json)
+and [HISTORICAL_DETAILS_VALIDATION.json](HISTORICAL_DETAILS_VALIDATION.json).
+Adopted catalogue and original Historical archive are unchanged.
 
-## Remaining requirements and prerequisites
+## Remaining requirements
 
-Engine has not published the new provider/action API at the reviewed runtime
-pin. Its latest fetched commit `e2d7fd3d2c3aef436fda280c45c0e4508c02618a`
-adds the 3.4.0 iteration label, not a provider runtime. App therefore returns
-unavailable rather than inventing a second contract or a fake successful result.
+Coordinator must review a compatible Engine/App/Catalog set before dependency
+pointers move or joined IRGS integrates it. R00 proposal support, Engine direct
+adapter, semantic/voice evaluations, general narration/dialogue, detailed developer
+usage presentation, Windows execution and joined clean extraction remain open.
+Live smoke requires an eligible approved exact route/model, server credentials
+and finite budget; no live AI play or model benchmark is claimed. Fake transport
+qualification does not establish model interpretation quality.
 
-Next: consume the published scoped Engine API; qualify the Catalog actor export
-against it; connect interpreted proposal, explicit acceptance, committed result
-and grounded narration. Provider absence/denial/timeout, cancellation, malformed
-output, budget/usage and post-restore stale tasks still need that exact contract.
-The fixture qualification uses explicit structured operations, not interpreted
-natural-language intents. No provider model or semantic quality is certified.
-
-No complete Engine suite, Windows execution, joined clean extraction or live
-provider smoke was run for this App increment. Live smoke later requires configured
-server credentials, an eligible exact route/model and a finite approved budget;
-those credentials are not required for the remaining offline implementation.
-Only the coordinator can approve a new dependency/update set and integrate joined
-IRGS. This chat publishes only App. Its direct chat-send tool remains unavailable;
-this repository report is the handoff, with no direct message claimed.
+This repository report is the coordinator handoff. No direct chat message or
+unified integration is claimed.
