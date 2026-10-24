@@ -71,6 +71,7 @@ async function openCampaign(id,options={}){
 function changeView(next,options={}){rememberScroll();stashDraft();invalidateActionReview();++historicalReferenceRequest;++inspectorRequest;view=next;if($('#inspect-dialog').open)$('#inspect-dialog').close();document.body.classList.remove('nav-open');$('#toggle-nav').setAttribute('aria-expanded','false');if(options.route!==false)updateViewRoute(next,options.featureId);render();restoreScroll();}
 function empty(){return '<div class="empty adventure-welcome"><div class="welcome-copy"><span class="eyebrow">HISTORY IS ONLY THE BEGINNING</span><h2>Find your place.<br>Choose your path.</h2><p>A life at the edge of a changing world. Begin with a character, a moment in history, and a choice.</p><button id="empty-create" class="primary">Find your adventure <span aria-hidden="true">→</span></button><small>All 37 Century of Conflict starts offer an optional local Solo opening.</small></div><span class="art-caption">Illustrative campaign artwork</span></div>';}
 function render(){
+  applyPresentationTheme();
   document.body.dataset.workspace=view;
   document.body.dataset.mode=workspaceMode;
   const headings={home:['Home','Resume a saved world or browse verified starts.'],story:['Story','Your next meaningful choice.'],world:['World','Inspect what your character can access.'],chronicle:['Chronicle','The record available to your character.'],creator:['Creator workspace','Explicitly sourced changes to the authoritative world.'],library:['Engines & libraries','Creator reference material.'],trash:['Campaign Trash','Recover complete saved campaigns.'],'content-library':['Content Library','Choose a sourced campaign and starting point.']};
@@ -322,6 +323,7 @@ async function inspectHistoricalReference(collection,row){
 function renderFeature(id){
   const feature=features.find(item=>item.id===id&&featureAllowed(item));
   if(feature&&workspaceMode==='creator'&&id==='providers-models'){renderAssistanceStatus();return;}
+  if(feature&&workspaceMode==='creator'&&id==='usage-budgets'){renderAIUsage();return;}
   if(feature&&workspaceMode==='creator'&&id==='historical-reference-library'){renderHistoricalReference();return;}
   if(feature&&workspaceMode==='creator'&&['historical-comparison','historical-inspector'].includes(id)){renderHistoricalPlans(id);return;}
   if(!feature){$('#content').innerHTML='<div class="empty"><h2>Section unavailable</h2><p>This route is not available in the current workspace.</p></div>';return;}

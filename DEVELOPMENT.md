@@ -1,5 +1,47 @@
 # App / Website development
 
+## Current delivery — theme recovery and protected usage, 24 October 2026
+
+### Completed
+
+- [x] Restore the preferred warm charcoal/brown base and bronze/coral accents.
+  Remove legacy global palette/reading overrides from the layout stylesheet.
+- [x] Use one presentation layer: base application → public genre binding → known
+  campaign override. Seven genre palettes cover military, Roman, fantasy,
+  post-apocalyptic, shinobi, space and settlement. Century of Conflict, A Scot's
+  Tale and Rise have explicit campaign accents. Unknown bindings use the base.
+- [x] Home, Library, Trash and developer pages keep the base identity. Switching,
+  deselecting and loading campaigns reset/apply themes; stale loads cannot repaint
+  the current campaign. Display names, hidden state and provider text select no theme.
+- [x] Preserve independent Dark/Light/Parchment reading mode, font and sizing across
+  campaign switches and reload. Presentation writes no campaign state.
+- [x] Creator → AI Network → Usage & Budgets reads Engine's existing ledger. It
+  shows lifetime reservations/remaining operator units, occupied slots, recent
+  requested/reported identities, reported tokens, errors and uncertain attempts.
+  Missing reports and actual charges remain unknown. Inspection never dispatches,
+  retries, refunds or resets a budget. Request/context/private certificates stay
+  outside the projection; Player mode cannot read it.
+- [x] Real Chromium covers all seven genres and three campaign overrides, reading
+  reload, protected accounting, unchanged synthetic saves and 390px layout. Body text and
+  visible Story panels/controls meet 4.5:1 across Dark, Light and Parchment modes.
+
+### Verification and next goal
+
+190 Web tests run: 183 passed, seven Windows launcher skips. Interface: 93 passed.
+Seven new real-ledger HTTP cases cover authorization, privacy, unknown usage,
+failed/cancelled reservations after restart, bounded rows, no configured ledger
+and retryable storage failure. Packaging tooling: one passed. App and pinned
+Engine/Catalog integrity verified. See [current evidence](THEME_USAGE_VALIDATION.json).
+
+Next App goal: consume an operator-supplied Engine direct-adapter configuration
+through the launcher/host, with explicit route/workload approval and finite
+limits. Keep unconfigured play usable; do not infer approval or budget from an
+API key. Conditional live smoke, semantic/voice evaluation, detailed billing
+reconciliation and wider narration/rules remain open. This delivery makes no
+live provider call and does not claim a model benchmark or completed Solo/C2.
+Dependency pins remain the coordinator-reviewed 3.4.0 pair below. Joined publication
+belongs to the coordinator; this chat pushes only IRGS-APP-WEB.
+
 ## Qualified primary-update candidate — 24 October 2026
 
 The App now consumes Engine `8234044c089131314019ecaf6799a2f08028a3f8` and Catalog `401df26a1f16be864dd15d7c5250da5d75f8ccca` for the 3.4.0 development update. The coordinator fixed the Rise status, proposal review and result adapter to use actual settlement receipts and elapsed spans. Five consecutive proposed/accepted actions complete existing shelter work; retry, restart and a lost acknowledgement retain one effect per request. Authored-scene behavior remains qualified separately. Default AI is unconfigured; offline fake transport is not live AI or a general narrator.
@@ -15,7 +57,7 @@ component commits and performs joined integration separately.
 
 ## Active priority — 23 October 2026
 
-Complete the AI-assisted Solo player round trip under [the new work order](COORDINATOR_WORK_ORDER.md): editable intention, supported proposal, explicit submit, actual Core outcome, grounded narration and next action. Consume the Engine API with honest unconfigured/error states and protected diagnostics; reuse current request/recovery identities. Engine owns all resolution and provider routing. Historical Details is integrated at the currently committed Engine/Catalog pins; its old approval blockers are resolved. The explicit action review and offline Engine proposal round trip below are implemented. The default reviewed runtime remains unconfigured; live routing and Rise proposal support remain pending.
+Complete the AI-assisted Solo player round trip under [the new work order](COORDINATOR_WORK_ORDER.md): editable intention, supported proposal, explicit submit, actual Core outcome, grounded narration and next action. Consume the Engine API with honest unconfigured/error states and protected diagnostics; reuse current request/recovery identities. Engine owns all resolution and provider routing. Historical Details is integrated at the currently committed Engine/Catalog pins; its old approval blockers are resolved. The explicit action review and offline Engine proposal round trip below are implemented. The reviewed runtime supports authored-scene and Rise proposals with explicit offline host configuration; default hosting remains unconfigured and live qualification remains pending.
 
 ## Ownership and setup
 
@@ -219,7 +261,7 @@ and JavaScript UI remain; no gateway or framework rewrite has been selected.
 | AIP-03 specialists | Display the existing six Director categories and logical responsibilities without a second registry. | Planned |
 | AIP-04 routing | Consume Engine decisions; no App router or technical routing in campaign selection. | Planned |
 | AIP-05 validation | Explicit listed/proposed action review and stale-output fences delivered; strict validation stays in Engine. | Partial |
-| AIP-06 ledger | Permission-checked requested/actual routes, reported/estimated usage, retries, failures and unknown charges. | Planned |
+| AIP-06 ledger | Protected read-only requested/reported identities, finite reservations, reported tokens, failures and unknown usage/charges. No price/billing reconciliation. | Partial |
 | AIP-07 evaluations | Report executed versus unrun cases, disclosed human review and measured evidence; no fabricated winners. | Planned |
 | AIP-08 migration | Scope, restore, navigation and cancellation fences plus durable previous receipts tested offline. | Partial |
 | AIP-09 access | Enforce developer diagnostics and actor information boundaries; never send source data or credentials through browser controls. | Planned |

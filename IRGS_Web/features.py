@@ -100,7 +100,7 @@ _children('marketplace', [('marketplace-browse', 'Marketplace Browse'), ('produc
     ('rights-provenance', 'Rights / Attribution / Provenance')], roles=('creator',))
 _children('ai-network', [('network-map', 'Spiderweb Network Map'), ('directors', 'Directors & Scopes'),
     ('specialists', 'Specialist Registry'), ('providers-models', 'Providers & Models', {'lifecycle': 'functional', 'backend': 'api/ai/status', 'description': 'Protected availability status. No provider or autonomous Director network is connected.'}), ('capability-broker', 'Capability Broker / Access'),
-    ('connections-tasks', 'Connections / Tasks'), ('events-fidelity', 'Events / Scheduler / Fidelity'),
+    ('usage-budgets', 'Usage & Budgets', {'lifecycle': 'functional', 'backend': 'api/ai/usage', 'description': 'Protected read-only Engine reservations and reported tokens. Charges remain unknown.'}), ('connections-tasks', 'Connections / Tasks'), ('events-fidelity', 'Events / Scheduler / Fidelity'),
     ('execution-traces', 'Execution Traces / Errors'), ('ai-benchmarks', 'Benchmarks / Comparisons / Budgets')], roles=('developer',))
 _children('account', [('profile-settings', 'Profile / Settings'), ('licences', 'Licences & Distribution'),
     ('entitlements', 'My Purchases / Entitlements'), ('gameplay-rest', 'Gameplay Access / Rest'), ('usage-costs', 'Usage & AI Costs'),

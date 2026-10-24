@@ -104,6 +104,24 @@ async function requestSoloProposal(lookup=false){
   finally{syncComposer();}
 }
 function assistanceStatusActive(){return workspaceMode==='creator'&&view==='feature:providers-models';}
+let aiUsageRequest=0;
+function aiUsageActive(){return workspaceMode==='creator'&&view==='feature:usage-budgets';}
+function usageFacts(value,keys){return facts(Object.fromEntries(keys.map(key=>[key,value?.[key]??'Unknown'])));}
+async function renderAIUsage(){
+  if(!aiUsageActive())return;
+  const request=++aiUsageRequest;
+  $('#content').innerHTML='<section class="panel"><p>Reading assistance accounting…</p></section>';
+  try{
+    const result=await api('ai/usage',undefined,{creator:true});
+    if(request!==aiUsageRequest||!aiUsageActive())return;
+    const summary=result.summary,attempts=Array.isArray(result.attempts)?result.attempts:[];
+    $('#content').innerHTML='<section class="panel"><span class="eyebrow">PROTECTED DEVELOPER RECORDS</span><h2>Usage &amp; Budgets</h2><p>Reservations are operator-defined ceiling units. Reported tokens are provider reports. Actual charges remain unknown.</p><p>'+esc(result.message||'Accounting unavailable.')+'</p>'+(summary?usageFacts(summary,['attempts_total','budget_units','reserved_units','remaining_units','active_transport_slots','maximum_transport_slots','unfinished_or_in_doubt']):'<p>No assistance ledger is configured.</p>')+'<button class="quiet" id="retry-ai-usage">Refresh records</button></section>'+attempts.slice(0,50).map(attempt=>'<article class="panel"><h3>Attempt '+esc(attempt.request_id||'Unknown')+'</h3>'+usageFacts(attempt,['status','code','acceptance_recorded','reserved_units','transport_state','transport_finished','usage_status'])+'<h4>Requested identity</h4>'+usageFacts(attempt.requested_identity,['developer','gateway','host','model','model_version'])+'<h4>Reported identity</h4>'+usageFacts(attempt.reported_identity,['developer','gateway','host','model','model_version'])+'<h4>Reported tokens</h4>'+usageFacts(attempt.reported_tokens,['input_tokens','output_tokens','cached_input_tokens','reasoning_tokens'])+'<p class="note">Actual charges: unknown. Refreshing reads saved accounting and never retries this attempt.</p></article>').join('')+(result.has_more?'<p class="note">Showing recent attempts. Budget totals cover the entire ledger.</p>':'');
+  }catch(error){
+    if(request!==aiUsageRequest||!aiUsageActive())return;
+    $('#content').innerHTML='<section class="panel"><h2>Accounting unavailable</h2><p>'+esc(error.message)+'</p><button class="quiet" id="retry-ai-usage">Retry records</button></section>';
+  }
+  $('#retry-ai-usage').onclick=renderAIUsage;
+}
 async function renderAssistanceStatus(){
   if(!assistanceStatusActive())return;
   const request=++assistanceStatusRequest;

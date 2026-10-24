@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-24",
+  "iteration": "3.4.0 development",
+  "status": "passed",
+  "baseline_app_commit": "277554aac21a092b8a55562309da274bbe74a3af",
+  "runtime_dependencies": {
+    "engine": "8234044c089131314019ecaf6799a2f08028a3f8",
+    "catalog": "401df26a1f16be864dd15d7c5250da5d75f8ccca"
+  },
+  "checks": {
+    "web": {
+      "run": 190,
+      "passed": 183,
+      "skipped": 7,
+      "failed": 0,
+      "skip_reason": "Windows PowerShell launcher checks on Linux"
+    },
+    "interface": {
+      "passed": 93
+    },
+    "real_ledger_HTTP": {
+      "passed": 7,
+      "included_in_web_count": true
+    },
+    "packaging_tooling": {
+      "passed": 1
+    },
+    "actual_Chromium": {
+      "status": "passed",
+      "base": "#15110e",
+      "genres": 7,
+      "campaign_overrides": 3,
+      "reading_preference_survives_reload": true,
+      "body_and_story_text_contrast_at_least": 4.5,
+      "reading_modes_checked": 3,
+      "protected_usage_read_only": true,
+      "saves_unchanged": true,
+      "browser_posts": 0,
+      "browser_errors": 0,
+      "mobile_width": 390,
+      "live_provider_calls": 0
+    },
+    "component_integrity": {
+      "status": "verified",
+      "only_app_hashes_refreshed": true
+    }
+  },
+  "scope": {
+    "world_rules_changed": false,
+    "dependency_pointers_changed": false,
+    "private_user_saves_used": false,
+    "live_provider_calls": 0,
+    "browser_fixture_offline_attempts_seeded_before_launch": 1,
+    "usage_view_dispatches_provider_requests": false,
+    "usage_view_authoritative_billing": false,
+    "ordinary_player_access_to_ledger": false,
+    "joined_repository_pushed": false
+  },
+  "presentation": {
+    "base": "warm charcoal/brown with bronze/coral accents",
+    "genre_palettes": [
+      "military",
+      "roman",
+      "fantasy",
+      "paf",
+      "shinobi",
+      "space",
+      "settlement"
+    ],
+    "campaign_overrides": [
+      "hundred-years-war",
+      "ast",
+      "rise"
+    ],
+    "reading_modes_independent": true,
+    "selection_uses_public_binding_only": true,
+    "unknown_binding_fallback": "base"
+  },
+  "qualifier_sha256": "f2e65f36625590cd9805fb4afab24fd854a7f3486727ee63d14dee19a4e643cd",
+  "browser_host_sha256": "4fba0d9f842e2e5fe8859b55af5b606afa866f195680dd438179d561d12676ee",
+  "remaining": [
+    "Operator-controlled direct-adapter startup, explicit approved route/workload/finite budget and conditional live smoke.",
+    "Model semantic/voice review, actual billing reconciliation, general narration/dialogue and wider C2 rules.",
+    "Windows execution and coordinator joined integration of this increment."
+  ],
+  "app_release_sha256": "b71d1f5d693bb623d4283024843e9a62c17f5c6777edb9a0279eaf56a3326536"
+}

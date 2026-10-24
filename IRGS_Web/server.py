@@ -6,6 +6,7 @@ import json
 import os
 import re
 import secrets
+import sqlite3
 import sys
 import threading
 import uuid
@@ -401,6 +402,11 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
             query = parse_qs(urlparse(self.path).query)
             mode=query.get('mode',['player'])[0]
             try:
+                if path == '/api/ai/usage':
+                    self.creator(mode)
+                    from ai_usage import usage_snapshot
+                    return self.reply(200, usage_snapshot(getattr(solo, 'ledger', None),
+                        limit=int(query.get('limit', ['25'])[0])))
                 if path == '/api/ai/status':
                     self.session()
                     if mode == 'creator':
@@ -532,7 +538,7 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                     if path.startswith('/api/binding/'):
                         self.creator(mode)
                         return self.reply(200, presentation_binding(store.read(path.rsplit('/', 1)[1])['state']))
-                files = {'/': ('index.html', 'text/html'), '/app.js': ('app.js', 'text/javascript'), '/style.css': ('style.css', 'text/css'), '/voyage.svg': ('voyage.svg', 'image/svg+xml'), '/rise.js': ('rise.js', 'text/javascript'), '/catalogue.js': ('catalogue.js', 'text/javascript'), '/solo.js': ('solo.js', 'text/javascript')}
+                files = {'/': ('index.html', 'text/html'), '/app.js': ('app.js', 'text/javascript'), '/style.css': ('style.css', 'text/css'), '/voyage.svg': ('voyage.svg', 'image/svg+xml'), '/rise.js': ('rise.js', 'text/javascript'), '/catalogue.js': ('catalogue.js', 'text/javascript'), '/solo.js': ('solo.js', 'text/javascript'), '/themes.js': ('themes.js', 'text/javascript'), '/themes.css': ('themes.css', 'text/css')}
                 if path not in files:
                     return self.reply(404, {'error': 'Not found'})
                 name, mime = files[path]
@@ -540,6 +546,8 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
             except FileNotFoundError:
                 self.reply(404, {'error': 'No saved action result exists for this request'
                                       if path.startswith('/api/action-result/') else 'Campaign not found'})
+            except sqlite3.Error:
+                self.reply(503, {'error': 'Assistance accounting is temporarily unavailable. Refresh its saved records later.'})
             except PermissionError as err:
                 self.reply(403, {'error':str(err)})
             except ValueError as err:

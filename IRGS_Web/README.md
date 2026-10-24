@@ -175,3 +175,33 @@ Fetch that Catalog commit into the dependency before running the command. Exact
 fixture files are selected from Git into a temporary directory without moving the
 committed dependency. This does not certify R00 interpretation through the new API.
 Core remains 3.3; 3.4.0 identifies this development iteration.
+
+
+## Application and campaign themes
+
+Application pages use the warm charcoal/brown base with bronze/coral accents.
+Campaign pages select a palette from their public genre binding; known campaigns
+can override those accents. Seven genres are supported: military, Roman, fantasy,
+post-apocalyptic, shinobi, space and settlement. Century of Conflict, A Scot's Tale
+and Rise have campaign variants. Unknown bindings use the base. Names and private
+world facts do not select styles. Dark, Light and Parchment remain independent
+reading preferences and survive switching/reload. Theme selection changes no save.
+`static/themes.css` owns palette tokens; `static/themes.js` selects only known
+public presentation IDs. Layout lives in `static/style.css`.
+
+## Protected usage and budgets
+
+Creator workspace → AI Network → Usage & Budgets reads Engine's technical ledger.
+The view shows total lifetime reservations/remaining operator units and occupied
+transport slots, plus recent requested/reported identities, reported token fields
+and errors. `GET /api/ai/usage?mode=creator&limit=25` requires the local session,
+accepted Origin and explicit Creator mode. `limit` is bounded to 1–50; summary
+totals always cover the entire ledger. Request/context text, private dependencies,
+credentials and storage paths never appear in this projection. The default host
+shows unconfigured status and creates no ledger just to inspect it.
+
+Reservations remain consumed after failures/cancellation. Missing token reports
+and actual charges stay unknown; reported tokens are not a verified bill. Refresh
+reads saved records and never retries inference, refunds units or resets budgets.
+Run `node tools/qualify_presentation.js /tmp/irgs-presentation.json` for real
+Chromium theme/accounting qualification with temporary synthetic campaigns.

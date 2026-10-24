@@ -1,0 +1,36 @@
+'use strict';
+// Real host/browser, synthetic campaigns, read-only UI. No live inference.
+const fs=require('fs'),os=require('os'),path=require('path'),assert=require('assert/strict'),{spawn}=require('child_process'),{chromium}=require('playwright');
+const luminance=color=>{const parts=color.match(/[\d.]+/g).slice(0,3).map(x=>{const c=Number(x)/255;return c<=.04045?c/12.92:((c+.055)/1.055)**2.4;});return parts[0]*.2126+parts[1]*.7152+parts[2]*.0722;};
+const contrast=(a,b)=>(Math.max(luminance(a),luminance(b))+.05)/(Math.min(luminance(a),luminance(b))+.05);
+(async()=>{
+ const directory=fs.mkdtempSync(path.join(os.tmpdir(),'irgs-presentation-')),metadata=path.join(directory,'host.json');
+ const hostProcess=spawn('python3',['-B',path.join(__dirname,'solo_browser_host.py'),metadata,'presentation'],{env:process.env,stdio:['ignore','ignore','pipe']});let stderr='';hostProcess.stderr.on('data',data=>stderr+=data);let browser;
+ try{
+  const deadline=Date.now()+20000;while(!fs.existsSync(metadata)){if(hostProcess.exitCode!==null||Date.now()>deadline)throw Error('Synthetic presentation host failed: '+stderr);await new Promise(resolve=>setTimeout(resolve,50));}
+  const host=JSON.parse(fs.readFileSync(metadata)),saves=()=>Object.fromEntries(fs.readdirSync(host.save_folder).filter(name=>name.endsWith('.json')).map(name=>[name,fs.readFileSync(path.join(host.save_folder,name),'utf8')])),before=saves();
+  browser=await chromium.launch({executablePath:process.env.IRGS_CHROMIUM||'/usr/bin/chromium',headless:true,args:['--no-sandbox']});const page=await browser.newPage(),errors=[],posts=[];page.on('pageerror',error=>errors.push(error.message));page.on('request',request=>{if(request.method()==='POST')posts.push(request.url());});
+  await page.goto('http://127.0.0.1:'+host.port);await page.locator('#campaign-management').evaluate(node=>node.open=true);
+  const palettes={};
+  for(const [name,id] of Object.entries(host.campaigns)){
+   await page.locator('#campaign').selectOption(id);await page.waitForFunction(id=>current?.id===id&&!loadingCampaign,id);
+   const colors=await page.evaluate(()=>{const styles=getComputedStyle(document.body),story=document.querySelector('.story-reading');return {genre:document.body.dataset.genre,campaign:document.body.dataset.campaignTheme,base:styles.getPropertyValue('--base').trim(),accent:styles.getPropertyValue('--accent').trim(),ink:styles.color,background:styles.backgroundColor,reading:story?getComputedStyle(story).backgroundColor:null,readingInk:story?getComputedStyle(story).color:null};});
+   for(const mode of ['dark','light','parchment']){
+    await page.evaluate(mode=>{preferences.theme=mode;applyPreferences();},mode);await page.waitForTimeout(200);
+    const checks=await page.evaluate(()=>{const canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');const rgb=color=>{ctx.clearRect(0,0,1,1);ctx.fillStyle=color;ctx.fillRect(0,0,1,1);const value=ctx.getImageData(0,0,1,1).data;return {text:'rgb('+Array.from(value).slice(0,3).join(',')+')',alpha:value[3]};};return [...document.querySelectorAll('.story-reading,.story-reading .panel,.story-reading .quiet')].filter(node=>!node.disabled&&node.getClientRects().length>0).map(node=>{let parent=node,background;while(parent){background=rgb(getComputedStyle(parent).backgroundColor);if(background.alpha===255)break;parent=parent.parentElement;}return {element:node.tagName+'.'+node.className,foreground:rgb(getComputedStyle(node).color).text,background:background.text};});},mode);
+    for(const check of checks)assert(contrast(check.foreground,check.background)>=4.5,name+' '+mode+' reading contrast '+JSON.stringify(check));
+   }
+   await page.evaluate(()=>{preferences.theme='dark';applyPreferences();});
+   assert.equal(colors.genre,name==='hundred-years-war'||name==='ast'?'military':name==='rise'?'settlement':name);assert.equal(colors.campaign,['hundred-years-war','ast','rise'].includes(name)?name:'');assert(contrast(colors.ink,colors.background)>=4.5);if(colors.reading)assert(contrast(colors.readingInk,colors.reading)>=4.5);palettes[name]=colors;
+  }
+  assert.equal(new Set(Object.values(palettes).map(value=>value.base)).size,7);assert.notEqual(palettes.ast.accent,palettes.military.accent);assert.notEqual(palettes['hundred-years-war'].accent,palettes.military.accent);assert.equal(new Set(['ast','hundred-years-war','rise'].map(key=>palettes[key].accent)).size,3);
+  await page.locator('[data-view="home"]').first().click();assert.equal(await page.locator('body').getAttribute('data-genre'),'base');const base=await page.evaluate(()=>getComputedStyle(document.body).getPropertyValue('--base').trim());assert.equal(base,'#15110e');await page.screenshot({path:path.join(process.argv[2]?path.dirname(process.argv[2]):directory,'irgs-presentation-base.png')});
+  await page.locator('[data-view="story"]').first().click();await page.locator('#settings').click();await page.locator('[name="theme"]').selectOption('parchment');await page.locator('#close-settings').click();await page.locator('#campaign').selectOption(host.campaigns.space);await page.waitForFunction(()=>current?.binding.genre_id==='space');assert.equal(await page.locator('body').getAttribute('data-reading'),'parchment');
+  await page.reload();await page.waitForFunction(()=>current?.binding.genre_id==='space');assert.equal(await page.locator('body').getAttribute('data-reading'),'parchment');
+  await page.locator('#toggle-nav').click();await page.locator('#workspace-mode').click();await page.waitForFunction(()=>workspaceMode==='creator');await page.locator('[data-feature-toggle="ai-network"]').click();await page.locator('[data-feature="usage-budgets"]').first().click();
+  await page.getByRole('heading',{name:'Usage & Budgets',exact:true,level:2}).waitFor();const accounting=await page.locator('#content').innerText();assert(accounting.includes('unknown'));assert(!accounting.includes('PRIVATE_BROWSER_INTENTION'));assert(accounting.includes('20'));
+  await page.locator('#retry-ai-usage').click();await page.getByRole('heading',{name:'Usage & Budgets',exact:true,level:2}).waitFor();
+  await page.setViewportSize({width:390,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.screenshot({path:path.join(process.argv[2]?path.dirname(process.argv[2]):directory,'irgs-presentation-mobile.png')});
+  assert.deepEqual(saves(),before);assert.equal(posts.length,0);assert.deepEqual(errors,[]);const result={status:'passed',base,genres:7,campaign_overrides:3,reading_preference_survives_reload:true,body_and_story_text_contrast_at_least:4.5,reading_modes_checked:3,protected_usage_read_only:true,saves_unchanged:true,browser_posts:posts.length,browser_errors:errors.length,mobile_width:390,live_provider_calls:0};if(process.argv[2])fs.writeFileSync(process.argv[2],JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
+ }finally{if(browser)await browser.close();if(hostProcess.exitCode===null){hostProcess.kill('SIGINT');await new Promise(resolve=>hostProcess.once('exit',resolve));}fs.rmSync(directory,{recursive:true,force:true});}
+})().catch(error=>{console.error(error);process.exitCode=1;});
