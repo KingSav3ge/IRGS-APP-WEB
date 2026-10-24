@@ -30,6 +30,7 @@ function environment(){
   const context={console,document,FormData,URL,URLSearchParams,Blob,crypto:require('crypto').webcrypto,localStorage:{getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},requestAnimationFrame:fn=>fn(),setTimeout,fetch:async(path,options)=>{calls.push({path,options,body:options.body?JSON.parse(options.body):undefined});return responder(path,options);}};
   let responder=()=>{throw Error('Unconfigured synthetic transport');};
   vm.createContext(context);
+  for(const name of ['responses.data.js','responses.js','routine.js'])vm.runInContext(fs.readFileSync('IRGS_Web/static/'+name,'utf8'),context);
   vm.runInContext(fs.readFileSync('IRGS_Web/static/themes.js','utf8'),context);
   vm.runInContext(fs.readFileSync('IRGS_Web/static/rise.js','utf8'),context);
   vm.runInContext(fs.readFileSync('IRGS_Web/static/catalogue.js','utf8'),context);
@@ -353,6 +354,27 @@ async function test(name,fn){await fn();results.push('PASS '+name);}
  });
  await test('Late accounting cannot replace a newer refresh or a page after navigation',async()=>{
    const h=environment();let release;h.run("workspaceMode='creator';view='feature:usage-budgets';");h.setFetch(()=>new Promise(resolve=>release=()=>resolve(h.reply({message:'STALE_ACCOUNTING'}))));const previous=h.run('renderAIUsage()');h.setFetch(()=>h.reply({message:'CURRENT_ACCOUNTING'}));await h.run('renderAIUsage()');release();await previous;assert(!h.elements.get('content').innerHTML.includes('STALE_ACCOUNTING'));h.setFetch(()=>new Promise(resolve=>release=()=>resolve(h.reply({message:'LEAK_AFTER_NAV'}))));const leaving=h.run('renderAIUsage()');h.run("workspaceMode='player';view='story';$('#content').innerHTML='Player story';");release();await leaving;assert.equal(h.elements.get('content').innerHTML,'Player story');
+ });
+ await test('Local draft starters review and cancel without requests or replacing an independent draft',async()=>{
+  const h=environment();h.run('current='+JSON.stringify(equipmentView())+";$('#campaign').value='A';$('#declaration').value='Independent draft';renderStory();");assert.equal(h.context.document.querySelectorAll('[data-local-draft]').length,8);await h.context.document.querySelector('[data-local-draft]').click();assert(h.elements.get('action-review-dialog').open);assert(h.elements.get('confirm-reviewed-action').hidden);assert(h.elements.get('confirm-reviewed-action').disabled);assert.equal(h.elements.get('declaration').value,'Independent draft');await h.run('confirmReviewedAction()');assert.equal(h.calls.length,0);h.elements.get('cancel-reviewed-action').click();assert.equal(h.elements.get('declaration').value,'Independent draft');assert.equal(h.calls.length,0);
+ });
+ await test('Keeping an edited local draft copies exact words but never declares or executes it',async()=>{
+  const h=environment();h.run('current='+JSON.stringify(equipmentView())+";$('#campaign').value='A';renderStory();reviewRoutineDraft('player.observe');");const text='  My exact edited words.\n<img src=x> {braces}  ';h.elements.get('action-review-intent').value=text;h.elements.get('action-review-intent').oninput();await h.elements.get('keep-action-draft').click();assert.equal(h.elements.get('declaration').value,text);assert.equal(JSON.parse(h.storage.get('irgs-draft:A:PC')),text);assert.equal(h.run('current.pending_declaration'),null);assert.equal(h.run('transportPending'),null);assert.equal(h.calls.length,0);
+ });
+ await test('Local draft review is invalidated by actor, revision, navigation, generation or campaign selection changes',async()=>{
+  for(const change of ['current.actor_id="other"','current.revision++','view="world"','campaignRequest++','$("#campaign").value="B"']){const h=environment();h.run('current='+JSON.stringify(equipmentView())+";$('#campaign').value='A';$('#declaration').value='Keep me';renderStory();reviewRoutineDraft('player.ask');");h.run(change);h.run('keepReviewedDraft()');assert.equal(h.elements.get('declaration').value,'Keep me');assert(!h.elements.get('action-review-dialog').open);assert.equal(h.calls.length,0);}
+ });
+ await test('A draft review cannot hide explicit confirmation from the next real listed action',async()=>{
+  const h=environment();h.run('current='+JSON.stringify(equipmentView())+";$('#campaign').value='A';renderStory();reviewRoutineDraft('player.ask');");h.elements.get('cancel-reviewed-action').click();await h.context.document.querySelector('[data-supported-action]').click();assert(!h.elements.get('confirm-reviewed-action').hidden);assert(!h.elements.get('confirm-reviewed-action').disabled);assert.equal(h.calls.length,0);
+ });
+ await test('Routine committed rendering preserves unsuccessful receipt text and actual zero elapsed time',async()=>{
+  const h=environment(),text='No equipment was moved.\n<img src=x onerror=bad> {stock}';h.run('current='+JSON.stringify({...equipmentView(),revision:900})+';');const result={actor:'PC',campaign_id:'A',request_id:'receipt-A',revision:2,status:'completed_unsuccessfully',outcome:{summary:text},elapsed_time:{duration_seconds:0},receipt:{event_id:'actual:receipt'}};const plain=h.run('routineOutcome('+JSON.stringify(result)+',{elapsed:true})');assert(plain.startsWith(text+'\n'));assert(plain.includes('0'));h.run('current.completed_actions=['+JSON.stringify(result)+'];');const markup=h.run('latestOutcomeMarkup()');assert(markup.includes('No equipment was moved.'));assert(markup.includes('&lt;img'));assert(!markup.includes('<img'));assert.equal(h.run('current.revision'),900);assert.equal(h.calls.length,0);
+ });
+ await test('Missing App routine content falls back locally without starting assistance',async()=>{
+  const h=environment();h.run('current='+JSON.stringify({...equipmentView(),assistance:{available:true}})+";$('#campaign').value='A';");const message=h.run("routineText('not-a-template')");assert(message.includes('unavailable'));assert.equal(h.calls.length,0);assert.equal(h.run('soloAttempt'),null);
+ });
+ await test('Routine re-renders are deterministic and perform no provider or world requests',async()=>{
+  const h=environment();h.run('current='+JSON.stringify(equipmentView())+";$('#campaign').value='A';renderStory();");const state=h.elements.get('action-state').textContent;for(let i=0;i<5;i++)h.run('syncComposer();renderStory();');assert.equal(h.elements.get('action-state').textContent,state);assert.equal(h.calls.length,0);assert.equal(h.run('current.revision'),1);
  });
  console.log(results.join('\n')+'\n'+results.filter(result=>result.startsWith('PASS ')).length+' frontend checks passed. No real save or live server was used.');
 })().catch(error=>{console.error(results.join('\n'));console.error(error);process.exitCode=1;});

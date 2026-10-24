@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-24",
+  "status": "passed",
+  "target_iteration": "3.4.0 development",
+  "baseline_app_commit": "4f45f5ab8473a2bddb500fe3a49122575b6483e1",
+  "library": {
+    "id": "irgs-app-routine-v1",
+    "version": "1.0.0",
+    "variants": 171,
+    "families": 55,
+    "system_variants": 139,
+    "editable_draft_variants": 32,
+    "recipes": 8,
+    "data_sha256": "3e95fe8f0e0be459017f92f787a3ea57b140ffc5240f7e7f18a888fa7a16d4f1",
+    "renderer_sha256": "ad046d6f712be7352ea36c91a997eb392c82b07e750f3754a62d26d78ff3e0dd",
+    "integration_sha256": "7f4453b185e2b4f6621327eb97502020b9d4196879b8682a5a34e0f0fb46673a"
+  },
+  "runtime_dependencies": {
+    "engine": "8234044c089131314019ecaf6799a2f08028a3f8",
+    "catalog": "401df26a1f16be864dd15d7c5250da5d75f8ccca"
+  },
+  "checks": {
+    "web": {
+      "run": 190,
+      "passed": 183,
+      "skipped": 7,
+      "failed": 0,
+      "skip_reason": "Windows PowerShell launcher checks on Linux"
+    },
+    "interface": {
+      "passed": 100,
+      "new_routine_checks": 7
+    },
+    "local_formatter": {
+      "status": "passed",
+      "checks": 13,
+      "variants": 171,
+      "families": 55,
+      "system_variants": 139,
+      "editable_draft_variants": 32,
+      "recipes": 8,
+      "provider_calls": 0
+    },
+    "packaging_tooling": {
+      "passed": 1
+    },
+    "actual_Core_Chromium": {
+      "status": "passed",
+      "app_library": "irgs-app-routine-v1@1.0.0",
+      "variants": 171,
+      "editable_drafts": 32,
+      "recipes": 8,
+      "Core_actions": 4,
+      "unsuccessful_physical_attempt_preserved": true,
+      "exact_receipt_HTML_braces_negation_preserved": true,
+      "lost_acknowledgement_recovered": true,
+      "draft_cancel_edit_keep_reload": true,
+      "elapsed_seconds": 43,
+      "mobile_width": 390,
+      "provider_calls": 0,
+      "missing_template_fallback_provider_calls": 0,
+      "browser_errors": 0
+    },
+    "theme_and_usage_Chromium": {
+      "status": "passed",
+      "base": "#15110e",
+      "genres": 7,
+      "campaign_overrides": 3,
+      "reading_preference_survives_reload": true,
+      "body_and_story_text_contrast_at_least": 4.5,
+      "reading_modes_checked": 3,
+      "protected_usage_read_only": true,
+      "saves_unchanged": true,
+      "browser_posts": 0,
+      "browser_errors": 0,
+      "mobile_width": 390,
+      "live_provider_calls": 0
+    },
+    "component_integrity": "verified"
+  },
+  "scope": {
+    "private_user_saves_used": false,
+    "provider_calls_for_routine_rendering": 0,
+    "measured_production_token_savings": null,
+    "Catalog_content_copied": false,
+    "dependency_pointers_changed": false,
+    "world_rules_changed": false,
+    "new_provider_router": false,
+    "implicit_paid_fallback": false,
+    "general_narration_or_C2_completed": false,
+    "joined_repository_pushed": false
+  },
+  "sources": {
+    "Catalog_handoff_read_only": "https://github.com/KingSav3ge/IRGS-Catalog/blob/main/IRGS_Catalog/responses/routine_v1/README.md",
+    "App_content": "Authored App UI/help/recovery clauses and generic editable draft starters; no imported source prose."
+  },
+  "browser_qualifier_sha256": "140f111b0d4e188d1e9adfccddc2a62664bd9225c19c4c57d02877f1c7194773",
+  "remaining": [
+    "Reviewed cross-component response consumption where appropriate; preserve source ownership and actor-safe projections.",
+    "Operator-controlled Engine direct-adapter startup and conditional approved live smoke.",
+    "Semantic/voice evaluation, actual billing reconciliation, general narration/dialogue and wider C2 rules.",
+    "Windows execution and coordinator joined qualification of this exact App increment."
+  ],
+  "app_release_sha256": "e37a744f4fa4c4543451d00e9cd110967a1936513908a27a6be9fa99304430f9"
+}

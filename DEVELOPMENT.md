@@ -1,5 +1,45 @@
 # App / Website development
 
+## Current priority — App local routine responses, 24 October 2026
+
+### Completed
+
+- [x] App-owned versioned response pack: 171 variants across 55 families, with
+  139 system variants, 32 editable draft starters and eight whole-clause recipes.
+- [x] Local validated formatting for routine UI, review, recovery, save and usage
+  messages. Explicit Engine-assisted interpretation stays separate; missing
+  templates/facts cannot trigger paid fallback or resolve unsupported mechanics.
+- [x] Strict source/state/slot checks, immutable intake, deterministic event
+  variants and actor/snapshot/role-safe composition. No personalized response
+  cache and no Catalog content or dependency-pointer change.
+- [x] Keep the exact Core outcome summary and only append actual recorded
+  action duration, including zero. No invented stock, elapsed hour, success,
+  project completion or NPC decision. Render source strings as text.
+- [x] Editable generic draft starters review before copying, retain an independent
+  draft until explicit Keep, execute nothing, and reject stale selections.
+  Composer height is bounded so expanded draft choices do not obscure Story actions.
+- [x] Real browser: four actual Core actions, unsuccessful physical attempt,
+  exact HTML-like/braced receipt, 43 recorded seconds, lost-ack recovery,
+  cancellation/edit/keep/reload; provider calls and browser errors both zero.
+
+Fresh checks: 190 Web run, 183 passed, seven Windows launcher skips; 100 interface
+checks; 13 formatter checks render all 171 variants and eight recipes; one packaging
+tooling test; real Chromium routine/receipt flow and existing theme/mobile usage
+qualification passed. App and exact reviewed dependencies verified. See
+[response contract](IRGS_Web/responses/README.md) and
+[delivery evidence](APP_RESPONSES_VALIDATION.json).
+
+### Active / next
+
+Maintain routine-first presentation while consuming Engine's and Catalog's owned
+response contracts only through reviewed public projections and compatible pins.
+The App pack owns UI/help/recovery wording; it does not become a world narrator or
+second simulator. The next previously planned App item remains operator-controlled
+Engine direct-adapter startup through host/launcher with explicit approvals and
+finite limits. Conditional live smoke, semantic/voice evaluation, billing
+reconciliation, general dialogue and broader C2 remain unfinished. This increment
+uses no live provider and pushes only IRGS-APP-WEB.
+
 ## Current delivery — theme recovery and protected usage, 24 October 2026
 
 ### Completed

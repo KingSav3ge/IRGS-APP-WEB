@@ -71,7 +71,7 @@ async function openCampaign(id,options={}){
 function changeView(next,options={}){rememberScroll();stashDraft();invalidateActionReview();++historicalReferenceRequest;++inspectorRequest;view=next;if($('#inspect-dialog').open)$('#inspect-dialog').close();document.body.classList.remove('nav-open');$('#toggle-nav').setAttribute('aria-expanded','false');if(options.route!==false)updateViewRoute(next,options.featureId);render();restoreScroll();}
 function empty(){return '<div class="empty adventure-welcome"><div class="welcome-copy"><span class="eyebrow">HISTORY IS ONLY THE BEGINNING</span><h2>Find your place.<br>Choose your path.</h2><p>A life at the edge of a changing world. Begin with a character, a moment in history, and a choice.</p><button id="empty-create" class="primary">Find your adventure <span aria-hidden="true">→</span></button><small>All 37 Century of Conflict starts offer an optional local Solo opening.</small></div><span class="art-caption">Illustrative campaign artwork</span></div>';}
 function render(){
-  applyPresentationTheme();
+  applyPresentationTheme();$('#inspection-note').textContent=routineText('inspection.local');
   document.body.dataset.workspace=view;
   document.body.dataset.mode=workspaceMode;
   const headings={home:['Home','Resume a saved world or browse verified starts.'],story:['Story','Your next meaningful choice.'],world:['World','Inspect what your character can access.'],chronicle:['Chronicle','The record available to your character.'],creator:['Creator workspace','Explicitly sourced changes to the authoritative world.'],library:['Engines & libraries','Creator reference material.'],trash:['Campaign Trash','Recover complete saved campaigns.'],'content-library':['Content Library','Choose a sourced campaign and starting point.']};
@@ -80,7 +80,7 @@ function render(){
   $('#binding-badge').textContent=current?'Core '+(current.binding?.core||'3.3')+' · '+label(current.binding?.genre_id||'campaign'):'CORE 3.3';
   document.querySelectorAll('[data-view]').forEach(button=>{const active=button.dataset.view===view;button.classList.toggle('selected',active);if(button.getAttribute('role')==='tab'){button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;}});
   $('#content').setAttribute('role',['story','world','chronicle'].includes(view)?'tabpanel':'region');$('#content').setAttribute('aria-label',heading[0]);$('#content').setAttribute('aria-labelledby',['story','world','chronicle'].includes(view)?'tab-'+view:'page-title');syncControls();renderContext();
-  if(loadingCampaign){$('#content').innerHTML='<div class="empty">Loading the selected campaign…</div>';return;}
+  if(loadingCampaign){$('#content').innerHTML='<div class="empty">'+esc(routineText('campaign.loading'))+'</div>';return;}
   if(view==='home'){renderHome();return;}if(view==='trash'){renderTrash();return;}if(view==='library'){renderLibrary();return;}if(view==='content-library'){renderContentLibrary();return;}if(view.startsWith('feature:')){renderFeature(view.slice(8));return;}
   if(!current){$('#content').innerHTML=empty();$('#empty-create').onclick=openCreateDialog;return;}
   ({story:renderStory,world:renderWorld,chronicle:renderChronicle,creator:renderCreator}[view]||renderStory)();
@@ -411,7 +411,7 @@ function focusOwnResponse(){if(workspaceMode!=='player'||!current?.actor_id)retu
 function chooseResponse(choiceId,campaign,actor,expectedText){
   if(current?.id!==campaign||current?.actor_id!==actor||!actor)return;
   const choice=responseChoices().find(item=>item.id===choiceId&&item.text===expectedText);if(!choice)return;
-  $('#declaration').value=choice.text;stashDraft();syncComposer();focusOwnResponse();notice('Suggested response copied to your draft. Edit it or write your own answer, then submit when ready.');
+  $('#declaration').value=choice.text;stashDraft();syncComposer();focusOwnResponse();notice(routineText('draft.suggested'));
 }
 function supportedActions(){return workspaceMode==='player'&&Array.isArray(current?.supported_actions)?current.supported_actions.filter(action=>action&&['issue_equipment','scene_action'].includes(action.kind)&&typeof action[action.kind==='scene_action'?'action_id':'order_id']==='string'&&action[action.kind==='scene_action'?'action_id':'order_id']&&typeof action.text==='string'&&action.text.trim()):[];}
 function actionCapabilityNote(){
@@ -427,7 +427,7 @@ function supportedActionsMarkup(){
 function latestOutcomeMarkup(){
   const outcomes=(current?.completed_actions||[]).filter(item=>item.actor===current.actor_id&&['completed_successfully','completed_unsuccessfully'].includes(item.status)&&typeof item.outcome?.summary==='string');
   const latest=outcomes.at(-1);if(!latest)return '';
-  return `<section class="last-outcome ${latest.status==='completed_unsuccessfully'?'attempt-failed':'attempt-completed'}" aria-label="Your last action"><span class="eyebrow">${latest.status==='completed_unsuccessfully'?'YOUR ATTEMPT · UNSUCCESSFUL':'YOUR LAST ACTION · COMPLETED'}</span><p>${esc(latest.outcome.summary)}</p></section>`;
+  return `<section class="last-outcome ${latest.status==='completed_unsuccessfully'?'attempt-failed':'attempt-completed'}" aria-label="Your last action"><span class="eyebrow">${latest.status==='completed_unsuccessfully'?'YOUR ATTEMPT · UNSUCCESSFUL':'YOUR LAST ACTION · COMPLETED'}</span><p>${esc(routineOutcome(latest,{elapsed:true}))}</p></section>`;
 }
 function openingElapsedMarkup(){
   const elapsed=current?.elapsed_time;if(!current?.capabilities?.playable_opening||elapsed?.axis!=='authored-opening-seconds'||!Number.isSafeInteger(elapsed.seconds)||elapsed.seconds<0)return '';
@@ -452,7 +452,7 @@ async function renderHistoricalPlans(featureId){
 function syncComposer(){
   syncActionReview();
   syncAssistanceControls();
-  const player=workspaceMode==='player'&&current&&!loadingCampaign&&view==='story';$('#composer-form').hidden=!player;
+  const player=workspaceMode==='player'&&current&&!loadingCampaign&&view==='story';$('#composer-form').hidden=!player;renderRoutineDrafts(player);
   $('#own-response-panel').hidden=!player;if(player&&(current.pending_declaration||transportPending))$('#own-response-panel').open=true;
   const accepted=current?.pending_declaration,allowed=Boolean(current?.capabilities?.can_declare)&&!accepted&&!transportPending&&!soloAttempt;
   $('#send-declaration').disabled=busy||!player||!allowed||!$('#declaration').value.trim();
@@ -461,16 +461,17 @@ function syncComposer(){
   document.querySelectorAll('[data-supported-action]').forEach(button=>button.disabled=busy||!player||!current?.actor_id||current.character_available===false||Boolean(accepted)||Boolean(transportPending));
   document.querySelectorAll('[data-rise-action]').forEach(button=>button.disabled=busy||!player||Boolean(accepted)||Boolean(transportPending));
   $('#composer-help').textContent=preferences.submitKey==='enter'?'Enter to submit · Shift+Enter for a new line':'Enter for a new line · Ctrl/Cmd+Enter to submit';
-  $('#draft-state').textContent=$('#declaration').value?'Unsent draft · saved on this device':'Draft stays on this device';
-  $('#action-state').textContent=busy?'Request in progress. You may inspect available records and edit an unsent draft.':transportPending?'Confirmation is pending. Check the saved request before submitting another attempt.':accepted?(current.capabilities?.action_resolution?'Your exact declaration is persisted and awaiting resolution. Withdraw it explicitly before revising that pending intent.':'Saved as intent. Freeform declarations cannot be resolved yet. Inspect your records or withdraw this declaration before another action.'):!current?.actor_id?'A selected player character is required before declaring an action.':current.character_available===false?'The selected character is not currently available to act. Their identity and history are preserved; no replacement has been selected.':'A declaration records your intent. It does not imply an outcome or elapsed time.';
+  $('#draft-state').textContent=routineText($('#declaration').value?'draft.saved':'draft.empty');
+  $('#action-state').textContent=routineText(busy?'request.busy':transportPending?'request.confirmation':accepted?(current.capabilities?.action_resolution?'request.pending':'request.unresolved'):!current?.actor_id?'actor.required':current.character_available===false?'actor.unavailable':'request.ready');
 }
 function storeTransport(pending){transportPending=pending;const key=pendingKey();if(key)writeLocal(key,pending);syncComposer();}
 async function lookupAction(pending){return api('action-result/'+encodeURIComponent(pending.body.id)+'/'+encodeURIComponent(pending.body.request_id)+'?actor_id='+encodeURIComponent(pending.body.actor));}
 async function finishAction(pending,result){
   if(current?.id!==pending.body.id||current?.actor_id!==pending.body.actor)return;
   storeTransport(null);if(pending.endpoint==='declaration'&&$('#declaration').value===pending.body.declaration){$('#declaration').value='';stashDraft();}
-  await openCampaign(pending.body.id,{actorId:pending.body.actor});
-  notice(['completed_successfully','completed_unsuccessfully'].includes(result.status)?result.outcome?.summary||'The committed action result is saved in your record.':result.status==='withdrawn'?'Pending intent withdrawn. The original declaration remains in the record.':current.capabilities?.action_resolution?'Declaration persisted exactly as submitted. It is awaiting resolution.':'Saved as intent. This build cannot resolve freeform declarations yet. You can inspect your records or withdraw this declaration.');
+  const loaded=await openCampaign(pending.body.id,{actorId:pending.body.actor});
+  if(!loaded||current?.id!==pending.body.id||current?.actor_id!==pending.body.actor)return;
+  notice(['completed_successfully','completed_unsuccessfully'].includes(result.status)?routineOutcome(result):routineText(result.status==='withdrawn'?'request.withdrawn':current.capabilities?.action_resolution?'request.recorded':'request.recorded_unresolved'));
 }
 async function deliverAction(pending,checkFirst=false){
   if(busy)return;setBusy(true);
@@ -480,8 +481,8 @@ async function deliverAction(pending,checkFirst=false){
     catch(error){
       try{const found=await lookupAction(pending);await finishAction(pending,found);}
       catch(checkError){
-        if(checkError.status===404&&error.status&&error.status<500){storeTransport(null);await openCampaign(pending.body.id,{actorId:pending.body.actor});notice(error.message+' Your draft is retained.',true);}
-        else{notice('The request may already be saved. Use Check / retry saved request to retrieve its result before any retry.',true);$('#connection-state').textContent='Confirmation pending · request identity retained';}
+        if(checkError.status===404&&error.status&&error.status<500){storeTransport(null);await openCampaign(pending.body.id,{actorId:pending.body.actor});notice(routineRecipe('request.rejected',{'request.rejected':{reason:error.message}}),true);}
+        else{notice(routineRecipe('recovery.uncertain'),true);$('#connection-state').textContent=routineText('recovery.connection');}
       }
     }
   }catch(error){notice(error.message,true);}finally{setBusy(false);}
@@ -511,7 +512,7 @@ function openSettings(){for(const [key,value] of Object.entries(preferences)){co
 async function ensureCatalog(){if(!rows(library.campaign_profiles).length)library=await api('catalog');return library;}
 async function renderTrash(){
   $('#content').innerHTML='<div class="empty">Loading Campaign Trash…</div>';
-  try{const data=await api('trash');if(view!=='trash')return;$('#content').innerHTML=`<article class="panel"><span class="eyebrow">RECOVERABLE CAMPAIGNS</span><h2>${data.campaigns.length} campaign${data.campaigns.length===1?'':'s'} in Trash</h2><p>Restore returns the exact saved campaign, including its history and pending decisions.</p>${data.campaigns.map(campaign=>`<div class="list-row trash-row"><div><strong>${esc(campaign.name)}</strong><small>Revision ${esc(campaign.revision)}</small></div><button class="quiet" data-restore="${esc(campaign.id)}" data-revision="${campaign.revision}">Restore campaign</button></div>`).join('')||'<p class="note">Trash is empty.</p>'}</article>`;document.querySelectorAll('[data-restore]').forEach(button=>button.onclick=async()=>{if(busy)return;setBusy(true);try{const result=await api('restore',{id:button.dataset.restore,revision:Number(button.dataset.revision)});await refreshList(result.id);view='story';await openCampaign(result.id);notice('Campaign restored with its original save.');}catch(error){notice(error.message,true);}finally{setBusy(false);}});}catch(error){notice(error.message,true);}
+  try{const data=await api('trash');if(view!=='trash')return;$('#content').innerHTML=`<article class="panel"><span class="eyebrow">RECOVERABLE CAMPAIGNS</span><h2>${data.campaigns.length} campaign${data.campaigns.length===1?'':'s'} in Trash</h2><p>Restore returns the exact saved campaign, including its history and pending decisions.</p>${data.campaigns.map(campaign=>`<div class="list-row trash-row"><div><strong>${esc(campaign.name)}</strong><small>Revision ${esc(campaign.revision)}</small></div><button class="quiet" data-restore="${esc(campaign.id)}" data-revision="${campaign.revision}">Restore campaign</button></div>`).join('')||'<p class="note">Trash is empty.</p>'}</article>`;document.querySelectorAll('[data-restore]').forEach(button=>button.onclick=async()=>{if(busy)return;setBusy(true);try{const result=await api('restore',{id:button.dataset.restore,revision:Number(button.dataset.revision)});await refreshList(result.id);view='story';await openCampaign(result.id);notice(routineText('campaign.restored'));}catch(error){notice(error.message,true);}finally{setBusy(false);}});}catch(error){notice(error.message,true);}
 }
 function validHistoricalPreview() {
   return !historicalLoading && historicalPreview?.ready===true && Boolean(historicalPreview.snapshot)
@@ -765,16 +766,16 @@ $('#create-form').onsubmit=async event=>{
   writeLocal('irgs-create-pending',payload);setBusy(true);$('#create-error').textContent='';
   try{const record=await api('create',payload,{creator:false});
     if(record.status==='trashed'){writeLocal('irgs-create-pending',null);$('#create-dialog').close();view='trash';render();notice('This Start request already created a campaign that is now in Trash. Restore it there.');return;}
-    await refreshList(record.id);workspaceMode='player';featuresRequest+=1;features=[];drawFeatureNav();view='story';await loadFeatureNav({applyRoute:false});await openCampaign(record.id);updateViewRoute('story');writeLocal('irgs-create-pending',null);$('#create-dialog').close();notice('Campaign started with the character and starting choices you reviewed.');
+    await refreshList(record.id);workspaceMode='player';featuresRequest+=1;features=[];drawFeatureNav();view='story';await loadFeatureNav({applyRoute:false});await openCampaign(record.id);updateViewRoute('story');writeLocal('irgs-create-pending',null);$('#create-dialog').close();notice(routineText('campaign.created'));
   }catch(error){notice(error.message,true);$('#create-error').textContent=error.message;
     if(error.status===400){writeLocal('irgs-create-pending',null);reviewSelection=null;wizardStep=2;$('#create-error').textContent=error.message+' Check your character details and review again. Your entries have been kept; use Back if you need to change the starting point.';}
     else if(reviewSelection){reviewSelection.recovery=true;renderReview(payload,true);}
   }finally{setBusy(false);}
 };
-$('#fork').onclick=async()=>{if(workspaceMode!=='creator'||!current||busy||loadingCampaign)return;const id=current.id;setBusy(true);try{const branch=await api('fork',{id});await refreshList(branch.id);await openCampaign(branch.id);notice('Independent campaign branch saved.');}catch(error){notice(error.message,true);}finally{setBusy(false);}};
+$('#fork').onclick=async()=>{if(workspaceMode!=='creator'||!current||busy||loadingCampaign)return;const id=current.id;setBusy(true);try{const branch=await api('fork',{id});await refreshList(branch.id);await openCampaign(branch.id);notice(routineText('campaign.branched'));}catch(error){notice(error.message,true);}finally{setBusy(false);}};
 $('#delete-campaign').onclick=()=>{if(!current||busy||loadingCampaign||$('#campaign').value!==current.id)return;deleteTarget={id:current.id,revision:current.revision,name:current.name,origin:current.state?.fork_origin?.save_id,request:campaignRequest};$('#delete-name').textContent=current.name;$('#delete-error').textContent='';$('#delete-dialog').showModal();};
 $('#cancel-delete').onclick=()=>{if(!busy)$('#delete-dialog').close();};$('#delete-dialog').addEventListener('close',()=>{deleteTarget=null;});$('#delete-dialog').addEventListener('cancel',event=>{if(busy)event.preventDefault();});
-$('#delete-form').onsubmit=async event=>{event.preventDefault();if(!deleteTarget||busy)return;const target=deleteTarget;if(loadingCampaign||current?.id!==target.id||$('#campaign').value!==target.id||campaignRequest!==target.request){$('#delete-dialog').close();notice('The visible campaign changed. Select it again before deleting.',true);return;}setBusy(true);try{await api('delete',{id:target.id,revision:target.revision});$('#delete-dialog').close();await openCampaign('');const campaigns=await refreshList(),next=campaigns.find(campaign=>campaign.id===target.origin)||campaigns[0];await openCampaign(next?.id||'');notice('Campaign moved to Trash. Its complete save can be restored.');}catch(error){$('#delete-error').textContent=error.message;}finally{setBusy(false);}};
+$('#delete-form').onsubmit=async event=>{event.preventDefault();if(!deleteTarget||busy)return;const target=deleteTarget;if(loadingCampaign||current?.id!==target.id||$('#campaign').value!==target.id||campaignRequest!==target.request){$('#delete-dialog').close();notice(routineText('campaign.changed'),true);return;}setBusy(true);try{await api('delete',{id:target.id,revision:target.revision});$('#delete-dialog').close();await openCampaign('');const campaigns=await refreshList(),next=campaigns.find(campaign=>campaign.id===target.origin)||campaigns[0];await openCampaign(next?.id||'');notice(routineText('campaign.trashed'));}catch(error){$('#delete-error').textContent=error.message;}finally{setBusy(false);}};
 $('#export').onclick=()=>{if(!current||busy||loadingCampaign)return;const full=workspaceMode==='creator'&&current.mode==='creator'&&current.state,data=full||current,blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=`IRGS-${full?'full-save':'known-view'}-${current.id}-r${current.revision}.json`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
 if(typeof addEventListener==='function')addEventListener('hashchange',applyCurrentRoute);
 applyPreferences();syncControls();

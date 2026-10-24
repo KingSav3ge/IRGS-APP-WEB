@@ -1,3 +1,55 @@
+# App reusable routine responses — 24 October 2026
+
+User priority: an App-owned reusable scripted layer alongside the independent
+Catalog and Engine work. Delivered `irgs-app-routine-v1@1.0.0`: **171 variants in
+55 families**, 139 system variants, 32 editable draft variants and eight recipes.
+No Catalog content, Engine rules or dependency pointers changed. Routine App
+messages already used local strings; this formalizes/expands that path without
+claiming a measured reduction from a paid-message baseline.
+
+The production UI uses local validated clauses for composer status, review,
+recovery, campaign acknowledgements, usage and committed-result presentation.
+Source/state/slot checks reject expressions and missing/foreign facts. Whole-clause
+composition rejects mixed actors/snapshots/roles, conflicting facts and combined
+player decisions. Source text is displayed through text nodes or existing escaping.
+Variant selection is deterministic per family/actor/source/version; no personalized
+cache or provider prompt contains this library. Missing templates fall back locally.
+
+Eight generic draft families open review, preserve the independent composer text
+until explicit Keep, allow exact edits, submit nothing and reject stale context.
+Existing contextual Engine suggestions and freeform entry remain available.
+Core's exact public summary is preserved, including negation, braces, markup-like
+text and line breaks. Optional elapsed text uses only the saved actual duration,
+including zero; absent duration is omitted. No stock success, calendar hour,
+resource or NPC decision is fabricated. Original outcomes/saves remain authoritative.
+
+Executed checks: 190 Web run, 183 passed, seven Windows launcher skips; 100 UI
+checks; 13 formatter checks rendering all 171 variants and eight recipes; one
+packaging-tooling check. Actual Chromium exercised four real Core actions,
+including an unsuccessful physical attempt and an HTML-like receipt, with lost
+acknowledgement recovery and draft reload. Recorded elapsed seconds: 43. Inference
+URLs were blocked and the offline transport was never invoked: zero provider
+calls, zero page errors. Existing genre/reading-mode/mobile/accounting browser
+qualification also passed. Only App hashes were refreshed; App/Engine/Catalog
+integrity passed. Full Engine suite and Windows execution were not rerun here.
+
+Pins remain Engine `8234044c089131314019ecaf6799a2f08028a3f8` and Catalog
+`401df26a1f16be864dd15d7c5250da5d75f8ccca`. Catalog's new routine library was
+reviewed as a read-only handoff; it is not copied or silently repinned. App started
+at `4f45f5ab8473a2bddb500fe3a49122575b6483e1`. Delivery response supplies the full
+pushed App SHA. Only `KingSav3ge/IRGS-APP-WEB/main` is pushed by this chat; joined
+qualification remains coordinator work.
+
+[Contract and reproduction commands](IRGS_Web/responses/README.md) ·
+[Structured evidence](APP_RESPONSES_VALIDATION.json)
+
+Next: reviewed cross-component response consumption and the previously planned
+operator-controlled direct-adapter startup. Live qualification/model quality,
+general narration/dialogue, billing reconciliation and broader C2 remain open.
+Previous theme/usage and Solo evidence follow with their original scope.
+
+---
+
 # App theme and usage delivery — 24 October 2026
 
 This increment restores the intended base presentation and connects Genre/Campaign

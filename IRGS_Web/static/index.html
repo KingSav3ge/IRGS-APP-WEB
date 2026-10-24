@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="dark light"><title>IRGS · Your campaign</title>
-  <link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/themes.css"><script defer src="/themes.js"></script><script defer src="/rise.js"></script><script defer src="/catalogue.js"></script><script defer src="/solo.js"></script><script defer src="/app.js"></script>
+  <link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/themes.css"><script defer src="/themes.js"></script><script defer src="/responses.data.js"></script><script defer src="/responses.js"></script><script defer src="/routine.js"></script><script defer src="/rise.js"></script><script defer src="/catalogue.js"></script><script defer src="/solo.js"></script><script defer src="/app.js"></script>
 </head>
 <body data-reading="dark" data-design="emergent-ledger">
 <a class="skip-link" href="#content">Skip to campaign</a>
@@ -32,6 +32,7 @@
       <details id="own-response-panel" class="own-response-panel" hidden><summary><span>Write your own response</span><small>Your words, your approach <span aria-hidden="true">↗</span></small></summary><form id="composer-form" class="action-composer" hidden>
         <div class="composer-heading"><label for="declaration">YOUR NEXT MOVE</label><span id="draft-state" role="status">Draft stays on this device</span></div>
         <textarea id="declaration" name="declaration" maxlength="10000" rows="3" placeholder="Describe what your character says or attempts…" aria-describedby="composer-help action-state"></textarea>
+        <details id="local-drafts" class="local-drafts" hidden><summary>Editable draft starters</summary><p class="note">Review or edit these starting words. Keeping a draft submits nothing; freeform intent remains unresolved.</p><div id="local-draft-options" class="local-draft-options"></div></details>
         <p id="assistance-state" class="note" role="status">AI assistance is not connected. Listed actions remain available.</p>
         <div class="composer-footer"><small id="composer-help">Enter for a new line · Ctrl/Cmd+Enter to submit</small><div><button id="review-assisted-action" type="button" class="quiet" hidden>Review with assistance</button><button id="cancel-assisted-action" type="button" class="quiet" hidden>Cancel proposal</button><button id="retry-action" type="button" class="quiet" hidden>Check / retry saved request</button><button id="withdraw-action" type="button" class="quiet" hidden>Withdraw pending attempt</button><button id="send-declaration" class="primary">Submit declaration →</button></div></div>
         <p id="action-state" class="note" role="status" aria-live="polite"></p>
@@ -39,7 +40,7 @@
     </div>
     <aside id="context-panel" class="context-panel" aria-label="Character and scene context"><div class="context-heading"><span class="eyebrow">YOUR CHARACTER &amp; WORLD</span><button id="close-context" class="quiet" aria-label="Close context panel">Close</button></div><div id="context-content"><p class="note">Select a campaign to inspect its available context.</p></div></aside>
   </div>
-  <footer class="app-footer"><span id="connection-state">Local campaign host</span><span>Inspection does not advance the world.</span></footer>
+  <footer class="app-footer"><span id="connection-state">Local campaign host</span><span id="inspection-note">Inspection does not advance the world.</span></footer>
 </main>
 <dialog id="action-review-dialog" aria-labelledby="action-review-title"><div class="dialog-heading"><h2 id="action-review-title">Review your action</h2><button id="cancel-reviewed-action" class="quiet" type="button">Cancel</button></div><p id="action-review-description"></p><label for="action-review-intent">Your intention</label><textarea id="action-review-intent" maxlength="10000" rows="4" aria-describedby="action-review-state"></textarea><p id="action-review-state" class="note" role="status"></p><div class="buttons"><button type="button" id="keep-action-draft" class="quiet">Keep as editable draft</button><button type="button" id="confirm-reviewed-action" class="primary">Confirm and submit action</button></div></dialog>
 <dialog id="inspect-dialog" aria-labelledby="inspect-title"><div class="dialog-heading"><h2 id="inspect-title">Campaign information</h2><button id="close-inspector" class="quiet">Close</button></div><div id="inspect-content"></div></dialog>

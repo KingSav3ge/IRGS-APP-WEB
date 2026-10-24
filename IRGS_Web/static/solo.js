@@ -3,6 +3,7 @@ let soloReview=null,assistanceStatusRequest=0,soloAttempt=null,soloGeneration=0;
 
 function reviewActionValid(){
   if(!soloReview||!soloReview.actor||busy||loadingCampaign||workspaceMode!=='player'||view!=='story'||!current||$('#campaign').value!==current.id||current.id!==soloReview.campaign||current.actor_id!==soloReview.actor||current.revision!==soloReview.revision||campaignRequest!==soloReview.request||current.pending_declaration||transportPending||current.character_available===false)return false;
+  if(soloReview.source==='local-draft')return current.capabilities?.can_declare===true&&AppResponses.library.families.some(family=>family.id===soloReview.id&&family.role==='draft');
   if(soloReview.source==='proposal')return (soloReview.edited||soloAttempt?.result?.proposal?.proposal_digest===soloReview.proposal.proposal_digest)&&(current.settlement?(current.settlement.actions||[]).some(action=>action.id===soloReview.id):supportedActions().some(action=>action.kind==='scene_action'&&action.action_id===soloReview.id));
   const available=soloReview.source==='rise'?current.settlement?.actions||[]:supportedActions();
   return available.some(action=>soloReview.source==='rise'?action.id===soloReview.id&&action.title===soloReview.text:action.kind===soloReview.kind&&action[action.kind==='scene_action'?'action_id':'order_id']===soloReview.id&&action.text===soloReview.text);
@@ -24,18 +25,22 @@ function syncActionReview(){
   if(!soloReview)return;
   if(!reviewActionValid()){invalidateActionReview();return;}
   const exact=$('#action-review-intent').value===soloReview.text;
+  const draft=soloReview.source==='local-draft';$('#confirm-reviewed-action').hidden=draft;
+  if(draft){$('#confirm-reviewed-action').disabled=true;$('#keep-action-draft').disabled=!$('#action-review-intent').value.trim();$('#action-review-state').textContent=routineText('review.draft');return;}
   $('#confirm-reviewed-action').disabled=!exact||soloReview.edited===true;
   $('#keep-action-draft').disabled=!$('#action-review-intent').value.trim();
-  if(soloReview.source==='proposal'){$('#action-review-state').textContent=exact?'The proposal selects '+soloReview.id+'. Compare this action with your intention. Confirming executes the selected action; provider interpretation can be wrong.':'Editing invalidates this proposal. Keep these words as a draft and request a new review.';if(!exact){soloReview.edited=true;cancelSoloAttempt();}return;}
-  $('#action-review-state').textContent=exact?'Nothing is submitted until you confirm. The action may fail when its current requirements are checked.':'Your edited words are an unsent draft. Keep them in your response, or restore the listed wording to confirm this exact action. Different freeform intent remains unresolved.';
+  if(soloReview.source==='proposal'){$('#action-review-state').textContent=exact?routineText('review.proposal',{action_id:soloReview.id}):routineText('review.proposal_edited');if(!exact){soloReview.edited=true;cancelSoloAttempt();}return;}
+  $('#action-review-state').textContent=exact?routineRecipe('review.local'):routineText('review.edited');
 }
 function keepReviewedDraft(){
   if(!reviewActionValid())return invalidateActionReview();
   const draft=$('#action-review-intent').value;if(!draft.trim())return;
+  if(soloReview.source==='local-draft')$('#local-drafts').open=false;
   $('#declaration').value=draft;stashDraft();invalidateActionReview();syncComposer();focusOwnResponse();
-  notice('Your words are in the editable response. Nothing has been submitted.');
+  notice(routineRecipe('draft.kept'));
 }
 async function confirmReviewedAction(){
+  if(soloReview?.source==='local-draft')return;
   if(!reviewActionValid()||$('#action-review-intent').value!==soloReview.text)return invalidateActionReview();
   const action=soloReview;
   if(action.source==='proposal'){if(action.edited)return;soloAttempt=null;writeLocal(proposalKey(action),null);invalidateActionReview();const pending={endpoint:'ai/accept',body:{id:action.campaign,revision:action.revision,actor:action.actor,request_id:action.proposal.request_id,intention:action.text,proposal_digest:action.proposal.proposal_digest,explicitly_accepted:true}};stashDraft();storeTransport(pending);return deliverAction(pending);}
@@ -75,7 +80,7 @@ function syncAssistanceControls(){
   button.hidden=!player||(!available&&!soloAttempt);cancel.hidden=!player||!soloAttempt;
   button.textContent=soloAttempt?'Check saved proposal':'Review with assistance';
   button.disabled=busy||!player||Boolean(transportPending)||Boolean(current?.pending_declaration)||current?.character_available===false||soloAttempt?.status==='pending'||(!soloAttempt&&(!$('#declaration').value.trim()||$('#declaration').value.length>4096));
-  $('#assistance-state').textContent=soloAttempt?(soloAttempt.status==='pending'?'Review requested. Nothing has been executed.':soloAttempt.status==='unknown'?'The proposal response is uncertain. Check the saved request; this does not start another provider attempt.':soloAttempt.status==='proposal_ready'?'Proposal ready for your review. Nothing has been executed.':'Assistance unavailable ('+(soloAttempt.result?.code||'unavailable')+'). Your draft is retained. Cancel this request before trying another.'):(current?.assistance?.message||'AI assistance is not connected. Listed actions remain available; freeform declarations remain unresolved.');
+  $('#assistance-state').textContent=soloAttempt?(soloAttempt.status==='pending'?routineText('proposal.pending'):soloAttempt.status==='unknown'?routineText('proposal.unknown'):soloAttempt.status==='proposal_ready'?routineText('proposal.ready'):routineText('proposal.unavailable',{code:String(soloAttempt.result?.code||'unavailable')})):(current?.assistance?.message||routineText('assistance.unconfigured'));
 }
 function soloReplyActive(attempt,generation){return soloAttempt===attempt&&soloGeneration===generation&&workspaceMode==='player'&&view==='story'&&!loadingCampaign&&current?.id===attempt.body.id&&current?.actor_id===attempt.body.actor&&current?.revision===attempt.body.revision&&$('#campaign').value===attempt.body.id&&$('#declaration').value===attempt.body.intention;}
 async function requestSoloProposal(lookup=false){
@@ -110,12 +115,12 @@ function usageFacts(value,keys){return facts(Object.fromEntries(keys.map(key=>[k
 async function renderAIUsage(){
   if(!aiUsageActive())return;
   const request=++aiUsageRequest;
-  $('#content').innerHTML='<section class="panel"><p>Reading assistance accounting…</p></section>';
+  $('#content').innerHTML='<section class="panel"><p>'+esc(routineText('usage.loading'))+'</p></section>';
   try{
     const result=await api('ai/usage',undefined,{creator:true});
     if(request!==aiUsageRequest||!aiUsageActive())return;
     const summary=result.summary,attempts=Array.isArray(result.attempts)?result.attempts:[];
-    $('#content').innerHTML='<section class="panel"><span class="eyebrow">PROTECTED DEVELOPER RECORDS</span><h2>Usage &amp; Budgets</h2><p>Reservations are operator-defined ceiling units. Reported tokens are provider reports. Actual charges remain unknown.</p><p>'+esc(result.message||'Accounting unavailable.')+'</p>'+(summary?usageFacts(summary,['attempts_total','budget_units','reserved_units','remaining_units','active_transport_slots','maximum_transport_slots','unfinished_or_in_doubt']):'<p>No assistance ledger is configured.</p>')+'<button class="quiet" id="retry-ai-usage">Refresh records</button></section>'+attempts.slice(0,50).map(attempt=>'<article class="panel"><h3>Attempt '+esc(attempt.request_id||'Unknown')+'</h3>'+usageFacts(attempt,['status','code','acceptance_recorded','reserved_units','transport_state','transport_finished','usage_status'])+'<h4>Requested identity</h4>'+usageFacts(attempt.requested_identity,['developer','gateway','host','model','model_version'])+'<h4>Reported identity</h4>'+usageFacts(attempt.reported_identity,['developer','gateway','host','model','model_version'])+'<h4>Reported tokens</h4>'+usageFacts(attempt.reported_tokens,['input_tokens','output_tokens','cached_input_tokens','reasoning_tokens'])+'<p class="note">Actual charges: unknown. Refreshing reads saved accounting and never retries this attempt.</p></article>').join('')+(result.has_more?'<p class="note">Showing recent attempts. Budget totals cover the entire ledger.</p>':'');
+    $('#content').innerHTML='<section class="panel"><span class="eyebrow">PROTECTED DEVELOPER RECORDS</span><h2>Usage &amp; Budgets</h2><p>Reservations are operator-defined ceiling units.</p><p>'+esc(routineRecipe('usage.local'))+'</p><p>'+esc(result.message||'Accounting unavailable.')+'</p>'+(summary?usageFacts(summary,['attempts_total','budget_units','reserved_units','remaining_units','active_transport_slots','maximum_transport_slots','unfinished_or_in_doubt']):'<p>No assistance ledger is configured.</p>')+'<button class="quiet" id="retry-ai-usage">Refresh records</button></section>'+attempts.slice(0,50).map(attempt=>'<article class="panel"><h3>Attempt '+esc(attempt.request_id||'Unknown')+'</h3>'+usageFacts(attempt,['status','code','acceptance_recorded','reserved_units','transport_state','transport_finished','usage_status'])+'<h4>Requested identity</h4>'+usageFacts(attempt.requested_identity,['developer','gateway','host','model','model_version'])+'<h4>Reported identity</h4>'+usageFacts(attempt.reported_identity,['developer','gateway','host','model','model_version'])+'<h4>Reported tokens</h4>'+usageFacts(attempt.reported_tokens,['input_tokens','output_tokens','cached_input_tokens','reasoning_tokens'])+'<p class="note">Actual charges: unknown. '+esc(routineText('usage.read_only'))+'</p></article>').join('')+(result.has_more?'<p class="note">Showing recent attempts. Budget totals cover the entire ledger.</p>':'');
   }catch(error){
     if(request!==aiUsageRequest||!aiUsageActive())return;
     $('#content').innerHTML='<section class="panel"><h2>Accounting unavailable</h2><p>'+esc(error.message)+'</p><button class="quiet" id="retry-ai-usage">Retry records</button></section>';

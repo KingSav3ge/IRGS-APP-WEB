@@ -17,6 +17,11 @@ if __name__ == '__main__':
     host = SoloBridgeTests()
     host.setUp()
     host.stop()
+    if len(sys.argv) == 3 and sys.argv[2] == 'routine':
+        record = host.store.read(host.key)
+        record['state']['scene_rules']['actions']['look-quay']['success_text'] = (
+            'No supplies were moved.\n<img src=x onerror="window.receiptExecuted=true"> {source_text}')
+        host.store.write(record)
     transport = host.transport
 
     def offline(model_input, route, **limits):

@@ -60,8 +60,8 @@ async function saveRiseCreation(payload){
   try{
     const saved=await api('rise/create',payload,{creator:false});writeLocal(riseCreationKey,null);$('#rise-dialog').close();
     await refreshList(saved.status==='trashed'?undefined:saved.id);
-    if(saved.status==='trashed'){changeView('trash');notice('Your founding story was already saved and is in Campaign Trash.');return;}
-    workspaceMode='player';view='story';updateViewRoute('story');await openCampaign(saved.id);notice('Your founding story is saved. The first choice is yours.');
+    if(saved.status==='trashed'){changeView('trash');notice(routineText('campaign.rise_trashed'));return;}
+    workspaceMode='player';view='story';updateViewRoute('story');await openCampaign(saved.id);notice(routineText('campaign.rise_created'));
   }catch(error){
     if(error.status&&error.status<500){writeLocal(riseCreationKey,null);$('#rise-content').innerHTML='<h2 id="rise-title">Review your starting choices</h2><p id="rise-error" role="status"></p><button class="quiet" id="rise-review-again">Return to setup</button>';$('#rise-error').textContent=error.message;$('#rise-review-again').onclick=openRiseSetup;}
     else{$('#rise-content').innerHTML='<h2 id="rise-title">Confirmation pending</h2><p id="rise-error" role="status">Your request may already be saved. Recover it before creating another story.</p><button class="primary" id="rise-recover">Check / retry saved creation</button>';$('#rise-recover').onclick=()=>saveRiseCreation(readLocal(riseCreationKey));}

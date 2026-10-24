@@ -205,3 +205,29 @@ and actual charges stay unknown; reported tokens are not a verified bill. Refres
 reads saved records and never retries inference, refunds units or resets budgets.
 Run `node tools/qualify_presentation.js /tmp/irgs-presentation.json` for real
 Chromium theme/accounting qualification with temporary synthetic campaigns.
+
+
+## Local reusable App responses
+
+The [App routine library](responses/README.md) supplies 171 authored variants in
+55 families: 139 system messages and 32 editable draft starters, with eight
+composition recipes. It renders locally and uses no provider tokens. Ordinary
+App labels were already local; no production token-savings benchmark is claimed.
+Requesting assisted interpretation remains an explicit separate action.
+
+In **Write your own response → Editable draft starters**, select starting words,
+review/edit them, then explicitly keep the draft. This submits nothing and
+preserves your independent response until you choose Keep. Actual supported
+actions still require confirmation. Missing facts/templates never authorize a
+paid fallback or turn an unsupported declaration into a resolved action.
+
+The result renderer preserves the exact Core summary and uses only an actual
+recorded elapsed span. All inserted names/source text use text nodes or existing
+escaping. Library data is immutable, source/state/slot checked and selected
+with deterministic variants. No raw save, private certificate or entire response
+library is sent to a provider. The App owns this UI pack; Catalog and Engine retain
+their own response content and execution/information duties.
+
+Run `node IRGS_Web/tests/test_responses.js` for the local formatter contract and
+`node tools/qualify_app_responses.js /tmp/irgs-app-routines.json` for the real
+browser/Core flow with inference endpoints blocked and temporary synthetic saves.

@@ -285,3 +285,10 @@ body[data-workspace=story] .workspace-heading,body[data-workspace=home] .workspa
   .catalogue-existing-starts{margin:18px 8px!important}.catalogue-current-access{padding:16px}
 }
 @media(max-width:550px){.rise-actions{grid-template-columns:1fr}.rise-facts{grid-template-columns:1fr;gap:6px}.rise-facts dd{margin-bottom:12px}}
+
+/* Local draft starters remain part of the editable reading surface. */
+.local-drafts{margin:12px 0;border-color:var(--reading-line-color)}
+.local-drafts>summary{color:var(--reading-ink)}
+.local-draft-options{display:flex;flex-wrap:wrap;gap:8px}
+.local-draft-options button{font-size:11px;color:var(--reading-ink);border-color:var(--reading-line-color)}
+.own-response-panel[open]{max-height:50%;overflow-y:auto;overscroll-behavior:contain}
