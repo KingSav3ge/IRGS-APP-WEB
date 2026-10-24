@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "cycle_id": "solo-runtime-01",
+  "target_iteration": "3.4.0",
+  "status": "passed_offline_app_qualification",
+  "base_app_commit": "c17c3b205673c801e49513bb49b9f92ee760897b",
+  "selected_dependencies": {
+    "engine": "25e45945f9bb73d041a9d948d577a9240310da90",
+    "catalog": "2e4f389882df0807fc8064c1a0b533aaa3b1bcd3"
+  },
+  "web": {
+    "tests_run": 183,
+    "passed": 176,
+    "skipped": 7,
+    "skip_scope": "Windows PowerShell launchers on Linux"
+  },
+  "frontend_checks_passed": 86,
+  "focused_http_tests_passed": 13,
+  "rise_chromium": {
+    "status": "passed",
+    "source": "App candidate and selected real Engine/Catalog",
+    "supported_actions": [
+      "walk_clearing",
+      "found",
+      "build",
+      "wait_hour",
+      "wait_hour"
+    ],
+    "committed_actions": 5,
+    "elapsed_seconds": 3900,
+    "shelter_work_seconds": 3600,
+    "lost_acknowledgement_recovered": true,
+    "reload_preserves_state": true,
+    "editable_exact_intent": true,
+    "proposal_selection_commits_nothing": true,
+    "private_oracle_absent": true,
+    "browser_errors": [],
+    "offline_provider_calls": 5,
+    "live_provider_calls": 0
+  },
+  "live_provider_calls": 0,
+  "user_campaigns_opened": false,
+  "remaining": [
+    "Exact joined qualification and coordinated import",
+    "Explicit operator configuration and conditional bounded live provider smoke",
+    "Human semantic/voice review, general narration/dialogue and remaining C2 mechanics"
+  ],
+  "source_sha256": {
+    "IRGS_Web/assistance.py": "355cd7ae3b56c6ced4e1e869869696c42f1fa43e76385c32cecd8efb9bcc637f",
+    "IRGS_Web/static/solo.js": "388b69508bac93abc589498377954da23ff544eb49ff981b62828fca38637891",
+    "IRGS_Web/tests/test_solo_rise_bridge.py": "fca563530cd6fdef3cfe4653b41eb5d52ebb9ec4d01a25845c45eb4797a72c90",
+    "IRGS_Web/tests/test_gameplay_ui.js": "c7423d50b96e2de1645a911e0e2b249a5fa99d1eda350d16d0895c61b6374f6a"
+  }
+}

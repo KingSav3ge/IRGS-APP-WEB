@@ -92,11 +92,16 @@ class SoloService:
             return assistance_status(developer=developer)
         available = self.broker.enabled is True
         if record is not None:
-            from scene_actions import scene_options
-            available = available and bool(actor) and bool(scene_options(record['state'], actor))
+            if record['state'].get('binding', {}).get('campaign_profile') == 'rise':
+                from settlement_runtime import ACTIONS
+                supported = actor == 'founder' and bool(ACTIONS)
+            else:
+                from scene_actions import scene_options
+                supported = bool(actor) and bool(scene_options(record['state'], actor))
+            available = available and supported
         result = {'status': 'configured' if available else 'unavailable', 'available': available,
                   'campaign_effects': False, 'message': (
-                      'Review an assisted proposal for an authored opening action. Only your explicit acceptance submits it.'
+                      'Review an assisted proposal for a listed action. Only your explicit acceptance submits it.'
                       if available else 'Assistance is unavailable for this situation. Listed actions remain available; freeform declarations remain unresolved.')}
         if developer:
             result['diagnostics'] = {'reason_code': 'explicit_host_configuration',
@@ -169,7 +174,7 @@ class SoloService:
             context = json.loads(request.context_json)
             choice = next(item for item in context['options'] if item['action_id'] == result.proposal.action_id)
             public['action'] = {key: copy.deepcopy(choice[key]) for key in
-                                ('action_id', 'title', 'text', 'description') if key in choice}
+                                ('kind', 'action_id', 'title', 'text', 'description') if key in choice}
         return public
 
     def propose(self, data, *, lookup=False):
@@ -255,14 +260,24 @@ class SoloService:
                     raise self.api.CapabilityUnavailable('stale_scope_or_state')
                 candidate = CoreWorld.load(candidate_save)
                 outcome = receipt['outcome']
+                settlement = request.operation_id == self.api.RISE_OPERATION
+                kind = 'settlement_action' if settlement else 'scene_action'
+                if settlement:
+                    before = record['state']['elapsed_time']['seconds']
+                    after = candidate.s['elapsed_time']['seconds']
+                    elapsed = {'axis': candidate.s['elapsed_time']['axis'],
+                               'before_seconds': before, 'after_seconds': after, 'seconds': after - before}
+                else:
+                    elapsed = {'axis': 'authored-opening-seconds',
+                               'duration_seconds': outcome['elapsed_seconds'],
+                               'total_seconds': outcome['elapsed_total']}
                 result = safe_result({'request_id': key, 'campaign_id': record['id'], 'actor': actor,
-                    'kind': 'scene_action', 'declaration': request.intention, 'status': receipt['status'],
+                    'kind': kind, 'declaration': request.intention, 'status': receipt['status'],
                     'revision': record['revision'] + 1, 'recorded_sequence': candidate.s['clock'],
-                    'elapsed_time': {'axis': 'authored-opening-seconds',
-                        'duration_seconds': outcome['elapsed_seconds'], 'total_seconds': outcome['elapsed_total']},
+                    'elapsed_time': elapsed,
                     'narrative': None, 'outcome': outcome, 'receipt': receipt['receipt']})
                 record.setdefault('gameplay_requests', {})[key] = {
-                    'campaign_id': record['id'], 'actor': actor, 'kind': 'scene_action',
+                    'campaign_id': record['id'], 'actor': actor, 'kind': kind,
                     'payload': payload, 'payload_digest': signature,
                     'result': copy.deepcopy(result), 'status': receipt['status']}
                 self.store.commit(record, candidate, {'action_request_id': key})

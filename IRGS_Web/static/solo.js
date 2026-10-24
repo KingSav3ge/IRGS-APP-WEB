@@ -3,7 +3,7 @@ let soloReview=null,assistanceStatusRequest=0,soloAttempt=null,soloGeneration=0;
 
 function reviewActionValid(){
   if(!soloReview||!soloReview.actor||busy||loadingCampaign||workspaceMode!=='player'||view!=='story'||!current||$('#campaign').value!==current.id||current.id!==soloReview.campaign||current.actor_id!==soloReview.actor||current.revision!==soloReview.revision||campaignRequest!==soloReview.request||current.pending_declaration||transportPending||current.character_available===false)return false;
-  if(soloReview.source==='proposal')return (soloReview.edited||soloAttempt?.result?.proposal?.proposal_digest===soloReview.proposal.proposal_digest)&&supportedActions().some(action=>action.kind==='scene_action'&&action.action_id===soloReview.id);
+  if(soloReview.source==='proposal')return (soloReview.edited||soloAttempt?.result?.proposal?.proposal_digest===soloReview.proposal.proposal_digest)&&(current.settlement?(current.settlement.actions||[]).some(action=>action.id===soloReview.id):supportedActions().some(action=>action.kind==='scene_action'&&action.action_id===soloReview.id));
   const available=soloReview.source==='rise'?current.settlement?.actions||[]:supportedActions();
   return available.some(action=>soloReview.source==='rise'?action.id===soloReview.id&&action.title===soloReview.text:action.kind===soloReview.kind&&action[action.kind==='scene_action'?'action_id':'order_id']===soloReview.id&&action.text===soloReview.text);
 }
@@ -97,7 +97,7 @@ async function requestSoloProposal(lookup=false){
       soloReview={source:'proposal',campaign:current.id,actor:current.actor_id,revision:current.revision,request:campaignRequest,id:proposal.action_id,text:proposal.intention,proposal};
       if(!reviewActionValid()){invalidateActionReview();return;}
       $('#action-review-title').textContent='Review proposed action';
-      $('#action-review-description').textContent=(result.action?.text||proposal.action_id)+'\nSources: '+(proposal.source_refs||[]).join(', ');
+      $('#action-review-description').textContent=(result.action?.text||result.action?.title||proposal.action_id)+'\nSources: '+(proposal.source_refs||[]).join(', ');
       $('#action-review-intent').value=proposal.intention;$('#action-review-dialog').showModal();syncActionReview();
     }
   }catch(error){if(soloReplyActive(attempt,generation))attempt.status='unknown';}

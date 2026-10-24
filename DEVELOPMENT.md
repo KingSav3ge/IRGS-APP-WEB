@@ -1,5 +1,11 @@
 # App / Website development
 
+## Qualified primary-update candidate — 24 October 2026
+
+The App now consumes Engine `25e45945f9bb73d041a9d948d577a9240310da90` and Catalog `2e4f389882df0807fc8064c1a0b533aaa3b1bcd3` for the 3.4.0 development update. The coordinator fixed the Rise status, proposal review and result adapter to use actual settlement receipts and elapsed spans. Five consecutive proposed/accepted actions complete existing shelter work; retry, restart and a lost acknowledgement retain one effect per request. Authored-scene behavior remains qualified separately. Default AI is unconfigured; offline fake transport is not live AI or a general narrator.
+
+Fresh checks: 183 Web tests run, 176 passed, seven Windows PowerShell skips; 86 interface checks; 13 focused authored-scene/Rise bridge tests; actual Chromium Rise round trip with five accepted actions, 3,900 elapsed seconds, reload and lost-response recovery, zero page errors. See [the coordinator primary review](COORDINATOR_PRIMARY_REVIEW.json). Earlier records below retain their original candidate pins and then-pending limits. Exact joined qualification remains a coordinator step.
+
 Target iteration: **IRGS 3.4.0 — in development**. See the active Solo runtime work order and completion plan. Previously qualified versions and evidence retain their recorded identities.
 
 This repository owns `IRGS_Web/`, the local Solo host, interface and catalogue
