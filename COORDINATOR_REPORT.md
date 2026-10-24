@@ -4,8 +4,8 @@ The App now connects the delivered Engine proposal API to explicit player review
 
 Selected dependencies:
 
-- Engine: `25e45945f9bb73d041a9d948d577a9240310da90`.
-- Catalog: `2e4f389882df0807fc8064c1a0b533aaa3b1bcd3`.
+- Engine: `8234044c089131314019ecaf6799a2f08028a3f8`.
+- Catalog: `401df26a1f16be864dd15d7c5250da5d75f8ccca`.
 
 Fresh qualification passed 176 of 183 Web tests, with seven Windows-only skips, all 86 interface checks, and 13 focused authored-scene/Rise HTTP bridge tests. Chromium exercised five consecutive Rise proposals and explicit acceptances through real Core work completion, with a deliberately lost acknowledgement, saved-result recovery and reload. Total elapsed work was 3,900 seconds; no private oracle appeared and there were no page errors. Offline provider calls: five; live calls: zero.
 

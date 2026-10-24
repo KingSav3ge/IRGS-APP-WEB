@@ -2,7 +2,7 @@
 
 ## Qualified primary-update candidate — 24 October 2026
 
-The App now consumes Engine `25e45945f9bb73d041a9d948d577a9240310da90` and Catalog `2e4f389882df0807fc8064c1a0b533aaa3b1bcd3` for the 3.4.0 development update. The coordinator fixed the Rise status, proposal review and result adapter to use actual settlement receipts and elapsed spans. Five consecutive proposed/accepted actions complete existing shelter work; retry, restart and a lost acknowledgement retain one effect per request. Authored-scene behavior remains qualified separately. Default AI is unconfigured; offline fake transport is not live AI or a general narrator.
+The App now consumes Engine `8234044c089131314019ecaf6799a2f08028a3f8` and Catalog `401df26a1f16be864dd15d7c5250da5d75f8ccca` for the 3.4.0 development update. The coordinator fixed the Rise status, proposal review and result adapter to use actual settlement receipts and elapsed spans. Five consecutive proposed/accepted actions complete existing shelter work; retry, restart and a lost acknowledgement retain one effect per request. Authored-scene behavior remains qualified separately. Default AI is unconfigured; offline fake transport is not live AI or a general narrator.
 
 Fresh checks: 183 Web tests run, 176 passed, seven Windows PowerShell skips; 86 interface checks; 13 focused authored-scene/Rise bridge tests; actual Chromium Rise round trip with five accepted actions, 3,900 elapsed seconds, reload and lost-response recovery, zero page errors. See [the coordinator primary review](COORDINATOR_PRIMARY_REVIEW.json). Earlier records below retain their original candidate pins and then-pending limits. Exact joined qualification remains a coordinator step.
 
@@ -94,7 +94,7 @@ Target iteration: **IRGS 3.4.0**. Executable Core compatibility remains 3.3.
   Engine `723627e629231b5e90f38b9d52b65c9a3967b92a` and Catalog
   `3e898acb2179f18a41d7967817bedf429df29d3f`. Candidate Engine
   `500ab4286aed5354719a78006195922316b41023` was selected explicitly through
-  `IRGS_ENGINE_ROOT`; fixture Catalog `2e4f389882df0807fc8064c1a0b533aaa3b1bcd3`
+  `IRGS_ENGINE_ROOT`; fixture Catalog `401df26a1f16be864dd15d7c5250da5d75f8ccca`
   was read from exact Git objects into temporary evaluator storage.
 - [ ] Engine direct adapter, live credentials/approved route/finite budget,
   semantic and voice evaluation, general dialogue/narrator and wider continuing

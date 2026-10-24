@@ -1,4 +1,4 @@
-# IRGS App / Web
+# IRGS App / Web — 3.4.0 development
 
 Independent App development for IRGS. Campaign catalogue data and designs belong to [IRGS-Catalog](https://github.com/KingSav3ge/IRGS-Catalog), pinned in `Catalog/`. The viewer stays in this repository. This repository owns `IRGS_Web/`; simulation stays in [IRGS-Engine](https://github.com/KingSav3ge/IRGS-Engine). [IRGS/main](https://github.com/KingSav3ge/IRGS) joins all three components.
 

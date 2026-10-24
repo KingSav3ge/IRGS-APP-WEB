@@ -5,8 +5,8 @@
   "status": "passed_offline_app_qualification",
   "base_app_commit": "c17c3b205673c801e49513bb49b9f92ee760897b",
   "selected_dependencies": {
-    "engine": "25e45945f9bb73d041a9d948d577a9240310da90",
-    "catalog": "2e4f389882df0807fc8064c1a0b533aaa3b1bcd3"
+    "engine": "8234044c089131314019ecaf6799a2f08028a3f8",
+    "catalog": "401df26a1f16be864dd15d7c5250da5d75f8ccca"
   },
   "web": {
     "tests_run": 183,
@@ -50,5 +50,7 @@
     "IRGS_Web/static/solo.js": "388b69508bac93abc589498377954da23ff544eb49ff981b62828fca38637891",
     "IRGS_Web/tests/test_solo_rise_bridge.py": "fca563530cd6fdef3cfe4653b41eb5d52ebb9ec4d01a25845c45eb4797a72c90",
     "IRGS_Web/tests/test_gameplay_ui.js": "c7423d50b96e2de1645a911e0e2b249a5fa99d1eda350d16d0895c61b6374f6a"
-  }
+  },
+  "qualified_behavior_commit": "87c19785b5fdfd22e487e8823f946a5e5a872710",
+  "version_metadata_update": "Engine/Catalog code and release-bound content are byte-identical to the qualified commits; only repository version metadata/README and App pins changed."
 }
