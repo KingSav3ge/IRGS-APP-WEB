@@ -165,7 +165,12 @@ class HistoricalMultipartHTTPTests(unittest.TestCase):
         self.call()
         self.call('/api/historical-reference/search?collection=figures&q=Henry')
         self.call('/api/historical-reference/record?collection=chronology&row=1')
-        self.assertEqual(before, self.call(campaign_path, creator=False))
+        after = self.call(campaign_path, creator=False)
+        # Presentation refreshes bind a new view identity; campaign facts and
+        # deterministic text must remain equal without changing the save.
+        self.assertNotEqual(before['local_responses']['scope'].pop('view_id'),
+                            after['local_responses']['scope'].pop('view_id'))
+        self.assertEqual(before, after)
         self.assertEqual(discovery, self.call('/api/content-library', creator=False))
         self.assertEqual(saved, {p.name: p.read_bytes() for p in self.saves.iterdir()})
 

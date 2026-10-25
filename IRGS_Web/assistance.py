@@ -276,6 +276,9 @@ class SoloService:
                     'revision': record['revision'] + 1, 'recorded_sequence': candidate.s['clock'],
                     'elapsed_time': elapsed,
                     'narrative': None, 'outcome': outcome, 'receipt': receipt['receipt']})
+                from local_presentation import receipt_presentation
+                result['presentation'] = receipt_presentation(candidate, result,
+                    engine_presentation=receipt.get('presentation'))
                 record.setdefault('gameplay_requests', {})[key] = {
                     'campaign_id': record['id'], 'actor': actor, 'kind': kind,
                     'payload': payload, 'payload_digest': signature,

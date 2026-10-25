@@ -350,6 +350,8 @@ class Store:
             'revision': record['revision'] + 1, 'recorded_sequence': world.s['clock'],
             'elapsed_time': elapsed, 'narrative': None,
             'outcome': resolved['outcome'], 'receipt': resolved['receipt']})
+        from local_presentation import receipt_presentation
+        result['presentation'] = receipt_presentation(world, result, engine_presentation=resolved.get('presentation'))
         record.setdefault('gameplay_requests', {})[request_id] = {
             'campaign_id': record['id'], 'actor': actor, 'kind': payload['kind'],
             'payload': copy.deepcopy(payload), 'payload_digest': signature,

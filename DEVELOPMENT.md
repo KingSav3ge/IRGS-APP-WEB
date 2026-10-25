@@ -1,13 +1,51 @@
 # App / Website development
 
-## Current priority — shared IRGS systems
+## Current priority — shared IRGS systems, 25 October 2026
 
-The user's current direction is development across campaigns and themes.
 Read [the shared scope](IRGS_SYSTEMS_SCOPE.md) and
-[the current work order](COORDINATOR_WORK_ORDER.md) before selecting work.
-Rise R00 remains one regression fixture. Shared-system completion requires
-supported non-Rise evidence; campaign-specific mechanics retain their own scope.
-The records below preserve previously delivered work and historical evidence.
+[the current work order](COORDINATOR_WORK_ORDER.md). Rise remains one regression
+context; supported non-Rise evidence is required for shared-system claims.
+
+### Completed in this increment
+
+- [x] Server-side adapter to the pinned Engine offline runtime and Catalog schema-2
+  response depot. Verify consumed release-bound sources; cache authored text only.
+  No Catalog copy, extra simulator, paid fallback or provider router.
+- [x] One `local_responses` schema for actor/revision/view-bound, non-submitting
+  contextual drafts. Public labels supply generic Catalog semantic tags; actual
+  Engine options supply associated drafts. Theme names grant no capabilities.
+- [x] One plain-text result presentation across direct authored-scene/settlement
+  handlers and proposal acceptance. Keep complete Engine receipts/observations,
+  exact Catalog anchoring and saved original wording during retries/restart/restore.
+  Equipment without an Engine receipt adapter keeps its literal result.
+- [x] Shared review/Keep and latest-result UI for both supported adapters. Preserve
+  custom freeform entry, App-local starters, explicit acceptance and stale-scope
+  fencing. Missing duration stays absent and actual zero stays zero.
+- [x] Real browser: four non-Rise actions (43 elapsed seconds) and five Rise actions
+  (3,900 seconds), two lost acknowledgements, draft edit/cancel/keep/reload and
+  stale navigation, all with no configured provider and zero inference calls.
+
+Checks: 200 Web run, 193 passed, seven Windows launcher skips; 105 interface
+checks; nine shared HTTP cases included in Web; 13 App formatter checks; one
+packaging-tooling check. Existing genre/three-reading-mode/mobile/accounting browser
+qualification passed. App and exact dependencies verified. See
+[shared response contract](IRGS_Web/responses/README.md) and
+[structured evidence](SHARED_RESPONSES_VALIDATION.json).
+
+### Active / remaining
+
+- [ ] Additional explicit App adapters for Engine continuation/communication and
+  legitimate recipient/source views; unsupported commands remain declarations.
+- [ ] More Catalog semantic families when their required actor-known labels/facts
+  have explicit bindings. Four-theme formatting proves portability, not mechanics.
+- [ ] Operator-controlled optional direct-adapter startup remains queued behind
+  the current shared-system priority. No default inference or automatic retries.
+- [ ] Coordinator review and joined packaging of this exact App increment, Windows
+  execution, conditional approved live smoke and broader DEV/C2 obligations.
+
+Selected reviewed pins remain Engine `9ecf3b8864f5f93be6b15c8cf6087e6bd66c8443`
+and Catalog `94b8ca6d976da48b3c6ca65e014b28c6d9a120c2`. This chat pushes only
+IRGS-APP-WEB; the earlier work below keeps its original scope/evidence.
 
 ## Current priority — App local routine responses, 24 October 2026
 

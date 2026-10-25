@@ -3,7 +3,7 @@ let soloReview=null,assistanceStatusRequest=0,soloAttempt=null,soloGeneration=0;
 
 function reviewActionValid(){
   if(!soloReview||!soloReview.actor||busy||loadingCampaign||workspaceMode!=='player'||view!=='story'||!current||$('#campaign').value!==current.id||current.id!==soloReview.campaign||current.actor_id!==soloReview.actor||current.revision!==soloReview.revision||campaignRequest!==soloReview.request||current.pending_declaration||transportPending||current.character_available===false)return false;
-  if(soloReview.source==='local-draft')return current.capabilities?.can_declare===true&&AppResponses.library.families.some(family=>family.id===soloReview.id&&family.role==='draft');
+  if(soloReview.source==='local-draft')return current.capabilities?.can_declare===true&&availableRoutineDrafts().some(draft=>draft.id===soloReview.id&&draft.text===soloReview.text&&draft.projection_view===soloReview.projection_view);
   if(soloReview.source==='proposal')return (soloReview.edited||soloAttempt?.result?.proposal?.proposal_digest===soloReview.proposal.proposal_digest)&&(current.settlement?(current.settlement.actions||[]).some(action=>action.id===soloReview.id):supportedActions().some(action=>action.kind==='scene_action'&&action.action_id===soloReview.id));
   const available=soloReview.source==='rise'?current.settlement?.actions||[]:supportedActions();
   return available.some(action=>soloReview.source==='rise'?action.id===soloReview.id&&action.title===soloReview.text:action.kind===soloReview.kind&&action[action.kind==='scene_action'?'action_id':'order_id']===soloReview.id&&action.text===soloReview.text);

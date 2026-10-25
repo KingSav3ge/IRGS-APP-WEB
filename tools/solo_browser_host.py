@@ -34,7 +34,8 @@ if __name__ == '__main__':
         metadata.with_suffix('.inputs.json').write_text(json.dumps(transport.inputs), encoding='utf-8')
         return result
 
-    host.config = replace(host.config, transport=offline, deadline_seconds=5)
+    host.config = (None if len(sys.argv) == 3 and sys.argv[2] == 'shared'
+                   else replace(host.config, transport=offline, deadline_seconds=5))
     host.start()
     details = {'port': host.server.server_port, 'save': str(host.store.path(host.key)), 'id': host.key}
     if len(sys.argv) == 3 and sys.argv[2] == 'presentation':
@@ -70,6 +71,22 @@ if __name__ == '__main__':
         host.http('/api/ai/proposal', host.proposal(intention='PRIVATE_BROWSER_INTENTION'))
         details['campaigns'] = campaigns
         details['save_folder'] = str(host.store.folder)
+    if len(sys.argv) == 3 and sys.argv[2] == 'shared':
+        from settlement_setup import initialize, preview
+        from test_settlement import choices
+        import uuid
+        selected = choices()
+        selected['permission'] = 'held'
+        world = initialize(selected, preview(selected)['review_digest'], 'synthetic-shared-browser')
+        key = uuid.uuid4().hex
+        host.store.write({'id': key, 'name': 'Shared settlement fixture', 'revision': 0, 'state': world.s})
+        details['contexts'] = [
+            {'name': 'authored_scene', 'id': host.key, 'actor': 'pc',
+             'save': str(host.store.path(host.key)), 'revision': 1,
+             'actions': ['look-quay', 'try-gate', 'enter-passage', 'reach-desk'], 'elapsed': 43},
+            {'name': 'settlement', 'id': key, 'actor': 'founder',
+             'save': str(host.store.path(key)), 'revision': 0,
+             'actions': ['walk_clearing', 'found', 'build', 'wait_hour', 'wait_hour'], 'elapsed': 3900}]
     metadata.write_text(json.dumps(details), encoding='utf-8')
     try:
         threading.Event().wait()

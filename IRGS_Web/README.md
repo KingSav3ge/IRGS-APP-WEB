@@ -231,3 +231,26 @@ their own response content and execution/information duties.
 Run `node IRGS_Web/tests/test_responses.js` for the local formatter contract and
 `node tools/qualify_app_responses.js /tmp/irgs-app-routines.json` for the real
 browser/Core flow with inference endpoints blocked and temporary synthetic saves.
+
+
+## Shared response contract
+
+The reviewed Engine offline runtime and Catalog response depot now feed the same
+player result/draft layer across supported authored-scene and settlement contexts.
+Server-built `local_responses` bind drafts to the selected actor, campaign,
+revision and a fresh view identity. Catalog semantic tags do not authorize Engine
+operations. Both Catalog and Engine suggestions review before explicit Keep;
+copying/editing remains non-submitting, and custom responses remain available.
+
+Accepted results retain a plain-text `presentation` with complete legitimate
+Engine receipt/observation text, anchored through Catalog's exact-receipt recipe.
+The common latest-result panel handles both adapters without a second elapsed
+clause. Saved presentation is replayed unchanged after lost acknowledgements,
+restart and Trash/restore. Older results keep their existing literal rendering;
+missing text adapters never trigger inference. Public theme names confer no
+mechanics. Source ownership and the reviewed dependency pointers stay intact.
+
+Run `node tools/qualify_shared_responses.js /tmp/irgs-shared-responses.json` for a
+real Chromium/Core round trip in two independently initialized synthetic contexts
+with no provider configured. See the [response contract](responses/README.md)
+for current mappings, source boundaries and unimplemented adapters.

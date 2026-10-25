@@ -77,6 +77,8 @@ def action(store, data):
             'elapsed_time': {'axis': 'settlement-seconds', 'before_seconds': before, 'after_seconds': after, 'seconds': after-before},
             'outcome': {'summary': summary}, 'narrative': summary,
             'receipt': {'event_id': resolved['event_id'], 'request_id': request}}
+        from local_presentation import receipt_presentation
+        result['presentation'] = receipt_presentation(world, result)
         record.setdefault('gameplay_requests', {})[request] = {
             'campaign_id': record['id'], 'actor': actor, 'kind': 'settlement_action', 'payload': payload,
             'payload_digest': signature, 'status': result['status'], 'result': copy.deepcopy(result),

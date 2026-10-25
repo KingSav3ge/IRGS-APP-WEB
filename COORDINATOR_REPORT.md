@@ -1,3 +1,68 @@
+# Shared App response contract — 25 October 2026
+
+Delivered against the current shared-systems work order, starting from App
+`e1efcfe7a7eb47eb80208fce21d0b18a2b231a1f`. Exact dependency pins remain Engine
+`9ecf3b8864f5f93be6b15c8cf6087e6bd66c8443` and Catalog
+`94b8ca6d976da48b3c6ca65e014b28c6d9a120c2`. The delivery response supplies the
+full pushed App SHA. Only `KingSav3ge/IRGS-APP-WEB/main` is pushed here.
+
+The App now consumes Engine's offline receipt/draft runtime and Catalog's reviewed
+schema-2 response depot server-side. It verifies the consumed Catalog source hashes
+and retains no editable copy or personalized render cache. The App-owned routine
+pack remains in place for local UI/status/recovery wording.
+
+`local_responses` schema 1 supplies actor/campaign/revision/view-scoped drafts from
+both sources. Catalog tags remain semantic intentions without operation bindings;
+Engine-associated drafts remain non-executing suggestions. Required labels come
+only from the public projection. Current explicit Catalog mappings cover looking
+around, waiting and current-location observation/inspection. Other families are
+content awaiting adapters, not automatically qualified gameplay. Theme/genre names
+select appearance and cannot create supported operations.
+
+Complete actor-legitimate Engine receipts/observations are anchored verbatim
+through Catalog's exact-receipt recipe and saved atomically beside the original
+outcome. Duplicate delivery, lost acknowledgement, restart and restore return the
+same saved wording; no current facts append to old receipts. Native authored-scene
+and Rise actions and optional proposal acceptance share that result envelope and
+latest-result panel. Unsupported receipt adapters (such as equipment) and missing
+text libraries retain literal authorized text without inference. Legacy results
+are not rewritten. The Engine's supported positive authored durations remain
+positive; actual zero Rise spans and absent per-action duration remain distinct.
+
+Fresh evidence:
+
+- Web: 200 run, 193 passed, seven Windows PowerShell launcher skips on Linux.
+- Interface: 105 passed, including five shared scope/presentation/capability checks.
+- Nine focused HTTP cases included in Web: actual independent authored/Rise
+  contexts, real effects, exact receipts, drafts, fallback, foreign actor/forged
+  packet rejection, concurrent replay, restart/restore and read-only formatting.
+- Four-theme synthetic label formatting passed; this proves text portability only.
+- Real Chromium: four authored-scene actions, including a physical failure,
+  43 elapsed seconds; five Rise actions through existing shelter work completion,
+  3,900 elapsed seconds, including found/build zero spans. Both use the same public
+  response contract, deliberately discard an accepted acknowledgement, recover by
+  result lookup, retain edited drafts across reload and fence stale navigation.
+  No provider configured, zero provider calls, zero page errors; 390px width passed.
+- Existing seven-genre, three-reading-mode and protected usage browser checks passed.
+- 13 local App formatter checks and one packaging-tooling test passed. Only App
+  hashes refreshed; App and the exact pinned Engine/Catalog integrity passed.
+
+Historical reference immutability now compares all stable fields and save bytes
+while explicitly allowing the fresh presentation view nonce. No source reference
+is adopted into character knowledge. No private user save or original archive was
+modified. The complete Engine suite and Windows execution were not rerun by App.
+
+[Contract/reproduction](IRGS_Web/responses/README.md) ·
+[Structured qualification](SHARED_RESPONSES_VALIDATION.json)
+
+Remaining: explicit App controls/source views for additional Engine continuation
+and communication contracts; more Catalog semantic adapters where known facts
+exist; optional configured/live qualification, Windows and coordinator joined
+packaging. General freeform/combat, new fantasy/space/modern mechanics, generated
+narration/dialogue and broader C2 are not completed by this increment.
+
+---
+
 # Coordinator compatibility correction — shared IRGS 3.4.0 update
 
 Selected the delivered Engine continuation/communication/offline response runtime

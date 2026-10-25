@@ -427,7 +427,7 @@ function supportedActionsMarkup(){
 function latestOutcomeMarkup(){
   const outcomes=(current?.completed_actions||[]).filter(item=>item.actor===current.actor_id&&['completed_successfully','completed_unsuccessfully'].includes(item.status)&&typeof item.outcome?.summary==='string');
   const latest=outcomes.at(-1);if(!latest)return '';
-  return `<section class="last-outcome ${latest.status==='completed_unsuccessfully'?'attempt-failed':'attempt-completed'}" aria-label="Your last action"><span class="eyebrow">${latest.status==='completed_unsuccessfully'?'YOUR ATTEMPT · UNSUCCESSFUL':'YOUR LAST ACTION · COMPLETED'}</span><p>${esc(routineOutcome(latest,{elapsed:true}))}</p></section>`;
+  return `<section class="last-outcome ${latest.status==='completed_unsuccessfully'?'attempt-failed':'attempt-completed'}" aria-label="Your last action"><span class="eyebrow">${latest.status==='completed_unsuccessfully'?'YOUR ATTEMPT · UNSUCCESSFUL':'YOUR LAST ACTION · COMPLETED'}</span><p>${esc(routineOutcome(latest,{elapsed:true,presentation:true}))}</p></section>`;
 }
 function openingElapsedMarkup(){
   const elapsed=current?.elapsed_time;if(!current?.capabilities?.playable_opening||elapsed?.axis!=='authored-opening-seconds'||!Number.isSafeInteger(elapsed.seconds)||elapsed.seconds<0)return '';

@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-25",
+  "target": "IRGS 3.4.0 development",
+  "status": "passed",
+  "baseline_app_commit": "e1efcfe7a7eb47eb80208fce21d0b18a2b231a1f",
+  "runtime_dependencies": {
+    "engine": "9ecf3b8864f5f93be6b15c8cf6087e6bd66c8443",
+    "catalog": "94b8ca6d976da48b3c6ca65e014b28c6d9a120c2"
+  },
+  "contracts": {
+    "public_response_schema": 1,
+    "catalog_depot_schema": 2,
+    "catalog_library": "irgs-response-depot-v1@1.0.0",
+    "engine_library": "irgs-engine-routine-responses-v1@1.0.0",
+    "app_library_retained": "irgs-app-routine-v1@1.0.0",
+    "Catalog_draft_mappings": [
+      "player.look_around",
+      "player.wait",
+      "player.observe (known current location)",
+      "player.inspect (known current location)"
+    ],
+    "Engine_receipt_adapters_exercised": [
+      "execute_player_scene_action",
+      "execute_settlement_action"
+    ],
+    "equipment_receipts": "literal fallback, no new Engine receipt adapter claimed"
+  },
+  "checks": {
+    "web": {
+      "run": 200,
+      "passed": 193,
+      "skipped": 7,
+      "failed": 0,
+      "skip_reason": "Windows PowerShell launcher checks on Linux"
+    },
+    "interface": {
+      "passed": 105,
+      "new_shared_checks": 5
+    },
+    "focused_shared_HTTP": {
+      "passed": 9,
+      "included_in_web_count": true,
+      "independent_supported_contexts": [
+        "authored-scene courier",
+        "fictional settlement"
+      ],
+      "missing_text_libraries_preserve_native_play": true,
+      "actor_and_forged_packet_rejections": true,
+      "exact_replay_restart_concurrent_retry_and_restore": true,
+      "provider_dispatch_mock_calls": 0
+    },
+    "App_formatter": {
+      "passed": 13,
+      "authored_App_variants_rendered": 171,
+      "provider_calls": 0
+    },
+    "packaging_tooling": {
+      "passed": 1
+    },
+    "Chromium_shared_contract": {
+      "status": "passed",
+      "contexts": [
+        {
+          "adapter": "authored_scene",
+          "committed_actions": 4,
+          "elapsed_seconds": 43,
+          "zero_action_spans": [],
+          "local_drafts_non_submitting": true,
+          "lost_acknowledgement_recovered": true,
+          "stale_navigation_fenced": true,
+          "reload_preserves_draft": true
+        },
+        {
+          "adapter": "settlement",
+          "committed_actions": 5,
+          "elapsed_seconds": 3900,
+          "zero_action_spans": [
+            "found",
+            "build"
+          ],
+          "local_drafts_non_submitting": true,
+          "lost_acknowledgement_recovered": true,
+          "stale_navigation_fenced": true,
+          "reload_preserves_draft": true
+        }
+      ],
+      "common_response_schema": 1,
+      "catalog_library": "irgs-response-depot-v1",
+      "engine_library": "irgs-engine-routine-responses-v1",
+      "provider_configured": false,
+      "provider_calls": 0,
+      "browser_errors": 0,
+      "mobile_width": 390
+    },
+    "Chromium_existing_theme_and_usage": {
+      "status": "passed",
+      "base": "#15110e",
+      "genres": 7,
+      "campaign_overrides": 3,
+      "reading_preference_survives_reload": true,
+      "body_and_story_text_contrast_at_least": 4.5,
+      "reading_modes_checked": 3,
+      "protected_usage_read_only": true,
+      "saves_unchanged": true,
+      "browser_posts": 0,
+      "browser_errors": 0,
+      "mobile_width": 390,
+      "live_provider_calls": 0
+    },
+    "component_integrity": "verified"
+  },
+  "scope": {
+    "private_user_saves_used": false,
+    "new_world_rules": false,
+    "new_provider_router": false,
+    "dependency_pointers_changed": false,
+    "Catalog_content_copied": false,
+    "personalized_render_cache": false,
+    "new_save_migration": false,
+    "provider_calls_for_routine_results_and_drafts": 0,
+    "theme_labels_grant_capabilities": false,
+    "four_theme_text_portability": "Historical/Fantasy/Space/Modern synthetic labels only; no new mechanics qualified",
+    "full_Engine_suite_run_by_App": false,
+    "joined_source_integrated_by_this_chat": false
+  },
+  "hashes": {
+    "app_release_sha256": "5f6feaa6b41741823ae481c2d68f5c74e311666c66baee36cbbb0e08377289de",
+    "adapter_sha256": "b6b86736b4fd6be3d0a1041b97349791e2d244565732b8d71b0e65a3936cbe69",
+    "shared_browser_qualifier_sha256": "a237224e7624e1c93b70c16fe71d2863cfda802a4c48d8638e7122f8cf291d7f",
+    "Catalog_formatter_sha256": "7584bf10e29b8077ed84c7c4581d006327de3fd850a5e33b099577437b44f313",
+    "Catalog_depot_sha256": "8b397ae8cd72cf5ed59c330c0572e34922579726740edbeed9fca957044a6ae4"
+  },
+  "remaining": [
+    "Additional explicit App views/controls for Engine continuation and communication, with actor-safe sources.",
+    "More Catalog semantic adapters when required known labels/facts have bindings.",
+    "Windows and coordinator exact-set joined browser/package qualification.",
+    "Optional operator-configured/live qualification, generated narration/dialogue and wider DEV/C2 remain unfinished."
+  ]
+}
