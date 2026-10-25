@@ -1,5 +1,9 @@
 # IRGS App / Web — 3.4.0 development
 
+Current coordinated edition: **3.4.1**; previous release: **3.3.3**.
+See [version policy](VERSION_POLICY.md). Earlier baseline tables and execution
+records below retain their original tested development identities.
+
 Current development: [guide](DEVELOPMENT.md) · [chat continuation](CHAT_CONTINUATION.md).
 
 Independent App development for IRGS. Campaign catalogue data and designs belong to [IRGS-Catalog](https://github.com/KingSav3ge/IRGS-Catalog), pinned in `Catalog/`. The viewer stays in this repository. This repository owns `IRGS_Web/`; simulation stays in [IRGS-Engine](https://github.com/KingSav3ge/IRGS-Engine). [IRGS/main](https://github.com/KingSav3ge/IRGS) joins all three components.

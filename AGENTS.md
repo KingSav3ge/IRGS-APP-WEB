@@ -1,9 +1,13 @@
 # IRGS-APP-WEB development
 
+Current coordinated edition: **3.4.1**; previous release: **3.3.3**.
+See [version policy](VERSION_POLICY.md). Earlier baseline tables and execution
+records below retain their original tested development identities.
+
 ## Current guide and continuation
 
 Start with [DEVELOPMENT.md](DEVELOPMENT.md) and
-[CHAT_CONTINUATION.md](CHAT_CONTINUATION.md). They record the qualified 3.4.0
+[CHAT_CONTINUATION.md](CHAT_CONTINUATION.md). They record the previously qualified 3.4.0
 source baseline, the next bounded task and required checks. Dated histories
 retain original scope; their pending notes do not reopen completed integration.
 

@@ -1,5 +1,9 @@
 # Continuation instructions — IRGS App/Website
 
+Current coordinated edition: **3.4.1**; previous release: **3.3.3**.
+See [version policy](VERSION_POLICY.md). Earlier baseline tables and execution
+records below retain their original tested development identities.
+
 Prepared 25 October 2026 for `KingSav3ge/IRGS-APP-WEB/main`. Preserve local changes
 before pulling. Resume this existing chat's component work; publish only its
 own repository. Read this file after pull; fresh user directions take precedence.

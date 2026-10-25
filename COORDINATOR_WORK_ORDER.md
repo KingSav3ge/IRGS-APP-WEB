@@ -1,5 +1,9 @@
 # IRGS-APP-WEB work order — shared IRGS systems
 
+Current coordinated edition: **3.4.1**; previous release: **3.3.3**.
+See [version policy](VERSION_POLICY.md). Earlier baseline tables and execution
+records below retain their original tested development identities.
+
 ## Current continuation — 25 October 2026
 
 The delivered shared-response set and verified-byte intake patch are integrated
@@ -9,7 +13,7 @@ scope requirements below remain applicable; completed foundation work should
 not be repeated as an unimplemented first delivery.
 
 Assigned by IRGS Enviroment following the user's campaign-wide scope correction.
-Target: **IRGS 3.4.0 development**. Push only `IRGS-APP-WEB/main` under KingSav3ge.
+Target: **IRGS 3.4.1 development**. Push only `IRGS-APP-WEB/main` under KingSav3ge.
 Read [IRGS_SYSTEMS_SCOPE.md](IRGS_SYSTEMS_SCOPE.md). This order supersedes the
 first R00 demonstration assignment, preserved byte-for-byte in
 [the prior order](COORDINATOR_WORK_ORDER_SOLO_RUNTIME_01.md).
