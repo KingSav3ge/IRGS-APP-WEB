@@ -36,6 +36,7 @@ function environment(){
   vm.runInContext(fs.readFileSync('IRGS_Web/static/catalogue.js','utf8'),context);
   // The production boot request is exercised separately with a controlled responder.
   vm.runInContext(fs.readFileSync('IRGS_Web/static/solo.js','utf8'),context);
+  vm.runInContext(fs.readFileSync('IRGS_Web/static/processes.js','utf8'),context);
   vm.runInContext(source.slice(0,source.lastIndexOf('(async()=>{try{const campaigns=')),context);
   function run(code){return vm.runInContext(code,context);}
   return {run,context,elements,calls,storage,setFetch:fn=>responder=fn,reply:data=>({ok:true,status:200,json:async()=>data}),failure:(status=404)=>({ok:false,status,json:async()=>({error:'synthetic rejection'})})};
@@ -392,6 +393,25 @@ async function test(name,fn){await fn();results.push('PASS '+name);}
  });
  await test('Theme bindings cannot create a supported operation or execution control',async()=>{
   const h=environment(),p={...projection('A'),binding:{genre_id:'settlement',campaign_profile:'rise'},supported_actions:[]};h.run('current='+JSON.stringify(p)+";$('#campaign').value='A';renderStory();");assert.equal(h.context.document.querySelectorAll('[data-supported-action]').length,0);assert.equal(h.context.document.querySelectorAll('[data-rise-action]').length,0);assert.equal(h.calls.length,0);
+ });
+
+ const processView=()=>({...equipmentView(),process_control:{schema_version:1,start_available:false,view_token:'opaque-current',processes:[{received:{process_id:'p',phase_id:'old-phase',kind:'observation',status:'active',summary:'Scheduled, not complete.',original_intention:'Observe the quay.',worked_seconds:1,remaining_seconds:11},commands:['inspect','advance','pause','cancel']}]}});
+ const processPacket=body=>({status:'prepared',request_id:body.request_id,revision:body.revision,view_token:body.view_token,actor:body.actor,process_id:body.process_id,command:body.command,details:body.details,intention:body.intention,phase_id:'new-phase'});
+ await test('Process controls render received progress and require explicit seconds without submitting',async()=>{
+  const h=environment();h.run('current='+JSON.stringify(processView())+";$('#campaign').value='A';renderStory();");assert(h.elements.get('content').innerHTML.includes('Last received progress'));assert(h.elements.get('content').innerHTML.includes('1 seconds worked'));assert.equal(h.calls.length,0);assert(!h.elements.get('content').innerHTML.includes('data-command="start"'));
+  await h.context.document.querySelectorAll('[data-process-command]').find(b=>b.dataset.command==='advance').click();assert.equal(h.calls.length,0);assert(h.elements.get('notice').textContent.includes('positive whole number'));
+ });
+ await test('Reviewing a process command prepares only; cancel and edited text execute nothing',async()=>{
+  const h=environment();h.setFetch((p,r)=>h.reply(processPacket(JSON.parse(r.body))));h.run('current='+JSON.stringify(processView())+";$('#campaign').value='A';renderStory();");await h.context.document.querySelectorAll('[data-process-command]').find(b=>b.dataset.command==='pause').click();assert.equal(h.calls.length,1);assert.equal(h.calls[0].path,'/api/process/prepare');assert(h.elements.get('action-review-dialog').open);assert.equal(h.elements.get('action-review-intent').value,'Pause this process.');h.elements.get('action-review-intent').value='Other intent';h.elements.get('action-review-intent').oninput();assert(h.elements.get('confirm-reviewed-action').disabled);await h.elements.get('cancel-reviewed-action').click();assert.equal(h.calls.length,1);
+ });
+ await test('Only explicit process confirmation executes the stored phase identity',async()=>{
+  const h=environment();h.setFetch((p,r)=>p==='/api/process/prepare'?h.reply(processPacket(JSON.parse(r.body))):p==='/api/process/execute'?h.reply({status:'completed_successfully',outcome:{summary:'Phase paused.'}}):h.reply({...processView(),revision:2}));h.run('current='+JSON.stringify(processView())+";$('#campaign').value='A';renderStory();");await h.context.document.querySelectorAll('[data-process-command]').find(b=>b.dataset.command==='pause').click();await h.elements.get('confirm-reviewed-action').click();const accepted=h.calls.find(c=>c.path==='/api/process/execute');assert(accepted);assert.equal(accepted.body.explicitly_accepted,true);assert.equal(accepted.body.request_id,h.calls[0].body.request_id);assert.equal(accepted.body.command,undefined);assert.equal(h.elements.get('notice').textContent,'Phase paused.');
+ });
+ await test('Restore token changes fence a reviewed phase even at the same revision',async()=>{
+  const h=environment();h.setFetch((p,r)=>h.reply(processPacket(JSON.parse(r.body))));h.run('current='+JSON.stringify(processView())+";$('#campaign').value='A';renderStory();");await h.context.document.querySelectorAll('[data-process-command]').find(b=>b.dataset.command==='pause').click();h.run("current.process_control.view_token='after-restore';");await h.elements.get('confirm-reviewed-action').click();assert.equal(h.calls.filter(c=>c.path==='/api/process/execute').length,0);assert(!h.elements.get('action-review-dialog').open);
+ });
+ await test('Continuing process receipt labels its phase without claiming the whole process completed',async()=>{
+  const h=environment(),p=processView();p.completed_actions=[{kind:'process_phase',actor:'PC',status:'completed_successfully',process:{status:'active'},outcome:{summary:'Next committed boundary.'}}];h.run('current='+JSON.stringify(p)+';');const markup=h.run('latestOutcomeMarkup()');assert(markup.includes('YOUR LAST PROCESS PHASE'));assert(markup.includes('Active'));assert(!markup.includes('YOUR LAST ACTION · COMPLETED'));
  });
  console.log(results.join('\n')+'\n'+results.filter(result=>result.startsWith('PASS ')).length+' frontend checks passed. No real save or live server was used.');
 })().catch(error=>{console.error(results.join('\n'));console.error(error);process.exitCode=1;});

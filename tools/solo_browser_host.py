@@ -34,7 +34,7 @@ if __name__ == '__main__':
         metadata.with_suffix('.inputs.json').write_text(json.dumps(transport.inputs), encoding='utf-8')
         return result
 
-    host.config = (None if len(sys.argv) == 3 and sys.argv[2] == 'shared'
+    host.config = (None if len(sys.argv) == 3 and sys.argv[2] in ('shared', 'processes')
                    else replace(host.config, transport=offline, deadline_seconds=5))
     host.start()
     details = {'port': host.server.server_port, 'save': str(host.store.path(host.key)), 'id': host.key}
@@ -87,6 +87,25 @@ if __name__ == '__main__':
             {'name': 'settlement', 'id': key, 'actor': 'founder',
              'save': str(host.store.path(key)), 'revision': 0,
              'actions': ['walk_clearing', 'found', 'build', 'wait_hour', 'wait_hour'], 'elapsed': 3900}]
+    if len(sys.argv) == 3 and sys.argv[2] == 'processes':
+        from test_process_bridge import install_process
+        from settlement_setup import initialize, preview
+        from settlement_runtime import execute as act
+        from test_settlement import choices
+        import uuid
+        install_process(host.store, host.key, 'pc', 'observation', 'look-quay')
+        selected = choices(); selected['permission'] = 'held'
+        world = initialize(selected, preview(selected)['review_digest'], 'synthetic-process-browser')
+        act(world, 'setup-walk', 'founder', 'walk_clearing', 'explicit synthetic setup')
+        act(world, 'setup-found', 'founder', 'found', 'explicit synthetic setup')
+        key = uuid.uuid4().hex
+        host.store.write({'id': key, 'name': 'Continuing work fixture', 'revision': 1, 'state': world.s})
+        install_process(host.store, key, 'founder', 'work', 'build')
+        details['contexts'] = [
+            {'name': 'observation', 'id': host.key, 'actor': 'pc', 'save': str(host.store.path(host.key)),
+             'revision': 1, 'commands': [['pause', None], ['resume', None], ['advance', 1], ['advance', 99]], 'elapsed': 3},
+            {'name': 'work', 'id': key, 'actor': 'founder', 'save': str(host.store.path(key)),
+             'revision': 1, 'commands': [['pause', None], ['resume', None], ['advance', 100], ['advance', 3600], ['advance', 3600]], 'elapsed': 3900}]
     metadata.write_text(json.dumps(details), encoding='utf-8')
     try:
         threading.Event().wait()

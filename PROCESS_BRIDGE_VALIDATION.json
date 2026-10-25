@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-25",
+  "component": "IRGS-APP-WEB",
+  "status": "passed",
+  "increment": "Common received-process review, continuation and durable recovery",
+  "base_app_commit": "499bcf36b96c035b3c4a6f5f9fe0b4de0a2c33ab",
+  "dependencies": {
+    "engine": "2f9476c6090878257d17cab3ad3a83a7ce18a5dc",
+    "catalog": "27fff8385d1c01fdfe9ad7254b7647e6bc12a01e",
+    "pins_changed": false
+  },
+  "actual_sources": {
+    "engine_root": "/workspace/IRGS-APP-WEB/Engine/IRGS_3_3",
+    "catalog_root": "/workspace/IRGS-APP-WEB/Catalog/IRGS_Catalog",
+    "process_runtime": "/workspace/IRGS-APP-WEB/Engine/IRGS_3_3/runtime/process_runtime.py",
+    "server": "/workspace/IRGS-APP-WEB/IRGS_Web/server.py"
+  },
+  "api_selection": {
+    "engine": [
+      "process_runtime.prepare",
+      "process_runtime.ProcessRequest.to_json/from_json",
+      "process_runtime.execute",
+      "process_runtime.received_status",
+      "runtime_contracts.WorldScope"
+    ],
+    "http": [
+      "POST /api/process/prepare",
+      "POST /api/process/execute",
+      "POST /api/process/status",
+      "GET /api/action-result/{id}/{request_id}?actor_id=...",
+      "GET /api/playthrough/{id}?actor_id=..."
+    ],
+    "projection_schema": 1,
+    "start_available": false,
+    "private_runtime_metadata": "saves/.host/processes.sqlite",
+    "concurrency_scope": "one owning local host / common Store.lock"
+  },
+  "checks": [
+    {
+      "command": "python3 -B -m unittest discover -s IRGS_Web/tests -v",
+      "run": 218,
+      "passed": 211,
+      "skipped": 7,
+      "failed": 0,
+      "skip_reason": "Windows PowerShell launcher checks on Linux"
+    },
+    {
+      "scope": "Focused real Core process HTTP cases, included in the Web suite above",
+      "run": 17,
+      "passed": 17,
+      "cases": [
+        "test_common_received_projection_has_no_private_state_or_start_discovery",
+        "test_prepare_is_effect_free_stable_and_requires_explicit_acceptance",
+        "test_non_rise_observation_delivers_knowledge_only_after_completion",
+        "test_rise_work_pause_resume_preserves_project_and_finishes_once",
+        "test_cancel_keeps_committed_elapsed_and_original_intention",
+        "test_failed_save_retries_identical_typed_phase_without_partial_effect",
+        "test_late_durability_failure_recovers_already_saved_result",
+        "test_concurrent_duplicate_and_competing_phase_commit_only_once",
+        "test_restart_preserves_prepared_phase_and_accepted_result",
+        "test_identical_restore_invalidates_pending_phase_but_retains_original_result",
+        "test_branch_cannot_accept_parent_prepared_command_or_replay_parent_result",
+        "test_forged_fields_actor_source_and_start_are_rejected",
+        "test_engine_rejection_is_atomic_sanitized_and_durable",
+        "test_status_does_not_reveal_unreceived_live_work_progress",
+        "test_restore_of_earlier_bytes_does_not_reexecute_a_previously_accepted_phase",
+        "test_session_and_origin_authentication_guard_both_process_endpoints",
+        "test_result_recovery_does_not_acknowledge_while_directory_sync_is_unavailable"
+      ]
+    },
+    {
+      "command": "node IRGS_Web/tests/test_gameplay_ui.js",
+      "passed": 110,
+      "failed": 0
+    },
+    {
+      "command": "node IRGS_Web/tests/test_responses.js",
+      "passed": 13,
+      "variants": 171,
+      "recipes": 8,
+      "provider_calls": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s tools/tests -v",
+      "run": 1,
+      "passed": 1
+    },
+    {
+      "command": "python3 -B tools/refresh_component_releases.py --component app",
+      "app_files": 55
+    },
+    {
+      "command": "python3 -B tools/verify_components.py --component app",
+      "status": "verified",
+      "app_files": 55
+    },
+    {
+      "command": "node tools/qualify_process_bridge.js /tmp/irgs-process-browser.json",
+      "result": {
+        "status": "passed",
+        "contexts": [
+          {
+            "kind": "observation",
+            "committed_phases": 4,
+            "elapsed_seconds": 3,
+            "prepare_reload_recovered": true,
+            "cancel_does_not_execute": true,
+            "lost_commit_ack_recovered": true,
+            "phase_identity_preserved": true,
+            "pause_resume": true,
+            "stale_navigation_fenced": true
+          },
+          {
+            "kind": "work",
+            "committed_phases": 5,
+            "elapsed_seconds": 3900,
+            "prepare_reload_recovered": true,
+            "cancel_does_not_execute": true,
+            "lost_commit_ack_recovered": true,
+            "phase_identity_preserved": true,
+            "pause_resume": true,
+            "stale_navigation_fenced": true
+          }
+        ],
+        "provider_configured": false,
+        "provider_calls": 0,
+        "browser_errors": 0,
+        "mobile_width": 390
+      }
+    },
+    {
+      "command": "node tools/qualify_shared_responses.js /tmp/irgs-shared-browser.json",
+      "result": {
+        "status": "passed",
+        "contexts": [
+          {
+            "adapter": "authored_scene",
+            "committed_actions": 4,
+            "elapsed_seconds": 43,
+            "zero_action_spans": [],
+            "local_drafts_non_submitting": true,
+            "lost_acknowledgement_recovered": true,
+            "stale_navigation_fenced": true,
+            "reload_preserves_draft": true
+          },
+          {
+            "adapter": "settlement",
+            "committed_actions": 5,
+            "elapsed_seconds": 3900,
+            "zero_action_spans": [
+              "found",
+              "build"
+            ],
+            "local_drafts_non_submitting": true,
+            "lost_acknowledgement_recovered": true,
+            "stale_navigation_fenced": true,
+            "reload_preserves_draft": true
+          }
+        ],
+        "common_response_schema": 1,
+        "catalog_library": "irgs-response-depot-v1",
+        "engine_library": "irgs-engine-routine-responses-v1",
+        "provider_configured": false,
+        "provider_calls": 0,
+        "browser_errors": 0,
+        "mobile_width": 390
+      }
+    },
+    {
+      "command": "git -c core.whitespace=cr-at-eol diff --check",
+      "status": "passed"
+    }
+  ],
+  "qualification": {
+    "contexts": [
+      "non-Rise authored observation (look-quay)",
+      "Rise shelter work (existing reviewed build project)"
+    ],
+    "process_initialization": "trusted synthetic setup through real Engine typed start API; no player start flow qualified",
+    "effects": [
+      "observation delivered only on completion",
+      "physical shelter work and single material consumption",
+      "existing competing material boundary respected",
+      "zero elapsed pause/resume/inspect retained"
+    ],
+    "recovery": [
+      "identical preparation replay",
+      "explicit acceptance only",
+      "failed save keeps phase identity",
+      "late directory-sync failure and durable result recovery",
+      "concurrent identical retry / competing phase",
+      "host restart",
+      "identical-byte restore invalidates pending scope",
+      "earlier restored snapshot cannot repeat previously accepted phase",
+      "branch cannot execute parent prepared phase"
+    ],
+    "information": [
+      "actor/source/scope field filtering",
+      "received status does not reveal unreceived live progress",
+      "exact original intentions and full prepared receipt retained",
+      "private rejection facts omitted"
+    ],
+    "routine_provider_calls": 0,
+    "user_saves_used": false,
+    "live_inference_executed": false,
+    "new_engine_rules": false,
+    "historical_evidence_relabelled": false
+  },
+  "remaining_dependencies": [
+    {
+      "owner": "Engine",
+      "item": "Actor-safe process-start capability discovery tied to actual selected rules/scope, with sourced kind/action and command/detail semantics; no hidden-feasibility oracle. No such discovery contract in the selected process API."
+    },
+    {
+      "owner": "App",
+      "item": "Next independent bounded task: protected operator/launcher configuration for existing optional Solo API; no live dispatch during configuration checks."
+    },
+    {
+      "owner": "App / Engine contracts",
+      "item": "Communication/source controls and additional process context qualification remain separate. Travel App/browser qualification not claimed."
+    },
+    {
+      "owner": "IRGS Enviroment coordinator",
+      "item": "Review exact App delivery with unchanged Engine/Catalog pins and run fresh joined qualification. Existing shared-response baseline integration remains completed."
+    }
+  ],
+  "files_sha256": {
+    "IRGS_Web/process_bridge.py": "228a739959dcd358d9a53a39b911639306b1d321397d7703a2c790d07edc22d7",
+    "IRGS_Web/server.py": "0b702fd13295f6d37f4fb814c972c7c528f7169fb8c979619395488e213f19d2",
+    "IRGS_Web/gameplay_views.py": "386da5fbc29ec4c49efe8ba2421eddf19074dd69de54b35afb8de190807ff783",
+    "IRGS_Web/static/processes.js": "fc2fd6d6dd382232bcff715408bc7fc150b8da49c3bbbc3394433ed74623dbb1",
+    "IRGS_Web/static/solo.js": "755a68b2933607ba8b401a94692686d0ebd85f0728fedf2ceef327a0a4051991",
+    "IRGS_Web/static/app.js": "ee0e552edd2979538242d44888f9905faf6e8dd81773b06e83749ebe34546d35",
+    "IRGS_Web/static/rise.js": "c8e2d6eeb37c58401c62592b3d591032e6605c4189d93dcca177483801113164",
+    "IRGS_Web/static/index.html": "10031b193463145000f9f7304a1f614f85e00aa135388d3833aa8a344f54f716",
+    "IRGS_Web/release.json": "283a07909493ffd91f05503ec969ec10cefae5610802ad1e898ce6c899b474ba",
+    "IRGS_Web/tests/test_process_bridge.py": "242a531390376c548816cfd3f7a7f4d9787908992a6876c9c587221ed85560a6",
+    "IRGS_Web/tests/test_gameplay_ui.js": "f483c10adce6d1e97bb90d630ff1d21abe2a93f185767e09937c544aebd560c3",
+    "tools/qualify_process_bridge.js": "af34225b73b8178f78506b25517c03f7f960a71a18072711ca3a8bc357aa5b42",
+    "tools/solo_browser_host.py": "6c03d964febe295cd504cf3bd9585890762e80f35f101d02d1228a12c3ebd1cd",
+    "Engine/engine/CONTINUATION_COMMUNICATION_API.md": "8ab94b4357e78dfd0bb623d52767c63437dbb688c460e5e3e3d53aa6b5539f8a",
+    "Engine/IRGS_3_3/runtime/process_runtime.py": "aea12406cc7da04c57424868e25ef3374ce44e36dd2f07159275083338f7df4c"
+  }
+}

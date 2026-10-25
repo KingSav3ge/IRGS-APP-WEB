@@ -62,19 +62,39 @@ Read [response contract](IRGS_Web/responses/README.md) and the owning
 `Engine/engine/SHARED_SYSTEMS_API.md` / `CONTINUATION_COMMUNICATION_API.md` documents.
 The implementation files are under `IRGS_Web/`; avoid a second editable App tree.
 
+## Delivered received-process increment — 25 October 2026
+
+Common Story/HTTP review and explicit continuation now use the pinned Engine's
+existing typed process API. Qualified contexts: non-Rise authored observation
+and Rise shelter work. Immutable server-owned preparation, actor/scope/revision
+checks, received-only progress, atomic candidate/result saves, original receipt
+recovery, pause/resume, failure/concurrency/restart and restored-branch handling
+are implemented. Routine dispatch remains zero. Process starts are explicitly
+unavailable pending the discovery contract described below.
+
+See [process contract](IRGS_Web/PROCESS_BRIDGE.md),
+[executed evidence](PROCESS_BRIDGE_VALIDATION.json) and
+[current handoff](COORDINATOR_REPORT.md). The existing verified-byte Catalog intake,
+response depot, native shared actions and themes are retained. Exact dependency
+pins remain Engine `2f9476c6090878257d17cab3ad3a83a7ce18a5dc` and Catalog
+`27fff8385d1c01fdfe9ad7254b7647e6bc12a01e`. This App increment needs coordinator
+review and fresh joined qualification; it does not reopen the completed baseline.
+
 ## Next bounded increment
 
-Add a bounded common player control/HTTP bridge for existing Engine process
-continuation, beginning with qualified non-Rise observation and Rise work.
-Use Engine-owned capabilities and its typed prepare/execute/receipt contracts;
-authenticate actor and actual branch/restore/revision, show explicit commands,
-and persist the candidate save/result atomically before acknowledgment. Preserve
-phase identity and original result through pause/resume, failed save, concurrent
-retry, restart and restored branches. Render only legitimate received progress.
-Where capability discovery needs an Engine contract, record that exact dependency
-and continue host/status/recovery work against its existing typed API; invent no
-operation or time rule. Communication/source controls follow published contracts.
-Protected operator/launcher configuration remains a separate runnable-system item.
+Add protected operator/launcher configuration for the existing optional Solo
+service, keeping credentials and detailed accounting server-side and ordinary
+play runnable without a provider. Use existing Engine provider/charge contracts;
+validate a concrete configuration without live dispatch, test missing/invalid
+configuration and startup/reuse behavior, and preserve local loopback hosting.
+Live inference still requires its separately configured authorization.
+
+The process start flow waits on an Engine-owned, actor-safe discovery contract:
+sourced kind/action choices bound to actual selected elapsed rules and scope,
+with published command/detail semantics and no hidden-feasibility oracle. Do not
+infer start controls from private rule dictionaries or theme labels. Continue
+independent App work while that exact dependency is pending. Communication/source
+controls and additional process contexts require their own qualification.
 
 ## Check the App
 
@@ -84,6 +104,7 @@ python -B -m unittest discover -s IRGS_Web/tests -v
 node IRGS_Web/tests/test_responses.js
 node IRGS_Web/tests/test_gameplay_ui.js
 node tools/qualify_shared_responses.js /tmp/irgs-shared-browser.json
+node tools/qualify_process_bridge.js /tmp/irgs-process-browser.json
 ```
 
 Real browser qualification requires Playwright and Chromium as development tools;

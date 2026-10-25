@@ -10,7 +10,7 @@ import json
 
 RESULT_FIELDS = ('request_id', 'action_request_id', 'campaign_id', 'actor', 'declaration',
                  'status', 'revision', 'recorded_sequence', 'elapsed_time', 'narrative',
-                 'kind', 'outcome', 'receipt', 'presentation')
+                 'kind', 'outcome', 'receipt', 'presentation', 'process')
 
 
 def player_ids(state):
@@ -182,7 +182,7 @@ def playthrough(record, actor_id=None, *, mode='player'):
     prompt = response_choices(state, actor_id) if exists and actor_id else None
     completed = [safe_result(request['result']) for request in record.get('gameplay_requests', {}).values()
                  if request.get('campaign_id') == record['id'] and request.get('actor') == actor_id
-                 and request.get('kind') in ('issue_equipment', 'scene_action', 'settlement_action')
+                 and request.get('kind') in ('issue_equipment', 'scene_action', 'settlement_action', 'process_phase')
                  and request.get('status') in ('completed_successfully', 'completed_unsuccessfully')]
     result = {'id': record['id'], 'name': record['name'], 'revision': record['revision'], 'mode': mode,
         'actor_id': actor_id, 'requires_character': actor_id is None,

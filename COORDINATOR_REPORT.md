@@ -1,3 +1,57 @@
+# Received-process App bridge — 25 October 2026
+
+Completed the next bounded continuation task from App main
+`499bcf36b96c035b3c4a6f5f9fe0b4de0a2c33ab`. Push target is only
+`KingSav3ge/IRGS-APP-WEB/main`; the delivery response gives the full App commit.
+Exact selected dependencies remain Engine
+`2f9476c6090878257d17cab3ad3a83a7ce18a5dc` and Catalog
+`27fff8385d1c01fdfe9ad7254b7647e6bc12a01e`. Neither submodule pin changed.
+
+Common Story/HTTP controls now continue existing received processes through
+Engine's typed prepare/execute/receipt API. Qualified contexts are non-Rise
+authored observation and Rise shelter work. Explicit review, immutable server
+preparation, actual actor/branch/restore/revision checks and atomic Core/result
+persistence preserve phase identity and exact original receipt over failed saves,
+concurrent retries, lost replies, restart and supported restored branches. Local
+progress is received information. No new rule, stock, duration, NPC decision or
+provider dispatch is introduced. Completed phase and parent status stay distinct.
+Directory-sync uncertainty is resolved before recovered results are acknowledged.
+The verified-byte intake and existing response/theme/native-action paths remain.
+
+Fresh executed checks:
+
+- Web: **218 run, 211 passed, seven Windows PowerShell skips, zero failures**.
+  Includes **17** actual process HTTP cases; no extra process skips.
+- Interface: **110 passed**; App formatter: **13 passed**, all 171 variants/eight recipes.
+- Tooling: **one passed**. App release refreshed and verified: **55 files**;
+  exact selected Engine/Catalog source integrity also verified.
+- Chromium process qualification: observation **four committed phases / three
+  elapsed seconds**; work **five committed phases / 3,900 total elapsed seconds**
+  (300 fixture setup + 3,600 actual work). Lost preparation and commit replies,
+  review cancel/recovery/reload, pause/resume, exact receipt identity, stale
+  navigation and 390px Story checks passed in both contexts.
+- Existing shared Chromium regression: four non-Rise actions / 43 seconds and
+  five Rise actions / 3,900 seconds, including actual zero spans, passed again.
+- Both browser runs: **zero provider calls, zero browser errors**. No live AI,
+  external private fixture or user save was used. Diff whitespace checks passed.
+
+See [API/persistence contract](IRGS_Web/PROCESS_BRIDGE.md) and
+[structured executed evidence](PROCESS_BRIDGE_VALIDATION.json) for exact commands,
+cases, source paths and hashes. Earlier report sections retain their original
+scope and dependency selections; no old result is reattributed to this increment.
+
+Remaining dependencies: Engine must publish an actor-safe, sourced process-start
+capability discovery contract bound to selected elapsed rules and actual scope.
+The App does not offer a start endpoint/button or infer one from private rules or
+themes; typed starts in tests are trusted synthetic setup only. The next independent
+App task is protected operator/launcher configuration. Communication/source controls,
+further process-context qualification and coordinator review/fresh joined import
+remain separate. This increment does not reopen the completed shared-response
+integration or claim general freeform/combat/full C2, distributed writers or live
+model quality. Only the coordinator publishes a new joined reviewed set.
+
+---
+
 # Coordinator integration patch — verified response intake
 
 Selected the current Engine shared-runtime and Catalog fixture deliveries through

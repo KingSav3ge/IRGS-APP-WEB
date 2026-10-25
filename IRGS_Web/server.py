@@ -265,6 +265,8 @@ class Store:
             raise FileNotFoundError('No saved action result exists for this request')
         if request.get('campaign_id')!=key or request.get('actor')!=actor:
             raise PermissionError('This action result is not available to the selected character')
+        if request['kind'] == 'process_phase':
+            sync_parent(self.path(key))  # Finish a prior uncertain directory-sync before acknowledgment.
         result=safe_result(request['result'])
         if request['kind']=='declaration' and request['status']=='withdrawn':
             result.update(status='withdrawn',original_status='declared_not_resolved',
@@ -369,6 +371,8 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
         library=reference_library, error=reference_error)
     store = Store(folder or ROOT / 'saves')
     solo = SoloService(store, solo_configuration)
+    from process_bridge import ProcessService
+    processes = ProcessService(store)
     token = secrets.token_urlsafe(32)
 
     class Handler(BaseHTTPRequestHandler):
@@ -439,7 +443,9 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                         if mode=='creator':self.creator(mode)
                         projection = playthrough(store.read(path.rsplit('/',1)[1]),
                             query.get('actor_id',[None])[0],mode=mode)
-                        projection['assistance'] = solo.status(record=store.read(path.rsplit('/', 1)[1]), actor=projection['actor_id'])
+                        record = store.read(path.rsplit('/', 1)[1])
+                        projection['assistance'] = solo.status(record=record, actor=projection['actor_id'])
+                        projection['process_control'] = processes.view(record, projection['actor_id']) if projection['character_available'] else {'schema_version': 1, 'processes': [], 'start_available': False, 'view_token': None}
                         return self.reply(200, projection)
                     if path=='/api/rise/templates':
                         self.session()
@@ -540,7 +546,7 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                     if path.startswith('/api/binding/'):
                         self.creator(mode)
                         return self.reply(200, presentation_binding(store.read(path.rsplit('/', 1)[1])['state']))
-                files = {'/': ('index.html', 'text/html'), '/app.js': ('app.js', 'text/javascript'), '/style.css': ('style.css', 'text/css'), '/voyage.svg': ('voyage.svg', 'image/svg+xml'), '/rise.js': ('rise.js', 'text/javascript'), '/catalogue.js': ('catalogue.js', 'text/javascript'), '/solo.js': ('solo.js', 'text/javascript'), '/responses.data.js': ('responses.data.js', 'text/javascript'), '/responses.js': ('responses.js', 'text/javascript'), '/routine.js': ('routine.js', 'text/javascript'), '/themes.js': ('themes.js', 'text/javascript'), '/themes.css': ('themes.css', 'text/css')}
+                files = {'/': ('index.html', 'text/html'), '/app.js': ('app.js', 'text/javascript'), '/style.css': ('style.css', 'text/css'), '/voyage.svg': ('voyage.svg', 'image/svg+xml'), '/rise.js': ('rise.js', 'text/javascript'), '/catalogue.js': ('catalogue.js', 'text/javascript'), '/solo.js': ('solo.js', 'text/javascript'), '/processes.js': ('processes.js', 'text/javascript'), '/responses.data.js': ('responses.data.js', 'text/javascript'), '/responses.js': ('responses.js', 'text/javascript'), '/routine.js': ('routine.js', 'text/javascript'), '/themes.js': ('themes.js', 'text/javascript'), '/themes.css': ('themes.css', 'text/css')}
                 if path not in files:
                     return self.reply(404, {'error': 'Not found'})
                 name, mime = files[path]
@@ -554,6 +560,8 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                 self.reply(403, {'error':str(err)})
             except ValueError as err:
                 self.reply(400, {'error': str(err)})
+            except OSError:
+                self.reply(503, {'error': 'Saved records are temporarily unavailable. Recover the original request when storage is available.'})
 
         def do_POST(self):
             if not self.valid_host() or self.headers.get('X-IRGS-Token') != token:
@@ -587,6 +595,10 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                     elif path == '/api/rise/action':
                         from rise_campaigns import action
                         result=action(store,data)
+                    elif path in ('/api/process/prepare', '/api/process/execute', '/api/process/status'):
+                        operation = {'/api/process/prepare': processes.prepare, '/api/process/execute': processes.execute,
+                                     '/api/process/status': processes.status}[path]
+                        result = operation(data)
                     elif path == '/api/declaration':
                         result=store.gameplay_request(data)
                     elif path == '/api/action':

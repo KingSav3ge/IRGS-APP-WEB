@@ -43,23 +43,39 @@ independent content/schema versions and historical evidence. See
 [shared scope](IRGS_SYSTEMS_SCOPE.md), [continuation](CHAT_CONTINUATION.md) and
 [the work order](COORDINATOR_WORK_ORDER.md).
 
+## Latest App increment
+
+The received-process bridge is implemented and qualified in this App delivery.
+Read [its contract](IRGS_Web/PROCESS_BRIDGE.md),
+[validation](PROCESS_BRIDGE_VALIDATION.json) and the latest coordinator report.
+It continues existing non-Rise authored observation and Rise shelter work through
+server-owned typed preparation, explicit review/acceptance, atomic persistence
+and durable receipt recovery. Starts remain unavailable: the pinned Engine has
+no actor-safe process-start discovery contract. Do not mistake synthetic typed
+fixture initialization for a shipped player start flow or redo this bridge.
+Exact Engine/Catalog pins above remain selected. Coordinator review and new
+joined qualification apply to this increment; the shared-response baseline is
+already integrated.
+
 ## Next bounded task
 
-Add a bounded common player control/HTTP bridge for existing Engine process
-continuation, beginning with qualified non-Rise observation and Rise work.
-Use Engine-owned capabilities and its typed prepare/execute/receipt contracts;
-authenticate actor and actual branch/restore/revision, show explicit commands,
-and persist the candidate save/result atomically before acknowledgment. Preserve
-phase identity and original result through pause/resume, failed save, concurrent
-retry, restart and restored branches. Render only legitimate received progress.
-Where capability discovery needs an Engine contract, record that exact dependency
-and continue host/status/recovery work against its existing typed API; invent no
-operation or time rule. Communication/source controls follow published contracts.
-Protected operator/launcher configuration remains a separate runnable-system item.
+Add protected operator/launcher configuration for the existing optional Solo
+service, keeping credentials and detailed accounting server-side and ordinary
+play runnable without a provider. Use existing Engine provider/charge contracts;
+validate a concrete configuration without live dispatch, test missing/invalid
+configuration and startup/reuse behavior, and preserve local loopback hosting.
+Live inference still requires its separately configured authorization.
+
+The process start flow waits on an Engine-owned, actor-safe discovery contract:
+sourced kind/action choices bound to actual selected elapsed rules and scope,
+with published command/detail semantics and no hidden-feasibility oracle. Do not
+infer start controls from private rule dictionaries or theme labels. Continue
+independent App work while that exact dependency is pending. Communication/source
+controls and additional process contexts require their own qualification.
 
 ## Preserve and finish
 
-Keep the completed response depot, current source intake patch and shared
+Keep the completed process continuation, response depot, current source intake patch and shared
 non-Rise/Rise round trip. Do not repeat archive acquisition, rebuild the 1,000
 variants, redo themes or describe integrated response work as awaiting its
 original integration. Preserve old manifest consumer IDs; current consumer
