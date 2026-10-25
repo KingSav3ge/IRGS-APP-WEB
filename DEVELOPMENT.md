@@ -62,23 +62,41 @@ Read [response contract](IRGS_Web/responses/README.md) and the owning
 `Engine/engine/SHARED_SYSTEMS_API.md` / `CONTINUATION_COMMUNICATION_API.md` documents.
 The implementation files are under `IRGS_Web/`; avoid a second editable App tree.
 
-## Delivered received-process increment — 25 October 2026
+## First received-process increment — 25 October 2026
 
 Common Story/HTTP review and explicit continuation now use the pinned Engine's
 existing typed process API. Qualified contexts: non-Rise authored observation
 and Rise shelter work. Immutable server-owned preparation, actor/scope/revision
 checks, received-only progress, atomic candidate/result saves, original receipt
 recovery, pause/resume, failure/concurrency/restart and restored-branch handling
-are implemented. Routine dispatch remains zero. Process starts are explicitly
-unavailable pending the discovery contract described below.
+were implemented at `67411f8ef5214c8cb51af2b244590751e6ea20df`, with zero routine
+dispatch. At that selection, process starts awaited the Engine discovery contract.
 
 See [process contract](IRGS_Web/PROCESS_BRIDGE.md),
 [executed evidence](PROCESS_BRIDGE_VALIDATION.json) and
 [current handoff](COORDINATOR_REPORT.md). The existing verified-byte Catalog intake,
-response depot, native shared actions and themes are retained. Exact dependency
-pins remain Engine `2f9476c6090878257d17cab3ad3a83a7ce18a5dc` and Catalog
+response depot, native shared actions and themes are retained. That delivery
+selected Engine `2f9476c6090878257d17cab3ad3a83a7ce18a5dc` and Catalog
 `27fff8385d1c01fdfe9ad7254b7647e6bc12a01e`. This App increment needs coordinator
 review and fresh joined qualification; it does not reopen the completed baseline.
+
+## Current App-side development-pair review
+
+Pulled App main at `67411f8ef5214c8cb51af2b244590751e6ea20df` and selected current
+Engine `0fdfc21f45510e3fd99fd6a8087cd3314d077267` / Catalog
+`4bd572843cebc94e7d043c3706d1be85249d6c10` for App-side compatibility review.
+The phase discovery dependency is now resolved: common Begin/continuation
+controls use Engine's public phase API. Starts keep server-owned parent/phase
+identities, explicit acceptance, atomic persistence and native JSON recovery.
+The complete actor-bound shared receipt adapts to the existing Catalog/App
+presentation path. Native actions, prior results and verified-byte intake remain.
+
+Current tests exercise Catalog's nine original native cases plus a real selected
+quay phase without rewriting its older consumer records. Engine's capability
+contract, App HTTP/interface and two-context Chromium checks qualify this pair;
+see [current evidence](CURRENT_COMPONENTS_VALIDATION.json) and the latest
+[handoff](COORDINATOR_REPORT.md). Coordinator review/fresh joined qualification
+remains separate from this App development selection.
 
 ## Next bounded increment
 
@@ -89,12 +107,10 @@ validate a concrete configuration without live dispatch, test missing/invalid
 configuration and startup/reuse behavior, and preserve local loopback hosting.
 Live inference still requires its separately configured authorization.
 
-The process start flow waits on an Engine-owned, actor-safe discovery contract:
-sourced kind/action choices bound to actual selected elapsed rules and scope,
-with published command/detail semantics and no hidden-feasibility oracle. Do not
-infer start controls from private rule dictionaries or theme labels. Continue
-independent App work while that exact dependency is pending. Communication/source
-controls and additional process contexts require their own qualification.
+Engine start discovery is delivered and consumed. Communication/source controls
+wait for the matching actor-safe participant and received-source contract now
+listed as Engine's next task. Additional phase contexts retain separate checks;
+travel remains native-only. Do not infer mechanics from theme labels.
 
 ## Check the App
 

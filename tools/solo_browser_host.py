@@ -88,19 +88,16 @@ if __name__ == '__main__':
              'save': str(host.store.path(key)), 'revision': 0,
              'actions': ['walk_clearing', 'found', 'build', 'wait_hour', 'wait_hour'], 'elapsed': 3900}]
     if len(sys.argv) == 3 and sys.argv[2] == 'processes':
-        from test_process_bridge import install_process
         from settlement_setup import initialize, preview
         from settlement_runtime import execute as act
         from test_settlement import choices
         import uuid
-        install_process(host.store, host.key, 'pc', 'observation', 'look-quay')
         selected = choices(); selected['permission'] = 'held'
         world = initialize(selected, preview(selected)['review_digest'], 'synthetic-process-browser')
         act(world, 'setup-walk', 'founder', 'walk_clearing', 'explicit synthetic setup')
         act(world, 'setup-found', 'founder', 'found', 'explicit synthetic setup')
         key = uuid.uuid4().hex
         host.store.write({'id': key, 'name': 'Continuing work fixture', 'revision': 1, 'state': world.s})
-        install_process(host.store, key, 'founder', 'work', 'build')
         details['contexts'] = [
             {'name': 'observation', 'id': host.key, 'actor': 'pc', 'save': str(host.store.path(host.key)),
              'revision': 1, 'commands': [['pause', None], ['resume', None], ['advance', 1], ['advance', 99]], 'elapsed': 3},

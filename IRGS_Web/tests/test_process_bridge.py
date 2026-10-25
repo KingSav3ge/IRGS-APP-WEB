@@ -79,11 +79,13 @@ class ProcessBridgeTests(bridge.unittest.TestCase):
         self.assertEqual(result['process']['phase_intention'], body['intention'])
         return body, result
 
-    def test_common_received_projection_has_no_private_state_or_start_discovery(self):
+    def test_common_received_projection_uses_engine_capabilities_without_private_state(self):
         for key, actor in ((self.key, 'pc'), (self.rise, 'founder')):
             before = self.store.path(key).read_bytes()
             packet = self.view(key, actor)['process_control']
-            self.assertFalse(packet['start_available'])
+            self.assertTrue(packet['start_available'])
+            self.assertEqual(packet['engine_schema'], 'irgs-phase-capabilities-1')
+            self.assertTrue(all(option['availability'] == 'attemptable' for option in packet['start_options']))
             row = packet['processes'][0]
             self.assertEqual(row['received']['worked_seconds'], 0)
             self.assertEqual(row['received']['actor'], actor)

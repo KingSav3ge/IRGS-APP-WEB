@@ -161,7 +161,7 @@ class HistoricalMultipartHTTPTests(unittest.TestCase):
         campaign_path = '/api/playthrough/' + record['id']
         before = self.call(campaign_path, creator=False)
         discovery = self.call('/api/content-library', creator=False)
-        saved = {p.name: p.read_bytes() for p in self.saves.iterdir()}
+        saved = {str(p.relative_to(self.saves)): p.read_bytes() for p in self.saves.rglob('*') if p.is_file()}
         self.call()
         self.call('/api/historical-reference/search?collection=figures&q=Henry')
         self.call('/api/historical-reference/record?collection=chronology&row=1')
@@ -172,7 +172,7 @@ class HistoricalMultipartHTTPTests(unittest.TestCase):
                             after['local_responses']['scope'].pop('view_id'))
         self.assertEqual(before, after)
         self.assertEqual(discovery, self.call('/api/content-library', creator=False))
-        self.assertEqual(saved, {p.name: p.read_bytes() for p in self.saves.iterdir()})
+        self.assertEqual(saved, {str(p.relative_to(self.saves)): p.read_bytes() for p in self.saves.rglob('*') if p.is_file()})
 
 
 if __name__ == '__main__':

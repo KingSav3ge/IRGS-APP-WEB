@@ -1,14 +1,16 @@
 'use strict';
-// Received Core phases only. No start discovery, clock tick or inferred work.
+// Starts and received commands come from Engine capabilities. No clock tick or inferred work.
 function processReviewKey(){return current?.actor_id?`irgs-process-review:${current.id}:${current.actor_id}`:null;}
 function processControlsMarkup(){
   if(workspaceMode!=='player'||!current?.actor_id)return '';
-  const packet=current.process_control,rows=packet?.processes||[],pending=readLocal(processReviewKey());
-  if(!rows.length&&!pending)return '';
-  return `<section class="panel process-controls" aria-label="Your continuing processes"><h3>Your continuing processes</h3><p class="note">Last received progress. Commands check current Engine rules when confirmed; elapsed work advances only by an explicit submission.</p>${rows.map((item,index)=>{const r=item.received;return `<article><h4>${esc(label(r.kind))} · ${esc(label(r.status))}</h4><p>${esc(r.summary)}</p><p>${esc(r.worked_seconds)} seconds worked · ${esc(r.remaining_seconds)} seconds remaining at this receipt.</p><p class="note">${esc(r.original_intention)}</p>${item.commands.includes('advance')?`<label>Requested elapsed seconds <input type="number" min="1" step="1" inputmode="numeric" data-process-seconds="${index}" aria-label="Requested elapsed seconds"></label>`:''}<div class="buttons">${item.commands.map(command=>`<button type="button" class="quiet" data-process-command="${index}" data-command="${command}">${esc(label(command))}</button>`).join('')}</div></article>`;}).join('')}${pending?'<button type="button" class="quiet" id="recover-process-review">Recover reviewed process command</button>':''}</section>`;
+  const packet=current.process_control,rows=packet?.processes||[],starts=packet?.start_options||[],pending=readLocal(processReviewKey());
+  if(!rows.length&&!starts.length&&!pending)return '';
+  return `<section class="panel process-controls" aria-label="Your continuing processes"><h3>Your continuing processes</h3><p class="note">Last received progress. Commands check current Engine rules when confirmed; elapsed work advances only by an explicit submission.</p>${starts.length?`<div class="process-starts"><h4>Begin a continuing action</h4><p class="note">These are attempts under your selected rules. Starting schedules a process; it does not complete its work.</p>${starts.map((option,index)=>`<button type="button" class="quiet" data-process-start="${index}">Begin: ${esc(option.title)}</button>`).join('')}</div>`:''}${rows.map((item,index)=>{const r=item.received;return `<article><h4>${esc(label(r.kind))} · ${esc(label(r.status))}</h4><p>${esc(r.summary)}</p><p>${esc(r.worked_seconds)} seconds worked · ${esc(r.remaining_seconds)} seconds remaining at this receipt.</p><p class="note">${esc(r.original_intention)}</p>${item.commands.includes('advance')?`<label>Requested elapsed seconds <input type="number" min="1" step="1" inputmode="numeric" data-process-seconds="${index}" aria-label="Requested elapsed seconds"></label>`:''}<div class="buttons">${item.commands.map(command=>`<button type="button" class="quiet" data-process-command="${index}" data-command="${command}">${esc(label(command))}</button>`).join('')}</div></article>`;}).join('')}${pending?'<button type="button" class="quiet" id="recover-process-review">Recover reviewed process command</button>':''}</section>`;
 }
 function validProcessReview(review){
-  return !soloAttempt&&current?.process_control?.view_token===review.packet.view_token&&current.process_control.processes.some(item=>item.received.process_id===review.packet.process_id&&item.commands.includes(review.packet.command));
+  if(soloAttempt||current?.process_control?.view_token!==review.packet.view_token)return false;
+  if(review.packet.command==='start')return (current.process_control.start_options||[]).some(item=>item.capability_id===review.packet.capability_id);
+  return current.process_control.processes.some(item=>item.received.process_id===review.packet.process_id&&item.commands.includes(review.packet.command));
 }
 function showProcessReview(packet,request){
   if(packet.status!=='prepared'&&packet.status!=='save_failed')return;
@@ -21,12 +23,13 @@ function showProcessReview(packet,request){
 }
 async function prepareProcessPhase(index,command){
   if(busy||loadingCampaign||workspaceMode!=='player'||view!=='story'||!current?.actor_id||current.pending_declaration||transportPending||soloAttempt)return;
-  const item=current.process_control?.processes[index];if(!item?.commands.includes(command))return;
+  const starting=command==='start',item=starting?current.process_control?.start_options?.[index]:current.process_control?.processes[index];if(!item||(!starting&&!item.commands.includes(command)))return;
   const details={};if(command==='advance'){const value=document.querySelector(`[data-process-seconds="${index}"]`).value;if(!/^\d+$/.test(value)||!Number.isSafeInteger(Number(value))||Number(value)<=0){notice('Enter a positive whole number of elapsed seconds to request.',true);return;}details.seconds=Number(value);}
   const campaign=current.id,actor=current.actor_id,request=campaignRequest,storage=processReviewKey();
   const body={id:campaign,actor,revision:current.revision,view_token:current.process_control.view_token,
-    request_id:crypto.randomUUID(),process_id:item.received.process_id,command,details,
-    intention:command==='advance'?`Advance this process by ${details.seconds} seconds.`:`${label(command)} this process.`};
+    request_id:crypto.randomUUID(),command,
+    ...(starting?{capability_id:item.capability_id}:{process_id:item.received.process_id,details}),
+    intention:starting?`Begin: ${item.title}.`:command==='advance'?`Advance this process by ${details.seconds} seconds.`:`${label(command)} this process.`};
   invalidateActionReview();writeLocal(storage,{body});setBusy(true);let packet;
   try{packet=await api('process/prepare',body,{creator:false});}
   catch(error){notice(error.message,true);}finally{setBusy(false);}
@@ -44,6 +47,7 @@ async function recoverProcessReview(){
   if(packet)showProcessReview(packet,request);
 }
 function bindProcessControls(){
+  document.querySelectorAll('[data-process-start]').forEach(button=>button.onclick=()=>prepareProcessPhase(Number(button.dataset.processStart),'start'));
   document.querySelectorAll('[data-process-command]').forEach(button=>button.onclick=()=>prepareProcessPhase(Number(button.dataset.processCommand),button.dataset.command));
   if($('#recover-process-review'))$('#recover-process-review').onclick=recoverProcessReview;
 }

@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-25",
+  "component": "IRGS-APP-WEB",
+  "status": "passed",
+  "request": "Pull all three development repositories and qualify App-side Engine/Catalog interaction",
+  "app_base_commit": "67411f8ef5214c8cb51af2b244590751e6ea20df",
+  "selected_dependencies": {
+    "engine": "0fdfc21f45510e3fd99fd6a8087cd3314d077267",
+    "catalog": "4bd572843cebc94e7d043c3706d1be85249d6c10",
+    "engine_and_catalog_sources_modified": false
+  },
+  "actual_sources": {
+    "engine_root": "/workspace/IRGS-APP-WEB/Engine/IRGS_3_3",
+    "catalog_root": "/workspace/IRGS-APP-WEB/Catalog/IRGS_Catalog",
+    "phase_contract": "/workspace/IRGS-APP-WEB/Engine/IRGS_3_3/runtime/phase_contract.py",
+    "app_server": "/workspace/IRGS-APP-WEB/IRGS_Web/server.py"
+  },
+  "api_selection": {
+    "engine_schema": "irgs-phase-capabilities-1",
+    "engine": [
+      "phase_contract.actor_view",
+      "phase_contract.prepare_start",
+      "phase_contract.prepare_command",
+      "phase_contract.execute",
+      "process_runtime.ProcessRequest.to_json/from_json",
+      "runtime_contracts.WorldScope"
+    ],
+    "app_projection": "process_control schema 1, extended with engine_schema and start_options",
+    "catalog": "Verified exact-byte irgs-response-depot-v1 schema 2; historical compatibility IDs unchanged"
+  },
+  "changes": [
+    "App dependency pins advance to fetched development mains after actual compatibility review",
+    "Engine-owned attemptable starts and received commands replace App command mapping",
+    "Server owns parent/phase identities and immutable native preparation; explicit acceptance and atomic CAS remain",
+    "Trusted actor/event-bound phase presentation adapts into existing App/Catalog exact-receipt envelope",
+    "Nullable capability metadata upgrade retains legacy typed requests and restore identities",
+    "Historical reference-read regression now compares all nested campaign and technical files unchanged"
+  ],
+  "checks": [
+    {
+      "command": "python3 -B -m unittest discover -s IRGS_Web/tests -v",
+      "run": 229,
+      "passed": 222,
+      "skipped": 7,
+      "failed": 0,
+      "skip_reason": "Windows PowerShell launcher checks on Linux"
+    },
+    {
+      "command": "node IRGS_Web/tests/test_gameplay_ui.js",
+      "passed": 113,
+      "failed": 0
+    },
+    {
+      "command": "node IRGS_Web/tests/test_responses.js",
+      "passed": 13,
+      "variants": 171,
+      "recipes": 8,
+      "provider_calls": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s tools/tests -v",
+      "passed": 1
+    },
+    {
+      "cwd": "Engine",
+      "command": "python3 -B tools/qualify_phase_capabilities.py --output /tmp/irgs-current-engine-phase.json",
+      "run": 28,
+      "passed": 28,
+      "skipped": 0
+    },
+    {
+      "cwd": "Catalog",
+      "command": "python3 -B -m unittest tools.tests.test_campaign_records tools.tests.test_historical_details tools.tests.test_historical_details_delivery tools.tests.test_solo_evaluation tools.tests.test_solo_proposal_contract tools.tests.test_scripted_responses tools.tests.test_scripted_response_expansion tools.tests.test_shared_response_contract tools.tests.test_integrated_response_contract -v",
+      "run": 112,
+      "passed": 112,
+      "skipped": 0,
+      "selectors": {
+        "IRGS_HISTORICAL_ENGINE_RUNTIME": "/workspace/IRGS-APP-WEB/Engine/IRGS_3_3/runtime",
+        "IRGS_HISTORICAL_APP_SOURCE": "/workspace/IRGS-APP-WEB/IRGS_Web",
+        "IRGS_CATALOG_ROOT": "/workspace/IRGS-APP-WEB/Catalog/IRGS_Catalog"
+      }
+    },
+    {
+      "command": "python3 -B tools/refresh_component_releases.py --component app",
+      "app_files": 57
+    },
+    {
+      "command": "python3 -B IRGS_Web/app_integrity.py",
+      "status": "verified",
+      "app_files": 57
+    },
+    {
+      "command": "python3 -B Engine/IRGS_3_3/runtime/irgs.py verify",
+      "status": "verified"
+    },
+    {
+      "command": "python3 -B Catalog/IRGS_Catalog/verify_catalog.py",
+      "status": "verified",
+      "catalog_files": 172
+    },
+    {
+      "command": "python3 -B tools/verify_components.py --component app",
+      "status": "verified",
+      "engine_commit": "0fdfc21f45510e3fd99fd6a8087cd3314d077267",
+      "catalog_commit": "4bd572843cebc94e7d043c3706d1be85249d6c10"
+    },
+    {
+      "command": "node tools/qualify_process_bridge.js /tmp/irgs-current-process-browser.json",
+      "result": {
+        "status": "passed",
+        "contexts": [
+          {
+            "kind": "observation",
+            "committed_phases": 5,
+            "start_selected_from_engine": true,
+            "elapsed_seconds": 3,
+            "prepare_reload_recovered": true,
+            "cancel_does_not_execute": true,
+            "lost_commit_ack_recovered": true,
+            "phase_identity_preserved": true,
+            "pause_resume": true,
+            "stale_navigation_fenced": true
+          },
+          {
+            "kind": "work",
+            "committed_phases": 6,
+            "start_selected_from_engine": true,
+            "elapsed_seconds": 3900,
+            "prepare_reload_recovered": true,
+            "cancel_does_not_execute": true,
+            "lost_commit_ack_recovered": true,
+            "phase_identity_preserved": true,
+            "pause_resume": true,
+            "stale_navigation_fenced": true
+          }
+        ],
+        "provider_configured": false,
+        "provider_calls": 0,
+        "browser_errors": 0,
+        "mobile_width": 390
+      }
+    },
+    {
+      "command": "node tools/qualify_shared_responses.js /tmp/irgs-current-shared-browser.json",
+      "result": {
+        "status": "passed",
+        "contexts": [
+          {
+            "adapter": "authored_scene",
+            "committed_actions": 4,
+            "elapsed_seconds": 43,
+            "zero_action_spans": [],
+            "local_drafts_non_submitting": true,
+            "lost_acknowledgement_recovered": true,
+            "stale_navigation_fenced": true,
+            "reload_preserves_draft": true
+          },
+          {
+            "adapter": "settlement",
+            "committed_actions": 5,
+            "elapsed_seconds": 3900,
+            "zero_action_spans": [
+              "found",
+              "build"
+            ],
+            "local_drafts_non_submitting": true,
+            "lost_acknowledgement_recovered": true,
+            "stale_navigation_fenced": true,
+            "reload_preserves_draft": true
+          }
+        ],
+        "common_response_schema": 1,
+        "catalog_library": "irgs-response-depot-v1",
+        "engine_library": "irgs-engine-routine-responses-v1",
+        "provider_configured": false,
+        "provider_calls": 0,
+        "browser_errors": 0,
+        "mobile_width": 390
+      }
+    },
+    {
+      "command": "git -c core.whitespace=cr-at-eol diff --check",
+      "status": "passed"
+    }
+  ],
+  "focused_http_cases_included_in_web_run": {
+    "test_process_bridge.py": [
+      "test_common_received_projection_uses_engine_capabilities_without_private_state",
+      "test_prepare_is_effect_free_stable_and_requires_explicit_acceptance",
+      "test_non_rise_observation_delivers_knowledge_only_after_completion",
+      "test_rise_work_pause_resume_preserves_project_and_finishes_once",
+      "test_cancel_keeps_committed_elapsed_and_original_intention",
+      "test_failed_save_retries_identical_typed_phase_without_partial_effect",
+      "test_late_durability_failure_recovers_already_saved_result",
+      "test_concurrent_duplicate_and_competing_phase_commit_only_once",
+      "test_restart_preserves_prepared_phase_and_accepted_result",
+      "test_identical_restore_invalidates_pending_phase_but_retains_original_result",
+      "test_branch_cannot_accept_parent_prepared_command_or_replay_parent_result",
+      "test_forged_fields_actor_source_and_start_are_rejected",
+      "test_engine_rejection_is_atomic_sanitized_and_durable",
+      "test_status_does_not_reveal_unreceived_live_work_progress",
+      "test_restore_of_earlier_bytes_does_not_reexecute_a_previously_accepted_phase",
+      "test_session_and_origin_authentication_guard_both_process_endpoints",
+      "test_result_recovery_does_not_acknowledge_while_directory_sync_is_unavailable"
+    ],
+    "test_phase_start.py": [
+      "test_start_options_are_effect_free_and_match_actual_engine_contract",
+      "test_both_real_start_handlers_schedule_once_without_elapsed_work_or_stock_consumption",
+      "test_hidden_permission_does_not_filter_menu_and_failed_start_is_atomic",
+      "test_failed_start_save_and_restart_keep_capability_parent_and_phase",
+      "test_client_cannot_select_kind_action_parent_source_or_foreign_capability",
+      "test_completed_observation_preserves_full_engine_and_catalog_text",
+      "test_old_private_pending_schema_upgrades_without_rewriting_typed_request"
+    ],
+    "test_current_catalog_consumers.py": [
+      "test_current_depot_and_followup_preserve_original_fixture_and_consumer_ids",
+      "test_all_nine_catalog_cases_execute_through_current_app_and_keep_exact_receipts",
+      "test_catalog_starters_are_non_submitting_and_actor_scoped_in_both_contexts",
+      "test_catalog_authored_start_reaches_real_engine_phase_and_local_presentation"
+    ]
+  },
+  "qualification": {
+    "contexts": [
+      "Engine authored observation fixture: three actual seconds",
+      "Catalog-selected authored quay observation: 20 actual seconds",
+      "Rise shelter work: 3600 worked seconds; 300 setup + 3600 work = 3900 total seconds"
+    ],
+    "catalog_native_cases": {
+      "quay": 7,
+      "quay_final_elapsed_seconds": 180,
+      "rise": 2,
+      "rise_final_elapsed_seconds": 300,
+      "source": "Original actor inputs and evaluator-only oracle, current App-side consumption"
+    },
+    "controls": [
+      "Engine options shown without private feasibility filtering",
+      "Prepare and review cancellation commit no Core effects",
+      "Start schedules work with zero committed elapsed work and no premature observations",
+      "Pause/resume and material boundaries remain Core-owned",
+      "No travel capability added to this selected contract"
+    ],
+    "recovery": [
+      "same immutable phase and parent on failed-save retry/restart",
+      "concurrent retry and competing phases",
+      "lost prepare and execution acknowledgments through reload",
+      "identical-byte restore and earlier snapshot fences",
+      "old private pending schema upgrade without rewriting typed JSON",
+      "original accepted receipts retain saved wording and provenance"
+    ],
+    "routine_provider_calls": 0,
+    "live_provider_calls": 0,
+    "browser_errors": 0,
+    "user_saves_used": false,
+    "new_world_rules": false,
+    "routine_zero_call_scope": "Engine phase checks, App phase/Catalog routine HTTP cases, local formatter and both browser qualifiers; optional assistance regressions use synthetic fake transports"
+  },
+  "historical_evidence": {
+    "original_consumer_ids_preserved": true,
+    "prior_app_bridge": "67411f8ef5214c8cb51af2b244590751e6ea20df",
+    "prior_record": "PROCESS_BRIDGE_VALIDATION.json",
+    "catalog_integrated_fixture_still_selects": {
+      "engine": "2f9476c6090878257d17cab3ad3a83a7ce18a5dc",
+      "app": "aae8a25656c890181e0aa569df2c716968ec3642",
+      "catalog_pin": "27fff8385d1c01fdfe9ad7254b7647e6bc12a01e"
+    },
+    "current_review_is_separate_from_original_fixture_qualification": true
+  },
+  "remaining_dependencies": [
+    {
+      "owner": "Engine",
+      "item": "Actor-safe communication participant/offer and received-source discovery is the next published Engine task; App communication controls remain separate."
+    },
+    {
+      "owner": "App",
+      "item": "Protected operator/launcher configuration for optional Solo service remains next independent bounded task."
+    },
+    {
+      "owner": "Catalog",
+      "item": "Separately versioned phase/communication evaluation can select the published App contract; existing fixtures and historical consumer IDs remain unchanged."
+    },
+    {
+      "owner": "IRGS Enviroment coordinator",
+      "item": "Review this exact App/Engine/Catalog selection and run fresh joined browser/package qualification; this App review does not import joined IRGS."
+    }
+  ],
+  "limits": [
+    "Named observation/work contexts only; travel stays native",
+    "No new simulation rule, universal duration, freeform/combat resolution, generated dialogue or full C2 completion",
+    "Full Engine runtime suite not reattributed as newly run; targeted 28 phase tests were executed",
+    "Distributed writers and live model quality remain outside this local host qualification"
+  ],
+  "files_sha256": {
+    "IRGS_Web/process_bridge.py": "2a1949156526714a8f24eda9779ef0ddca711050da835057f0e4d415e71ffc30",
+    "IRGS_Web/local_presentation.py": "b5d8b80401915d3b99c4c3d69b8e158819eda1a3188c11c43f1c85c3f4e11abc",
+    "IRGS_Web/server.py": "0b702fd13295f6d37f4fb814c972c7c528f7169fb8c979619395488e213f19d2",
+    "IRGS_Web/static/app.js": "c9c06a15993d80ec3fc43bc6606529cc3d2f7448cad3eccdbcb5c408a3b61a3b",
+    "IRGS_Web/static/processes.js": "b3ed8c4280928606ea05e9f49badb68acacd0c0cc12daafa484fe8113cac8c59",
+    "IRGS_Web/static/solo.js": "755a68b2933607ba8b401a94692686d0ebd85f0728fedf2ceef327a0a4051991",
+    "IRGS_Web/tests/test_process_bridge.py": "ea7a8bdc3541f8014b70ad9a0cce9715fa173df090268ac28927856a8c577555",
+    "IRGS_Web/tests/test_phase_start.py": "c4e75e6da56ce6d0e49fcb5633966ebbc8142ee0212cbc2025f2f98aab3aa3cb",
+    "IRGS_Web/tests/test_current_catalog_consumers.py": "34a775456890d89e393c5eeab15ff54df2e8c4890e570c16b39e492788787602",
+    "IRGS_Web/tests/test_historical_multipart.py": "97ee5c46f6ef7f0efd65c5c8e08eb083afbc4b501bf7e20352b6cb2f89241f9d",
+    "IRGS_Web/tests/test_gameplay_ui.js": "96e09ccc65502892c7261c464558f139a7cf2696d4da7b012e7d0dd5e9d529f8",
+    "IRGS_Web/release.json": "f0da81dfe9f0dd12257f7a5b18ab0a2df3fcc4881fc23de47e78c0cd8b8cb03b",
+    "IRGS_Web/PROCESS_BRIDGE.md": "1eabde02c959c85263060445de453e7df8dae6d5ece90d3ebda076cb859b1018",
+    "tools/qualify_process_bridge.js": "9f95742d23008db3ce36b8d9bf91c9316ab845df6d4f27fc0ada8f7e4fd603aa",
+    "tools/solo_browser_host.py": "d55415feb7da3ad44ca0c561695021054ed73abcdbe1cf4cb7100a3647ecea52",
+    "Engine/IRGS_3_3/runtime/phase_contract.py": "69710d90158febbf1c0cb6883e48923a7ecaf859a7748e0d11690a673e4891be",
+    "Engine/engine/PHASE_CAPABILITY_API.md": "7bb048ceea2ad149b8032d28904c25020695164008b121121f0038eee0c561a8",
+    "Catalog/IRGS_Catalog/evaluation/shared_responses_v1/manifest.json": "fc45e92af7c869924695450f4e995621779e4d4dae6058c72ebe416310ceded1",
+    "Catalog/IRGS_Catalog/evaluation/integrated_responses_v1/compatibility.json": "daf1afc0f3dd9c60aaf3da0f69e7477cf5ae7b78e7233c529a7abb307d8da78c",
+    "Catalog/IRGS_Catalog/responses/depot_v1/library.json": "8b397ae8cd72cf5ed59c330c0572e34922579726740edbeed9fca957044a6ae4"
+  }
+}

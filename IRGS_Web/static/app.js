@@ -460,7 +460,7 @@ function syncComposer(){
   $('#withdraw-action').hidden=!accepted||Boolean(transportPending);$('#withdraw-action').disabled=busy;
   document.querySelectorAll('[data-supported-action]').forEach(button=>button.disabled=busy||!player||!current?.actor_id||current.character_available===false||Boolean(accepted)||Boolean(transportPending));
   document.querySelectorAll('[data-rise-action]').forEach(button=>button.disabled=busy||!player||Boolean(accepted)||Boolean(transportPending));
-  document.querySelectorAll('[data-process-command]').forEach(button=>button.disabled=busy||!player||Boolean(accepted)||Boolean(transportPending)||Boolean(soloAttempt));
+  document.querySelectorAll('[data-process-command], [data-process-start]').forEach(button=>button.disabled=busy||!player||Boolean(accepted)||Boolean(transportPending)||Boolean(soloAttempt));
   $('#composer-help').textContent=preferences.submitKey==='enter'?'Enter to submit · Shift+Enter for a new line':'Enter for a new line · Ctrl/Cmd+Enter to submit';
   $('#draft-state').textContent=routineText($('#declaration').value?'draft.saved':'draft.empty');
   $('#action-state').textContent=routineText(busy?'request.busy':transportPending?'request.confirmation':accepted?(current.capabilities?.action_resolution?'request.pending':'request.unresolved'):!current?.actor_id?'actor.required':current.character_available===false?'actor.unavailable':'request.ready');

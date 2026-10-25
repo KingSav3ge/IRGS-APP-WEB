@@ -16,15 +16,15 @@ const fs=require('fs'),os=require('os'),path=require('path'),assert=require('ass
   await page.goto('http://127.0.0.1:'+host.port);
   for(const context of host.contexts){
    await page.locator('[data-view="story"]').first().click();await page.locator('#campaign-management').evaluate(node=>node.open=true);await page.locator('#campaign').selectOption(context.id);await page.waitForFunction(id=>current?.id===id&&!loadingCampaign,context.id);
-   assert.equal(await page.evaluate(()=>current.assistance.available),false);assert.equal(await page.locator('[data-command="start"]').count(),0);
+   assert.equal(await page.evaluate(()=>current.assistance.available),false);assert.equal(await page.evaluate(()=>current.process_control.engine_schema),'irgs-phase-capabilities-1');assert(await page.locator('[data-process-start]').count()>0);
    await page.setViewportSize({width:390,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));assert(await page.locator('.process-controls').isVisible());await page.setViewportSize({width:1280,height:900});
    const before=fs.readFileSync(context.save,'utf8');let revision=context.revision;
    // Lost prepare response is recovered after a real reload, without a new ID.
-   await page.locator('[data-command="pause"]').click();await page.waitForFunction(()=>!busy);assert.equal(fs.readFileSync(context.save,'utf8'),before);
+   const optionIndex=await page.evaluate(action=>current.process_control.start_options.findIndex(row=>row.action_id===action),context.name==='work'?'build':'look-quay');assert(optionIndex>=0);await page.locator('[data-process-start="'+optionIndex+'"]').click();await page.waitForFunction(()=>!busy);assert.equal(fs.readFileSync(context.save,'utf8'),before);
    const first=prepared.at(-1);await page.reload();await page.waitForFunction(id=>current?.id===id&&!loadingCampaign,context.id);await page.locator('#recover-process-review').click();await page.locator('#action-review-dialog[open]').waitFor();assert.equal(await page.locator('#action-review-intent').inputValue(),first.intention);
    await page.locator('#cancel-reviewed-action').click();assert.equal(executed.length,evidence.reduce((sum,item)=>sum+item.committed_phases,0));assert.equal(fs.readFileSync(context.save,'utf8'),before);
    await page.locator('#recover-process-review').click();await page.locator('#action-review-dialog[open]').waitFor();await page.locator('#confirm-reviewed-action').click();revision++;await page.waitForFunction(revision=>current?.revision===revision&&!busy,revision);assert.equal(executed.at(-1).process.phase_id,first.phase_id);
-   for(const [command,seconds] of context.commands.slice(1)){
+   for(const [command,seconds] of context.commands){
     if(seconds!==null)await page.locator('[data-process-seconds]').fill(String(seconds));
     await page.locator('[data-command="'+command+'"]').click();await page.locator('#action-review-dialog[open]').waitFor();
     const checkpoint=fs.readFileSync(context.save,'utf8'),phase=prepared.at(-1);assert.equal(phase.command,command);if(seconds!==null)assert.equal(phase.details.seconds,seconds);assert.equal(fs.readFileSync(context.save,'utf8'),checkpoint);
@@ -34,7 +34,7 @@ const fs=require('fs'),os=require('os'),path=require('path'),assert=require('ass
    }
    const save=JSON.parse(fs.readFileSync(context.save));assert.equal(save.state.elapsed_time.seconds,context.elapsed);assert.equal(save.revision,revision);assert.equal(executed.at(-1).process.status,'completed');assert.equal(await page.locator('[data-command="advance"]').count(),0);
    const committed=fs.readFileSync(context.save,'utf8');await page.locator('[data-command="inspect"]').click();await page.locator('#action-review-dialog[open]').waitFor();await page.evaluate(()=>location.hash='#/world');await page.waitForFunction(()=>view==='world');assert.equal(await page.locator('#action-review-dialog').evaluate(node=>node.open),false);assert.equal(fs.readFileSync(context.save,'utf8'),committed);
-   evidence.push({kind:context.name,committed_phases:context.commands.length,elapsed_seconds:context.elapsed,prepare_reload_recovered:true,cancel_does_not_execute:true,lost_commit_ack_recovered:true,phase_identity_preserved:true,pause_resume:true,stale_navigation_fenced:true});
+   evidence.push({kind:context.name,committed_phases:context.commands.length+1,start_selected_from_engine:true,elapsed_seconds:context.elapsed,prepare_reload_recovered:true,cancel_does_not_execute:true,lost_commit_ack_recovered:true,phase_identity_preserved:true,pause_resume:true,stale_navigation_fenced:true});
   }
   await page.setViewportSize({width:390,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));assert.equal(lostPrepare.size,2);assert.equal(lostExecute.size,2);assert(lookups.length>=2);assert.equal(providerCalls,0);assert.deepEqual(errors,[]);assert(!JSON.stringify([prepared,executed,await page.content()]).includes('PRIVATE_EVALUATOR_MARKER'));
   const result={status:'passed',contexts:evidence,provider_configured:false,provider_calls:providerCalls,browser_errors:errors.length,mobile_width:390};if(process.argv[2])fs.writeFileSync(process.argv[2],JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

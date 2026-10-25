@@ -1,7 +1,7 @@
 """Local host of Engine's typed process API, with no inference or new rules.
 
-Only already received processes are offered. Start/capability discovery belongs
-to Engine; appearance, private rule scans and browser commands cannot select it.
+Engine selects attemptable starts and received commands. Appearance, private
+rule scans and browser-supplied structured commands cannot select capabilities.
 Technical requests/restore identities live outside the authoritative world.
 """
 from contextlib import contextmanager
@@ -17,6 +17,7 @@ from assistance import sync_parent
 from core_world import CoreWorld
 from gameplay_views import controlled_actor, pending_declaration, safe_result
 from irgs_reference import digest
+import phase_contract as phases
 
 
 PUBLIC_PHASE = ('process_id', 'phase_id', 'phase_index', 'actor', 'kind', 'status',
@@ -24,22 +25,6 @@ PUBLIC_PHASE = ('process_id', 'phase_id', 'phase_index', 'actor', 'kind', 'statu
                 'at', 'source_ref', 'elapsed_seconds', 'elapsed_total',
                 'worked_seconds', 'remaining_seconds')
 
-
-def commands(received):
-    """Published command candidates, never a promise of current feasibility."""
-    state = received['status']
-    if state == 'cancelled':
-        return []
-    result = ['inspect']
-    if state == 'active':
-        result += ['advance', 'pause']
-    elif state == 'paused':
-        result += ['resume']
-    elif state == 'held' and received['kind'] == 'work':
-        result += ['pause']
-    if state in ('active', 'paused', 'held') and received['kind'] != 'travel':
-        result += ['cancel']
-    return result
 
 
 class ProcessService:
@@ -71,7 +56,9 @@ class ProcessService:
             db.execute('CREATE TABLE IF NOT EXISTS restores (branch TEXT PRIMARY KEY, identity TEXT NOT NULL)')
             db.execute('CREATE TABLE IF NOT EXISTS requests (branch TEXT, id TEXT, actor TEXT, '
                        'signature TEXT, request TEXT, revision INTEGER, token TEXT, status TEXT, '
-                       'PRIMARY KEY (branch, id))')
+                       'capability TEXT, PRIMARY KEY (branch, id))')
+            if 'capability' not in {row[1] for row in db.execute('PRAGMA table_info(requests)')}:
+                db.execute('ALTER TABLE requests ADD COLUMN capability TEXT')
             with db:
                 yield db
         except sqlite3.Error:
@@ -96,22 +83,23 @@ class ProcessService:
         return hmac.new(scope.restore_id.encode(), message.encode(), hashlib.sha256).hexdigest()
 
     def view(self, record, actor):
-        result = {'schema_version': 1, 'start_available': False, 'processes': [], 'view_token': None}
+        result = {'schema_version': 1, 'engine_schema': phases.SCHEMA_VERSION,
+                  'start_available': False, 'start_options': [], 'processes': [], 'view_token': None}
         if not actor:
             return result
-        from process_runtime import received_status
-        from solo_provider import CapabilityUnavailable
-        world = CoreWorld(state=record['state'])
-        for key, process in world.s.get('processes', {}).items():
-            if process['actor'] != actor:
-                continue
-            try:
-                received = received_status(world, actor, key)
-            except CapabilityUnavailable:
-                continue
+        scope = self.scope(record)
+        try:
+            packet = phases.actor_view(CoreWorld(state=record['state']), actor,
+                branch_id=scope.branch_id, restore_id=scope.restore_id)
+        except phases.PhaseUnavailable:
+            return result
+        result['start_options'] = packet['start_options']
+        result['start_available'] = bool(packet['start_options'])
+        for received in packet['processes']:
             result['processes'].append({'received': {k: copy.deepcopy(received[k]) for k in PUBLIC_PHASE},
-                                        'commands': commands(received)})
-        if result['processes']:
+                'commands': [item['command'] for item in received['supported_commands']],
+                'status_basis': received['status_basis'], 'live_status_probed': received['live_status_probed']})
+        if result['processes'] or result['start_options']:
             result['view_token'] = self.token(record)
         return result
 
@@ -136,15 +124,19 @@ class ProcessService:
     def public_request(self, row):
         from process_runtime import ProcessRequest
         request = ProcessRequest.from_json(row['request'])
-        return {'request_id': row['id'], 'campaign_id': row['branch'], 'actor': request.actor,
+        public = {'request_id': row['id'], 'campaign_id': row['branch'], 'actor': request.actor,
                 'revision': row['revision'], 'view_token': row['token'], 'status': row['status'],
                 'process_id': request.process_id, 'phase_id': request.phase_id,
                 'phase_index': request.phase_index, 'command': request.command,
                 'details': json.loads(request.details_json), 'intention': request.intention}
+        if row['capability'] is not None:
+            public['capability_id'] = row['capability']
+        return public
 
     def prepare(self, data):
-        fields = {'id', 'actor', 'revision', 'view_token', 'request_id', 'process_id',
-                  'command', 'details', 'intention'}
+        starting = data.get('command') == 'start'
+        fields = {'id', 'actor', 'revision', 'view_token', 'request_id', 'command', 'intention'}
+        fields |= {'capability_id'} if starting else {'process_id', 'details'}
         record, actor, key = self.binding(data, fields)
         signature = digest(data)
         prior = self.row(record['id'], key)
@@ -159,29 +151,25 @@ class ProcessService:
             raise ValueError('This process view changed. Reload before reviewing another phase.')
         if pending_declaration(record, actor):
             raise ValueError('Withdraw the unresolved declaration before reviewing a process command')
-        available = next((p for p in self.view(record, actor)['processes']
-                          if p['received']['process_id'] == data['process_id']), None)
-        if not available or data['command'] not in available['commands']:
-            raise ValueError('This process command is not offered by the received record')
-        details = data['details']
-        if (not isinstance(details, dict) or
-                (data['command'] == 'advance' and (set(details) != {'seconds'} or
-                 type(details['seconds']) is not int or not 0 < details['seconds'] <= 9007199254740991)) or
-                (data['command'] != 'advance' and details)):
-            raise ValueError('Advance requires an explicit positive whole number of seconds; other commands take no details')
-        from process_runtime import prepare
-        from solo_provider import CapabilityUnavailable
         scope = self.scope(record)
+        arguments = {'actor': actor, 'phase_id': 'web-' + secrets.token_hex(16),
+            'intention': data['intention'], 'source_ref': 'explicit-player-process:' + record['id'] + ':' + key,
+            'branch_id': record['id'], 'restore_id': scope.restore_id}
         try:
-            request = prepare(CoreWorld(state=record['state']), phase_id='web-' + secrets.token_hex(16),
-                process_id=data['process_id'], actor=actor, command=data['command'], details=details,
-                intention=data['intention'], source_ref='explicit-player-process:' + record['id'] + ':' + key,
-                branch_id=record['id'], restore_id=scope.restore_id)
-        except CapabilityUnavailable:
-            raise ValueError('This process request could not be prepared') from None
+            world = CoreWorld(state=record['state'])
+            if starting:
+                request = phases.prepare_start(world, capability_id=data['capability_id'],
+                    process_id='web-parent-' + secrets.token_hex(16), **arguments)
+            else:
+                request = phases.prepare_command(world, process_id=data['process_id'],
+                    command=data['command'], details=data['details'], **arguments)
+        except phases.PhaseUnavailable:
+            raise ValueError('This process request could not be prepared under the selected Engine capabilities') from None
         with self.database() as db:
-            db.execute('INSERT INTO requests VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-                (record['id'], key, actor, signature, request.to_json(), record['revision'], data['view_token'], 'prepared'))
+            db.execute('INSERT INTO requests (branch, id, actor, signature, request, revision, token, status, capability) '
+                       'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                (record['id'], key, actor, signature, request.to_json(), record['revision'], data['view_token'],
+                 'prepared', data.get('capability_id')))
         return self.public_request(self.row(record['id'], key))
 
     def status(self, data):
@@ -218,8 +206,7 @@ class ProcessService:
         if (row['revision'] != record['revision'] or row['token'] != self.token(record)
                 or pending_declaration(record, actor)):
             raise ValueError('This prepared phase is stale. Reload and review a fresh command.')
-        from process_runtime import ProcessRequest, execute
-        from solo_provider import CapabilityUnavailable
+        from process_runtime import ProcessRequest
         request = ProcessRequest.from_json(row['request'])
         world = CoreWorld(state=record['state'])
         committed = None
@@ -239,8 +226,14 @@ class ProcessService:
                 'elapsed_time': {'axis': candidate_world.s['elapsed_time']['axis'],
                     'duration_seconds': received['elapsed_seconds'], 'total_seconds': received['elapsed_total']}}
             from local_presentation import receipt_presentation
+            receipt = received['receipt']
+            if received['actor'] != actor or receipt['actor_id'] != actor or receipt['event_id'] != event:
+                raise ValueError('The Engine phase receipt does not match the accepted actor and phase')
+            # The phase API binds presentation through its public receipt; its
+            # neutral formatter omits actor_id. Normalize only this trusted DTO.
+            prepared_text = {**received['presentation'], 'actor_id': receipt['actor_id']}
             result['presentation'] = receipt_presentation(candidate_world, result,
-                                                        engine_presentation=received.get('presentation'))
+                                                        engine_presentation=prepared_text)
             current.setdefault('gameplay_requests', {})[key] = {'campaign_id': record['id'], 'actor': actor,
                 'kind': 'process_phase', 'status': result['status'], 'payload_digest': row['signature'], 'result': result}
             # The candidate world AND exact received result share one fsynced
@@ -249,8 +242,8 @@ class ProcessService:
             committed = result
 
         try:
-            execute(world, request, current_scope=self.scope(record), persist=persist, explicitly_accepted=True)
-        except CapabilityUnavailable:
+            phases.execute(world, request, current_scope=self.scope(record), persist=persist, explicitly_accepted=True)
+        except phases.PhaseUnavailable:
             with self.database() as db:
                 db.execute('UPDATE requests SET status=? WHERE branch=? AND id=?', ('rejected', record['id'], key))
             raise ValueError('This phase could not be accepted under the current Engine rules. No phase was committed.') from None

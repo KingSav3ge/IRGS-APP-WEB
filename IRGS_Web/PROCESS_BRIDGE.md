@@ -1,12 +1,19 @@
 # Received process controls
 
-The common Story controls continue **existing** Engine processes. Qualified
-contexts are the non-Rise authored observation and Rise shelter work. The host
-uses the pinned Engine's `process_runtime.prepare`, `ProcessRequest` JSON,
-`execute`, `received_status` and `WorldScope` contracts. It supplies no scheduler,
+The common Story controls start and continue Engine-selected processes. Qualified
+contexts are non-Rise authored observation and Rise shelter work. The host consumes
+Engine `phase_contract` schema `irgs-phase-capabilities-1`: `actor_view`,
+`prepare_start`, `prepare_command` and `execute`, with native `ProcessRequest` JSON
+and `WorldScope` identities. It supplies no scheduler,
 duration, work rate, stock, knowledge rule or provider dispatch.
 
 ## Player behavior
+
+Engine-selected **Begin** options schedule an explicit observation or work attempt.
+They are not feasibility findings: private stock, permission and worker changes
+do not pick a winning menu. A start commits no elapsed work or premature knowledge;
+actual authorization and reservations remain with Core. Browser-supplied kind,
+action, parent, rule and source fields are rejected.
 
 Story shows the selected actor's last received phase, original intention, status,
 worked seconds and remaining seconds. This is received progress, not a live feed
@@ -39,12 +46,15 @@ source references and serialized typed commands
 are rejected. The server owns the source reference, phase ID and typed scope.
 
 - `GET /api/playthrough/{id}?actor_id=...` adds `process_control` schema 1:
-  actor-filtered received phases, published command candidates, an opaque
-  `view_token` and `start_available: false`. Raw world hashes and restore IDs are
+  `engine_schema`, actor-safe `start_options`, actor-filtered received phases,
+  Engine-selected command candidates, an opaque `view_token` and `start_available`
+  derived from the published options. Raw world hashes and restore IDs are
   never sent to the player. No process capability is selected by a theme.
 - `POST /api/process/prepare` accepts exactly `id`, `actor`, `revision`,
-  `view_token`, `request_id`, `process_id`, `command`, `details`, `intention`.
-  Advance takes only `details.seconds`; other commands take empty details.
+  `view_token`, `request_id`, `process_id`, `command`, `details`, `intention` for
+  continuation. For `command: start`, replace `process_id` and `details` with the
+  chosen `capability_id`; the host creates the parent/phase identities and Engine
+  binds the actual selected kind/action. Advance takes only `details.seconds`; other commands take empty details.
   The actor, revision and current opaque guard must match. The response contains
   the immutable public command, identity and review status. Retrying identical
   fields returns the original preparation; identity reuse with changed fields
@@ -61,8 +71,10 @@ Private requests and restore identities persist in `saves/.host/processes.sqlite
 with SQLite full synchronization and restricted creation permissions. This is
 excluded runtime metadata, outside Core world records and nonrecursive campaign
 listings; it is not shipped, exported as player context or a second world owner.
-It contains no provider credential or inference ledger. Each supported restore
-rotates its identity before renaming the save, even for identical bytes. It also
+It contains no provider credential or inference ledger. Its additive nullable
+capability column upgrades old private request stores without rewriting native
+typed requests, restore identities or original accepted results. Each supported
+restore rotates its identity before renaming the save, even for identical bytes. It also
 preserves the optional assistance service's separate restore hook. A new branch
 gets its own identity. Direct external file replacement/import is not supported.
 
@@ -82,23 +94,34 @@ Zero elapsed phases remain zero. Physical projects, reservations, stocks and
 material boundaries remain in Engine's existing records. Old response records
 and the verified-byte Catalog intake are preserved.
 
-## Dependency and qualification boundary
+## Current selections and qualification boundary
 
-Engine `2f9476c6090878257d17cab3ad3a83a7ce18a5dc` publishes typed process
-execution and received status, but no player-safe **start capability discovery**
-contract. Before the App can offer starts, Engine must publish actor-authorized,
-sourced kind/action choices tied to the actual selected elapsed binding and
-scope, with command/detail semantics that do not disclose hidden feasibility.
-The App must not infer those choices by scanning private rule dictionaries or
-mapping genre/theme names. No start endpoint or button is delivered here.
-Tests initialize processes explicitly through the real typed Engine API as
-trusted synthetic fixture setup; this does not qualify a player start flow.
+The App-side compatibility review selects Engine
+`0fdfc21f45510e3fd99fd6a8087cd3314d077267` and Catalog
+`4bd572843cebc94e7d043c3706d1be85249d6c10`, fetched from their development mains.
+Engine's phase capability API resolves the discovery dependency recorded in the
+first App delivery `67411f8ef5214c8cb51af2b244590751e6ea20df`. No App private-rule
+scan or theme-to-operation mapping supplies a start or command.
 
-Travel retains its published Engine rules (including unavailable cancellation),
-but the new App qualification names observation and work only. Communication
-controls, broader capability discovery, protected operator/launcher configuration
-and fresh coordinator joined qualification remain separate work. The previously
-qualified shared-response integration remains completed.
+New phase results adapt the actor/event-bound Engine shared receipt and neutral
+presentation to the existing App envelope, then compose its complete exact text
+through the verified Catalog depot. Existing accepted presentations retain their
+original saved text and library identities. The independently authored Catalog
+compatibility records retain their historical exact consumer IDs; this current
+App pair is qualified separately in [current evidence](../CURRENT_COMPONENTS_VALIDATION.json).
+
+Chromium starts both actual processes through the App controls before continuing
+them. Additional HTTP checks use Catalog's original actor inputs and private
+oracle only as synthetic test material: all nine native cases and a real selected
+20-second quay observation run against this current pair. The smaller Engine
+fixture's three-second observation remains a separate regression context.
+No duration is inferred from a theme or generalized across those contexts.
+
+Travel remains on Engine's native API and is not offered by the selected phase
+contract. Communication participant/source discovery is the next Engine task;
+App communication controls, protected operator/launcher configuration and fresh
+coordinator joined qualification remain separate. The previously qualified
+shared-response integration remains completed. No old fixture or evidence is repinned.
 
 Run the ordinary guide checks plus:
 

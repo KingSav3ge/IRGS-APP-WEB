@@ -396,7 +396,7 @@ async function test(name,fn){await fn();results.push('PASS '+name);}
  });
 
  const processView=()=>({...equipmentView(),process_control:{schema_version:1,start_available:false,view_token:'opaque-current',processes:[{received:{process_id:'p',phase_id:'old-phase',kind:'observation',status:'active',summary:'Scheduled, not complete.',original_intention:'Observe the quay.',worked_seconds:1,remaining_seconds:11},commands:['inspect','advance','pause','cancel']}]}});
- const processPacket=body=>({status:'prepared',request_id:body.request_id,revision:body.revision,view_token:body.view_token,actor:body.actor,process_id:body.process_id,command:body.command,details:body.details,intention:body.intention,phase_id:'new-phase'});
+ const processPacket=body=>({status:'prepared',request_id:body.request_id,revision:body.revision,view_token:body.view_token,actor:body.actor,process_id:body.process_id||'prepared-parent',capability_id:body.capability_id,command:body.command,details:body.details,intention:body.intention,phase_id:'new-phase'});
  await test('Process controls render received progress and require explicit seconds without submitting',async()=>{
   const h=environment();h.run('current='+JSON.stringify(processView())+";$('#campaign').value='A';renderStory();");assert(h.elements.get('content').innerHTML.includes('Last received progress'));assert(h.elements.get('content').innerHTML.includes('1 seconds worked'));assert.equal(h.calls.length,0);assert(!h.elements.get('content').innerHTML.includes('data-command="start"'));
   await h.context.document.querySelectorAll('[data-process-command]').find(b=>b.dataset.command==='advance').click();assert.equal(h.calls.length,0);assert(h.elements.get('notice').textContent.includes('positive whole number'));
@@ -412,6 +412,17 @@ async function test(name,fn){await fn();results.push('PASS '+name);}
  });
  await test('Continuing process receipt labels its phase without claiming the whole process completed',async()=>{
   const h=environment(),p=processView();p.completed_actions=[{kind:'process_phase',actor:'PC',status:'completed_successfully',process:{status:'active'},outcome:{summary:'Next committed boundary.'}}];h.run('current='+JSON.stringify(p)+';');const markup=h.run('latestOutcomeMarkup()');assert(markup.includes('YOUR LAST PROCESS PHASE'));assert(markup.includes('Active'));assert(!markup.includes('YOUR LAST ACTION · COMPLETED'));
+ });
+
+ const phaseStartView=()=>({...processView(),process_control:{...processView().process_control,start_options:[{capability_id:'engine-selected-observation',kind:'observation',action_id:'observe',title:'Observe this scene',availability:'attemptable',requires_explicit_submission:true}],processes:[]}});
+ await test('Engine start options render alongside ordinary editable responses without submitting',async()=>{
+  const h=environment();h.run('current='+JSON.stringify(phaseStartView())+";$('#campaign').value='A';renderStory();");assert.equal(h.context.document.querySelectorAll('[data-process-start]').length,1);assert(h.elements.get('content').innerHTML.includes('Starting schedules a process'));assert.equal(h.calls.length,0);assert(h.elements.get('declaration'));
+ });
+ await test('Start review sends only the Engine capability and keeps parent selection on the server',async()=>{
+  const h=environment();h.setFetch((p,r)=>h.reply(processPacket(JSON.parse(r.body))));h.run('current='+JSON.stringify(phaseStartView())+";$('#campaign').value='A';renderStory();");await h.context.document.querySelectorAll('[data-process-start]')[0].click();const body=h.calls[0].body;assert.equal(body.command,'start');assert.equal(body.capability_id,'engine-selected-observation');for(const field of ['process_id','details','source_ref','scope'])assert.equal(body[field],undefined);assert(h.elements.get('action-review-dialog').open);assert.equal(h.calls.filter(c=>c.path==='/api/process/execute').length,0);await h.elements.get('cancel-reviewed-action').click();assert.equal(h.calls.length,1);
+ });
+ await test('A removed Engine start capability invalidates review without executing',async()=>{
+  const h=environment();h.setFetch((p,r)=>h.reply(processPacket(JSON.parse(r.body))));h.run('current='+JSON.stringify(phaseStartView())+";$('#campaign').value='A';renderStory();");await h.context.document.querySelectorAll('[data-process-start]')[0].click();h.run('current.process_control.start_options=[];');await h.elements.get('confirm-reviewed-action').click();assert.equal(h.calls.filter(c=>c.path==='/api/process/execute').length,0);assert(!h.elements.get('action-review-dialog').open);
  });
  console.log(results.join('\n')+'\n'+results.filter(result=>result.startsWith('PASS ')).length+' frontend checks passed. No real save or live server was used.');
 })().catch(error=>{console.error(results.join('\n'));console.error(error);process.exitCode=1;});

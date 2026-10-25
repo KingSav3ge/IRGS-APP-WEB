@@ -43,19 +43,22 @@ independent content/schema versions and historical evidence. See
 [shared scope](IRGS_SYSTEMS_SCOPE.md), [continuation](CHAT_CONTINUATION.md) and
 [the work order](COORDINATOR_WORK_ORDER.md).
 
-## Latest App increment
+## Latest App development-pair review
 
-The received-process bridge is implemented and qualified in this App delivery.
-Read [its contract](IRGS_Web/PROCESS_BRIDGE.md),
-[validation](PROCESS_BRIDGE_VALIDATION.json) and the latest coordinator report.
-It continues existing non-Rise authored observation and Rise shelter work through
-server-owned typed preparation, explicit review/acceptance, atomic persistence
-and durable receipt recovery. Starts remain unavailable: the pinned Engine has
-no actor-safe process-start discovery contract. Do not mistake synthetic typed
-fixture initialization for a shipped player start flow or redo this bridge.
-Exact Engine/Catalog pins above remain selected. Coordinator review and new
-joined qualification apply to this increment; the shared-response baseline is
-already integrated.
+The App now starts and continues Engine-selected observation/work through the
+public phase capability API. The earlier discovery dependency is resolved.
+Current selected development commits are Engine
+`0fdfc21f45510e3fd99fd6a8087cd3314d077267` and Catalog
+`4bd572843cebc94e7d043c3706d1be85249d6c10`, qualified from App main
+`67411f8ef5214c8cb51af2b244590751e6ea20df` plus this App increment.
+Read [the process contract](IRGS_Web/PROCESS_BRIDGE.md),
+[current evidence](CURRENT_COMPONENTS_VALIDATION.json) and the latest coordinator
+report. Preserve typed preparation, explicit review, atomic candidate/result
+saves, native pending-store upgrades and original receipt recovery. Catalog's
+historical compatibility records and [first bridge evidence](PROCESS_BRIDGE_VALIDATION.json)
+retain their original exact selections. No old manifest is repinned.
+Coordinator review/new joined qualification applies to this App-selected pair;
+the prior shared-response baseline is already integrated.
 
 ## Next bounded task
 
@@ -66,12 +69,10 @@ validate a concrete configuration without live dispatch, test missing/invalid
 configuration and startup/reuse behavior, and preserve local loopback hosting.
 Live inference still requires its separately configured authorization.
 
-The process start flow waits on an Engine-owned, actor-safe discovery contract:
-sourced kind/action choices bound to actual selected elapsed rules and scope,
-with published command/detail semantics and no hidden-feasibility oracle. Do not
-infer start controls from private rule dictionaries or theme labels. Continue
-independent App work while that exact dependency is pending. Communication/source
-controls and additional process contexts require their own qualification.
+Engine start discovery is delivered and consumed. Communication/source controls
+wait for the actor-safe participant and received-source contract listed as
+Engine's next task. Keep travel on its native API and qualify additional process
+contexts separately. Continue the independent operator/launcher task above.
 
 ## Preserve and finish
 

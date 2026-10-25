@@ -1,3 +1,62 @@
+# App-side current development compatibility — 25 October 2026
+
+Pulled App main at `67411f8ef5214c8cb51af2b244590751e6ea20df` and fetched current
+Engine/Catalog development mains. The selected App dependencies are now Engine
+`0fdfc21f45510e3fd99fd6a8087cd3314d077267` and Catalog
+`4bd572843cebc94e7d043c3706d1be85249d6c10`. Both upstream source checkouts remain
+clean, and their remote main IDs were confirmed. Only IRGS-APP-WEB is published;
+the delivery response identifies its full containing commit.
+
+Engine's `irgs-phase-capabilities-1` contract resolves the previous start-discovery
+dependency. Common Begin/continuation controls now use its actor-safe published
+options, native typed preparation and public execution/receipt contract. The host
+owns parent/phase IDs, authenticates actual actor/branch/restore/revision, retains
+explicit acceptance and atomically persists candidate state plus original result.
+The public phase receipt binds actor/event before the neutral Engine presentation
+is composed through Catalog's verified-byte depot. Old accepted results and native
+pending requests survive; the private-store upgrade does not rewrite their JSON.
+
+Current App-side tests load Catalog's unchanged original actor inputs/oracle,
+execute all nine native cases through real Engine handlers and qualify a selected
+20-second quay observation through the new App start path. This is separate
+current-pair evidence: the Catalog follow-up retains its exact historical
+consumer identifiers and every prior manifest/validation record stays unchanged.
+
+Executed results:
+
+- Web: **229 run, 222 passed, seven Windows PowerShell skips, zero failures**.
+  Includes 17 continuation, seven new start and four current Catalog HTTP cases.
+- Interface: **113 passed**; formatter: **13 passed** (171 variants/eight recipes);
+  App tooling: **one passed**.
+- Engine selected phase API: **28 passed, zero skips**. Catalog source/archive/
+  contract suite: **112 passed, zero skips**, with explicit current reader paths.
+- Chromium starts and continues observation (**five phases / three seconds**) and
+  Rise work (**six phases / 3,900 total seconds**, including 300 setup seconds),
+  preserving cancel/review, lost prepare/commit replies, reload, phase identity,
+  pause/resume, stale navigation and 390px Story layout.
+- Shared Chromium regression still passes four non-Rise actions / 43 seconds and
+  five Rise actions / 3,900 seconds, including actual zero spans and failed outcome.
+  Both browser runs have **zero provider calls and zero browser errors**.
+- Committed dependency/source verification passed: 57 App files, 172 Catalog files and selected Engine integrity.
+  No Engine/Catalog source was edited or refreshed. Diff checks passed. Tests use
+  temporary synthetic worlds; no user save, private external fixture or live AI.
+
+The historical-reference regression now inventories nested files so its original
+unchanged-data assertion includes the process metadata database as well as the
+campaign. See [current evidence](CURRENT_COMPONENTS_VALIDATION.json) and
+[process contract](IRGS_Web/PROCESS_BRIDGE.md) for cases, commands, actual imported
+paths and exact source hashes. Earlier reports remain attributed to their own
+selections; the original shared-response integration remains completed.
+
+Remaining: protected operator/launcher configuration is the next independent
+App task; communication controls wait for Engine's participant/received-source
+contract. Catalog may add a separate phase evaluation against this published
+App contract. Coordinator review/fresh joined qualification remains separate.
+No travel adapter, universal time rule, general freeform/combat or full C2
+completion is claimed by this App-side review.
+
+---
+
 # Received-process App bridge — 25 October 2026
 
 Completed the next bounded continuation task from App main
