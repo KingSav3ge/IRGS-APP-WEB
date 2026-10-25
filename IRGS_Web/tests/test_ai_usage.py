@@ -116,6 +116,35 @@ class AIUsageTests(unittest.TestCase):
         self.assertEqual(self.transport.inputs, [])
         self.config = original
 
+    def test_reviewed_charges_match_engine_admission_after_restart_without_mutation(self):
+        from inference_accounting import FinalCharge, budget_status, reconcile
+        from solo_provider import AttemptLedger
+        ledger = AttemptLedger(self.root / 'technical/attempts.sqlite', budget_units=100, max_inflight=2)
+        original_save = self.store.path(self.key).read_bytes()
+        for index, charge in enumerate((3, 140)):
+            body = self.proposal()
+            self.assertEqual(self.http('/api/ai/proposal', body)[0], 200)
+            reconcile(ledger, FinalCharge(body['request_id'], 'review-' + str(index), charge,
+                self.route.price_revision, 'PRIVATE_BILLING_EVIDENCE', 'a' * 64,
+                'PRIVATE_OPERATOR_AUTHORITY', final=True), authorize=lambda value: True)
+            self.stop()
+            self.start()
+            expected = budget_status(ledger, authorize=lambda: True)
+            with ledger.connection() as db:
+                before = tuple(db.iterdump())
+            report = self.usage()[1]
+            self.assertEqual(report['summary']['remaining_units'], expected['available_units'])
+            self.assertEqual(report['summary']['held_units'], expected['held_units'])
+            self.assertEqual(report['summary']['known_charged_units'], expected['known_charged_units'])
+            self.assertEqual(report['summary']['overrun_units'], expected['overrun_units'])
+            self.assertTrue(all(row['billing_status'] == 'operator_reconciled' for row in report['attempts']))
+            self.assertNotIn('PRIVATE_BILLING_EVIDENCE', json.dumps(report))
+            self.assertNotIn('PRIVATE_OPERATOR_AUTHORITY', json.dumps(report))
+            with ledger.connection() as db:
+                self.assertEqual(tuple(db.iterdump()), before)
+            self.assertEqual(self.store.path(self.key).read_bytes(), original_save)
+            self.assertEqual(len(self.transport.inputs), index + 1)
+
     def test_ledger_read_failure_is_retryable_without_exposing_private_error_text(self):
         with patch('ai_usage.usage_snapshot', side_effect=sqlite3.OperationalError('PRIVATE_STORAGE_FAILURE')):
             code, result = self.usage()

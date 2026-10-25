@@ -1,3 +1,26 @@
+# Coordinator compatibility correction — shared IRGS 3.4.0 update
+
+Selected the delivered Engine continuation/communication/offline response runtime
+and campaign-independent Catalog depot through exact submodule pointers.
+Shared-system priorities are now in `IRGS_SYSTEMS_SCOPE.md` and the work order.
+
+The new Engine supports operator-reviewed final charge reconciliation. The old
+App usage view still subtracted original reservations: a reviewed charge of 3
+against a reservation of 10 showed 90 available units while Engine admitted
+against 97. The protected read-only projection now uses the same held-plus-reviewed
+charge calculation, shows explicit overruns and preserves unknown billing states.
+It exposes no billing evidence, authority references, campaign text or credentials.
+Inspection cannot reconcile, refund, dispatch or change a save. Final charges are
+labelled operator-reviewed; provider bills are not verified by the App.
+
+Eight real-ledger HTTP checks passed, including a new regression that compares
+App totals with actual Engine admission accounting after host restart, exercises
+a reviewed overrun, verifies ledger/save immutability and zero inspection calls.
+Full joined, interface, browser and package qualification belongs to the
+coordinator's exact-set review; prior component results below retain their scope.
+
+---
+
 # App reusable routine responses — 24 October 2026
 
 User priority: an App-owned reusable scripted layer alongside the independent

@@ -37,17 +37,24 @@ def usage_snapshot(ledger, *, limit=25):
         # One read transaction keeps aggregate totals and recent rows consistent.
         db.execute('BEGIN')
         budget, max_inflight = db.execute('SELECT budget,inflight FROM limits WHERE id=1').fetchone()
-        count, reserved, active, unfinished = db.execute(
-            'SELECT COUNT(*),COALESCE(SUM(reserved),0),'
-            'COALESCE(SUM(CASE WHEN finished=0 THEN 1 ELSE 0 END),0),'
-            "COALESCE(SUM(CASE WHEN status='processing' THEN 1 ELSE 0 END),0) FROM attempts").fetchone()
-        rows = db.execute('SELECT id,route,reserved,status,finished,requested_identity,reported_identity,usage,'
-            'started,completed,accepted IS NOT NULL,json_extract(result,\'$.code\'),'
-            'transport_state,dispatch_started FROM attempts ORDER BY started DESC,id DESC LIMIT ?', (limit,)).fetchall()
+        totals = db.execute('SELECT a.reserved,a.finished,a.status,r.charged_units FROM attempts a'
+            ' LEFT JOIN reconciliations r ON a.id=r.attempt_id').fetchall()
+        count = len(totals)
+        reserved = sum(row[0] for row in totals)
+        held = sum(row[0] for row in totals if row[3] is None)
+        charged = sum(row[3] for row in totals if row[3] is not None)
+        unknown = sum(row[3] is None for row in totals)
+        active = sum(row[1] == 0 for row in totals)
+        unfinished = sum(row[2] == 'processing' for row in totals)
+        rows = db.execute('SELECT a.id,a.route,a.reserved,a.status,a.finished,a.requested_identity,a.reported_identity,a.usage,'
+            'a.started,a.completed,a.accepted IS NOT NULL,json_extract(a.result,\'$.code\'),'
+            'a.transport_state,a.dispatch_started,r.charged_units FROM attempts a'
+            ' LEFT JOIN reconciliations r ON a.id=r.attempt_id'
+            ' ORDER BY a.started DESC,a.id DESC LIMIT ?', (limit,)).fetchall()
     attempts = []
     for row in rows:
         (request_id, route, units, status, finished, requested, reported, usage,
-         started, completed, accepted, code, transport_state, dispatch_started) = row
+         started, completed, accepted, code, transport_state, dispatch_started, reviewed_charge) = row
         tokens = _object(usage)
         reported_tokens = {key: tokens[key] for key in TOKEN_FIELDS
                            if type(tokens.get(key)) is int and tokens[key] >= 0}
@@ -58,12 +65,16 @@ def usage_snapshot(ledger, *, limit=25):
             'requested_identity': {key: _text(_object(requested).get(key)) for key in IDENTITY_FIELDS},
             'reported_identity': {key: _text(_object(reported).get(key)) for key in IDENTITY_FIELDS},
             'reported_tokens': {key: reported_tokens.get(key) for key in TOKEN_FIELDS},
-            'usage_status': 'reported' if reported_tokens else 'unknown', 'billing_status': 'unknown',
+            'usage_status': 'reported' if reported_tokens else 'unknown',
+            'billing_status': 'unknown' if reviewed_charge is None else 'operator_reconciled',
+            'reviewed_charge_units': reviewed_charge,
             'started_at': _time(started), 'completed_at': _time(completed),
             'dispatch_admitted_at': _time(dispatch_started)})
     return {'status': 'available', 'billing_status': 'unknown',
-        'message': 'Reservations remain consumed, including failures and cancellations. Missing token reports and actual charges remain unknown. Acceptance recorded describes the technical acknowledgement; Core receipts remain authoritative. Inspection never retries an attempt.',
+        'message': 'Unreconciled attempts retain their reservations, including failures and cancellations. Available units use the Engine admission calculation: unreconciled holds plus operator-reviewed final charges. Missing reports remain unknown; this view does not verify provider bills. Acceptance recorded describes the technical acknowledgement; Core receipts remain authoritative. Inspection never retries or reconciles an attempt.',
         'summary': {'attempts_total': count, 'budget_units': budget, 'reserved_units': reserved,
-                    'remaining_units': budget - reserved, 'active_transport_slots': active,
+                    'held_units': held, 'known_charged_units': charged, 'unknown_attempts': unknown,
+                    'remaining_units': max(0, budget - held - charged),
+                    'overrun_units': max(0, held + charged - budget), 'active_transport_slots': active,
                     'maximum_transport_slots': max_inflight, 'unfinished_or_in_doubt': unfinished},
         'attempts': attempts, 'recent_limit': limit, 'has_more': count > len(attempts)}
