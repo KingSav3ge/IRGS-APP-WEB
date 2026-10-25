@@ -7,7 +7,7 @@ records below retain their original tested development identities.
 Current guide: 25 October 2026. Owner: `KingSav3ge/IRGS-APP-WEB/main`.
 Start with [CHAT_CONTINUATION.md](CHAT_CONTINUATION.md).
 
-## Qualified baseline and scope
+## Prior qualified baseline and scope
 
 IRGS **3.4.0 development**, Core compatibility **3.3**. Develop shared systems
 across campaigns and themes. Rise R00 and the existing non-Rise authored opening

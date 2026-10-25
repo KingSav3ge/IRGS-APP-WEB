@@ -21,7 +21,7 @@ Read `AGENTS.md`, [DEVELOPMENT.md](DEVELOPMENT.md),
 [COORDINATOR_WORK_ORDER.md](COORDINATOR_WORK_ORDER.md), then IRGS_Web/responses/README.md, IRGS_Web/local_presentation.py and the pinned Engine API documents.
 Inspect the current diff/remote and exact dependencies before editing.
 
-## Qualified baseline and scope
+## Prior qualified baseline and scope
 
 IRGS **3.4.0 development**, Core compatibility **3.3**. Develop shared systems
 across campaigns and themes. Rise R00 and the existing non-Rise authored opening
