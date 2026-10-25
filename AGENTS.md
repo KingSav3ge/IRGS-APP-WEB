@@ -1,5 +1,12 @@
 # IRGS-APP-WEB development
 
+## Current guide and continuation
+
+Start with [DEVELOPMENT.md](DEVELOPMENT.md) and
+[CHAT_CONTINUATION.md](CHAT_CONTINUATION.md). They record the qualified 3.4.0
+source baseline, the next bounded task and required checks. Dated histories
+retain original scope; their pending notes do not reopen completed integration.
+
 ## Current priority — shared IRGS systems
 
 The user's current direction is development across campaigns and themes.

@@ -1,5 +1,13 @@
 # IRGS-APP-WEB work order — shared IRGS systems
 
+## Current continuation — 25 October 2026
+
+The delivered shared-response set and verified-byte intake patch are integrated
+in IRGS/main. Follow [CHAT_CONTINUATION.md](CHAT_CONTINUATION.md) and the current
+[development guide](DEVELOPMENT.md) for the next bounded assignment. Earlier
+scope requirements below remain applicable; completed foundation work should
+not be repeated as an unimplemented first delivery.
+
 Assigned by IRGS Enviroment following the user's campaign-wide scope correction.
 Target: **IRGS 3.4.0 development**. Push only `IRGS-APP-WEB/main` under KingSav3ge.
 Read [IRGS_SYSTEMS_SCOPE.md](IRGS_SYSTEMS_SCOPE.md). This order supersedes the

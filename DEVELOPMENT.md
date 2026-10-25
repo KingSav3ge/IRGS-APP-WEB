@@ -1,363 +1,138 @@
-# App / Website development
+# IRGS App/Web development guide
 
-## Current priority — shared IRGS systems, 25 October 2026
+Current guide: 25 October 2026. Owner: `KingSav3ge/IRGS-APP-WEB/main`.
+Start with [CHAT_CONTINUATION.md](CHAT_CONTINUATION.md).
 
-Read [the shared scope](IRGS_SYSTEMS_SCOPE.md) and
-[the current work order](COORDINATOR_WORK_ORDER.md). Rise remains one regression
-context; supported non-Rise evidence is required for shared-system claims.
+## Qualified baseline and scope
 
-### Completed in this increment
+IRGS **3.4.0 development**, Core compatibility **3.3**. Develop shared systems
+across campaigns and themes. Rise R00 and the existing non-Rise authored opening
+are actual supported regression contexts. Synthetic theme/profile checks prove
+their recorded formatting/declaration behavior, not new campaign mechanics.
 
-- [x] Server-side adapter to the pinned Engine offline runtime and Catalog schema-2
-  response depot. Verify consumed release-bound sources; cache authored text only.
-  No Catalog copy, extra simulator, paid fallback or provider router.
-- [x] One `local_responses` schema for actor/revision/view-bound, non-submitting
-  contextual drafts. Public labels supply generic Catalog semantic tags; actual
-  Engine options supply associated drafts. Theme names grant no capabilities.
-- [x] One plain-text result presentation across direct authored-scene/settlement
-  handlers and proposal acceptance. Keep complete Engine receipts/observations,
-  exact Catalog anchoring and saved original wording during retries/restart/restore.
-  Equipment without an Engine receipt adapter keeps its literal result.
-- [x] Shared review/Keep and latest-result UI for both supported adapters. Preserve
-  custom freeform entry, App-local starters, explicit acceptance and stale-scope
-  fencing. Missing duration stays absent and actual zero stays zero.
-- [x] Real browser: four non-Rise actions (43 elapsed seconds) and five Rise actions
-  (3,900 seconds), two lost acknowledgements, draft edit/cancel/keep/reload and
-  stale navigation, all with no configured provider and zero inference calls.
+The [coordinator integration](https://github.com/KingSav3ge/IRGS/blob/65351ebcfe2538d880f576a3ce4aa2230537e08d/provenance/qa/shared_response_integration_3_4_0_review.json) qualified joined `65351ebcfe2538d880f576a3ce4aa2230537e08d`:
 
-Checks: 200 Web run, 193 passed, seven Windows launcher skips; 105 interface
-checks; nine shared HTTP cases included in Web; 13 App formatter checks; one
-packaging-tooling check. Existing genre/three-reading-mode/mobile/accounting browser
-qualification passed. App and exact dependencies verified. See
-[shared response contract](IRGS_Web/responses/README.md) and
-[structured evidence](SHARED_RESPONSES_VALIDATION.json).
+| Component source | Qualified commit |
+| --- | --- |
+| Engine | `2f9476c6090878257d17cab3ad3a83a7ce18a5dc` |
+| App/Web | `aae8a25656c890181e0aa569df2c716968ec3642` |
+| Catalog | `27fff8385d1c01fdfe9ad7254b7647e6bc12a01e` |
 
-### Active / remaining
+Recorded integration results: 680 Core tests run (679 passed, one private-fixture
+policy skip); 201 Web run (194 passed, seven Windows skips); 105 interface checks;
+104 Catalog checks; eight independent HTTP checks. Two-context Chromium and
+clean-package qualification passed with zero live inference. These are attributed
+prior results, not tests newly executed by this guide update.
 
-- [ ] Additional explicit App adapters for Engine continuation/communication and
-  legitimate recipient/source views; unsupported commands remain declarations.
-- [ ] More Catalog semantic families when their required actor-known labels/facts
-  have explicit bindings. Four-theme formatting proves portability, not mechanics.
-- [ ] Operator-controlled optional direct-adapter startup remains queued behind
-  the current shared-system priority. No default inference or automatic retries.
-- [ ] Coordinator review and joined packaging of this exact App increment, Windows
-  execution, conditional approved live smoke and broader DEV/C2 obligations.
+Later guide-only commits do not alter this qualified source set. Preserve
+independent content/schema versions and historical evidence. See
+[shared scope](IRGS_SYSTEMS_SCOPE.md), [continuation](CHAT_CONTINUATION.md) and
+[the work order](COORDINATOR_WORK_ORDER.md).
 
-Selected reviewed pins remain Engine `9ecf3b8864f5f93be6b15c8cf6087e6bd66c8443`
-and Catalog `94b8ca6d976da48b3c6ca65e014b28c6d9a120c2`. This chat pushes only
-IRGS-APP-WEB; the earlier work below keeps its original scope/evidence.
+## Source ownership and startup
 
-## Current priority — App local routine responses, 24 October 2026
-
-### Completed
-
-- [x] App-owned versioned response pack: 171 variants across 55 families, with
-  139 system variants, 32 editable draft starters and eight whole-clause recipes.
-- [x] Local validated formatting for routine UI, review, recovery, save and usage
-  messages. Explicit Engine-assisted interpretation stays separate; missing
-  templates/facts cannot trigger paid fallback or resolve unsupported mechanics.
-- [x] Strict source/state/slot checks, immutable intake, deterministic event
-  variants and actor/snapshot/role-safe composition. No personalized response
-  cache and no Catalog content or dependency-pointer change.
-- [x] Keep the exact Core outcome summary and only append actual recorded
-  action duration, including zero. No invented stock, elapsed hour, success,
-  project completion or NPC decision. Render source strings as text.
-- [x] Editable generic draft starters review before copying, retain an independent
-  draft until explicit Keep, execute nothing, and reject stale selections.
-  Composer height is bounded so expanded draft choices do not obscure Story actions.
-- [x] Real browser: four actual Core actions, unsuccessful physical attempt,
-  exact HTML-like/braced receipt, 43 recorded seconds, lost-ack recovery,
-  cancellation/edit/keep/reload; provider calls and browser errors both zero.
-
-Fresh checks: 190 Web run, 183 passed, seven Windows launcher skips; 100 interface
-checks; 13 formatter checks render all 171 variants and eight recipes; one packaging
-tooling test; real Chromium routine/receipt flow and existing theme/mobile usage
-qualification passed. App and exact reviewed dependencies verified. See
-[response contract](IRGS_Web/responses/README.md) and
-[delivery evidence](APP_RESPONSES_VALIDATION.json).
-
-### Active / next
-
-Maintain routine-first presentation while consuming Engine's and Catalog's owned
-response contracts only through reviewed public projections and compatible pins.
-The App pack owns UI/help/recovery wording; it does not become a world narrator or
-second simulator. The next previously planned App item remains operator-controlled
-Engine direct-adapter startup through host/launcher with explicit approvals and
-finite limits. Conditional live smoke, semantic/voice evaluation, billing
-reconciliation, general dialogue and broader C2 remain unfinished. This increment
-uses no live provider and pushes only IRGS-APP-WEB.
-
-## Current delivery — theme recovery and protected usage, 24 October 2026
-
-### Completed
-
-- [x] Restore the preferred warm charcoal/brown base and bronze/coral accents.
-  Remove legacy global palette/reading overrides from the layout stylesheet.
-- [x] Use one presentation layer: base application → public genre binding → known
-  campaign override. Seven genre palettes cover military, Roman, fantasy,
-  post-apocalyptic, shinobi, space and settlement. Century of Conflict, A Scot's
-  Tale and Rise have explicit campaign accents. Unknown bindings use the base.
-- [x] Home, Library, Trash and developer pages keep the base identity. Switching,
-  deselecting and loading campaigns reset/apply themes; stale loads cannot repaint
-  the current campaign. Display names, hidden state and provider text select no theme.
-- [x] Preserve independent Dark/Light/Parchment reading mode, font and sizing across
-  campaign switches and reload. Presentation writes no campaign state.
-- [x] Creator → AI Network → Usage & Budgets reads Engine's existing ledger. It
-  shows lifetime reservations/remaining operator units, occupied slots, recent
-  requested/reported identities, reported tokens, errors and uncertain attempts.
-  Missing reports and actual charges remain unknown. Inspection never dispatches,
-  retries, refunds or resets a budget. Request/context/private certificates stay
-  outside the projection; Player mode cannot read it.
-- [x] Real Chromium covers all seven genres and three campaign overrides, reading
-  reload, protected accounting, unchanged synthetic saves and 390px layout. Body text and
-  visible Story panels/controls meet 4.5:1 across Dark, Light and Parchment modes.
-
-### Verification and next goal
-
-190 Web tests run: 183 passed, seven Windows launcher skips. Interface: 93 passed.
-Seven new real-ledger HTTP cases cover authorization, privacy, unknown usage,
-failed/cancelled reservations after restart, bounded rows, no configured ledger
-and retryable storage failure. Packaging tooling: one passed. App and pinned
-Engine/Catalog integrity verified. See [current evidence](THEME_USAGE_VALIDATION.json).
-
-Next App goal: consume an operator-supplied Engine direct-adapter configuration
-through the launcher/host, with explicit route/workload approval and finite
-limits. Keep unconfigured play usable; do not infer approval or budget from an
-API key. Conditional live smoke, semantic/voice evaluation, detailed billing
-reconciliation and wider narration/rules remain open. This delivery makes no
-live provider call and does not claim a model benchmark or completed Solo/C2.
-Dependency pins remain the coordinator-reviewed 3.4.0 pair below. Joined publication
-belongs to the coordinator; this chat pushes only IRGS-APP-WEB.
-
-## Qualified primary-update candidate — 24 October 2026
-
-The App now consumes Engine `8234044c089131314019ecaf6799a2f08028a3f8` and Catalog `401df26a1f16be864dd15d7c5250da5d75f8ccca` for the 3.4.0 development update. The coordinator fixed the Rise status, proposal review and result adapter to use actual settlement receipts and elapsed spans. Five consecutive proposed/accepted actions complete existing shelter work; retry, restart and a lost acknowledgement retain one effect per request. Authored-scene behavior remains qualified separately. Default AI is unconfigured; offline fake transport is not live AI or a general narrator.
-
-Fresh checks: 183 Web tests run, 176 passed, seven Windows PowerShell skips; 86 interface checks; 13 focused authored-scene/Rise bridge tests; actual Chromium Rise round trip with five accepted actions, 3,900 elapsed seconds, reload and lost-response recovery, zero page errors. See [the coordinator primary review](COORDINATOR_PRIMARY_REVIEW.json). Earlier records below retain their original candidate pins and then-pending limits. Exact joined qualification remains a coordinator step.
-
-Target iteration: **IRGS 3.4.0 — in development**. See the active Solo runtime work order and completion plan. Previously qualified versions and evidence retain their recorded identities.
-
-This repository owns `IRGS_Web/`, the local Solo host, interface and catalogue
-viewer. Push App work to `KingSav3ge/IRGS-APP-WEB/main`. Follow
-[the current work order](COORDINATOR_WORK_ORDER.md); IRGS Enviroment reviews exact
-component commits and performs joined integration separately.
-
-## Active priority — 23 October 2026
-
-Complete the AI-assisted Solo player round trip under [the new work order](COORDINATOR_WORK_ORDER.md): editable intention, supported proposal, explicit submit, actual Core outcome, grounded narration and next action. Consume the Engine API with honest unconfigured/error states and protected diagnostics; reuse current request/recovery identities. Engine owns all resolution and provider routing. Historical Details is integrated at the currently committed Engine/Catalog pins; its old approval blockers are resolved. The explicit action review and offline Engine proposal round trip below are implemented. The reviewed runtime supports authored-scene and Rise proposals with explicit offline host configuration; default hosting remains unconfigured and live qualification remains pending.
-
-## Ownership and setup
-
-- `Engine/` pins IRGS-Engine. Simulation, world rules and historical archive
-  parsing/verification belong there.
-- `Catalog/` pins IRGS-Catalog. Campaign data, designs and the preserved Historical
-  Details payload belong there. App provides no second editable content tree.
-- Catalogue design: [campaign catalogue](Catalog/IRGS_Catalog/design/campaign_catalogue/README.md)
-  and [expanded v0.5](Catalog/IRGS_Catalog/design/catalogue_v0_5/README.md).
-
-Python 3.12+ and Node.js are required; no package installation is needed.
+Own `IRGS_Web/`, the canonical Python host, interface and Catalog viewer. `Engine/`
+and `Catalog/` are pinned Git submodules. Preserve their committed pointers;
+`git submodule update --init --recursive` checks out the selected revisions.
+Commit a new pair only after actual compatibility review. Source fixes belong to
+their owners; App must not create another simulator or provider router.
 
 ```bash
+git status --short
+git pull --ff-only origin main
 git submodule update --init --recursive
-python3 -B tools/verify_components.py --component app
-python3 -B IRGS_Web/server.py --port 8766
+python -B IRGS_Web/server.py --port 8766
 ```
 
-The host binds to loopback. Use a separate unused development port; keep existing
-user campaigns in their original installation. Tests use synthetic records and
-temporary saves, never private playthroughs.
+Use loopback and a separate development port. The Windows root launcher defaults
+to 8765 and may reuse another valid installation; tests use temporary saves and
+their own ports. Keep operator credentials and detailed accounting server-side.
 
-## Completed foundations
+## Completed foundation
 
-- [x] Player-filtered Story, World and Chronicle; explicit Creator inspection.
-- [x] Reviewed character creation, stable request recovery, campaign Trash and
-  restoration, reading preferences and the local launcher.
-- [x] Viewer for 44 expanded v0.5 concept previews, 37 scoped Century starts,
-  the bounded fictional Rise slice and adopted Kira reference canon. Previews
-  remain unreleased; Kira has no playable snapshot.
-- [x] Bounded equipment actions, contextual draft suggestions and the optional
-  authored opening. General freeform/combat declarations remain unresolved.
-- [x] Creator-only historical source search, paging, original records, uncertainty,
-  citations and rights; safe text and HTTP(S) links; no source adoption or save
-  changes. Existing reference routes and bookmarks remain supported.
+- Common local_responses and saved presentation envelopes in non-Rise and Rise.
+- Engine receipt/draft and selected Catalog semantic draft consumption; App-owned
+  local UI pack, exact outcomes, non-submitting drafts and literal fallback.
+- Lost-acknowledgment/restart/restore protection, themes/reading modes and protected
+  usage, including reviewed charge/overrun consistency with Engine admission.
+- Coordinator patch: Catalog formatter/code and JSON consume the exact bytes
+  verified by their hashes. Retain `CatalogIntakeTests` and both replacement cases.
 
-## solo-runtime-01 — App review and offline Engine bridge
+Read [response contract](IRGS_Web/responses/README.md) and the owning
+`Engine/engine/SHARED_SYSTEMS_API.md` / `CONTINUATION_COMMUNICATION_API.md` documents.
+The implementation files are under `IRGS_Web/`; avoid a second editable App tree.
 
-Target iteration: **IRGS 3.4.0**. Executable Core compatibility remains 3.3.
+## Next bounded increment
 
-### Completed
+Add a bounded common player control/HTTP bridge for existing Engine process
+continuation, beginning with qualified non-Rise observation and Rise work.
+Use Engine-owned capabilities and its typed prepare/execute/receipt contracts;
+authenticate actor and actual branch/restore/revision, show explicit commands,
+and persist the candidate save/result atomically before acknowledgment. Preserve
+phase identity and original result through pause/resume, failed save, concurrent
+retry, restart and restored branches. Render only legitimate received progress.
+Where capability discovery needs an Engine contract, record that exact dependency
+and continue host/status/recovery work against its existing typed API; invent no
+operation or time rule. Communication/source controls follow published contracts.
+Protected operator/launcher configuration remains a separate runnable-system item.
 
-- [x] Listed equipment, authored opening and Rise choices require explicit review.
-  Selection and editing commit no effects. Edited words can become an unsent
-  draft; a separate response survives cancellation and action execution.
-- [x] Optional server-only `SoloConfiguration` connects the selected Engine's
-  scoped request builder, broker, ledger and acceptance API. App implements no
-  provider router, proposal validator, rules or alternate world state.
-- [x] Actor-known input → supported proposal → explicit acceptance → real Core
-  outcome → saved actor-legitimate summary/observations → next decision. Exact
-  original intention is retained in the Core instruction and public result.
-- [x] Stable proposal lookup does not dispatch a new attempt. Accepted results
-  reuse current saved-result recovery, including lost acknowledgement, host
-  restart and concurrent retry. Save plus public receipt share one flushed,
-  atomic replacement under the host writer lock.
-- [x] Durable cancellation and restore identities fence late output. Restore
-  rotates identity before even an identical-byte Trash restore. Browser review
-  also checks campaign, actor, revision, navigation, current draft and request.
-- [x] Default host remains unconfigured and makes no provider call. Existing
-  structured actions remain usable, unsupported freeform remains unresolved,
-  and unsent drafts survive failures. Protected status never exposes credentials,
-  route configuration, budget or detailed usage to Player mode.
-- [x] Real Chromium offline round trip passed two consecutive Core actions,
-  exact editable intent, cancel/edit, provider denial, intentionally lost HTTP
-  acknowledgement, saved-result recovery, reload and late-navigation fencing.
-- [x] Exact Catalog R00 fixture qualification passed ten structured-handler cases,
-  restart/concurrent retry, finite-stock conservation and oracle exclusion.
-
-### Active / remaining
-
-- [ ] Engine's candidate API currently prepares/accepts authored `scene_actions`.
-  Catalog's synthetic R00 fixture targets `settlement_runtime`, so the R00
-  **interpreted** proposal path remains unavailable. Its structured path is
-  tested; App will not implement another executor to bridge that mismatch.
-- [ ] Coordinator review and approval of a compatible dependency pair. Pins stay
-  Engine `723627e629231b5e90f38b9d52b65c9a3967b92a` and Catalog
-  `3e898acb2179f18a41d7967817bedf429df29d3f`. Candidate Engine
-  `500ab4286aed5354719a78006195922316b41023` was selected explicitly through
-  `IRGS_ENGINE_ROOT`; fixture Catalog `401df26a1f16be864dd15d7c5250da5d75f8ccca`
-  was read from exact Git objects into temporary evaluator storage.
-- [ ] Engine direct adapter, live credentials/approved route/finite budget,
-  semantic and voice evaluation, general dialogue/narrator and wider continuing
-  rules. No live model quality or full Solo/C2 completion is claimed.
-- [ ] Detailed developer usage view, Windows execution, coordinator's isolated
-  joined clean extraction and conditional live smoke.
-
-### Executed evidence (2026-10-24)
-
-Web on reviewed pins: 180 run, 163 passed, 17 skipped (seven Windows launchers;
-ten optional Solo API cases require the explicitly selected candidate).
-Web on Engine `500ab4286aed5354719a78006195922316b41023`: 180 run, 173 passed,
-seven Windows skips. All ten App Solo bridge HTTP cases pass there. Engine's
-selected provider API suite: 22 passed. Interface: 85 passed. App tooling: one
-passed. Exact Catalog R00 HTTP fixture: ten cases passed. Chromium offline
-proposal flow: passed, six fake transport calls, zero live calls or browser errors.
-See [coordinator report](COORDINATOR_REPORT.md) and
-[structured validation](SOLO_RUNTIME_VALIDATION.json) for scope and commands.
-
-## historical-details-01
-
-### Completed App work
-
-- [x] Name the Creator reference entry **Historical Details**.
-- [x] Explain unattached, incomplete, corrupt and unavailable sources separately;
-  metadata alone never represents an available archive.
-- [x] Retry archive checks, searches and source records without creating a save,
-  event, world or player knowledge. Keep literal query and source-row identity.
-- [x] Refresh explicit local ZIP registration without restarting the host; a
-  broken explicit attachment never silently falls back to another source.
-- [x] Reject stale responses after navigation, newer requests or inspector close.
-
-### Completed multipart qualification
-
-- [x] Connect the actual Engine `from_catalog_manifest(path, sha256, cache_dir=...)`
-  contract to the Catalog release's exact manifest pin.
-- [x] Reconstruct and verify the actual 533,064,680-byte archive from all 32 parts.
-  Catalog verification checked all 5,146 files, 5,145 delivery bindings and ten
-  collection bindings. The delivery manifest excludes itself from its inventory.
-- [x] Search and inspect a real record from each of the ten collections through
-  Creator HTTP, preserving original archive/row identity, citations and rights.
-- [x] Test missing/corrupt parts, recovery, incomplete metadata, authorization
-  before cache assembly and unchanged synthetic campaign saves with the real
-  Engine reader. No multipart test double substitutes for those seven HTTP tests.
-- [x] Describe the full preserved archive separately from the ten browsable
-  collections. Books, assets and the central database remain preserved.
-- [x] Exercise the actual full-data Creator UI in Chromium: navigation,
-  search/detail/retry and protected deep-link reload; no POSTs or save changes.
-
-### Historical qualification record — superseded by completed integration
-
-The concrete tested dependency pair is Engine
-`b3e7d760a2cf3712292b09328566cf1ed0d78c97` and Catalog
-`58ce55672bdd75076b94882bd8715a1d2a1f383a`. Engine's candidate has coordinator
-scoped checks; the coordinator's published gate still marks source review and
-integration approval pending. The completed Catalog source supersedes the
-coordinator's earlier blocked-source observation. Do not label a tested candidate
-as a coordinator-approved release. Exact dependency selection and joined
-integration were subsequently completed at the current reviewed pins. This paragraph preserves the earlier candidate identities; it is not a current blocker.
-
-### Remaining work outside this increment
-
-- [ ] Follow Engine capability delivery with truthful Solo interface states for
-  requirements, active work, interruptions and outcomes (shared DEV-25).
-- [ ] General freeform/combat adjudication, calendar advancement and the complete
-  institutional cycle depend on Engine delivery; C2's 121 requirements are not
-  claimed as implemented or passed.
-- [ ] Hosted accounts, public hosting, Co-op, the AI network, Workshop and
-  Marketplace remain planned or deferred.
-- [ ] Coordinator review and isolated joined qualification precede integration
-  into IRGS. Only the coordinator publishes joined component updates.
-
-## Verification
-
-After intentional source changes, refresh only App's integrity record:
+## Check the App
 
 ```bash
-python3 -B tools/refresh_component_releases.py --component app
-python3 -B tools/verify_components.py --component app
-python3 -B -m unittest discover -s IRGS_Web/tests -v
+python -B tools/verify_components.py --component app
+python -B -m unittest discover -s IRGS_Web/tests -v
+node IRGS_Web/tests/test_responses.js
 node IRGS_Web/tests/test_gameplay_ui.js
-python3 -B -m unittest discover -s tools/tests -v
+node tools/qualify_shared_responses.js /tmp/irgs-shared-browser.json
 ```
 
-Component verification requires committed dependency pointers to match the
-checked-out submodules. Hash refresh establishes source identity, not behavior.
-Report test counts and platform skips explicitly. Synthetic DOM checks and
-browser checks are separate evidence; neither establishes full archive content
-verification or coordinator approval.
+Real browser qualification requires Playwright and Chromium as development tools;
+the product host uses Python's standard library. Report the seven Windows-only
+skips on Linux. Browser/HTTP tests must use synthetic state and verify zero
+routine dispatch. Check actual effects and recovery, including failed save and
+stale navigation; a formatting mock cannot qualify a new handler.
 
-### Current increment's executed checks (2026-10-22)
+`IRGS_ENGINE_ROOT` and `IRGS_CATALOG_ROOT` can select explicit candidate sources
+for isolated checks. Report those sources and actual imported module paths; an
+environment override does not update committed submodule pins. Component verifier
+checks committed pointers against checked-out submodules. Refresh only App after
+source edits: `python -B tools/refresh_component_releases.py --component app`.
 
-- Web: 166 run, 159 passed, seven Windows PowerShell launcher skips on Linux.
-- Interface: 72 checks passed using the synthetic DOM and delayed transport.
-- App tooling: one attachment-exclusion test passed.
-- Selected Engine historical archive/parts/plans family: 65 tests passed.
-- Complete Catalog integrity and package verification passed: 32 parts, 5,146
-  files, 5,145 delivery bindings, ten collection bindings, 44 concept previews.
-- `tools/qualify_historical_details.py` passed actual archive reconstruction,
-  first-row search/detail for all ten collections, six authorization denials,
-  cache reuse, unchanged source parts and unchanged synthetic campaign saves.
-- Chromium passed the actual Catalog Creator flow with no POSTs, save changes
-  or browser errors. Earlier synthetic escaping/retry checks also remain valid.
+## Rules for every increment
 
-The full Engine suite, Windows execution and joined package/integration were not
-run for this increment. Byte identity does not authenticate historical claims,
-expand licenses or adopt campaign facts. See [coordinator report](COORDINATOR_REPORT.md).
+Keep one authoritative Core and the nine K-owners; provider work retains the six
+existing Director categories. Distinguish intent, authorization, committed effects,
+received information and presentation. Only actual actor-legitimate records may
+support a response. Testimony and uncertain information retain their status.
+Keep storage revision, causal order, elapsed spans, civil dates and information
+times distinct. Select real rules/adapters; themes and text create no capability.
 
-## Sequenced AI provider backlog — offline bridge delivered; live integration pending
+Routine responses require no provider, key or model tokens. Preserve exact
+receipts, negation, actual zero/absent durations, editable intentions and explicit
+submission. Missing text or rules retain a literal/unresolved result and cannot
+authorize paid fallback. Keep pinned code/content intake on the exact verified
+bytes; retain the component-update regression in App.
 
-Read the coordinator's [master-spec addendum](https://github.com/KingSav3ge/IRGS/blob/main/AI_PROVIDER_STRATEGY.md),
-[checked research](https://github.com/KingSav3ge/IRGS/blob/main/AI_PROVIDER_REVIEW.md)
-and [16 required evaluation cases](https://github.com/KingSav3ge/IRGS/blob/main/provenance/qa/ai_provider_strategy/EVALUATION_CASES.json).
-Historical Details is integrated. `solo-runtime-01` is now the active delivery. The existing supported gameplay
-and reviewed Engine provider contract precede player integration. The Python host
-and JavaScript UI remain; no gateway or framework rewrite has been selected.
+Use temporary synthetic saves. Never read/migrate user campaigns or run the
+external private-save fixture. Preserve original archives, source records,
+rights, adopted canon and 44 previews. Historical Details is fully delivered;
+archive reacquisition is complete. Preview/content presence grants no release
+or mechanical authority. General freeform/combat, generated dialogue, sustained
+institutions, full C2, live model quality and wider hosting retain their open
+requirements; Co-op remains deferred.
 
-| Requirement | App responsibility after Engine delivery | Status |
-| --- | --- | --- |
-| AIP-01 registry | Protected server-fed developer status; distinguish developer, gateway, host, model and tested workload. | Planned |
-| AIP-02 adapter | Unavailable status, protected diagnostics and offline Engine proposal/error bridge delivered; direct/live adapter pending. | Partial |
-| AIP-03 specialists | Display the existing six Director categories and logical responsibilities without a second registry. | Planned |
-| AIP-04 routing | Consume Engine decisions; no App router or technical routing in campaign selection. | Planned |
-| AIP-05 validation | Explicit listed/proposed action review and stale-output fences delivered; strict validation stays in Engine. | Partial |
-| AIP-06 ledger | Protected read-only requested/reported identities, finite reservations, reported tokens, failures and unknown usage/charges. No price/billing reconciliation. | Partial |
-| AIP-07 evaluations | Report executed versus unrun cases, disclosed human review and measured evidence; no fabricated winners. | Planned |
-| AIP-08 migration | Scope, restore, navigation and cancellation fences plus durable previous receipts tested offline. | Partial |
-| AIP-09 access | Enforce developer diagnostics and actor information boundaries; never send source data or credentials through browser controls. | Planned |
+## Deliver the increment
 
-AIP-S1 begins with disabled-by-default/offline contracts and protected status.
-Connect one already supported player action only after its Engine flow is
-qualified. Missing credentials, denial/timeout, unsafe output, stale responses and
-duplicate submission need checks against the exact selected Engine. Provider
-model evaluation cases remain unrun; existing Web tests are not live model
-benchmarks. No paid inference, subscription, active narrator or autonomous
-Director network is enabled by these plan entries. No Catalog record selects a
-model or authorizes external processing.
+Keep completed, active and remaining work current. After an actual source edit,
+refresh only the owning component release, run relevant behavioral checks and
+verify source integrity. Hash refresh and planning alone qualify no feature.
+Use Python 3.12+ without `-O`; interface/browser tooling uses Node 20+.
+
+Push only this repository's `main`. Return the full pushed SHA, actual changed
+behavior, APIs/adapters, exact dependencies, commands/results/skips and remaining
+limits to IRGS Enviroment. Coordinator imports product source only after all
+three viable updates, compatible App pins and fresh joined qualification.
+Root guide/work-order edits alone need no component release refresh or invented
+runtime delivery. Preserve local work before pulling; avoid resets and force pushes.
+
+Previous guide and original owner counts: [dated history](DEVELOPMENT_HISTORY_2026-10-25.md).
