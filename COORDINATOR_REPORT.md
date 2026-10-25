@@ -1,3 +1,22 @@
+# Coordinator integration patch — verified response intake
+
+Selected the current Engine shared-runtime and Catalog fixture deliveries through
+exact App dependency pins. The coordinator reproduced both code and content
+replacement after `_catalog` hash verification: the previous import loader and
+library reader reopened the files and could consume a different component update.
+Intake now compiles the checked formatter bytes and decodes/validates the checked
+library bytes, with bounded files and linked-path rejection. Cache only this
+reviewed authored content; actor and result behavior remains unchanged.
+
+Ten focused checks passed, including the new two-part update-race regression and
+nine actual shared HTTP cases. The regression swaps only temporary test files
+and verifies that the original approved code/text is consumed. No provider call,
+user save or original source archive is involved. Full combined source, browser
+and package qualification is recorded by the coordinator for the exact selected
+commits; earlier owner results below retain their original dependency selections.
+
+---
+
 # Shared App response contract — 25 October 2026
 
 Delivered against the current shared-systems work order, starting from App

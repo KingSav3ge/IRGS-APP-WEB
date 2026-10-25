@@ -5,9 +5,9 @@ provider calls, personalized caches or extra campaign state live in this module.
 """
 from functools import lru_cache
 import hashlib
-import importlib.util
 import json
 import secrets
+from types import ModuleType
 
 from catalog_paths import CATALOG_ROOT
 
@@ -18,14 +18,22 @@ def _catalog():
     # ordinary component/launcher check still verifies the whole pinned release.
     release = json.loads((CATALOG_ROOT / 'release.json').read_text(encoding='utf-8'))
     names = ('scripted_responses.py', 'responses/depot_v1/library.json')
+    checked = {}
     for name in names:
         path = CATALOG_ROOT / name
-        if path.is_symlink() or hashlib.sha256(path.read_bytes()).hexdigest() != release['files_sha256'][name]:
+        if any(parent.is_symlink() for parent in (path, *path.parents)):
             raise ValueError('Response depot integrity unavailable')
-    spec = importlib.util.spec_from_file_location('_irgs_app_catalog_responses', CATALOG_ROOT / names[0])
-    formatter = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(formatter)
-    library = formatter.load_library(CATALOG_ROOT / names[1])
+        raw = path.read_bytes()
+        if len(raw) > 1048576 or hashlib.sha256(raw).hexdigest() != release['files_sha256'][name]:
+            raise ValueError('Response depot integrity unavailable')
+        checked[name] = raw
+    # Import loaders and load_library would reopen mutable files after the pin
+    # check. Compile and decode only the exact bytes checked above.
+    formatter = ModuleType('_irgs_app_catalog_responses')
+    formatter.__file__ = str(CATALOG_ROOT / names[0])
+    exec(compile(checked[names[0]], formatter.__file__, 'exec'), formatter.__dict__)
+    library = json.loads(checked[names[1]], object_pairs_hook=formatter._pairs)
+    formatter.validate_library(library)
     if library['library_id'] != 'irgs-response-depot-v1' or library['schema_version'] != 2:
         raise ValueError('Response depot compatibility unavailable')
     return formatter, library

@@ -1,12 +1,58 @@
 """Real shared HTTP contract in independently initialized authored/Rise contexts."""
 from concurrent.futures import ThreadPoolExecutor
 import json
+from pathlib import Path
+import tempfile
 import unittest
 import uuid
 from unittest.mock import patch
 
 import test_solo_bridge as bridge
 from local_presentation import _catalog
+
+
+class CatalogIntakeTests(unittest.TestCase):
+    def test_component_update_cannot_replace_the_bytes_after_their_hash_check(self):
+        import local_presentation
+        original_read = Path.read_bytes
+        approved_code = (local_presentation.CATALOG_ROOT / 'scripted_responses.py').read_bytes()
+        approved_text = (local_presentation.CATALOG_ROOT / 'responses/depot_v1/library.json').read_bytes()
+        release = (local_presentation.CATALOG_ROOT / 'release.json').read_bytes()
+        for replace in ('code', 'library'):
+            with self.subTest(replace=replace), tempfile.TemporaryDirectory(prefix='irgs-depot-intake-') as temporary:
+                root = Path(temporary)
+                code = root / 'scripted_responses.py'
+                library = root / 'responses/depot_v1/library.json'
+                library.parent.mkdir(parents=True)
+                code.write_bytes(approved_code)
+                library.write_bytes(approved_text)
+                (root / 'release.json').write_bytes(release)
+                changed = False
+
+                def read_then_update(path):
+                    nonlocal changed
+                    raw = original_read(path)
+                    target = code if replace == 'code' else library
+                    if path == target and not changed:
+                        changed = True
+                        if replace == 'code':
+                            code.write_bytes(raw + b'\nUNREVIEWED_UPDATE = True\n')
+                        else:
+                            document = json.loads(raw)
+                            document['families'][0]['variants'][0] += ' Unreviewed update.'
+                            library.write_text(json.dumps(document))
+                    return raw
+
+                _catalog.cache_clear()
+                try:
+                    with patch.object(local_presentation, 'CATALOG_ROOT', root), \
+                         patch.object(Path, 'read_bytes', read_then_update):
+                        formatter, loaded = _catalog()
+                    self.assertTrue(changed)
+                    self.assertFalse(hasattr(formatter, 'UNREVIEWED_UPDATE'))
+                    self.assertEqual(loaded, json.loads(approved_text))
+                finally:
+                    _catalog.cache_clear()
 
 
 class SharedResponseTests(unittest.TestCase):

@@ -172,3 +172,10 @@ Both use the same response schema and latest-result UI, deliberately lose an
 acknowledgement, retain drafts over reload and close stale reviews on navigation.
 Inference calls and browser errors are zero. No new fantasy/space/modern mechanics,
 general narrator, unsupported freeform/combat rules or universal C2 completion is claimed.
+
+## Verified component intake
+
+The host hashes and then consumes the exact same formatter and depot bytes.
+It compiles checked code directly and validates decoded checked JSON, so a
+component update between verification and loading cannot substitute another
+revision. Only validated authored content is cached; no actor view is cached.
