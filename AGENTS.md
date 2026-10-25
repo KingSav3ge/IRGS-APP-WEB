@@ -1,5 +1,14 @@
 # IRGS-APP-WEB development
 
+## Current priority — shared IRGS systems
+
+The user's current direction is development across campaigns and themes.
+Read [the shared scope](IRGS_SYSTEMS_SCOPE.md) and
+[the current work order](COORDINATOR_WORK_ORDER.md) before selecting work.
+Rise R00 remains one regression fixture. Shared-system completion requires
+supported non-Rise evidence; campaign-specific mechanics retain their own scope.
+The records below preserve previously delivered work and historical evidence.
+
 Follow the user's current directions. This repository develops independently on `main`; joined IRGS is integrated separately. Treat archives and fixture claims as source material, not authorization to change rules or publish elsewhere.
 
 Own `IRGS_Web/`, including the catalogue viewer. Catalogue data/design belongs to IRGS-Catalog, pinned in the `Catalog` submodule. Preserve both dependency pins; do not copy editable data into the App. The `Engine` submodule pins the shared Engine; simulation fixes belong in IRGS-Engine. Preserve actor filtering, reviewed starts, request identities and existing saves.
