@@ -13,6 +13,11 @@ retain original scope; their pending notes do not reopen completed integration.
 
 ## Current priority — shared IRGS systems
 
+The current user-directed priority is the player-start assessment and first
+implementation increment in [COORDINATOR_WORK_ORDER.md](COORDINATOR_WORK_ORDER.md)
+and [PLAYABILITY_REVIEW_3_4_2.md](PLAYABILITY_REVIEW_3_4_2.md). These supersede older
+next-task ordering; preserve the rules and qualified behavior below.
+
 The user's current direction is development across campaigns and themes.
 Read [the shared scope](IRGS_SYSTEMS_SCOPE.md) and
 [the current work order](COORDINATOR_WORK_ORDER.md) before selecting work.

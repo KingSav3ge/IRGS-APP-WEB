@@ -1,5 +1,13 @@
 # App development handoff — 26 October 2026
 
+Current continuation after the 26 October evaluation is
+[COORDINATOR_WORK_ORDER.md](COORDINATOR_WORK_ORDER.md), supported by
+[PLAYABILITY_REVIEW_3_4_2.md](PLAYABILITY_REVIEW_3_4_2.md). The port/refinement
+is delivered. Prioritize explicit start readiness and the first usable actor
+context, then the communication bridge and protected operator configuration.
+The dated original interface handoff below remains historical source context.
+
+
 The user has assigned continued work on the Emergent interface to the existing
 App development chat. Continue in `KingSav3ge/IRGS-APP-WEB/main`. The coordinator
 will review the next pushed App delivery with the other components. The proposed

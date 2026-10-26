@@ -1,3 +1,16 @@
+# Coordinator playability assessment — 26 October 2026
+
+The user requested real application evaluation and updated instructions. The
+coordinator reproduced the existing-person and default-new-character gaps, then
+verified working authored/R00 paths and recovery in temporary synthetic worlds.
+See [assessment](PLAYABILITY_REVIEW_3_4_2.md) and
+[fresh scoped evidence](PLAYABILITY_EVIDENCE_3_4_2.json). The updated work order
+defines this owner's first implementation increment. This instruction publication
+changes no product source, versions or pins and claims no implemented fix.
+Historical owner reports below retain their original source and scope.
+
+---
+
 # Coordinated 3.4.2 dependency selection
 
 The coordinator pulled all three viable owner updates and selected the Engine

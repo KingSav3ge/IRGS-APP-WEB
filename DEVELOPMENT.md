@@ -7,6 +7,15 @@ records below retain their original tested development identities.
 Current guide: 26 October 2026. Owner: `KingSav3ge/IRGS-APP-WEB/main`.
 Start with [CHAT_CONTINUATION.md](CHAT_CONTINUATION.md).
 
+## Current priority — assessed player-start gaps
+
+Follow [the updated work order](COORDINATOR_WORK_ORDER.md) and
+[actual playability assessment](PLAYABILITY_REVIEW_3_4_2.md).
+The first App/Website increment is defined there, with acceptance and dependencies.
+It supersedes older next-task ordering below. Earlier delivery identities,
+executed results and stable DEV/C2 requirements retain their original scope.
+Do not report the empty historical-character starts as a completed gameplay loop.
+
 ## Coordinated 3.4.2 preparation
 
 Read [the coordinator selection](COORDINATED_3_4_2.md). Current edition headings

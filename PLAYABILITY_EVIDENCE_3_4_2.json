@@ -1,0 +1,604 @@
+{
+  "schema_version": 1,
+  "status": "assessment_completed_with_playability_blockers",
+  "assessment_date": "2026-10-26",
+  "evaluated_edition": "3.4.2",
+  "evaluated_joined_commit": "ba551af285a6e1eb0766a9d06f83cbc0e5335b35",
+  "method": "Normal canonical host, initially empty temporary store, real Chromium UI and public HTTP APIs; independent synthetic regression fixtures separately identified.",
+  "private_user_save_loaded": false,
+  "uploaded_export_published": false,
+  "provider_calls": 0,
+  "browser_errors": 0,
+  "normal_ui_cases": [
+    "existing John of Lancaster at the 1415 historical entry",
+    "new historical character with no authored opening",
+    "new historical character with reviewed authored opening",
+    "Kira reference guide",
+    "reviewed R00 founding"
+  ],
+  "historical_survey": {
+    "entries": 37,
+    "selection": "One eligible existing actor per reviewed entry; not every actor/entry combination.",
+    "starts_with_supported_actions": 0,
+    "starts_with_process_start_options": 0,
+    "rows": [
+      {
+        "entry": "hyw-1337",
+        "reference_label": "15 December 1337 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 2,
+        "authored_openings_for_new_characters": [
+          "coc-1337-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1340",
+        "reference_label": "15 December 1340 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 2,
+        "authored_openings_for_new_characters": [
+          "coc-1340-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1341",
+        "reference_label": "15 December 1341 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1341-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1343",
+        "reference_label": "15 December 1343 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 2,
+        "authored_openings_for_new_characters": [
+          "coc-1343-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1345",
+        "reference_label": "15 December 1345 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1345-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1346",
+        "reference_label": "15 December 1346 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1346-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1347",
+        "reference_label": "15 December 1347 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 2,
+        "authored_openings_for_new_characters": [
+          "coc-1347-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1355",
+        "reference_label": "15 December 1355 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1355-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1356",
+        "reference_label": "15 December 1356 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1356-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1357",
+        "reference_label": "15 December 1357 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1357-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1359",
+        "reference_label": "15 December 1359 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 2,
+        "authored_openings_for_new_characters": [
+          "coc-1359-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1360",
+        "reference_label": "15 December 1360 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 2,
+        "authored_openings_for_new_characters": [
+          "coc-1360-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1364",
+        "reference_label": "15 December 1364 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1364-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1366",
+        "reference_label": "15 December 1366 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1366-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1369",
+        "reference_label": "15 December 1369 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1369-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1372",
+        "reference_label": "15 December 1372 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1372-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1373",
+        "reference_label": "15 December 1373 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1373-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1375",
+        "reference_label": "15 December 1375 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 2,
+        "authored_openings_for_new_characters": [
+          "coc-1375-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1377",
+        "reference_label": "15 December 1377 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 2,
+        "authored_openings_for_new_characters": [
+          "coc-1377-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1385",
+        "reference_label": "15 December 1385 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1385-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1389",
+        "reference_label": "15 December 1389 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 2,
+        "authored_openings_for_new_characters": [
+          "coc-1389-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1396",
+        "reference_label": "15 December 1396 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 2,
+        "authored_openings_for_new_characters": [
+          "coc-1396-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1399",
+        "reference_label": "15 December 1399 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1399-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1400",
+        "reference_label": "15 December 1400 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1400-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1403",
+        "reference_label": "15 December 1403 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1403-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1411",
+        "reference_label": "15 December 1411 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1411-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1415",
+        "reference_label": "11 August 1415 \u00b7 before departure",
+        "eligible_characters": 5,
+        "authored_openings_for_new_characters": [
+          "quay-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1417",
+        "reference_label": "15 December 1417 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 2,
+        "authored_openings_for_new_characters": [
+          "coc-1417-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1419",
+        "reference_label": "15 December 1419 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1419-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1420",
+        "reference_label": "15 December 1420 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1420-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1422",
+        "reference_label": "15 December 1422 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 2,
+        "authored_openings_for_new_characters": [
+          "coc-1422-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1429",
+        "reference_label": "15 December 1429 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1429-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1435",
+        "reference_label": "15 December 1435 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1435-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1444",
+        "reference_label": "15 December 1444 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 3,
+        "authored_openings_for_new_characters": [
+          "coc-1444-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1449",
+        "reference_label": "15 December 1449 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 2,
+        "authored_openings_for_new_characters": [
+          "coc-1449-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1450",
+        "reference_label": "15 December 1450 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 2,
+        "authored_openings_for_new_characters": [
+          "coc-1450-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      },
+      {
+        "entry": "hyw-1453",
+        "reference_label": "15 December 1453 \u00b7 after the year\u2019s turning points",
+        "eligible_characters": 1,
+        "authored_openings_for_new_characters": [
+          "coc-1453-delivery-v1"
+        ],
+        "existing_supported_actions": 0,
+        "existing_process_starts": 0
+      }
+    ]
+  },
+  "existing_character_flow": {
+    "initial_revision": 0,
+    "initial_supported_actions": 0,
+    "initial_location": null,
+    "declared_revision": 1,
+    "declaration_status": "declared_not_resolved",
+    "pending_survives_reload": true,
+    "withdrawn_revision": 2,
+    "actions_after_withdraw": 0,
+    "elapsed_time": null
+  },
+  "authored_opening": {
+    "actions": [
+      {
+        "id": "look-quay",
+        "status": "completed_successfully",
+        "elapsed_seconds_after": 20
+      },
+      {
+        "id": "quay-shortcut",
+        "status": "completed_unsuccessfully",
+        "elapsed_seconds_after": 50
+      },
+      {
+        "id": "quay-passage",
+        "status": "completed_successfully",
+        "elapsed_seconds_after": 95
+      },
+      {
+        "id": "passage-desk",
+        "status": "completed_successfully",
+        "elapsed_seconds_after": 140
+      },
+      {
+        "id": "deliver-dispatch",
+        "status": "completed_successfully",
+        "elapsed_seconds_after": 150
+      }
+    ],
+    "final_dispatch_quantity": 0,
+    "reload_preserves_revision": true,
+    "mobile_width": 390,
+    "mobile_fits": true,
+    "civil_time": {
+      "day": 0,
+      "precision": "unresolved",
+      "time": null
+    }
+  },
+  "rise": {
+    "actions": 5,
+    "elapsed_seconds": 3900,
+    "shelter_status": "complete",
+    "worked_seconds": 3600,
+    "final_timber": 3
+  },
+  "separate_regression_checks": {
+    "independent_http": {
+      "tests_run": 8,
+      "passed": 8,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "test": "test_concurrent_retry_has_one_commit_and_one_elapsed_span",
+          "status": "passed"
+        },
+        {
+          "test": "test_core_location_confirmation_remains_usable",
+          "status": "passed",
+          "finding_id": "IRGS-QA-002"
+        },
+        {
+          "test": "test_founding_delegation_migration_and_material_continuity",
+          "status": "passed"
+        },
+        {
+          "test": "test_freeform_is_retained_intent_with_no_automatic_elapsed_effect",
+          "status": "passed"
+        },
+        {
+          "test": "test_new_material_does_not_break_committed_campaign",
+          "status": "passed",
+          "finding_id": "IRGS-QA-001"
+        },
+        {
+          "test": "test_pause_resume_preserves_work_and_finishes_once",
+          "status": "passed"
+        },
+        {
+          "test": "test_private_state_and_hidden_permission_do_not_select_player_options",
+          "status": "passed"
+        },
+        {
+          "test": "test_results_survive_host_restart_and_trash_restore",
+          "status": "passed"
+        }
+      ]
+    },
+    "communication_api_cases": 32,
+    "shared_actions": {
+      "status": "passed",
+      "contexts": [
+        {
+          "adapter": "authored_scene",
+          "committed_actions": 4,
+          "elapsed_seconds": 43,
+          "zero_action_spans": [],
+          "local_drafts_non_submitting": true,
+          "lost_acknowledgement_recovered": true,
+          "stale_navigation_fenced": true,
+          "reload_preserves_draft": true
+        },
+        {
+          "adapter": "settlement",
+          "committed_actions": 5,
+          "elapsed_seconds": 3900,
+          "zero_action_spans": [
+            "found",
+            "build"
+          ],
+          "local_drafts_non_submitting": true,
+          "lost_acknowledgement_recovered": true,
+          "stale_navigation_fenced": true,
+          "reload_preserves_draft": true
+        }
+      ],
+      "common_response_schema": 1,
+      "catalog_library": "irgs-response-depot-v1",
+      "engine_library": "irgs-engine-routine-responses-v1",
+      "provider_configured": false,
+      "provider_calls": 0,
+      "browser_errors": 0,
+      "mobile_width": 390
+    },
+    "processes": {
+      "status": "passed",
+      "contexts": [
+        {
+          "kind": "observation",
+          "committed_phases": 5,
+          "start_selected_from_engine": true,
+          "elapsed_seconds": 3,
+          "prepare_reload_recovered": true,
+          "cancel_does_not_execute": true,
+          "lost_commit_ack_recovered": true,
+          "phase_identity_preserved": true,
+          "pause_resume": true,
+          "stale_navigation_fenced": true
+        },
+        {
+          "kind": "work",
+          "committed_phases": 6,
+          "start_selected_from_engine": true,
+          "elapsed_seconds": 3900,
+          "prepare_reload_recovered": true,
+          "cancel_does_not_execute": true,
+          "lost_commit_ack_recovered": true,
+          "phase_identity_preserved": true,
+          "pause_resume": true,
+          "stale_navigation_fenced": true
+        }
+      ],
+      "provider_configured": false,
+      "provider_calls": 0,
+      "browser_errors": 0,
+      "mobile_width": 390
+    }
+  },
+  "version_diagnostics": {
+    "public_catalog": {
+      "core": {
+        "id": "IRGS-CORE-3.3",
+        "version": "3.3",
+        "single_world_per_campaign": true
+      }
+    },
+    "export_fields": {
+      "app_version": null,
+      "edition": null,
+      "build": null
+    },
+    "core_3_3_is_expected": true
+  },
+  "limits": [
+    "Full Core/Web/interface suites were not rerun for this assessment; their 3.4.2 release results remain attributed to that release.",
+    "No native Windows launcher, live AI, faction-start, full C2 or complete campaign qualification.",
+    "Historical survey tests one eligible existing actor per entry, not every combination.",
+    "An empty known view describes received information; it does not establish that the hidden world has no people or resources."
+  ],
+  "artifacts_sha256": {
+    "user-journeys.json": "1e1a7421de83347d5c7dcad727cc8c0e1c161194507a5309e56f9d874b86fda3",
+    "shared-browser.json": "0c044536e8fb9ff9948584f5d88263c13e5ab6ca8e5d7e3a253233a212141395",
+    "process-browser.json": "161ea7b3c934e5e6688cf1d31699d1e18a5dc23ccc48b5e67885970e5c5e8185",
+    "independent-http.json": "6255d1a8b381abc52731132022738a970d823a4c446356ef14f06ec74f367756",
+    "communication.json": "a876cfba2a071e9071381b0f12a81831f7b9d7a65c9aa62f275296dcc7ccee45",
+    "pending-in-playable-context.json": "674e7db09a7107232463f13e28cfde17274b919e1135dbc50f89cc5c137b8aba"
+  },
+  "own_response_in_playable_context": {
+    "text": "I look around.",
+    "before_actions": 3,
+    "pending_actions": 0,
+    "after_withdraw_actions": 3,
+    "elapsed_and_inventory_unchanged": true,
+    "pending_survives_reload": true
+  }
+}

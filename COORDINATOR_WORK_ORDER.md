@@ -1,72 +1,66 @@
-# IRGS-APP-WEB work order — shared IRGS systems
+# App/Website work order — supported player starts
 
 Current coordinated edition: **3.4.2**; previous release: **3.3.3**.
-See [version policy](VERSION_POLICY.md). Earlier baseline tables and execution
-records below retain their original tested development identities.
+Assigned 26 October 2026 after the coordinator ran the actual unified build.
+Owner: `KingSav3ge/IRGS-APP-WEB/main`. This order supersedes older next-task ordering.
+The existing implemented APIs, refined interface and qualified fixtures remain
+completed work. This is a new assignment, not a claim that its fixes exist.
 
-## Coordinator continuation for 3.4.2
+Read [the assessment](PLAYABILITY_REVIEW_3_4_2.md),
+[executed evidence](PLAYABILITY_EVIDENCE_3_4_2.json), `AGENTS.md`,
+`IRGS_SYSTEMS_SCOPE.md` and `CHAT_CONTINUATION.md` before selecting implementation.
 
-The interface refinement is delivered. Engine now publishes
-`engine/COMMUNICATION_CAPABILITY_API.md`; implement its matching actor-safe
-App HTTP/review/accept/recovery controls as the next bounded shared-system task.
-Use non-Rise speech and selected Rise offers as distinct contexts. Keep operator
-configuration as independent work. The earlier App-only publication deferral is
-superseded by this all-three coordinator review; publish only the App repository.
+## First bounded increment — explicit readiness and a usable start
 
-## User handoff — 26 October 2026
+Read `PLAYABILITY_REVIEW_3_4_2.md`. Address IRGS-PLAY-001/002/006 immediately.
+Make the selected actor/start mode's actual playability clear before the user
+confirms a campaign. A verified snapshot, eligible character, prose opening or
+catalogue title cannot imply executable gameplay. Preserve explicit declaration-
+only/reference use as a deliberate choice. Do not silently choose a courier
+opening for an existing historical person or grant missing facts in the browser.
 
-Continue the implemented Emergent interface in this repository. Read
-[APP_DEVELOPMENT_HANDOFF.md](APP_DEVELOPMENT_HANDOFF.md) for exact source,
-qualified behavior, checks and the next bounded interface increment. Preserve
-shared IRGS scope and the existing Engine/Catalog pins. The user has deferred
-App-only unified publication; return the next pushed App delivery for coordinator
-review. Protected operator/launcher configuration follows the interface increment.
-This assignment supersedes older next-task ordering, not the rules below.
+Consume Engine's agreed versioned start-context/readiness contract after it is
+published. Until then, implement honest empty-state copy against actual known-view
+capabilities and independent UI work without claiming the missing initializer is
+delivered. Show the next supported route or the precise unresolved scope; do not
+say listed actions are available when the list is empty. Keep own-response drafts,
+their unresolved status, pending/retry/withdraw behavior and explicit review.
 
-## Current continuation — 25 October 2026
+Acceptance uses the real UI and empty temporary stores: existing historical person,
+new human with authored opening, and deliberate declaration-only start, plus R00
+regression. Verify selected start/character and sourced context reach the first
+view unchanged; perform a reviewed operation, show its exact result and retain it
+after reload/retry. Test cancellation, changed selection, actor privacy, 390px
+layout, honest source-unavailable cases and zero routine provider calls.
 
-The delivered shared-response set and verified-byte intake patch are integrated
-in IRGS/main. Follow [CHAT_CONTINUATION.md](CHAT_CONTINUATION.md) and the current
-[development guide](DEVELOPMENT.md) for the next bounded assignment. Earlier
-scope requirements below remain applicable; completed foundation work should
-not be repeated as an unimplemented first delivery.
+Next: finish the delivered Engine communication/source/offer bridge with private
+server-owned preparations, actor authentication, explicit acceptance and atomic
+original-result recovery. Retain the native private-offer forwarding boundary.
+Protected operator configuration is independent work using existing route/budget
+contracts, with no secrets in the browser and no paid fallback for local results.
+Add non-secret process/build identity to exports/diagnostics to distinguish the
+actual host and UI build while retaining Core 3.3 compatibility. Preserve the
+refined Emergent interface; additional visual polish is secondary to these flows.
 
-Assigned by IRGS Enviroment following the user's campaign-wide scope correction.
-Target: **IRGS 3.4.2 development**. Push only `IRGS-APP-WEB/main` under KingSav3ge.
-Read [IRGS_SYSTEMS_SCOPE.md](IRGS_SYSTEMS_SCOPE.md). This order supersedes the
-first R00 demonstration assignment, preserved byte-for-byte in
-[the prior order](COORDINATOR_WORK_ORDER_SOLO_RUNTIME_01.md).
+## Delivery rules
 
-## Current assignment
+Develop shared IRGS systems; Rise is one regression context. Preserve one
+authoritative Core and its nine K-owners, the existing six Director categories,
+actor/source filtering, reviewed creation, explicit acceptance, resource/authority
+checks and exact original-result recovery. Names, themes, narration and drafts
+create no capability or facts. Keep causal, storage, civil and elapsed time apart.
+Do not invent universal timing, dice or an NPC decision to satisfy an example.
 
-1. Maintain one campaign-independent player interaction and presentation layer.
-   Select controls from supported Engine capabilities; use public theme bindings
-   only for appearance. Keep existing campaigns and ordinary freeform entry usable.
-2. Deliver the requested local App response layer across campaigns. Preserve
-   actual Core summaries, editable drafts, explicit submission and actor/source
-   scope. Consume compatible Engine/Catalog contracts through reviewed pins;
-   add adapters without introducing a second simulator or provider router.
-3. Qualify actual non-Rise authored-scene actions and Rise actions through the
-   shared UI, with zero provider calls for routine results. Preserve unsuccessful
-   outcomes, zero/absent durations, lost acknowledgements and stale-navigation
-   protection. Formatting theme labels alone is insufficient gameplay evidence.
-4. Keep operator configuration, accounting and optional AI behind protected
-   server-side controls. Provider absence must leave ordinary supported play and
-   routine responses usable; unsupported mechanics remain explicit declarations.
-5. Pin the exact reviewed Engine and Catalog set, execute Web/interface/browser
-   checks, and report cross-campaign scope and remaining adapters accurately.
+Use temporary synthetic stores only. Preserve user saves, credentials, local
+configuration, original source/archive bytes, adopted canon and dated evidence.
+Do not migrate an actual user campaign as a test. Record actual source commits,
+APIs, test commands/results/skips and remaining dependencies. Retain old fixtures
+at their selected identities. No live inference or full C2 claim is implied.
 
-## Delivery and review
-
-Preserve work already developed. Keep the component plan current and report the
-exact pushed commit, supported contexts, actual handlers, executed checks/skips
-and remaining dependencies. Use synthetic temporary state only. Run relevant
-existing component integrity and behavioral checks; hashes alone certify no behavior.
-
-The coordinator reviews all three viable updates at exact compatible App pins,
-refreshes actual joined operation evidence and qualifies browser/package behavior
-before importing product source into unified IRGS/main. Prior release approvals
-retain their original scope. This work order does not claim new tests or mechanics.
-
-Repository publication is the available handoff. There is no direct tool to send
-or restart another development chat; publication alone does not prove its receipt.
+After actual product edits, refresh only the owning component's release hashes
+and run meaningful existing and new checks for changed behavior. Update the
+development plan and push only this assigned component repository. Return the
+full commit and exact compatible dependency selections to the coordinator.
+Current edition stays 3.4.2 until a coordinated versioned publication. Guide-only
+commits are not new product increments. Repository publication proves no dispatch
+or chat resumption; preserve the coordinator's unified integration gate.

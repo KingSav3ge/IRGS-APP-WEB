@@ -1,31 +1,8 @@
 # Continuation instructions — IRGS App/Website
 
 Current coordinated edition: **3.4.2**; previous release: **3.3.3**.
-See [version policy](VERSION_POLICY.md). Earlier baseline tables and execution
-records below retain their original tested development identities.
-
-Updated 26 October 2026 for `KingSav3ge/IRGS-APP-WEB/main`. Preserve local changes
-before pulling. Resume this existing chat's component work; publish only its
-own repository. Read this file after pull; fresh user directions take precedence.
-
-## Coordinated 3.4.2 preparation
-
-Read [the coordinator selection](COORDINATED_3_4_2.md). Current edition headings
-supersede dated delivery identities below; preserve their original source and tests.
-
-## Current coordinated continuation
-
-The interface continuation was delivered at
-`919427cf16cf72574a581d7e6f712e638740a1df`. The coordinator has selected all
-three updated components for 3.4.2 review; the earlier App-only deferral no
-longer describes this coordinated selection. Read
-[COORDINATED_3_4_2.md](COORDINATED_3_4_2.md) for exact dependencies. Dated handoff
-and refinement records retain their original tested sources and scope.
-
-The Engine communication participant/received-source contract is now delivered.
-Implement matching authenticated, explicitly reviewed and durable App controls as
-the next shared-system increment. Keep operator/launcher configuration moving as
-an independent task. Preserve all four browser suites and the qualified interface.
+Updated 26 October 2026 following the coordinator's actual playability evaluation.
+Preserve local work before pulling; fresh user instructions take precedence.
 
 ## Start here
 
@@ -35,87 +12,79 @@ git pull --ff-only origin main
 git submodule update --init --recursive
 ```
 
-Read `AGENTS.md`, [DEVELOPMENT.md](DEVELOPMENT.md),
-[IRGS_SYSTEMS_SCOPE.md](IRGS_SYSTEMS_SCOPE.md) and
-[COORDINATOR_WORK_ORDER.md](COORDINATOR_WORK_ORDER.md), then IRGS_Web/responses/README.md, IRGS_Web/local_presentation.py and the pinned Engine API documents.
-Inspect the current diff/remote and exact dependencies before editing.
+Read `AGENTS.md`, [the work order](COORDINATOR_WORK_ORDER.md),
+[the assessment](PLAYABILITY_REVIEW_3_4_2.md),
+[evidence](PLAYABILITY_EVIDENCE_3_4_2.json), `DEVELOPMENT.md` and
+`IRGS_SYSTEMS_SCOPE.md`. Develop only IRGS-APP-WEB; coordinator owns joined imports.
 
-## Prior qualified baseline and scope
+## Qualified product baseline
 
-IRGS **3.4.0 development**, Core compatibility **3.3**. Develop shared systems
-across campaigns and themes. Rise R00 and the existing non-Rise authored opening
-are actual supported regression contexts. Synthetic theme/profile checks prove
-their recorded formatting/declaration behavior, not new campaign mechanics.
+Unified 3.4.2: `ba551af285a6e1eb0766a9d06f83cbc0e5335b35`.
+Engine: `91b20056e7db651966c9e92925313494917f47b1`.
+App: `00634b15f2d8d4a8626d3eb3cb0a139559ac1fcc`.
+Catalog: `3f921252e50a0976cb88321b6ff8249a5f12466d`.
+These exact product revisions were evaluated. Later instruction commits change
+no runtime source or release pins. Earlier validation remains at its real source.
 
-The [coordinator integration](https://github.com/KingSav3ge/IRGS/blob/65351ebcfe2538d880f576a3ce4aa2230537e08d/provenance/qa/shared_response_integration_3_4_0_review.json) qualified joined `65351ebcfe2538d880f576a3ce4aa2230537e08d`:
+## First bounded increment — explicit readiness and a usable start
 
-| Component source | Qualified commit |
-| --- | --- |
-| Engine | `2f9476c6090878257d17cab3ad3a83a7ce18a5dc` |
-| App/Web | `aae8a25656c890181e0aa569df2c716968ec3642` |
-| Catalog | `27fff8385d1c01fdfe9ad7254b7647e6bc12a01e` |
+Read `PLAYABILITY_REVIEW_3_4_2.md`. Address IRGS-PLAY-001/002/006 immediately.
+Make the selected actor/start mode's actual playability clear before the user
+confirms a campaign. A verified snapshot, eligible character, prose opening or
+catalogue title cannot imply executable gameplay. Preserve explicit declaration-
+only/reference use as a deliberate choice. Do not silently choose a courier
+opening for an existing historical person or grant missing facts in the browser.
 
-Recorded integration results: 680 Core tests run (679 passed, one private-fixture
-policy skip); 201 Web run (194 passed, seven Windows skips); 105 interface checks;
-104 Catalog checks; eight independent HTTP checks. Two-context Chromium and
-clean-package qualification passed with zero live inference. These are attributed
-prior results, not tests newly executed by this guide update.
+Consume Engine's agreed versioned start-context/readiness contract after it is
+published. Until then, implement honest empty-state copy against actual known-view
+capabilities and independent UI work without claiming the missing initializer is
+delivered. Show the next supported route or the precise unresolved scope; do not
+say listed actions are available when the list is empty. Keep own-response drafts,
+their unresolved status, pending/retry/withdraw behavior and explicit review.
 
-Later guide-only commits do not alter this qualified source set. Preserve
-independent content/schema versions and historical evidence. See
-[shared scope](IRGS_SYSTEMS_SCOPE.md), [continuation](CHAT_CONTINUATION.md) and
-[the work order](COORDINATOR_WORK_ORDER.md).
+Acceptance uses the real UI and empty temporary stores: existing historical person,
+new human with authored opening, and deliberate declaration-only start, plus R00
+regression. Verify selected start/character and sourced context reach the first
+view unchanged; perform a reviewed operation, show its exact result and retain it
+after reload/retry. Test cancellation, changed selection, actor privacy, 390px
+layout, honest source-unavailable cases and zero routine provider calls.
 
-## Latest App development-pair review
+Next: finish the delivered Engine communication/source/offer bridge with private
+server-owned preparations, actor authentication, explicit acceptance and atomic
+original-result recovery. Retain the native private-offer forwarding boundary.
+Protected operator configuration is independent work using existing route/budget
+contracts, with no secrets in the browser and no paid fallback for local results.
+Add non-secret process/build identity to exports/diagnostics to distinguish the
+actual host and UI build while retaining Core 3.3 compatibility. Preserve the
+refined Emergent interface; additional visual polish is secondary to these flows.
 
-The App now starts and continues Engine-selected observation/work through the
-public phase capability API. The earlier discovery dependency is resolved.
-Current selected development commits are Engine
-`0fdfc21f45510e3fd99fd6a8087cd3314d077267` and Catalog
-`4bd572843cebc94e7d043c3706d1be85249d6c10`, qualified from App main
-`67411f8ef5214c8cb51af2b244590751e6ea20df` plus this App increment.
-Read [the process contract](IRGS_Web/PROCESS_BRIDGE.md),
-[current evidence](CURRENT_COMPONENTS_VALIDATION.json) and the latest coordinator
-report. Preserve typed preparation, explicit review, atomic candidate/result
-saves, native pending-store upgrades and original receipt recovery. Catalog's
-historical compatibility records and [first bridge evidence](PROCESS_BRIDGE_VALIDATION.json)
-retain their original exact selections. No old manifest is repinned.
-Coordinator review/new joined qualification applies to this App-selected pair;
-the prior shared-response baseline is already integrated.
+## Delivery rules
 
-## Next bounded task
+Develop shared IRGS systems; Rise is one regression context. Preserve one
+authoritative Core and its nine K-owners, the existing six Director categories,
+actor/source filtering, reviewed creation, explicit acceptance, resource/authority
+checks and exact original-result recovery. Names, themes, narration and drafts
+create no capability or facts. Keep causal, storage, civil and elapsed time apart.
+Do not invent universal timing, dice or an NPC decision to satisfy an example.
 
-Consume Engine's `communication_contract` through actor-filtered HTTP controls,
-private server-owned preparations and explicit acceptance. Preserve received-only
-participants, exact testimony, offer meanings, actual authority checks, atomic
-save/recovery and zero routine dispatch. Develop across the supported non-Rise
-speech and selected Rise offer contexts. Do not infer NPC decisions from prose.
-Protected operator/launcher configuration remains an independent App task.
+Use temporary synthetic stores only. Preserve user saves, credentials, local
+configuration, original source/archive bytes, adopted canon and dated evidence.
+Do not migrate an actual user campaign as a test. Record actual source commits,
+APIs, test commands/results/skips and remaining dependencies. Retain old fixtures
+at their selected identities. No live inference or full C2 claim is implied.
 
-## Preserve and finish
+After actual product edits, refresh only the owning component's release hashes
+and run meaningful existing and new checks for changed behavior. Update the
+development plan and push only this assigned component repository. Return the
+full commit and exact compatible dependency selections to the coordinator.
+Current edition stays 3.4.2 until a coordinated versioned publication. Guide-only
+commits are not new product increments. Repository publication proves no dispatch
+or chat resumption; preserve the coordinator's unified integration gate.
 
-Keep the completed process continuation, response depot, current source intake patch and shared
-non-Rise/Rise round trip. Do not repeat archive acquisition, rebuild the 1,000
-variants, redo themes or describe integrated response work as awaiting its
-original integration. Preserve old manifest consumer IDs; current consumer
-evidence is separate. Generic drafts create no mechanics or NPC choices.
+## Restart message
 
-Execute the relevant commands in the current guide. Keep temporary synthetic
-state, zero routine provider calls, actual Core effects, source/actor filtering,
-explicit acceptance, failed-save atomicity, retry/restart/restore and truthful
-unsupported behavior. Report named scope and actual skips. No user save or
-private external fixture participates. Live inference remains separately gated.
-
-Update completed/active/remaining records and return the full pushed SHA,
-changed behavior, API/dependency selections, commands/results/skips and remaining
-blockers. Never claim a documentation edit or old log as a new implemented
-system. The coordinator reviews the exact all-three set and owns joined import.
-
-## Paste-ready restart message
-
-> Pull IRGS-APP-WEB/main and read CHAT_CONTINUATION.md, COORDINATED_3_4_2.md
-> and the current work order. Preserve the refined Emergent interface. Implement
-> the delivered Engine communication/source/offer contract through authenticated,
-> explicitly reviewed, durable controls across supported IRGS contexts. Keep
-> operator setup separate, run actual gameplay/recovery checks and push only App.
-> Report the exact source, dependency pins, executed checks and remaining work.
+> Pull IRGS-APP-WEB/main and read CHAT_CONTINUATION.md,
+> COORDINATOR_WORK_ORDER.md and PLAYABILITY_REVIEW_3_4_2.md. Implement the assigned
+> first increment for supported player starts across IRGS. Preserve existing
+> gameplay/recovery and source boundaries, run actual checks, update the plan,
+> push only this component and report the full commit, dependencies and limits.
