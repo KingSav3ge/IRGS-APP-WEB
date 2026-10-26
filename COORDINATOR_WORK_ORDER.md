@@ -59,3 +59,20 @@ and [the delivery scope](START_CONTEXT_ADOPTION.md). Engine is consumed through
 its published contract; Catalog's separate consumer qualification and coordinator
 exact-set review remain pending. Earlier work-order acceptance above remains
 available for review; this delivery creates no new unified release.
+
+
+## Subsequent App communication delivery
+
+The next communication/source/offer increment named in `CHAT_CONTINUATION.md`
+is implemented over Engine `cc450a6` with Catalog `e1778e0` unchanged. It adds
+actor-scoped preparation/review/acceptance, exact speech, received terms and
+sources, conserved Engine transfers and durable original-result recovery.
+Legacy receipt privacy remains preserved. See [scope](COMMUNICATION_BRIDGE.md)
+and [fresh executed evidence](COMMUNICATION_BRIDGE_VALIDATION.json).
+
+Qualification uses explicitly selected synthetic non-Rise/R00 channels. Product
+initializers still need owned Engine/content channel and introduction selections;
+App does not fabricate them or migrate saves. Protected operator configuration
+is the next bounded App task. The START-INT-006 Catalog consumer and coordinator
+exact-set/joined/browser/package gate remain pending. No unified import, new
+release or edition increase is part of this component delivery.

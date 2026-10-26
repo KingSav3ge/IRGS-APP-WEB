@@ -104,3 +104,10 @@ body[data-reading=light],body[data-reading=parchment]{--reading-accent:color-mix
 .declaration-start-consent[hidden]{display:none}
 .declaration-start-consent input{width:auto;flex:none;margin-top:.3rem}
 .play-readiness p{overflow-wrap:anywhere}
+
+.communication-controls{margin-block:1rem}.communication-controls form{display:grid;gap:.8rem;margin-block:1rem}
+.communication-controls select,.communication-controls input,.communication-controls textarea{max-width:100%;min-width:0}
+.communication-controls fieldset{min-width:0;border:1px solid var(--line);padding:.8rem}
+.received-offer,.received-source{border-top:1px solid var(--line);padding-block:1rem;overflow-wrap:anywhere}
+.received-source-text{white-space:pre-wrap;overflow-wrap:anywhere}
+#communication-reviewed-details{max-width:100%;overflow-wrap:anywhere}

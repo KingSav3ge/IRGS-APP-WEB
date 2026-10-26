@@ -1,0 +1,68 @@
+'use strict';
+// Explicit synthetic selections, actual Core speech/offers, standard host and UI.
+const fs=require('fs'),os=require('os'),path=require('path'),assert=require('assert/strict');
+const {spawn}=require('child_process'),{chromium}=require('playwright');
+(async()=>{
+ const folder=fs.mkdtempSync(path.join(os.tmpdir(),'irgs-communication-browser-')),metadata=path.join(folder,'host.json');
+ const hostProcess=spawn('python3',['-B',path.join(__dirname,'communication_browser_host.py'),folder],{stdio:['ignore','ignore','pipe']});
+ let hostError='',browser;hostProcess.stderr.on('data',data=>hostError+=data);
+ const screenshots=process.argv[3];if(screenshots)fs.mkdirSync(screenshots,{recursive:true});
+ try{
+  const deadline=Date.now()+20000;while(!fs.existsSync(metadata)){if(hostProcess.exitCode!==null||Date.now()>deadline)throw Error('Communication fixture host failed: '+hostError);await new Promise(resolve=>setTimeout(resolve,50));}
+  const host=JSON.parse(fs.readFileSync(metadata)),origin='http://127.0.0.1:'+host.port;
+  browser=await chromium.launch({executablePath:process.env.IRGS_CHROMIUM||'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
+  const page=await browser.newPage({viewport:{width:1568,height:1000}}),errors=[],external=[],preparations=[],executions=[];let providerCalls=0,dropPrepare=true,dropExecute=true;
+  page.on('pageerror',error=>errors.push(error.message));
+  await page.route('**/*',async route=>{const url=route.request().url();if(!url.startsWith(origin+'/')){external.push(url);return route.abort();}if(/\/api\/ai\/(proposal|accept)/.test(url)){providerCalls++;return route.abort();}return route.continue();});
+  await page.route('**/api/communication/prepare',async route=>{const response=await route.fetch();preparations.push({body:route.request().postDataJSON(),result:await response.json()});if(dropPrepare){dropPrepare=false;return route.abort('failed');}return route.fulfill({response});});
+  await page.route('**/api/communication/execute',async route=>{const response=await route.fetch();executions.push({body:route.request().postDataJSON(),result:await response.json()});if(dropExecute){dropExecute=false;return route.abort('failed');}return route.fulfill({response});});
+  const save=key=>path.join(folder,'saves',key+'.json');
+  const openControls=async()=>{const details=page.locator('.communication-controls');if(!await details.evaluate(node=>node.open))await details.locator(':scope > summary').click();};
+  const screenshot=async name=>{if(screenshots)await page.screenshot({path:path.join(screenshots,name+'.png')});};
+  const fits=async()=>{await page.setViewportSize({width:390,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));};
+  async function choose(key,actor){await page.setViewportSize({width:1568,height:1000});await page.locator('#campaign-management').evaluate(node=>node.open=true);if(await page.locator('#campaign').inputValue()!==key)await page.locator('#campaign').selectOption(key);await page.waitForFunction(key=>current?.id===key&&!loadingCampaign,key);if(await page.locator('#player-character').inputValue()!==actor)await page.locator('#player-character').selectOption(actor);await page.waitForFunction(actor=>current?.actor_id===actor&&!loadingCampaign,actor);await openControls();}
+  async function confirm(){await page.locator('#action-review-dialog[open]').waitFor();const revision=await page.evaluate(()=>current.revision);await page.locator('#confirm-reviewed-action').click();await page.waitForFunction(revision=>current?.revision===revision+1&&!busy,revision);return page.evaluate(()=>current.completed_actions.at(-1));}
+  async function offer(words,quantity='2'){
+   await choose(host.contexts.rise,'founder');await page.locator('#communication-command').selectOption('offer');
+   for(const [key,value] of Object.entries({from:'founder-home',to:'oren-home',material:'grain',quantity,authority_id:'founder-custody'}))await page.locator('#communication-term-'+key).fill(value);
+   await page.locator('#communication-intention').fill(words);await page.locator('#review-communication').click();return confirm();
+  }
+  async function closeOffer(received,command,actor,words){await choose(host.contexts.rise,actor);await page.locator('#communication-intention').fill(words);await page.locator('.received-offer').filter({hasText:received.communication.offer_id}).getByRole('button',{name:command,exact:true}).click();return confirm();}
+  await page.goto(origin);await page.waitForFunction(()=>current&&!loadingCampaign);await choose(host.contexts.quay,'pc');
+  const original=fs.readFileSync(save(host.contexts.quay),'utf8'),originalWorld=JSON.parse(original).state;
+  assert.equal(await page.locator('#communication-recipient option').count(),1);assert.equal(await page.locator('#communication-recipient').inputValue(),'witness');assert.equal(await page.locator('#communication-command option').count(),1);
+  for(const privateText of ['PRIVATE_CHANNEL_ROSTER','PRIVATE_LOCATION','UNRECEIVED_WITNESS_NAME'])assert(!(await page.content()).includes(privateText));
+  await page.locator('#own-response-panel').evaluate(node=>node.open=true);await page.locator('#declaration').fill('An independent unsent response.');
+  const words='  I accept.\n<img src=x onerror="window.bad=true"> {literal}  ';await page.locator('#communication-intention').fill(words);await page.locator('#review-communication').click();
+  await page.waitForSelector('#recover-communication-review');assert.equal(fs.readFileSync(save(host.contexts.quay),'utf8'),original);const preparedBody=preparations[0].body;
+  await page.reload();await page.waitForFunction(key=>current?.id===key&&!loadingCampaign,host.contexts.quay);await openControls();await page.locator('#recover-communication-review').click();await page.locator('#action-review-dialog[open]').waitFor();
+  assert.equal(await page.locator('#action-review-intent').inputValue(),words);await page.locator('#cancel-reviewed-action').click();assert.equal(executions.length,0);assert.equal(fs.readFileSync(save(host.contexts.quay),'utf8'),original);
+  await page.locator('#recover-communication-review').click();const spoken=await confirm();assert.equal(executions[0].body.request_id,preparedBody.request_id);assert.deepEqual(executions[0].result,spoken);assert.equal(spoken.communication.status,'testimony_received');assert.equal(spoken.communication.utterance,words);assert.equal(spoken.elapsed_time,null);
+  assert.equal(await page.locator('#declaration').inputValue(),'An independent unsent response.');assert.equal(await page.evaluate(()=>window.bad),undefined);assert.equal(await page.locator('#content img[src="x"]').count(),0);
+  const spokenWorld=JSON.parse(fs.readFileSync(save(host.contexts.quay))).state;assert.deepEqual(spokenWorld.stocks,originalWorld.stocks);assert.deepEqual(spokenWorld.elapsed_time,originalWorld.elapsed_time);assert.deepEqual(spokenWorld.obligations,originalWorld.obligations);
+  await openControls();await page.locator('.communication-sources > summary').click();assert((await page.locator('.received-source-text').allTextContents()).includes(words));await fits();await screenshot('quay-speech-mobile');
+  const acceptedQuay=fs.readFileSync(save(host.contexts.quay),'utf8');await page.reload();await page.waitForFunction(()=>current&&!loadingCampaign);assert.equal(fs.readFileSync(save(host.contexts.quay),'utf8'),acceptedQuay);assert.deepEqual(await page.evaluate(()=>current.completed_actions.at(-1)),spoken);
+
+  const initialRise=JSON.parse(fs.readFileSync(save(host.contexts.rise))).state,initialStocks=initialRise.stocks;
+  const offered=await offer('I propose these exact transfer terms.');assert.equal(offered.communication.status,'offered');assert.deepEqual(JSON.parse(fs.readFileSync(save(host.contexts.rise))).state.stocks,initialStocks);
+  dropExecute=true;const fulfilled=await closeOffer(offered,'Accept','oren','I explicitly attempt the received transfer.');assert.equal(fulfilled.communication.status,'fulfilled');assert.equal(fulfilled.elapsed_time,null);
+  assert.equal(await page.evaluate(()=>current.settlement),undefined);assert.equal(await page.locator('[data-rise-action]').count(),0);
+  const afterAcceptance=JSON.parse(fs.readFileSync(save(host.contexts.rise))).state.stocks;assert.equal(afterAcceptance['founder-home'].grain,initialStocks['founder-home'].grain-2);assert.equal(afterAcceptance['oren-home'].grain,initialStocks['oren-home'].grain+2);
+  await choose(host.contexts.rise,'founder');const firstCard=page.locator('.received-offer').filter({hasText:offered.communication.offer_id});assert((await firstCard.innerText()).toLowerCase().includes('fulfilled'));await firstCard.getByRole('button',{name:'Latest received message'}).click();await page.locator('#inspect-dialog[open]').waitFor();await page.locator('#inspect-content h3').filter({hasText:/fulfilled/i}).waitFor();await page.locator('#close-inspector').click();
+  const declinedOffer=await offer('A separate proposal to decline.');const declined=await closeOffer(declinedOffer,'Decline','oren','I decline these terms.');assert.equal(declined.communication.status,'declined');
+  const withdrawnOffer=await offer('A separate proposal to withdraw.','1');const withdrawn=await closeOffer(withdrawnOffer,'Withdraw','founder','I withdraw my proposal.');assert.equal(withdrawn.communication.status,'withdrawn');
+  const originalOffer=await offer('A proposal that may receive a counteroffer.','1');await choose(host.contexts.rise,'oren');await page.locator('.received-offer').filter({hasText:originalOffer.communication.offer_id}).getByRole('button',{name:'Counteroffer',exact:true}).click();
+  assert.equal(await page.locator('#communication-term-from').inputValue(),'oren-home');assert.equal(await page.locator('#communication-term-to').inputValue(),'founder-home');assert.equal(await page.locator('#communication-term-authority_id').inputValue(),'');
+  await page.locator('#communication-term-authority_id').fill('oren-custody');await page.locator('#communication-intention').fill('I propose these reverse terms; I accept nothing.');await page.locator('#review-communication').click();const counter=await confirm();assert.equal(counter.communication.status,'offered');assert.equal(counter.communication.supersedes,originalOffer.communication.offer_id);
+  assert.deepEqual(JSON.parse(fs.readFileSync(save(host.contexts.rise))).state.stocks,afterAcceptance);
+  await choose(host.contexts.rise,'founder');const oldOffer=page.locator('.received-offer').filter({hasText:originalOffer.communication.offer_id});assert((await oldOffer.innerText()).toLowerCase().includes('superseded'));assert.equal(await oldOffer.locator('[data-communication-offer]').count(),0);
+  const counterAccepted=await closeOffer(counter,'Accept','founder','I explicitly accept this counteroffer.');assert.equal(counterAccepted.communication.status,'fulfilled');
+  const finalState=JSON.parse(fs.readFileSync(save(host.contexts.rise))).state;assert.equal(finalState.stocks['founder-home'].grain,initialStocks['founder-home'].grain-1);assert.equal(finalState.stocks['oren-home'].grain,initialStocks['oren-home'].grain+1);assert.deepEqual(finalState.elapsed_time,initialRise.elapsed_time);
+  const exactRise=fs.readFileSync(save(host.contexts.rise),'utf8');await fits();await openControls();await screenshot('rise-offers-mobile');await page.reload();await page.waitForFunction(key=>current?.id===key&&!loadingCampaign,host.contexts.rise);assert.deepEqual(await page.evaluate(()=>current.completed_actions.at(-1)),counterAccepted);assert.equal(fs.readFileSync(save(host.contexts.rise),'utf8'),exactRise);
+  const headers={'X-IRGS-Token':await page.evaluate(()=>token)},originalProposal=await page.request.get(origin+'/api/action-result/'+host.contexts.rise+'/'+offered.request_id+'?actor_id=founder',{headers});assert.deepEqual(await originalProposal.json(),offered);
+  assert.equal((await page.request.get(origin+'/api/communication/received/'+host.contexts.rise+'/'+offered.request_id+'?actor_id=elin',{headers})).status(),403);
+  assert.equal(providerCalls,0);assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
+  const report={status:'passed',contexts:['selected_non_rise_quay','selected_R00_transfer'],mobile_width:390,exact_words_and_testimony:true,speech_does_not_accept_offer:true,elapsed_time_unchanged:true,all_six_structured_commands:true,conserved_transfers:true,terminal_statuses_distinct:true,original_proposal_result_retained:true,private_actor_record_denied:true,lost_prepare_ack_reload_recovered:true,lost_execute_ack_original_result_recovered:true,independent_own_response_preserved:true,HTML_is_literal_text:true,provider_calls:providerCalls,browser_errors:errors.length,external_requests:external.length,prepared:preparations.length,executed:executions.length};
+  if(process.argv[2])fs.writeFileSync(process.argv[2],JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
+ }finally{if(browser)await browser.close();if(hostProcess.exitCode===null){hostProcess.kill('SIGINT');await new Promise(resolve=>hostProcess.once('exit',resolve));}fs.rmSync(folder,{recursive:true,force:true});}
+})().catch(error=>{console.error(error);process.exitCode=1;});

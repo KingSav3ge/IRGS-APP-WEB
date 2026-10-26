@@ -5,7 +5,9 @@
 The first start-readiness deliveries have been reviewed. Follow
 [COORDINATOR_WORK_ORDER.md](COORDINATOR_WORK_ORDER.md) and
 [COORDINATOR_START_REVIEW_2026_10_26.md](COORDINATOR_START_REVIEW_2026_10_26.md) for the current owner task.
-App/Catalog adoption blocks joined publication; Engine's contract is published.
+App start adoption and the subsequent communication bridge are delivered below.
+Catalog's adopted-App consumer and coordinator exact-set review still gate joined
+publication; Engine's contract is published.
 The coordinator fixed App's module/test-name collision. Older task ordering and
 validation below retain their original scope. No unified import or version
 increase is performed by this instruction update.
@@ -35,11 +37,29 @@ the coordinator owns exact-set/joined/browser/package review and publication.
 Do not reopen the Engine contract dependency or silently adopt a different pack.
 Keep the App's distinct `start_preview` module/test names.
 
-Next App work is the already delivered Engine communication/source/offer bridge,
-with actor-scoped preparations, explicit acceptance and durable original-result
-recovery. Protected operator setup, supported-intent mapping and non-secret build
-diagnostics remain subsequent work. Preserve the selected-start journeys and all
-five browser suites. The App stays 3.4.2 until coordinated 3.4.3 preparation.
+## Delivered communication/source/offer bridge — 26 October 2026
+
+The App now hosts Engine's actor-scoped communication contract with exact editable
+words, separate structured commands, received sources/offers, explicit review
+and durable original-result recovery. Actual transfers, authority and terminal
+statuses remain Engine-owned. Legacy unattributed receipts retain their existing
+private-provenance boundary. No provider is called. See
+[scope and reproduction](COMMUNICATION_BRIDGE.md) and
+[fresh results](COMMUNICATION_BRIDGE_VALIDATION.json).
+
+The bridge is qualified over explicitly selected synthetic non-Rise/R00 contexts.
+Normal pinned initializers still supply no selected communication channels or
+introductions; App does not invent them. Engine/content selection remains a
+product dependency. The existing founder-only R00 adapter no longer supplies
+founder inventory/actions to another controlled character.
+
+Next bounded App task: protected operator/launcher configuration for the existing
+optional Solo service, with credentials/accounting kept server-side and ordinary
+supported play available without a provider. Supported-intent mapping and
+non-secret build diagnostics follow. Preserve start adoption and all six browser
+suites. Catalog's separate adopted-App start consumer and coordinator exact-set/
+joined/package review remain pending. Edition stays 3.4.2 until coordinated
+3.4.3 preparation; keep the current Engine/Catalog gitlinks.
 
 ## Current priority — assessed player-start gaps
 

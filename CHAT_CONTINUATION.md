@@ -22,11 +22,29 @@ the coordinator owns exact-set/joined/browser/package review and publication.
 Do not reopen the Engine contract dependency or silently adopt a different pack.
 Keep the App's distinct `start_preview` module/test names.
 
-Next App work is the already delivered Engine communication/source/offer bridge,
-with actor-scoped preparations, explicit acceptance and durable original-result
-recovery. Protected operator setup, supported-intent mapping and non-secret build
-diagnostics remain subsequent work. Preserve the selected-start journeys and all
-five browser suites. The App stays 3.4.2 until coordinated 3.4.3 preparation.
+## Delivered communication/source/offer bridge — 26 October 2026
+
+The App now hosts Engine's actor-scoped communication contract with exact editable
+words, separate structured commands, received sources/offers, explicit review
+and durable original-result recovery. Actual transfers, authority and terminal
+statuses remain Engine-owned. Legacy unattributed receipts retain their existing
+private-provenance boundary. No provider is called. See
+[scope and reproduction](COMMUNICATION_BRIDGE.md) and
+[fresh results](COMMUNICATION_BRIDGE_VALIDATION.json).
+
+The bridge is qualified over explicitly selected synthetic non-Rise/R00 contexts.
+Normal pinned initializers still supply no selected communication channels or
+introductions; App does not invent them. Engine/content selection remains a
+product dependency. The existing founder-only R00 adapter no longer supplies
+founder inventory/actions to another controlled character.
+
+Next bounded App task: protected operator/launcher configuration for the existing
+optional Solo service, with credentials/accounting kept server-side and ordinary
+supported play available without a provider. Supported-intent mapping and
+non-secret build diagnostics follow. Preserve start adoption and all six browser
+suites. Catalog's separate adopted-App start consumer and coordinator exact-set/
+joined/package review remain pending. Edition stays 3.4.2 until coordinated
+3.4.3 preparation; keep the current Engine/Catalog gitlinks.
 
 ## Current review and assignment
 
@@ -76,9 +94,9 @@ Published unified 3.4.2 remains `ba551af285a6e1eb0766a9d06f83cbc0e5335b35`.
 Received component products: Engine `cc450a6f00a249d2169cdacdfc9c4b1e03f67cc8`,
 App `23184e1e70b6005ad6170edb3843afcaae42e18a`, Catalog `e1778e080385b6ff2bbb93f47f91d0da6e9d6780`.
 Later coordinator guide/patch commits must be read; doc-only descendants do not
-themselves supply another runtime increment. Current App gitlinks still select
-Engine `91b20056e7db651966c9e92925313494917f47b1` and Catalog
-`3f921252e50a0976cb88321b6ff8249a5f12466d`.
+themselves supply another runtime increment. Current App gitlinks select
+Engine `cc450a6f00a249d2169cdacdfc9c4b1e03f67cc8` and Catalog
+`e1778e080385b6ff2bbb93f47f91d0da6e9d6780`.
 
 Develop shared IRGS systems; Rise is one regression context. Keep one Core and
 nine K-owners, existing six Director categories, actor/source filtering, actual
@@ -103,6 +121,7 @@ Core compatibility 3.3. Repository publication does not resume another chat.
 ## Restart message
 
 > Pull IRGS-APP-WEB/main. Follow CHAT_CONTINUATION.md, COORDINATOR_WORK_ORDER.md and
-> COORDINATOR_START_REVIEW_2026_10_26.md. Complete this owner's adoption task,
-> preserve current behavior and information boundaries, execute meaningful
-> checks, publish only this component and report exact source/pins and limits.
+> COORDINATOR_START_REVIEW_2026_10_26.md. Start adoption and the communication
+> bridge are delivered. Continue the next bounded App task above; preserve
+> behavior/information boundaries, execute meaningful checks, publish only this
+> component and report exact source/pins and limits.

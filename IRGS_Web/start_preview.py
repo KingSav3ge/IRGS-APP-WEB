@@ -9,17 +9,22 @@ from phase_contract import actor_view
 from start_readiness import review_start, SCHEMA_VERSION
 
 
-def capability_summary(projection, starts):
+def capability_summary(projection, starts, communications=None):
     pending = projection.get('pending_declaration') is not None
     actions = (projection.get('settlement') or {}).get('actions', projection.get('supported_actions', []))
     actions = [] if pending else actions
     starts = [] if pending else starts
     available = projection.get('character_available') is True and bool(projection.get('actor_id'))
     actions, starts = (actions, starts) if available else ([], [])
+    packet = communications or {}
+    communication_count = (sum(len(participant['supported_commands']) for channel in packet.get('channels', [])
+                               for participant in channel['participants'])
+                           + sum(len(offer['supported_commands']) for offer in packet.get('offers', []))) if available and not pending else 0
     status = ('unavailable' if not available else 'pending_declaration' if pending else
-              'supported_slice' if actions or starts else 'declaration_only')
+              'supported_slice' if actions or starts or communication_count else 'declaration_only')
     return {'schema_version': 1, 'basis': 'current_actor_view', 'status': status,
             'action_count': len(actions), 'process_start_count': len(starts),
+            'communication_command_count': communication_count,
             'action_titles': [item.get('title', 'Received action') for item in actions],
             'process_titles': [item['title'] for item in starts],
             'general_freeform_resolution': False}

@@ -1,3 +1,78 @@
+# App communication/source/offer delivery — 26 October 2026
+
+Source was pulled at `40a55154d0a7ca1212e609668f09c0d279f56f1e`.
+The exact delivery is the App commit containing this report. Edition remains
+**3.4.2**, previous release **3.3.3**, Core compatibility **3.3**. Publish scope
+is only `KingSav3ge/IRGS-APP-WEB/main`; no joined import or release is created.
+
+Story now consumes Engine `irgs-communication-capabilities-1` for actor-received
+channels, participants, sources, offers and role-dependent structured commands.
+Exact editable words remain separate from Speak/Offer/Counteroffer/Accept/
+Decline/Withdraw. Explicit review preserves typed terms; saying “I accept” under
+Speak accepts nothing. Engine owns authority, rejection, conserved transfers
+and actual offered/fulfilled/declined/withdrawn/superseded statuses. Original
+proposal results do not change when later messages close an offer.
+
+Private durable preparations bind the actor, branch, revision, restore scope,
+exact words and selected command. Core effects and the exact public result are
+saved atomically before acknowledgment. Lost preparation/commit replies, restart,
+concurrency, failed saves, identical/older restores, actor changes and navigation
+retain same-identity recovery and stale-request fences. Communication sources
+are escaped text; forwarding words grants no private contract terms or rights.
+The full regression exposed a legacy provenance leak, corrected by preserving
+the App's existing unattributed-receipt boundary without weakening its privacy
+test. Native attributed sources retain both original and reception references.
+
+The existing R00 gameplay/draft adapter is founder-only. Another explicitly
+controlled character now receives the generic known view and own communication
+controls without founder stock/actions, or an unavailable-draft exception.
+Themes, reading controls, selected starts, phases and ordinary response drafts
+retain their existing behavior. Routine rendering calls no provider.
+
+Selected product dependencies are unchanged:
+
+- Engine: `cc450a6f00a249d2169cdacdfc9c4b1e03f67cc8`.
+- Catalog: `e1778e080385b6ff2bbb93f47f91d0da6e9d6780`.
+
+Fresh executed results:
+
+- Full Web: **256 run, 249 passed, seven native Windows skips**, zero failures.
+  Includes **14 communication HTTP tests**, also passed independently, covering
+  exact testimony, real conserved transfers, separate closure meanings, private
+  legacy/native sources, forwarding, acceptance, concurrency and recovery.
+- **150 interface**, **13 formatter** and **one tooling** check passed. Existing
+  App response bank remains 171 variants/eight recipes; no content was repinned.
+- Published Engine communication contract: **32 passed**, zero skips. This is a
+  focused contract rerun, not a claim of a complete Engine suite rerun.
+- **Six Chromium suites passed**: the new selected non-Rise/R00 communication
+  journeys plus all five retained start/interface/shared/process suites. Tests
+  cover all six communication commands, 390px, exact literal HTML words,
+  independent response drafts, lost prepare/execute replies, original results,
+  reload, conserved stock and denied foreign records. Provider calls and browser
+  errors: **zero**. The communication suite made zero external requests.
+- App component verification passed: **84 App files**, 188 Catalog files,
+  Core 3.3 and exact dependency pins. JavaScript syntax and CRLF-aware whitespace
+  checks passed. Browser suites use the canonical loopback host with temporary
+  synthetic stores; no user save, credential, live model or native Windows host
+  was used.
+
+See [scope and reproduction](COMMUNICATION_BRIDGE.md) and
+[fresh attributed evidence](COMMUNICATION_BRIDGE_VALIDATION.json). Earlier
+validation and the report records below retain their original tested identities.
+
+**Remaining dependencies:** normal pinned initializers still select no
+communication channel/introductions. Engine/content ownership must supply those
+selections before ordinary starts can use this bridge; App installs no synthetic
+fixtures, permissions or rules in product saves. Catalog still owns its separate
+adopted-App start consumer (START-INT-006); the coordinator owns exact-set approval
+and fresh joined/browser/package qualification before any unified 3.4.3 release.
+The conservative legacy-source compatibility projection should be retained in
+that review. Next bounded App task is protected operator/launcher configuration;
+supported-intent mapping and non-secret build diagnostics follow. John/general
+freeform/combat/full C2 remain outside the implemented scope.
+
+---
+
 # App published-start-contract adoption — 26 October 2026
 
 App source was pulled at `d8e68848454ac7be68ce87fede6d04cc57bda86a`.
