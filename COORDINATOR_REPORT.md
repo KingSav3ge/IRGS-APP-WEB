@@ -1,3 +1,16 @@
+# Coordinated 3.4.2 dependency selection
+
+The coordinator pulled all three viable owner updates and selected the Engine
+communication-capability and Catalog phase-evaluation sources. See
+[COORDINATED_3_4_2.md](COORDINATED_3_4_2.md). The first current-pair Web run passed
+229 cases (222 passed, seven Windows-only skips); selected Engine communication
+32 and cross-component HTTP five passed. This is preparation for fresh joined
+capture/browser/package qualification, not a claim that those final steps ran.
+Communication controls remain the next App task. Older reports retain their
+original dependencies and exact scope.
+
+---
+
 # Emergent reading and navigation refinement — 26 October 2026
 
 Completed the first bounded increment in `APP_DEVELOPMENT_HANDOFF.md`, pulled at

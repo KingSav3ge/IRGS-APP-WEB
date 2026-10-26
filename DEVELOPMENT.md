@@ -1,11 +1,16 @@
 # IRGS App/Web development guide
 
-Current coordinated edition: **3.4.1**; previous release: **3.3.3**.
+Current coordinated edition: **3.4.2**; previous release: **3.3.3**.
 See [version policy](VERSION_POLICY.md). Earlier baseline tables and execution
 records below retain their original tested development identities.
 
 Current guide: 26 October 2026. Owner: `KingSav3ge/IRGS-APP-WEB/main`.
 Start with [CHAT_CONTINUATION.md](CHAT_CONTINUATION.md).
+
+## Coordinated 3.4.2 preparation
+
+Read [the coordinator selection](COORDINATED_3_4_2.md). Current edition headings
+supersede dated delivery identities below; preserve their original source and tests.
 
 ## Interface reading and navigation refinement — 26 October 2026
 

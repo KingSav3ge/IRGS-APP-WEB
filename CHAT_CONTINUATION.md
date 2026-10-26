@@ -1,6 +1,6 @@
 # Continuation instructions — IRGS App/Website
 
-Current coordinated edition: **3.4.1**; previous release: **3.3.3**.
+Current coordinated edition: **3.4.2**; previous release: **3.3.3**.
 See [version policy](VERSION_POLICY.md). Earlier baseline tables and execution
 records below retain their original tested development identities.
 
@@ -8,20 +8,24 @@ Updated 26 October 2026 for `KingSav3ge/IRGS-APP-WEB/main`. Preserve local chang
 before pulling. Resume this existing chat's component work; publish only its
 own repository. Read this file after pull; fresh user directions take precedence.
 
-## Current user assignment — App interface continuation
+## Coordinated 3.4.2 preparation
 
-The user has handed continued Emergent interface work to this App development
-chat and deferred the proposed App-only unified publication. Start with
-[APP_DEVELOPMENT_HANDOFF.md](APP_DEVELOPMENT_HANDOFF.md). It records the exact
-implemented source, pinned dependencies, previous checks and next increment.
+Read [the coordinator selection](COORDINATED_3_4_2.md). Current edition headings
+supersede dated delivery identities below; preserve their original source and tests.
 
-The first bounded reading/navigation refinement is delivered on top of the
-canonical port. Read [the refinement scope](INTERFACE_REFINEMENT.md) and
-[executed evidence](INTERFACE_REFINEMENT_VALIDATION.json) before choosing work.
-Preserve synchronized reading controls, focused quick adjustments, exclusive
-drawers, destination focus and Story contrast along with gameplay/recovery.
-Retain the original three browser suites plus the focused refinement qualifier.
-Joined IRGS stays 3.4.1 pending a later coordinator-reviewed release.
+## Current coordinated continuation
+
+The interface continuation was delivered at
+`919427cf16cf72574a581d7e6f712e638740a1df`. The coordinator has selected all
+three updated components for 3.4.2 review; the earlier App-only deferral no
+longer describes this coordinated selection. Read
+[COORDINATED_3_4_2.md](COORDINATED_3_4_2.md) for exact dependencies. Dated handoff
+and refinement records retain their original tested sources and scope.
+
+The Engine communication participant/received-source contract is now delivered.
+Implement matching authenticated, explicitly reviewed and durable App controls as
+the next shared-system increment. Keep operator/launcher configuration moving as
+an independent task. Preserve all four browser suites and the qualified interface.
 
 ## Start here
 
@@ -81,15 +85,12 @@ the prior shared-response baseline is already integrated.
 
 ## Next bounded task
 
-The handoff's first interface increment is complete for its recorded scope.
-Resume protected operator/launcher configuration for the existing optional Solo
-service: keep credentials and accounting server-side, preserve ordinary local
-play without a provider, validate missing/invalid configuration and launcher reuse
-without dispatching live inference. Follow existing authorization/charge contracts.
-Further interface refinement should reproduce a bounded issue before changing
-behavior. Preserve all four UI/gameplay browser checks and the explicit historical
-creation review. Engine participant/received-source contracts still govern
-communication controls; general freeform/combat remains unresolved.
+Consume Engine's `communication_contract` through actor-filtered HTTP controls,
+private server-owned preparations and explicit acceptance. Preserve received-only
+participants, exact testimony, offer meanings, actual authority checks, atomic
+save/recovery and zero routine dispatch. Develop across the supported non-Rise
+speech and selected Rise offer contexts. Do not infer NPC decisions from prose.
+Protected operator/launcher configuration remains an independent App task.
 
 ## Preserve and finish
 
@@ -112,9 +113,9 @@ system. The coordinator reviews the exact all-three set and owns joined import.
 
 ## Paste-ready restart message
 
-> Pull IRGS-APP-WEB/main, preserving local work, and read
-> APP_DEVELOPMENT_HANDOFF.md and CHAT_CONTINUATION.md. Continue the Emergent
-> interface from 7a249dd across IRGS, fix reproduced issues using the canonical
-> host and pinned dependencies, run the relevant checks, and push only the App
-> repository. Report the exact commit, tests and remaining work. Unified
-> publication is deferred.
+> Pull IRGS-APP-WEB/main and read CHAT_CONTINUATION.md, COORDINATED_3_4_2.md
+> and the current work order. Preserve the refined Emergent interface. Implement
+> the delivered Engine communication/source/offer contract through authenticated,
+> explicitly reviewed, durable controls across supported IRGS contexts. Keep
+> operator setup separate, run actual gameplay/recovery checks and push only App.
+> Report the exact source, dependency pins, executed checks and remaining work.

@@ -1,8 +1,17 @@
 # IRGS-APP-WEB work order — shared IRGS systems
 
-Current coordinated edition: **3.4.1**; previous release: **3.3.3**.
+Current coordinated edition: **3.4.2**; previous release: **3.3.3**.
 See [version policy](VERSION_POLICY.md). Earlier baseline tables and execution
 records below retain their original tested development identities.
+
+## Coordinator continuation for 3.4.2
+
+The interface refinement is delivered. Engine now publishes
+`engine/COMMUNICATION_CAPABILITY_API.md`; implement its matching actor-safe
+App HTTP/review/accept/recovery controls as the next bounded shared-system task.
+Use non-Rise speech and selected Rise offers as distinct contexts. Keep operator
+configuration as independent work. The earlier App-only publication deferral is
+superseded by this all-three coordinator review; publish only the App repository.
 
 ## User handoff — 26 October 2026
 
@@ -23,7 +32,7 @@ scope requirements below remain applicable; completed foundation work should
 not be repeated as an unimplemented first delivery.
 
 Assigned by IRGS Enviroment following the user's campaign-wide scope correction.
-Target: **IRGS 3.4.1 development**. Push only `IRGS-APP-WEB/main` under KingSav3ge.
+Target: **IRGS 3.4.2 development**. Push only `IRGS-APP-WEB/main` under KingSav3ge.
 Read [IRGS_SYSTEMS_SCOPE.md](IRGS_SYSTEMS_SCOPE.md). This order supersedes the
 first R00 demonstration assignment, preserved byte-for-byte in
 [the prior order](COORDINATOR_WORK_ORDER_SOLO_RUNTIME_01.md).

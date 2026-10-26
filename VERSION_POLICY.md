@@ -1,6 +1,6 @@
 # IRGS publication versions
 
-The coordinated edition is **3.4.1 development**. The previous release version
+The coordinated edition is **3.4.2 development**. The previous release version
 is **3.3.3**, as directed by the user. Earlier 3.4.0 commits and validation
 records are development history and retain their actual tested identities.
 
