@@ -4,23 +4,21 @@ Current coordinated edition: **3.4.1**; previous release: **3.3.3**.
 See [version policy](VERSION_POLICY.md). Earlier baseline tables and execution
 records below retain their original tested development identities.
 
-Prepared 25 October 2026 for `KingSav3ge/IRGS-APP-WEB/main`. Preserve local changes
+Updated 26 October 2026 for `KingSav3ge/IRGS-APP-WEB/main`. Preserve local changes
 before pulling. Resume this existing chat's component work; publish only its
 own repository. Read this file after pull; fresh user directions take precedence.
 
-## Current interface continuation — 26 October 2026
+## Current user assignment — App interface continuation
 
-The requested Emergent interface is adapted onto the canonical local host.
-Read [the port scope and checks](EMERGENT_INTERFACE_PORT.md) and
-[executed evidence](EMERGENT_INTERFACE_VALIDATION.json). Preserve the new local
-assets, reviewed character fields, saved-story navigation guard and responsive
-Play layout. Engine remains `aa30bb63a3828cbaeb5ee3d1db57edd388a8dc86`; Catalog
-remains `526404128830a99fe8ea5c2bce43b6ea7d45fe6f`. These are the selected 3.4.1
-dependencies; dated dependency tables below retain their historical selections.
+The user has handed continued Emergent interface work to this App development
+chat and deferred the proposed App-only unified publication. Start with
+[APP_DEVELOPMENT_HANDOFF.md](APP_DEVELOPMENT_HANDOFF.md). It records the exact
+implemented source, pinned dependencies, previous checks and next increment.
 
-This interface task adds no simulation or provider service. The independent
-operator/launcher task below remains next for shared-system development. Retain
-`tools/qualify_interface_port.js` alongside both existing gameplay browser checks.
+Continue the canonical port at `7a249dd9e8f0170a9419c97286d8d9fc46a6ae2e`.
+Finish interface integration and fix reproduced issues across IRGS, then resume
+protected operator/launcher configuration. Preserve all three browser suites.
+Joined IRGS stays 3.4.1 pending a later coordinator-reviewed release.
 
 ## Start here
 
@@ -80,17 +78,12 @@ the prior shared-response baseline is already integrated.
 
 ## Next bounded task
 
-Add protected operator/launcher configuration for the existing optional Solo
-service, keeping credentials and detailed accounting server-side and ordinary
-play runnable without a provider. Use existing Engine provider/charge contracts;
-validate a concrete configuration without live dispatch, test missing/invalid
-configuration and startup/reuse behavior, and preserve local loopback hosting.
-Live inference still requires its separately configured authorization.
-
-Engine start discovery is delivered and consumed. Communication/source controls
-wait for the actor-safe participant and received-source contract listed as
-Engine's next task. Keep travel on its native API and qualify additional process
-contexts separately. Continue the independent operator/launcher task above.
+Follow the interface continuation increment in
+[the handoff](APP_DEVELOPMENT_HANDOFF.md): review desktop/mobile flows against
+actual host capabilities, reproduce a bounded set of issues, fix them and qualify
+non-Rise and Rise behavior. Keep received records, explicit review and recovery.
+After that delivery, resume protected operator/launcher configuration. Engine
+participant/received-source contracts still govern communication controls.
 
 ## Preserve and finish
 
@@ -113,8 +106,9 @@ system. The coordinator reviews the exact all-three set and owns joined import.
 
 ## Paste-ready restart message
 
-> Pull your repository and read CHAT_CONTINUATION.md, DEVELOPMENT.md and the
-> current work order. Implement the next bounded task for IRGS App/Website,
-> preserving shared IRGS scope and existing qualified behavior. Test the actual
-> change, update the plans, push only your own repository and report the exact
-> commit, checks, dependencies and remaining work.
+> Pull IRGS-APP-WEB/main, preserving local work, and read
+> APP_DEVELOPMENT_HANDOFF.md and CHAT_CONTINUATION.md. Continue the Emergent
+> interface from 7a249dd across IRGS, fix reproduced issues using the canonical
+> host and pinned dependencies, run the relevant checks, and push only the App
+> repository. Report the exact commit, tests and remaining work. Unified
+> publication is deferred.

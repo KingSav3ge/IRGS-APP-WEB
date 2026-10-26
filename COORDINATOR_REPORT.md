@@ -1,3 +1,16 @@
+# User handoff decision — 26 October 2026
+
+The user assigned continued Emergent interface work to the existing App
+development chat. [The handoff](APP_DEVELOPMENT_HANDOFF.md), continuation and
+work order now record that assignment. The implementation remains at
+`7a249dd9e8f0170a9419c97286d8d9fc46a6ae2e`; this documentation handoff changes
+no product source, dependency pins or runtime qualification. The earlier port
+checks below retain their original scope. App-only 3.4.2 unified publication is
+deferred, and joined IRGS remains 3.4.1. Repository publication does not establish
+that the other chat has read the handoff or started work.
+
+---
+
 # Emergent interface adaptation — 26 October 2026
 
 The requested interface port is implemented on the canonical App. See

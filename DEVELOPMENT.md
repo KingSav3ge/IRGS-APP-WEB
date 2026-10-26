@@ -4,7 +4,7 @@ Current coordinated edition: **3.4.1**; previous release: **3.3.3**.
 See [version policy](VERSION_POLICY.md). Earlier baseline tables and execution
 records below retain their original tested development identities.
 
-Current guide: 25 October 2026. Owner: `KingSav3ge/IRGS-APP-WEB/main`.
+Current guide: 26 October 2026. Owner: `KingSav3ge/IRGS-APP-WEB/main`.
 Start with [CHAT_CONTINUATION.md](CHAT_CONTINUATION.md).
 
 ## Latest interface delivery — 26 October 2026
@@ -17,9 +17,11 @@ Play layout. Engine remains `aa30bb63a3828cbaeb5ee3d1db57edd388a8dc86`; Catalog
 remains `526404128830a99fe8ea5c2bce43b6ea7d45fe6f`. These are the selected 3.4.1
 dependencies; dated dependency tables below retain their historical selections.
 
-This interface task adds no simulation or provider service. The independent
-operator/launcher task below remains next for shared-system development. Retain
-`tools/qualify_interface_port.js` alongside both existing gameplay browser checks.
+The user has assigned continued interface work to the App development chat.
+Follow [the handoff](APP_DEVELOPMENT_HANDOFF.md) for the next bounded increment;
+protected operator/launcher configuration follows that delivery. Unified
+publication is deferred. Retain `tools/qualify_interface_port.js` alongside both
+existing gameplay browser checks.
 
 ## Prior qualified baseline and scope
 
@@ -118,7 +120,9 @@ remains separate from this App development selection.
 
 ## Next bounded increment
 
-Add protected operator/launcher configuration for the existing optional Solo
+Finish the interface continuation in
+[APP_DEVELOPMENT_HANDOFF.md](APP_DEVELOPMENT_HANDOFF.md), fix reproduced issues
+and qualify the result across IRGS. Then add protected operator/launcher configuration for the existing optional Solo
 service, keeping credentials and detailed accounting server-side and ordinary
 play runnable without a provider. Use existing Engine provider/charge contracts;
 validate a concrete configuration without live dispatch, test missing/invalid

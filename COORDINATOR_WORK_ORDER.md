@@ -4,6 +4,16 @@ Current coordinated edition: **3.4.1**; previous release: **3.3.3**.
 See [version policy](VERSION_POLICY.md). Earlier baseline tables and execution
 records below retain their original tested development identities.
 
+## User handoff — 26 October 2026
+
+Continue the implemented Emergent interface in this repository. Read
+[APP_DEVELOPMENT_HANDOFF.md](APP_DEVELOPMENT_HANDOFF.md) for exact source,
+qualified behavior, checks and the next bounded interface increment. Preserve
+shared IRGS scope and the existing Engine/Catalog pins. The user has deferred
+App-only unified publication; return the next pushed App delivery for coordinator
+review. Protected operator/launcher configuration follows the interface increment.
+This assignment supersedes older next-task ordering, not the rules below.
+
 ## Current continuation — 25 October 2026
 
 The delivered shared-response set and verified-byte intake patch are integrated
