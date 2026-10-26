@@ -31,7 +31,7 @@ def assistance_status(*, developer=False):
     result = {
         'status': 'unavailable',
         'available': False,
-        'message': 'AI assistance is not connected. Listed actions remain available; freeform declarations remain unresolved.',
+        'message': 'AI assistance is not connected. Freeform declarations remain unresolved. Inspect your character’s current capabilities in Story.',
         'campaign_effects': False,
     }
     if developer:
@@ -102,7 +102,7 @@ class SoloService:
         result = {'status': 'configured' if available else 'unavailable', 'available': available,
                   'campaign_effects': False, 'message': (
                       'Review an assisted proposal for a listed action. Only your explicit acceptance submits it.'
-                      if available else 'Assistance is unavailable for this situation. Listed actions remain available; freeform declarations remain unresolved.')}
+                      if available else 'Assistance is unavailable for this situation. Freeform declarations remain unresolved. Inspect your character’s current capabilities in Story.')}
         if developer:
             result['diagnostics'] = {'reason_code': 'explicit_host_configuration',
                 'dispatch_enabled': self.broker.enabled is True,

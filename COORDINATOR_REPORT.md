@@ -1,3 +1,56 @@
+# App selected-start preflight delivery — 26 October 2026
+
+Current edition **3.4.2**, previous release **3.3.3**. Source was pulled at
+`7368262b3fa2452432b8f31cf7cf6885eb638916`; the exact delivery commit is the App
+commit containing this report. Push scope is only `KingSav3ge/IRGS-APP-WEB/main`.
+The coordinator owns any new joined qualification and versioned publication.
+
+The normal character wizard now checks the selected actor/mode through an
+authenticated, read-only preflight over the pinned Engine's existing initializer
+and actual actor view. A start with no executable actions/process starts needs a
+deliberate declaration/reference checkbox before creation. Existing historical
+people never inherit the new-character courier setup. Story and Tools explain
+actual empty/pending/unavailable capabilities; assistance status stops promising
+listed actions when no list exists. Personal names/background stay out of preview
+URLs; the original reviewed creation body and background testimony status remain.
+
+This is the bounded App portion of IRGS-PLAY-001/002/006. **John/1415 still has no
+executable start.** The agreed Engine start-context contract/initializer and
+Catalog independent cases are not yet published at the fetched development
+heads. No replacement Engine contract, hidden-state menu oracle, continuing-world
+repair, invented facts, civil hour or new elapsed/action rules were added.
+
+Exact unchanged pins:
+
+- Engine: `91b20056e7db651966c9e92925313494917f47b1`.
+- Catalog: `3f921252e50a0976cb88321b6ff8249a5f12466d`.
+
+Fresh results:
+
+- Web: **234 run, 227 passed, seven Windows-only skips**, no failures.
+- Interface: **137 passed**, including nine new readiness/reply guards.
+- Formatter: **13 passed**, 171 App variants/eight recipes; tooling: **one passed**.
+- Component verification: **77 App files**, selected Core and exact pins verified.
+- **Five Chromium suites passed**: the new normal-host empty-store start flow plus
+  the retained shared-action, process, interface-port and reading/focus suites.
+  John/1415, deliberate new-human reference, authored new-human play and R00 are
+  distinct cases. Tests retain cancellation/changed choices, source failures,
+  explicit acceptance, lost creation/action replies, reload/replay, testimony,
+  original receipts and 390px layout. Provider calls and browser errors: **zero**.
+
+See [scope/API/reproduction](START_READINESS.md) and
+[executed evidence/source hashes](START_READINESS_VALIDATION.json).
+Earlier validation below retains its exact original source and scope. No user
+save, external private fixture, live AI or native Windows execution was used.
+
+Next: qualify the Engine's sourced existing-character path and Catalog cases once
+published, then continue the delivered communication/source/offer bridge. Protected
+operator configuration, host/build diagnostics, wider intent resolution and civil
+time remain open. The refined Emergent interface and original recovery behaviors
+remain in use; no new unified release is claimed.
+
+---
+
 # Coordinator playability assessment — 26 October 2026
 
 The user requested real application evaluation and updated instructions. The

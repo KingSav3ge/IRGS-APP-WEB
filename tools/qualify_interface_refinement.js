@@ -53,7 +53,7 @@ async function readingContrast(page){
   await characterSetup();await page.locator('#cancel-create').click();assert.equal(posts.length,0);unchanged();
   await characterSetup();await page.locator('#setup-next').click();await page.waitForFunction(()=>wizardStep===3);
   assert(/testimony/i.test(await page.locator('#setup-review').innerText()));assert.equal(posts.length,0);unchanged();
-  await page.locator('#create-submit').click();await page.waitForFunction(()=>current?.name==='Interface refinement historical'&&!busy&&!document.querySelector('#create-dialog').open);
+  await page.locator('#confirm-declaration-start').check();await page.locator('#create-submit').click();await page.waitForFunction(()=>current?.name==='Interface refinement historical'&&!busy&&!document.querySelector('#create-dialog').open);
   assert.equal(posts.length,1);assert(posts[0].url.endsWith('/api/create'));
   const created=await page.evaluate(()=>({id:current.id,revision:current.revision}));
   const createdSave=path.join(path.dirname(host.contexts[0].save),created.id+'.json'),createdBytes=fs.readFileSync(createdSave,'utf8');

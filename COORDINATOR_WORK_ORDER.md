@@ -64,3 +64,12 @@ full commit and exact compatible dependency selections to the coordinator.
 Current edition stays 3.4.2 until a coordinated versioned publication. Guide-only
 commits are not new product increments. Repository publication proves no dispatch
 or chat resumption; preserve the coordinator's unified integration gate.
+
+## App delivery status
+
+The App-side preflight, explicit declaration/reference review and honest current
+empty-state behavior are implemented in this App increment. See
+[START_READINESS.md](START_READINESS.md) and its fresh validation. The existing-
+character executable path still needs the Engine's agreed versioned initializer
+and Catalog consumer cases. Keep that coordinated acceptance open; this App work
+adds no historical character situation or new resolver.

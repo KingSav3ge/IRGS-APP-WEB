@@ -26,7 +26,29 @@ Catalog: `3f921252e50a0976cb88321b6ff8249a5f12466d`.
 These exact product revisions were evaluated. Later instruction commits change
 no runtime source or release pins. Earlier validation remains at its real source.
 
-## First bounded increment — explicit readiness and a usable start
+## Delivered App start preflight — 26 October 2026
+
+The App now checks the exact selected actor/mode through the current Engine in
+an ephemeral world before final creation review. Empty starts require an explicit
+declaration/reference choice; Story and Tools describe actual current controls.
+Late replies, changed choices, cancellation and original creation recovery retain
+their guards. See [scope/API](START_READINESS.md) and
+[fresh evidence](START_READINESS_VALIDATION.json).
+
+This completes the bounded App honesty/selection work while the agreed Engine
+start-context contract is pending. It does not make John/1415 executable or claim
+IRGS-PLAY-001 is resolved across components. The actual new-human authored opening
+and R00 handlers remain supported regressions. Background remains testimony;
+no new mechanics, source facts, civil hour or elapsed-time rules are introduced.
+
+Next: consume the published Engine start-context/readiness contract and Catalog's
+independent cases once available; qualify the first real existing-character path
+before classifying it as executable. Communication/source/offer controls follow
+that coordinated dependency. Protected operator configuration and non-secret
+host/build diagnostics remain independent open App work. Keep the current pins
+and 3.4.2 edition until a reviewed component set is selected.
+
+## Original coordinated acceptance — remaining Engine/Catalog dependency
 
 Read `PLAYABILITY_REVIEW_3_4_2.md`. Address IRGS-PLAY-001/002/006 immediately.
 Make the selected actor/start mode's actual playability clear before the user

@@ -99,3 +99,8 @@ body[data-reading=light],body[data-reading=parchment]{--reading-accent:color-mix
 .story-reading .eyebrow,.story-reading .scene-header>.eyebrow,.story-reading .last-outcome>.eyebrow,.story-reading summary,.story-reading a{color:var(--reading-accent)}
 .quick-reading button[aria-pressed=true]{color:var(--interface-accent)}
 @media(max-width:700px){.own-response-panel>summary{padding-block:8px}.action-composer textarea{min-height:64px;max-height:140px}.composer-footer>small{margin-bottom:0}.action-composer .note{margin:5px 0}.composer-footer{margin-top:5px}}
+
+.declaration-start-consent{display:flex;align-items:flex-start;gap:.75rem;margin:1.25rem 0;line-height:1.6}
+.declaration-start-consent[hidden]{display:none}
+.declaration-start-consent input{width:auto;flex:none;margin-top:.3rem}
+.play-readiness p{overflow-wrap:anywhere}
