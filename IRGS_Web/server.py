@@ -446,7 +446,7 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                         record = store.read(path.rsplit('/', 1)[1])
                         projection['assistance'] = solo.status(record=record, actor=projection['actor_id'])
                         projection['process_control'] = processes.view(record, projection['actor_id']) if projection['character_available'] else {'schema_version': 1, 'processes': [], 'start_available': False, 'view_token': None}
-                        from start_readiness import capability_summary
+                        from start_preview import capability_summary
                         projection['play_readiness'] = capability_summary(projection,
                             projection['process_control'].get('start_options', []))
                         return self.reply(200, projection)
@@ -462,7 +462,7 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                             raise ValueError('Unknown presentation mode')
                         if any(len(values) != 1 for values in query.values()):
                             raise ValueError('Starting preview fields must be unique')
-                        from start_readiness import preview_start
+                        from start_preview import preview_start
                         return self.reply(200, preview_start({key: values[0] for key, values in query.items()}))
                     if path=='/api/rise/templates':
                         self.session()

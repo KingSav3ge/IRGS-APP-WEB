@@ -124,7 +124,7 @@ class StartReadinessTests(unittest.TestCase):
             with self.subTest(query=query), self.assertRaises(HTTPError) as error:
                 self.preview(query)
             self.assertIn(error.exception.code, (400, 403))
-        with patch('start_readiness.initial_campaign', side_effect=OSError('source offline')):
+        with patch('start_preview.initial_campaign', side_effect=OSError('source offline')):
             with self.assertRaises(HTTPError) as error:
                 self.preview()
             self.assertEqual(error.exception.code, 503)

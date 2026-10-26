@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-10-26T19:21:05.703683+00:00",
+  "date": "2026-10-26",
+  "timezone": "America/Halifax",
+  "status": "APP_AND_CATALOG_ADOPTION_REQUIRED",
+  "current_unified_version": "3.4.2",
+  "current_unified_commit": "ba551af285a6e1eb0766a9d06f83cbc0e5335b35",
+  "next_unified_version": "3.4.3",
+  "previous_release_field": "3.3.3",
+  "component_source_import_approved": false,
+  "received_product_commits": {
+    "engine": "cc450a6f00a249d2169cdacdfc9c4b1e03f67cc8",
+    "app": "23184e1e70b6005ad6170edb3843afcaae42e18a",
+    "catalog": "e1778e080385b6ff2bbb93f47f91d0da6e9d6780"
+  },
+  "app_committed_pins": {
+    "engine": "91b20056e7db651966c9e92925313494917f47b1",
+    "catalog": "3f921252e50a0976cb88321b6ff8249a5f12466d"
+  },
+  "app_coordinator_patch": {
+    "base_commit": "23184e1e70b6005ad6170edb3843afcaae42e18a",
+    "scope": "Rename App preflight module and test module to avoid Engine import and discovery collisions; update imports and App release hashes.",
+    "files_sha256": {
+      "IRGS_Web/server.py": "8e18baac4a946602b1db36b2def1906b391956040029136add138a3ce1a11fdb",
+      "IRGS_Web/start_preview.py": "f07b53a88d0c17bdaf812a5d141d59ff733d1bf932fd3c5d237ea78078282c49",
+      "IRGS_Web/tests/test_start_preview.py": "1db016975b317ecd60959265596c46fb38cce03d8cfa6d6ff960ca241cf728fb",
+      "IRGS_Web/release.json": "793b4f96b5284ec0ac9e9b9f30b3d11bfb7bbbacd0e74f2bc703581677d91c4e"
+    },
+    "removed_paths": [
+      "IRGS_Web/start_readiness.py",
+      "IRGS_Web/tests/test_start_readiness.py"
+    ],
+    "engine_or_catalog_pins_changed": false,
+    "full_start_context_adoption_implemented": false
+  },
+  "checks": {
+    "engine_full": {
+      "run": 773,
+      "passed": 772,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 1,
+      "skip_reason": "historical local save not packaged; no private save was opened",
+      "log": "engine.log"
+    },
+    "app_pinned_full_with_patch": {
+      "run": 234,
+      "passed": 227,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 7,
+      "skip_reason": "Native Windows on Linux",
+      "log": "app-pinned-full.log"
+    },
+    "app_candidate_set_with_patch": {
+      "run": 234,
+      "passed": 224,
+      "failed": 3,
+      "errors": 0,
+      "skipped": 7,
+      "log": "app-exact.log",
+      "remaining_failures": [
+        "test_host.HostTests.test_historical_create_requires_exact_ready_scope_and_preview_hash",
+        "test_stage1.StageOneTests.test_opening_does_not_disclose_historical_reference_or_fabricate_scene",
+        "test_starting_flow.StartingFlowTests.test_historical_review_has_only_five_configured_existing_characters"
+      ]
+    },
+    "interface": {
+      "passed": 137,
+      "log": "ui.log"
+    },
+    "start_browser_candidate_set_with_patch": {
+      "status": "passed",
+      "contexts": [
+        "existing John declaration/reference",
+        "new human declaration/reference",
+        "new human authored opening",
+        "R00"
+      ],
+      "width": 390,
+      "browser_errors": 0,
+      "provider_calls": 0,
+      "external_requests": 0,
+      "report": "start-browser.json",
+      "henry_selection_covered": false
+    },
+    "independent_http_candidate_set_with_patch": {
+      "run": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "report": "independent-http.json",
+      "identity_note": "App base commit plus the explicitly hashed coordinator patch; not a clean App commit or joined assembly."
+    },
+    "catalog_source_discovery": {
+      "run": 209,
+      "passed": 131,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 78,
+      "skip_reason": "Exact historical owner source selections or large-reader selectors absent",
+      "log": "catalog-contracts.log"
+    },
+    "catalog_new_baseline_consumers": {
+      "run": 7,
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0,
+      "log": "catalog-baseline-consumers.log",
+      "engine_commit": "91b20056e7db651966c9e92925313494917f47b1",
+      "app_commit": "00634b15f2d8d4a8626d3eb3cb0a139559ac1fcc",
+      "catalog_source": "e1778e080385b6ff2bbb93f47f91d0da6e9d6780",
+      "counts_overlap_discovery_skips": true,
+      "candidate_contract_adoption_qualified": false
+    },
+    "component_integrity": {
+      "engine": "passed",
+      "app_at_committed_pins_with_patch": "passed",
+      "catalog": "passed"
+    },
+    "direct_contract_diagnostics": {
+      "report": "contract-observations.json",
+      "henry_preflight_http": 400,
+      "henry_direct_creation_and_operation": "passed",
+      "exact_original_receipt_retry": "passed",
+      "actual_elapsed_seconds": 20,
+      "app_elapsed": null,
+      "app_start_context_present": false
+    }
+  },
+  "findings": [
+    {
+      "id": "START-INT-001",
+      "severity": "P0",
+      "status": "fixed_in_coordinator_app_patch",
+      "owner": "App",
+      "problem": "Both owners shipped start_readiness.py; Engine runtime precedes App on sys.path. GET starting-preview/playthrough disconnects. The same collision also stops full Web unittest discovery.",
+      "fix": "App modules renamed start_preview.py and test_start_preview.py; existing HTTP, full Web and browser checks executed."
+    },
+    {
+      "id": "START-INT-002",
+      "severity": "P0",
+      "status": "open",
+      "owner": "App",
+      "problem": "Engine publishes Henry optional existing-character opening, but App preview rejects every existing-character opening and UI has no matching selector.",
+      "acceptance": "Select explicit Engine-owned actor-bound opening, review its actual contract, create via UI, commit observation, reload/retry. Henry default remains declaration-only; John cannot borrow Henry or courier circumstances."
+    },
+    {
+      "id": "START-INT-003",
+      "severity": "P1",
+      "status": "open",
+      "owner": "App",
+      "problem": "Player view omits received start_context, initial civil checkpoint and selected historical elapsed axis; Henry is labelled authored_fiction and prompted to move/deliver a dispatch that he does not possess.",
+      "acceptance": "Project received civil day without inventing hour/current-calendar binding; show selected elapsed axis; derive scope/prompts from real supported context; retain truthful local state and privacy. Never reseed old saves."
+    },
+    {
+      "id": "START-INT-004",
+      "severity": "P1",
+      "status": "open",
+      "owner": "App",
+      "problem": "Three full Web tests require historical knowledge to be empty and fail with the legitimate new initial calendar receipt.",
+      "acceptance": "Assert only the intended received calendar record, provenance/day precision and exclusion of unsourced operational facts; do not delete assertions or reject the received date to make tests pass."
+    },
+    {
+      "id": "START-INT-005",
+      "severity": "P1",
+      "status": "open",
+      "owner": "App",
+      "problem": "App still pins the prior Engine/Catalog product commits.",
+      "acceptance": "After adoption, commit exact compatible published Engine/Catalog pins and report clean source selections. A coordinator environment override is candidate evidence, not a pin update."
+    },
+    {
+      "id": "START-INT-006",
+      "severity": "P1",
+      "status": "open",
+      "owner": "Catalog",
+      "problem": "New requirements and seven baseline diagnostics are valid at historical consumers, but do not qualify Engine schema irgs-start-readiness-1 or Henry existing-person operation.",
+      "acceptance": "Add a separately versioned selection/consumer for published new Engine and adopted App; preserve original baseline manifests/guards. Qualify explicit modes, Henry source/uncertainty, received day, actual result/elapsed and restart/retry; retain John held, new default/authored and R00 cases."
+    }
+  ],
+  "limits": [
+    "No unified import or version increase.",
+    "No release/package qualification or all-actor/full C2 claim.",
+    "No user campaign, live AI or Windows execution.",
+    "Catalog skipped consumer/large-reader cases are not relabelled as newly passed.",
+    "Runtime operation capture must be regenerated by the coordinator after final source selection."
+  ],
+  "chat_observations": {
+    "IRGS Engine": "idle after published delivery",
+    "IRGS App/Website": "idle after published delivery",
+    "IRGS Catalog": "idle after published delivery",
+    "direct_dispatch_available": false
+  }
+}

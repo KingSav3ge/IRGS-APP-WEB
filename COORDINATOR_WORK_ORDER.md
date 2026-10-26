@@ -1,75 +1,51 @@
-# App/Website work order — supported player starts
+# Coordinator work order — IRGS App/Website
 
-Current coordinated edition: **3.4.2**; previous release: **3.3.3**.
-Assigned 26 October 2026 after the coordinator ran the actual unified build.
-Owner: `KingSav3ge/IRGS-APP-WEB/main`. This order supersedes older next-task ordering.
-The existing implemented APIs, refined interface and qualified fixtures remain
-completed work. This is a new assignment, not a claim that its fixes exist.
+Active cycle: shared start-context adoption, candidate next unified **3.4.3**.
+Current published unified edition remains **3.4.2**. Previous release: **3.3.3**.
 
-Read [the assessment](PLAYABILITY_REVIEW_3_4_2.md),
-[executed evidence](PLAYABILITY_EVIDENCE_3_4_2.json), `AGENTS.md`,
-`IRGS_SYSTEMS_SCOPE.md` and `CHAT_CONTINUATION.md` before selecting implementation.
+Read [the coordinator review](COORDINATOR_START_REVIEW_2026_10_26.md) and
+[the exact evidence](COORDINATOR_START_REVIEW_2026_10_26.json). These instructions replace older
+next-task ordering; historical delivery records retain their tested scope.
 
-## First bounded increment — explicit readiness and a usable start
+Adopt the already published Engine `cc450a6` API, documented in
+`engine/START_READINESS_API.md` in IRGS-Engine. Engine is no longer the missing
+contract dependency. The coordinator fixed module/discovery collisions by
+renaming App preflight to `start_preview.py` and its test to
+`tests/test_start_preview.py`; retain those separate names.
 
-Read `PLAYABILITY_REVIEW_3_4_2.md`. Address IRGS-PLAY-001/002/006 immediately.
-Make the selected actor/start mode's actual playability clear before the user
-confirms a campaign. A verified snapshot, eligible character, prose opening or
-catalogue title cannot imply executable gameplay. Preserve explicit declaration-
-only/reference use as a deliberate choice. Do not silently choose a courier
-opening for an existing historical person or grant missing facts in the browser.
+Close START-INT-002 through 005 in order:
 
-Consume Engine's agreed versioned start-context/readiness contract after it is
-published. Until then, implement honest empty-state copy against actual known-view
-capabilities and independent UI work without claiming the missing initializer is
-delivered. Show the next supported route or the precise unresolved scope; do not
-say listed actions are available when the list is empty. Keep own-response drafts,
-their unresolved status, pending/retry/withdraw behavior and explicit review.
+1. Consume Engine's versioned readiness review and actor-bound existing opening
+   options. Offer the optional Henry start explicitly and include its opening ID
+   in actual review/creation/retry payloads. The old blanket App rejection of
+   existing-person opening IDs must be replaced by Engine validation. A changed
+   actor/mode clears the old choice/consent and forces review. Henry default and
+   John remain declaration-only; no arbitrary/courier context can be borrowed.
+2. Project Engine's actor-received `start_context`, initial Julian civil day and
+   selected elapsed axis. Preserve unknown hour and `current_calendar_binding:
+   false`; do not present local 20-second progress as a running civil clock. Use
+   the real context classification and available operations in scene/opening
+   guidance. Henry has no dispatch and no supported courier travel. Read-only
+   views must not initialize, migrate, repair or reseed continuing saves.
+3. Update the three exact Web failures listed in the review with positive checks
+   for the legitimate calendar receipt and negative checks for unsourced scene,
+   stock, authority, personal contacts and historical future. Do not remove the
+   privacy assertions or suppress the received date to obtain a green suite.
+4. Run full Web/interface checks and actual browser journeys for explicit Henry,
+   default Henry, John, default new, authored new and R00; 390px, source absence,
+   changed selection, lost creation/action reply, exact retry, reload, restore
+   and actor boundaries. No live provider is needed. Then commit exact compatible
+   published Engine/Catalog gitlinks and report the clean tested source set.
 
-Acceptance uses the real UI and empty temporary stores: existing historical person,
-new human with authored opening, and deliberate declaration-only start, plus R00
-regression. Verify selected start/character and sourced context reach the first
-view unchanged; perform a reviewed operation, show its exact result and retain it
-after reload/retry. Test cancellation, changed selection, actor privacy, 390px
-layout, honest source-unavailable cases and zero routine provider calls.
+Publish adoption early for Catalog's separate consumer. Communication UI/HTTP,
+protected operator configuration, supported-intent mapping and build diagnostics
+remain subsequent work; cosmetic refinements do not replace the blocked start.
 
-Next: finish the delivered Engine communication/source/offer bridge with private
-server-owned preparations, actor authentication, explicit acceptance and atomic
-original-result recovery. Retain the native private-offer forwarding boundary.
-Protected operator configuration is independent work using existing route/budget
-contracts, with no secrets in the browser and no paid fallback for local results.
-Add non-secret process/build identity to exports/diagnostics to distinguish the
-actual host and UI build while retaining Core 3.3 compatibility. Preserve the
-refined Emergent interface; additional visual polish is secondary to these flows.
+## Completion and ownership
 
-## Delivery rules
-
-Develop shared IRGS systems; Rise is one regression context. Preserve one
-authoritative Core and its nine K-owners, the existing six Director categories,
-actor/source filtering, reviewed creation, explicit acceptance, resource/authority
-checks and exact original-result recovery. Names, themes, narration and drafts
-create no capability or facts. Keep causal, storage, civil and elapsed time apart.
-Do not invent universal timing, dice or an NPC decision to satisfy an example.
-
-Use temporary synthetic stores only. Preserve user saves, credentials, local
-configuration, original source/archive bytes, adopted canon and dated evidence.
-Do not migrate an actual user campaign as a test. Record actual source commits,
-APIs, test commands/results/skips and remaining dependencies. Retain old fixtures
-at their selected identities. No live inference or full C2 claim is implied.
-
-After actual product edits, refresh only the owning component's release hashes
-and run meaningful existing and new checks for changed behavior. Update the
-development plan and push only this assigned component repository. Return the
-full commit and exact compatible dependency selections to the coordinator.
-Current edition stays 3.4.2 until a coordinated versioned publication. Guide-only
-commits are not new product increments. Repository publication proves no dispatch
-or chat resumption; preserve the coordinator's unified integration gate.
-
-## App delivery status
-
-The App-side preflight, explicit declaration/reference review and honest current
-empty-state behavior are implemented in this App increment. See
-[START_READINESS.md](START_READINESS.md) and its fresh validation. The existing-
-character executable path still needs the Engine's agreed versioned initializer
-and Catalog consumer cases. Keep that coordinated acceptance open; this App work
-adds no historical character situation or new resolver.
+Read `CHAT_CONTINUATION.md` for source selections, rules and checks. Publish only
+this component. A work-order/plan change does not complete implementation or
+qualify the new contract. Report exact published code and compatible dependencies,
+actual passes/failures/skips and remaining work. Coordinator owns joined import,
+fresh execution capture, joined/browser/package qualification and versioned
+publication after all three viable updates are approved. No dispatch is implied.

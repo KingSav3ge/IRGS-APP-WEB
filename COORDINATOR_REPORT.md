@@ -1,5 +1,14 @@
 # App selected-start preflight delivery — 26 October 2026
 
+## Current coordinator review — 26 October 2026
+
+The first readiness/context deliveries have been reviewed. Engine API 1 is
+published; App and Catalog adoption remain open. The coordinator fixed App
+module/test name collisions. Follow [COORDINATOR_WORK_ORDER.md](COORDINATOR_WORK_ORDER.md)
+and [the current review](COORDINATOR_START_REVIEW_2026_10_26.md) before
+selecting work. Earlier records below retain their dated scope. Unified
+3.4.2 remains published; next joined release is 3.4.3 after qualification.
+
 Current edition **3.4.2**, previous release **3.3.3**. Source was pulled at
 `7368262b3fa2452432b8f31cf7cf6885eb638916`; the exact delivery commit is the App
 commit containing this report. Push scope is only `KingSav3ge/IRGS-APP-WEB/main`.

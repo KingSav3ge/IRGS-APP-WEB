@@ -33,8 +33,8 @@
     "register_historical_archive.py": "125ef07a3339d3b8f7b4cbfd7c06f936e96bf6f00140144bef60ebd0d5781ab3",
     "responses/README.md": "f71e23b151ac3e4cf5d1c04a9fbb46b53c079f0e452c964a12c6fe4e185d7090",
     "rise_campaigns.py": "fdbc41eac3c3f9c31ab32c5131c70b9b9cbde9ed5e4bf6b5ee1e2ec2f8930cae",
-    "server.py": "5d2054164c941ebdbb1db28d02262f693e1d24087a29107a0387106fe8180c81",
-    "start_readiness.py": "f07b53a88d0c17bdaf812a5d141d59ff733d1bf932fd3c5d237ea78078282c49",
+    "server.py": "8e18baac4a946602b1db36b2def1906b391956040029136add138a3ce1a11fdb",
+    "start_preview.py": "f07b53a88d0c17bdaf812a5d141d59ff733d1bf932fd3c5d237ea78078282c49",
     "static/app.js": "c0d01d573b0b31c00ec7811a6743c33a6d32f9b171008c74fda35235d2f61de4",
     "static/catalogue.js": "b901e075d042da012ed1cdb079401804766b10048a6dfebeddd6dfde183f7863",
     "static/fonts.css": "e94bc3eb39e441466040bd3b1440cad9a381fa49fffbd9a15e13e6350253b31f",
@@ -79,7 +79,7 @@
     "tests/test_solo_bridge.py": "8b4a4cc137b3f3e241e9adc5dc7dbe2c1cb8715cd029d882ab490044b26f11ef",
     "tests/test_solo_rise_bridge.py": "fca563530cd6fdef3cfe4653b41eb5d52ebb9ec4d01a25845c45eb4797a72c90",
     "tests/test_stage1.py": "45702248595d3f36dd85937dfe1c3e49cc5bdf86faa4b552edc71dd58c37dff5",
-    "tests/test_start_readiness.py": "7bd8280a5fc7dd7d008ca9af9c3e6cafb459613e14016e652dab8c77a1d40429",
+    "tests/test_start_preview.py": "1db016975b317ecd60959265596c46fb38cce03d8cfa6d6ff960ca241cf728fb",
     "tests/test_starting_flow.py": "ffd15db6f3781c372eb34c350b0432e2c832a69e898ae74b45654c7b768bb44b"
   }
 }

@@ -1,5 +1,15 @@
 # IRGS App/Web development guide
 
+## Active coordinator review — 26 October 2026
+
+The first start-readiness deliveries have been reviewed. Follow
+[COORDINATOR_WORK_ORDER.md](COORDINATOR_WORK_ORDER.md) and
+[COORDINATOR_START_REVIEW_2026_10_26.md](COORDINATOR_START_REVIEW_2026_10_26.md) for the current owner task.
+App/Catalog adoption blocks joined publication; Engine's contract is published.
+The coordinator fixed App's module/test-name collision. Older task ordering and
+validation below retain their original scope. No unified import or version
+increase is performed by this instruction update.
+
 Current coordinated edition: **3.4.2**; previous release: **3.3.3**.
 See [version policy](VERSION_POLICY.md). Earlier baseline tables and execution
 records below retain their original tested development identities.
