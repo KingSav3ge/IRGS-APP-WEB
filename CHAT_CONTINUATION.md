@@ -1,6 +1,6 @@
 # Continuation instructions — IRGS App/Website
 
-Current coordinated edition: **3.4.2**; previous release: **3.3.3**.
+Current coordinated edition: **3.4.3**; previous release: **3.3.3**.
 Updated 26 October 2026 following coordinator review of all three deliveries.
 Preserve local work before pulling. New user directions take precedence.
 

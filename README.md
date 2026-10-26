@@ -1,6 +1,6 @@
-# IRGS App / Web — 3.4.2 development
+# IRGS App / Web — 3.4.3 development
 
-Current coordinated edition: **3.4.2**; previous release: **3.3.3**.
+Current coordinated edition: **3.4.3**; previous release: **3.3.3**.
 See [version policy](VERSION_POLICY.md). Earlier baseline tables and execution
 records below retain their original tested development identities.
 
