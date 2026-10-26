@@ -1,0 +1,905 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-26",
+  "status": "passed",
+  "source": {
+    "repository": "KingSav3ge/IRGS-APP-WEB",
+    "tested_tree_parent": "40a55154d0a7ca1212e609668f09c0d279f56f1e",
+    "qualified_unified_reference": "ba551af285a6e1eb0766a9d06f83cbc0e5335b35",
+    "engine_commit": "cc450a6f00a249d2169cdacdfc9c4b1e03f67cc8",
+    "catalog_commit": "e1778e080385b6ff2bbb93f47f91d0da6e9d6780",
+    "app_version": "3.4.2",
+    "previous_version": "3.3.3",
+    "core": "3.3",
+    "engine_contract": "irgs-communication-capabilities-1",
+    "App_source_projection": "app-receipt-compatibility-1",
+    "final_sha256": {
+      "IRGS_Web/communication_bridge.py": "5fa1f331fe709b3134a42533653306bd4d11c1ce49bae8e1d20c0d95a4b314ce",
+      "IRGS_Web/gameplay_views.py": "a03f9c5ec187007a170837afeb8dd0316143175814158976f6022a3bf8a7ada2",
+      "IRGS_Web/local_presentation.py": "a2449099e44c69d92d8353af0d5f4b63aa489ca865d07524cd5c0696f2d55193",
+      "IRGS_Web/release.json": "e78bf70a169368a049809b410483288f4487c838f49589aa659d512cb4b2ce11",
+      "IRGS_Web/rise_campaigns.py": "08a2223a35569dbd88eb514583d4420058279c24d8764b20383534a06e899d33",
+      "IRGS_Web/server.py": "ebb6a5ca420ebfb4562dcc1c571ab9a96b103bd7fafa2112311717e619ce1565",
+      "IRGS_Web/start_preview.py": "d291cb29daabbee070cb7eba68783b98a0531b612e7eebd0b618f2fec3714069",
+      "IRGS_Web/static/app.js": "a536d45b665972da080255c3657bbcb87cb0138d0db6882d01f768693fa605b7",
+      "IRGS_Web/static/communications.js": "93f227b62bd239ea367b8f6019dcb58fe923585497fd8b375cd68702799b097b",
+      "IRGS_Web/static/index.html": "978299d85f267f6a406affad0821a7e61146665a549269a409032eb7795e6c79",
+      "IRGS_Web/static/preview.css": "bd6093534fce4ef065582d582743c46a905572479c9d7ca08224466d2881ded3",
+      "IRGS_Web/static/rise.js": "3399376d8efa3da8673e3685ade28ea67e608495a1df3a507fb746139592e114",
+      "IRGS_Web/static/solo.js": "f293fff41ba9481b92dcb2cfaef310c58d748a6509a6fa36290b334b8b96472a",
+      "IRGS_Web/tests/app_communication_fixtures.py": "7b52eb1da18d779ed2b5fb0cbe29a9979b4f153ccad6713a4a116a6fd07ad815",
+      "IRGS_Web/tests/test_communication_bridge.py": "8fce701728dc8d952bd54cb71745e021543002edb6eeed02ca1c63c978f9f3f3",
+      "IRGS_Web/tests/test_gameplay_ui.js": "ff465eccb6e465b076543701b6fd15b7a8e3d1affb7f45144b69380f947c6910",
+      "tools/communication_browser_host.py": "3b510f347c39083a46e2f946b7b6d30bbcc0adc907b51b7c67075ec5110dce3e",
+      "tools/qualify_communication_bridge.js": "0017ecc4d284abb42945b67683aedcf6eb6bb2d946c7aa88fbdda3978dce511b"
+    }
+  },
+  "checks": {
+    "web": {
+      "command": "python3 -B -m unittest discover -s IRGS_Web/tests -v",
+      "status": "passed",
+      "run": 256,
+      "passed": 249,
+      "skipped": 7,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 173.172,
+      "skip_reasons": [
+        "The installed launchers target Windows PowerShell"
+      ]
+    },
+    "communication_http": {
+      "command": "python3 -B -m unittest discover -s IRGS_Web/tests -p test_communication_bridge.py -v",
+      "status": "passed",
+      "run": 14,
+      "passed": 14,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 8.238,
+      "skip_reasons": []
+    },
+    "interface": {
+      "command": "node IRGS_Web/tests/test_gameplay_ui.js",
+      "status": "passed",
+      "checks": 150,
+      "live_server_used": false
+    },
+    "formatter": {
+      "command": "node IRGS_Web/tests/test_responses.js",
+      "status": "passed",
+      "checks": 13,
+      "variants": 171,
+      "recipes": 8,
+      "provider_calls": 0
+    },
+    "tooling": {
+      "command": "python3 -B -m unittest discover -s tools/tests -v",
+      "status": "passed",
+      "run": 1,
+      "passed": 1,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 0.002,
+      "skip_reasons": []
+    },
+    "engine_contract": {
+      "command": "cd Engine && python3 -B -m unittest discover -s IRGS_3_3/runtime -p test_communication_contract.py -v",
+      "status": "passed",
+      "run": 32,
+      "passed": 32,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 2.091,
+      "skip_reasons": []
+    },
+    "browser": {
+      "browser": {
+        "command": "node tools/qualify_communication_bridge.js /tmp/irgs-comm-browser.json",
+        "result": {
+          "status": "passed",
+          "contexts": [
+            "selected_non_rise_quay",
+            "selected_R00_transfer"
+          ],
+          "mobile_width": 390,
+          "exact_words_and_testimony": true,
+          "speech_does_not_accept_offer": true,
+          "elapsed_time_unchanged": true,
+          "all_six_structured_commands": true,
+          "conserved_transfers": true,
+          "terminal_statuses_distinct": true,
+          "original_proposal_result_retained": true,
+          "private_actor_record_denied": true,
+          "lost_prepare_ack_reload_recovered": true,
+          "lost_execute_ack_original_result_recovered": true,
+          "independent_own_response_preserved": true,
+          "HTML_is_literal_text": true,
+          "provider_calls": 0,
+          "browser_errors": 0,
+          "external_requests": 0,
+          "prepared": 10,
+          "executed": 10
+        }
+      },
+      "starts": {
+        "command": "node tools/qualify_start_readiness.js /tmp/irgs-comm-starts.json",
+        "result": {
+          "status": "passed",
+          "initial_campaigns": 0,
+          "final_campaigns": 6,
+          "cancel_and_selection_changes_create_nothing": true,
+          "source_unavailable_stays_unconfirmed": true,
+          "mobile_width": 390,
+          "contexts": [
+            {
+              "name": "existing_john_1415",
+              "status": "declaration_only",
+              "new_engine_initializer_delivered": false,
+              "lost_creation_ack_recovered": true,
+              "unresolved_intent_reload_withdraw": true
+            },
+            {
+              "name": "new_human_reference",
+              "status": "declaration_only",
+              "explicit_choice": true,
+              "background_is_testimony": true
+            },
+            {
+              "name": "new_human_authored",
+              "status": "supported_slice",
+              "received_result_retained": true,
+              "lost_action_ack_recovered": true,
+              "replay_same_receipt": true,
+              "elapsed_seconds": 20
+            },
+            {
+              "name": "R00_regression",
+              "status": "supported_slice",
+              "confirmed_actions": 5,
+              "elapsed_seconds": 3900,
+              "received_result_retained": true
+            },
+            {
+              "name": "existing_henry_default",
+              "status": "declaration_only",
+              "opening_not_added_automatically": true,
+              "received_initial_day": true
+            },
+            {
+              "name": "existing_henry_explicit",
+              "status": "supported_slice",
+              "engine_contract": "irgs-start-readiness-1",
+              "actor_bound_choice": true,
+              "changed_actor_clears_choice": true,
+              "lost_creation_ack_recovered": true,
+              "lost_action_ack_recovered": true,
+              "elapsed_axis": "selected-historical-observation-seconds",
+              "elapsed_seconds": 20,
+              "initial_julian_day": "1415-08-11",
+              "opening_hour": null,
+              "current_calendar_binding": false,
+              "no_dispatch_or_courier_actions": true,
+              "actor_boundaries": true,
+              "changed_replay_rejected": true,
+              "reload_and_restore_preserve_exact_bytes": true,
+              "restored_original_result_replay": true
+            }
+          ],
+          "provider_calls": 0,
+          "browser_errors": 0,
+          "external_requests": 0,
+          "posts": [
+            "/api/create",
+            "/api/create",
+            "/api/declaration",
+            "/api/withdraw-declaration",
+            "/api/create",
+            "/api/create",
+            "/api/action",
+            "/api/rise/preview",
+            "/api/rise/create",
+            "/api/rise/action",
+            "/api/rise/action",
+            "/api/rise/action",
+            "/api/rise/action",
+            "/api/rise/action",
+            "/api/create",
+            "/api/create",
+            "/api/create",
+            "/api/action",
+            "/api/delete",
+            "/api/restore"
+          ]
+        }
+      },
+      "port": {
+        "command": "node tools/qualify_interface_port.js /tmp/irgs-comm-port.json",
+        "result": {
+          "status": "passed",
+          "desktop_width": 1568,
+          "mobile_width": 390,
+          "concepts": 44,
+          "reading_preferences_survive_reload": true,
+          "drawers_escape_and_focus": true,
+          "reviewed_character_creation": true,
+          "posts_before_explicit_creation": 0,
+          "explicit_creations": 1,
+          "original_fixture_saves_unchanged": true,
+          "local_assets_only": true,
+          "provider_calls": 0,
+          "browser_errors": 0,
+          "layout": {
+            "context-panel": {
+              "x": 24,
+              "width": 358.046875
+            },
+            "content": {
+              "x": 407.046875,
+              "width": 753.890625
+            },
+            "play-tools": {
+              "x": 1185.9375,
+              "width": 358.0625
+            }
+          },
+          "assets": [
+            {
+              "url": "/fonts.css",
+              "status": 200
+            },
+            {
+              "url": "/style.css",
+              "status": 200
+            },
+            {
+              "url": "/themes.css",
+              "status": 200
+            },
+            {
+              "url": "/preview.css",
+              "status": 200
+            },
+            {
+              "url": "/responses.data.js",
+              "status": 200
+            },
+            {
+              "url": "/responses.js",
+              "status": 200
+            },
+            {
+              "url": "/routine.js",
+              "status": 200
+            },
+            {
+              "url": "/themes.js",
+              "status": 200
+            },
+            {
+              "url": "/rise.js",
+              "status": 200
+            },
+            {
+              "url": "/catalogue.js",
+              "status": 200
+            },
+            {
+              "url": "/communications.js",
+              "status": 200
+            },
+            {
+              "url": "/processes.js",
+              "status": 200
+            },
+            {
+              "url": "/preview.js",
+              "status": 200
+            },
+            {
+              "url": "/solo.js",
+              "status": 200
+            },
+            {
+              "url": "/app.js",
+              "status": 200
+            },
+            {
+              "url": "/fraunces-latin.woff2",
+              "status": 200
+            },
+            {
+              "url": "/instrument-sans-latin.woff2",
+              "status": 200
+            },
+            {
+              "url": "/ibm-plex-mono-latin.woff2",
+              "status": 200
+            },
+            {
+              "url": "/historical-landscape.jpg",
+              "status": 200
+            },
+            {
+              "url": "/newsreader-latin.woff2",
+              "status": 200
+            },
+            {
+              "url": "/im-fell-english-sc-latin.woff2",
+              "status": 200
+            },
+            {
+              "url": "/fonts.css",
+              "status": 200
+            },
+            {
+              "url": "/themes.css",
+              "status": 200
+            },
+            {
+              "url": "/style.css",
+              "status": 200
+            },
+            {
+              "url": "/preview.css",
+              "status": 200
+            },
+            {
+              "url": "/themes.js",
+              "status": 200
+            },
+            {
+              "url": "/rise.js",
+              "status": 200
+            },
+            {
+              "url": "/responses.js",
+              "status": 200
+            },
+            {
+              "url": "/responses.data.js",
+              "status": 200
+            },
+            {
+              "url": "/routine.js",
+              "status": 200
+            },
+            {
+              "url": "/solo.js",
+              "status": 200
+            },
+            {
+              "url": "/processes.js",
+              "status": 200
+            },
+            {
+              "url": "/catalogue.js",
+              "status": 200
+            },
+            {
+              "url": "/communications.js",
+              "status": 200
+            },
+            {
+              "url": "/preview.js",
+              "status": 200
+            },
+            {
+              "url": "/app.js",
+              "status": 200
+            },
+            {
+              "url": "/ibm-plex-mono-latin.woff2",
+              "status": 200
+            },
+            {
+              "url": "/instrument-sans-latin.woff2",
+              "status": 200
+            },
+            {
+              "url": "/fraunces-latin.woff2",
+              "status": 200
+            },
+            {
+              "url": "/newsreader-latin.woff2",
+              "status": 200
+            },
+            {
+              "url": "/historical-landscape.jpg",
+              "status": 200
+            },
+            {
+              "url": "/im-fell-english-sc-latin.woff2",
+              "status": 200
+            },
+            {
+              "url": "/fonts.css",
+              "status": 200
+            },
+            {
+              "url": "/style.css",
+              "status": 200
+            },
+            {
+              "url": "/themes.css",
+              "status": 200
+            },
+            {
+              "url": "/preview.css",
+              "status": 200
+            },
+            {
+              "url": "/themes.js",
+              "status": 200
+            },
+            {
+              "url": "/responses.data.js",
+              "status": 200
+            },
+            {
+              "url": "/responses.js",
+              "status": 200
+            },
+            {
+              "url": "/rise.js",
+              "status": 200
+            },
+            {
+              "url": "/routine.js",
+              "status": 200
+            },
+            {
+              "url": "/catalogue.js",
+              "status": 200
+            },
+            {
+              "url": "/processes.js",
+              "status": 200
+            },
+            {
+              "url": "/solo.js",
+              "status": 200
+            },
+            {
+              "url": "/preview.js",
+              "status": 200
+            },
+            {
+              "url": "/app.js",
+              "status": 200
+            },
+            {
+              "url": "/communications.js",
+              "status": 200
+            },
+            {
+              "url": "/ibm-plex-mono-latin.woff2",
+              "status": 200
+            },
+            {
+              "url": "/instrument-sans-latin.woff2",
+              "status": 200
+            },
+            {
+              "url": "/fraunces-latin.woff2",
+              "status": 200
+            },
+            {
+              "url": "/im-fell-english-sc-latin.woff2",
+              "status": 200
+            },
+            {
+              "url": "/newsreader-latin.woff2",
+              "status": 200
+            }
+          ]
+        }
+      },
+      "refinement": {
+        "command": "node tools/qualify_interface_refinement.js /tmp/irgs-comm-refinement.json",
+        "result": {
+          "status": "passed",
+          "contexts": [
+            {
+              "context": "authored_scene",
+              "reading_surfaces": [
+                {
+                  "surface": "dark",
+                  "size": 18,
+                  "widths_checked": [
+                    1568,
+                    390
+                  ],
+                  "minimum_contrast": 7.094160119592146
+                },
+                {
+                  "surface": "light",
+                  "size": 20,
+                  "widths_checked": [
+                    1568,
+                    390
+                  ],
+                  "minimum_contrast": 6.31854080670167
+                },
+                {
+                  "surface": "parchment",
+                  "size": 22,
+                  "widths_checked": [
+                    1568,
+                    390
+                  ],
+                  "minimum_contrast": 5.0963502599978865
+                }
+              ],
+              "toolbar_synchronized": true,
+              "quick_button_focus_preserved": true,
+              "maximum_size_mobile": 26,
+              "exclusive_drawers": true,
+              "nested_escape_returns_focus": true,
+              "destination_focus": true,
+              "primary_tab_keyboard": true,
+              "draft_and_reload_preserved": true,
+              "save_unchanged": true
+            },
+            {
+              "context": "settlement",
+              "reading_surfaces": [
+                {
+                  "surface": "dark",
+                  "size": 18,
+                  "widths_checked": [
+                    1568,
+                    390
+                  ],
+                  "minimum_contrast": 6.8099876389274225
+                },
+                {
+                  "surface": "light",
+                  "size": 20,
+                  "widths_checked": [
+                    1568,
+                    390
+                  ],
+                  "minimum_contrast": 6.31854080670167
+                },
+                {
+                  "surface": "parchment",
+                  "size": 22,
+                  "widths_checked": [
+                    1568,
+                    390
+                  ],
+                  "minimum_contrast": 5.0963502599978865
+                }
+              ],
+              "toolbar_synchronized": true,
+              "quick_button_focus_preserved": true,
+              "maximum_size_mobile": 26,
+              "exclusive_drawers": true,
+              "nested_escape_returns_focus": true,
+              "destination_focus": true,
+              "primary_tab_keyboard": true,
+              "draft_and_reload_preserved": true,
+              "save_unchanged": true
+            },
+            {
+              "context": "historical_start",
+              "reading_surfaces": [
+                {
+                  "surface": "dark",
+                  "size": 18,
+                  "widths_checked": [
+                    1568,
+                    390
+                  ],
+                  "minimum_contrast": 5.796904947591751
+                },
+                {
+                  "surface": "light",
+                  "size": 20,
+                  "widths_checked": [
+                    1568,
+                    390
+                  ],
+                  "minimum_contrast": 6.31854080670167
+                },
+                {
+                  "surface": "parchment",
+                  "size": 22,
+                  "widths_checked": [
+                    1568,
+                    390
+                  ],
+                  "minimum_contrast": 5.0963502599978865
+                }
+              ],
+              "toolbar_synchronized": true,
+              "quick_button_focus_preserved": true,
+              "maximum_size_mobile": 26,
+              "exclusive_drawers": true,
+              "nested_escape_returns_focus": true,
+              "destination_focus": true,
+              "primary_tab_keyboard": true,
+              "draft_and_reload_preserved": true,
+              "save_unchanged": true
+            }
+          ],
+          "desktop_width": 1568,
+          "mobile_width": 390,
+          "palette_checks": [
+            {
+              "genre": "military",
+              "surface": "dark",
+              "minimum_contrast": 5.660473170000904
+            },
+            {
+              "genre": "military",
+              "surface": "light",
+              "minimum_contrast": 6.31854080670167
+            },
+            {
+              "genre": "military",
+              "surface": "parchment",
+              "minimum_contrast": 5.0963502599978865
+            },
+            {
+              "genre": "roman",
+              "surface": "dark",
+              "minimum_contrast": 7.07208144226571
+            },
+            {
+              "genre": "roman",
+              "surface": "light",
+              "minimum_contrast": 6.31854080670167
+            },
+            {
+              "genre": "roman",
+              "surface": "parchment",
+              "minimum_contrast": 5.0963502599978865
+            },
+            {
+              "genre": "fantasy",
+              "surface": "dark",
+              "minimum_contrast": 7.136938806901764
+            },
+            {
+              "genre": "fantasy",
+              "surface": "light",
+              "minimum_contrast": 6.31854080670167
+            },
+            {
+              "genre": "fantasy",
+              "surface": "parchment",
+              "minimum_contrast": 5.0963502599978865
+            },
+            {
+              "genre": "paf",
+              "surface": "dark",
+              "minimum_contrast": 6.768611324235073
+            },
+            {
+              "genre": "paf",
+              "surface": "light",
+              "minimum_contrast": 6.31854080670167
+            },
+            {
+              "genre": "paf",
+              "surface": "parchment",
+              "minimum_contrast": 5.0963502599978865
+            },
+            {
+              "genre": "shinobi",
+              "surface": "dark",
+              "minimum_contrast": 7.064153230445573
+            },
+            {
+              "genre": "shinobi",
+              "surface": "light",
+              "minimum_contrast": 6.31854080670167
+            },
+            {
+              "genre": "shinobi",
+              "surface": "parchment",
+              "minimum_contrast": 5.0963502599978865
+            },
+            {
+              "genre": "space",
+              "surface": "dark",
+              "minimum_contrast": 6.926756045098114
+            },
+            {
+              "genre": "space",
+              "surface": "light",
+              "minimum_contrast": 6.31854080670167
+            },
+            {
+              "genre": "space",
+              "surface": "parchment",
+              "minimum_contrast": 5.0963502599978865
+            },
+            {
+              "genre": "settlement",
+              "surface": "dark",
+              "minimum_contrast": 6.8099876389274225
+            },
+            {
+              "genre": "settlement",
+              "surface": "light",
+              "minimum_contrast": 6.31854080670167
+            },
+            {
+              "genre": "settlement",
+              "surface": "parchment",
+              "minimum_contrast": 5.0963502599978865
+            }
+          ],
+          "historical_setup_cancel_and_review": true,
+          "explicit_creations": 1,
+          "reading_and_navigation_posts": 0,
+          "empty_trash_and_story": true,
+          "creator_round_trip_read_only": true,
+          "original_fixture_saves_unchanged": true,
+          "local_assets_only": true,
+          "provider_calls": 0,
+          "browser_errors": 0
+        }
+      },
+      "shared": {
+        "command": "node tools/qualify_shared_responses.js /tmp/irgs-comm-shared.json",
+        "result": {
+          "status": "passed",
+          "contexts": [
+            {
+              "adapter": "authored_scene",
+              "committed_actions": 4,
+              "elapsed_seconds": 43,
+              "zero_action_spans": [],
+              "local_drafts_non_submitting": true,
+              "lost_acknowledgement_recovered": true,
+              "stale_navigation_fenced": true,
+              "reload_preserves_draft": true
+            },
+            {
+              "adapter": "settlement",
+              "committed_actions": 5,
+              "elapsed_seconds": 3900,
+              "zero_action_spans": [
+                "found",
+                "build"
+              ],
+              "local_drafts_non_submitting": true,
+              "lost_acknowledgement_recovered": true,
+              "stale_navigation_fenced": true,
+              "reload_preserves_draft": true
+            }
+          ],
+          "common_response_schema": 1,
+          "catalog_library": "irgs-response-depot-v1",
+          "engine_library": "irgs-engine-routine-responses-v1",
+          "provider_configured": false,
+          "provider_calls": 0,
+          "browser_errors": 0,
+          "mobile_width": 390
+        }
+      },
+      "process": {
+        "command": "node tools/qualify_process_bridge.js /tmp/irgs-comm-process.json",
+        "result": {
+          "status": "passed",
+          "contexts": [
+            {
+              "kind": "observation",
+              "committed_phases": 5,
+              "start_selected_from_engine": true,
+              "elapsed_seconds": 3,
+              "prepare_reload_recovered": true,
+              "cancel_does_not_execute": true,
+              "lost_commit_ack_recovered": true,
+              "phase_identity_preserved": true,
+              "pause_resume": true,
+              "stale_navigation_fenced": true
+            },
+            {
+              "kind": "work",
+              "committed_phases": 6,
+              "start_selected_from_engine": true,
+              "elapsed_seconds": 3900,
+              "prepare_reload_recovered": true,
+              "cancel_does_not_execute": true,
+              "lost_commit_ack_recovered": true,
+              "phase_identity_preserved": true,
+              "pause_resume": true,
+              "stale_navigation_fenced": true
+            }
+          ],
+          "provider_configured": false,
+          "provider_calls": 0,
+          "browser_errors": 0,
+          "mobile_width": 390
+        }
+      }
+    },
+    "component_integrity": {
+      "command": "python3 -B tools/verify_components.py --component app",
+      "status": "verified",
+      "app_files": 84,
+      "catalog_files": 188,
+      "core": "3.3",
+      "engine_commit": "cc450a6f00a249d2169cdacdfc9c4b1e03f67cc8",
+      "catalog_commit": "e1778e080385b6ff2bbb93f47f91d0da6e9d6780",
+      "behavioral_tests_executed_by_manifest_verifier": false
+    },
+    "syntax": {
+      "status": "passed",
+      "files": [
+        "IRGS_Web/static/communications.js",
+        "IRGS_Web/static/app.js",
+        "IRGS_Web/static/solo.js",
+        "IRGS_Web/static/rise.js",
+        "tools/qualify_communication_bridge.js"
+      ],
+      "command": "node --check <file>"
+    },
+    "whitespace": {
+      "command": "git -c core.whitespace=cr-at-eol diff --check",
+      "status": "passed",
+      "existing_CRLF_preserved": true
+    }
+  },
+  "implemented": {
+    "received_channels_and_attributed_participants": true,
+    "exact_editable_words_separate_from_structured_command": true,
+    "all_six_commands": [
+      "speak",
+      "offer",
+      "counteroffer",
+      "accept",
+      "decline",
+      "withdraw"
+    ],
+    "actual_Engine_authority_and_conserved_transfer": true,
+    "distinct_received_offer_statuses": true,
+    "new_offer_identity_owned_by_host": true,
+    "no_time_rule_invented": true,
+    "original_App_result_and_Core_committed_together": true,
+    "private_durable_native_preparations": true,
+    "lost_prepare_ack_reload_same_identity": true,
+    "lost_commit_ack_original_result_lookup": true,
+    "restart_concurrency_failed_save_and_restore_fences": true,
+    "legacy_unattributed_private_provenance_preserved": true,
+    "native_attributed_sources_keep_both_references": true,
+    "forwarded_words_grant_no_private_contract_or_rights": true,
+    "nonfounder_R00_view_grants_no_founder_inventory_or_actions": true
+  },
+  "regression_corrected": {
+    "initial_full_web_run": 255,
+    "initial_failures": 1,
+    "test": "test_gameplay.GameplayTests.test_default_payload_and_chronicle_contain_no_private_records",
+    "cause": "New Engine source DTO included original provenance of a legacy unattributed evidence receipt.",
+    "resolution": "Preserve App receipt privacy; withhold differing original provenance and occurrence metadata for unattributed legacy sources. Native attributed source DTOs retain both references. Existing privacy assertions unchanged; a dedicated HTTP regression added.",
+    "final_full_web_failures": 0
+  },
+  "boundaries": {
+    "user_campaigns_used": false,
+    "private_fixture_used": false,
+    "Engine_or_Catalog_source_edits": false,
+    "dependency_pins_changed": false,
+    "historical_evidence_rewritten": false,
+    "campaign_initialization_or_migration_added": false,
+    "product_communication_rules_or_introductions_invented": false,
+    "NPC_decisions_simulated": false,
+    "full_Engine_suite_rerun": false,
+    "live_provider_calls": 0,
+    "native_Windows_execution": false,
+    "unified_import_or_version_increase": false
+  },
+  "remaining": [
+    "Engine/content must explicitly select channels and received introductions in ordinary starts; synthetic test selections are not installed in product saves.",
+    "Catalog separate adopted-App start-contract consumer (START-INT-006) at an exact published App source.",
+    "Coordinator exact-set approval and fresh joined/browser/package qualification before any unified 3.4.3 publication, including legacy provenance compatibility review.",
+    "Next bounded App task: protected operator/launcher configuration; supported-intent mapping and non-secret build diagnostics follow.",
+    "John and other unsupported contexts remain declaration/reference; general freeform/combat/full C2 remain open."
+  ]
+}

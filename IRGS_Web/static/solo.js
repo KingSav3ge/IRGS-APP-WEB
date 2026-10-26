@@ -3,13 +3,14 @@ let soloReview=null,assistanceStatusRequest=0,soloAttempt=null,soloGeneration=0;
 
 function reviewActionValid(){
   if(!soloReview||!soloReview.actor||busy||loadingCampaign||workspaceMode!=='player'||view!=='story'||!current||$('#campaign').value!==current.id||current.id!==soloReview.campaign||current.actor_id!==soloReview.actor||current.revision!==soloReview.revision||campaignRequest!==soloReview.request||current.pending_declaration||transportPending||current.character_available===false)return false;
+  if(soloReview.source==='communication')return validCommunicationReview(soloReview);
   if(soloReview.source==='process')return validProcessReview(soloReview);
   if(soloReview.source==='local-draft')return current.capabilities?.can_declare===true&&availableRoutineDrafts().some(draft=>draft.id===soloReview.id&&draft.text===soloReview.text&&draft.projection_view===soloReview.projection_view);
   if(soloReview.source==='proposal')return (soloReview.edited||soloAttempt?.result?.proposal?.proposal_digest===soloReview.proposal.proposal_digest)&&(current.settlement?(current.settlement.actions||[]).some(action=>action.id===soloReview.id):supportedActions().some(action=>action.kind==='scene_action'&&action.action_id===soloReview.id));
   const available=soloReview.source==='rise'?current.settlement?.actions||[]:supportedActions();
   return available.some(action=>soloReview.source==='rise'?action.id===soloReview.id&&action.title===soloReview.text:action.kind===soloReview.kind&&action[action.kind==='scene_action'?'action_id':'order_id']===soloReview.id&&action.text===soloReview.text);
 }
-function invalidateActionReview(){invalidateSoloProposal();soloReview=null;if($('#action-review-dialog').open)$('#action-review-dialog').close();syncComposer();}
+function invalidateActionReview(){invalidateSoloProposal();soloReview=null;$('#communication-reviewed-details').hidden=true;$('#communication-reviewed-details').innerHTML='';if($('#action-review-dialog').open)$('#action-review-dialog').close();syncComposer();}
 function reviewSupportedAction(action,campaign,actor,source='supported'){
   if(!action)return;invalidateActionReview();
   soloReview={source,campaign,actor,revision:current?.revision,request:campaignRequest,
@@ -35,6 +36,7 @@ function syncActionReview(){
 }
 function keepReviewedDraft(){
   if(!reviewActionValid())return invalidateActionReview();
+  if(soloReview.source==='communication')return keepCommunicationDraft();
   const draft=$('#action-review-intent').value;if(!draft.trim())return;
   if(soloReview.source==='local-draft')$('#local-drafts').open=false;
   $('#declaration').value=draft;stashDraft();invalidateActionReview();syncComposer();focusOwnResponse();
@@ -44,6 +46,7 @@ async function confirmReviewedAction(){
   if(soloReview?.source==='local-draft')return;
   if(!reviewActionValid()||$('#action-review-intent').value!==soloReview.text)return invalidateActionReview();
   const action=soloReview;
+  if(action.source==='communication'){invalidateActionReview();return submitCommunication(action);}
   if(action.source==='process'){invalidateActionReview();return submitProcessPhase(action);}
   if(action.source==='proposal'){if(action.edited)return;soloAttempt=null;writeLocal(proposalKey(action),null);invalidateActionReview();const pending={endpoint:'ai/accept',body:{id:action.campaign,revision:action.revision,actor:action.actor,request_id:action.proposal.request_id,intention:action.text,proposal_digest:action.proposal.proposal_digest,explicitly_accepted:true}};stashDraft();storeTransport(pending);return deliverAction(pending);}
   invalidateActionReview();

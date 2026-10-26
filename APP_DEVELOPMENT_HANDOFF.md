@@ -1,5 +1,18 @@
 # App development handoff — 26 October 2026
 
+## Current delivered scope and next task
+
+Start-context adoption and the communication/source/offer bridge are delivered.
+Read [the current continuation](CHAT_CONTINUATION.md),
+[communication scope](COMMUNICATION_BRIDGE.md) and
+[fresh evidence](COMMUNICATION_BRIDGE_VALIDATION.json). Current Engine/Catalog
+pins remain cc450a6/e1778e0; edition stays 3.4.2. The next bounded App task is
+protected operator/launcher configuration, followed by supported-intent mapping
+and non-secret diagnostics. Normal-start communication content selection,
+Catalog's adopted-App consumer and coordinator exact-set/joined/package approval
+remain separate dependencies. Preserve all six browser suites and prior dated
+records. The earlier review and interface assignment below retain their history.
+
 ## Current coordinator review — 26 October 2026
 
 The first readiness/context deliveries have been reviewed. Engine API 1 is

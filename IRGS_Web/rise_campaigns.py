@@ -90,6 +90,10 @@ def action(store, data):
 def view(state, actor):
     """Explicit local inspection, never raw private state or distant truth."""
     if state.get('binding', {}).get('campaign_profile') != 'rise': return None
+    # The published R00 gameplay/draft adapter is founder-only. Other selected
+    # characters retain their ordinary received view and communication rights;
+    # a roster entry does not grant the founder's household inspection/actions.
+    if actor != 'founder': return None
     controlled_actor(state, actor, required=True)
     h = household_of(state, actor)
     site = location(state, actor)

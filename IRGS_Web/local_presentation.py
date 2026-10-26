@@ -10,6 +10,7 @@ import secrets
 from types import ModuleType
 
 from catalog_paths import CATALOG_ROOT
+from solo_provider import CapabilityUnavailable
 
 
 @lru_cache(maxsize=1)
@@ -141,6 +142,6 @@ def response_view(record, projection):
                 'intent_tag': None, 'operation_id': operation,
                 'requires_explicit_submission': True, 'automatic_execution': False})
         result['engine_runtime'] = True
-    except (ImportError, ValueError, TypeError, KeyError, OSError):
+    except (ImportError, ValueError, TypeError, KeyError, OSError, CapabilityUnavailable):
         pass
     return result
