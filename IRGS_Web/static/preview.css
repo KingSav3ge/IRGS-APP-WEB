@@ -92,4 +92,10 @@ body[data-motion=reduce] *,body[data-motion=reduce] *::before,body[data-motion=r
 #create-form .setup-progress li{border-color:var(--line)}#create-form .setup-progress li[aria-current=step]{border-color:var(--accent);color:var(--ink)}
 #create-form .historical-preview,.setting-details{border-color:var(--line)}
 .catalogue-card-meta>.badge{display:block}
+/* Keep small Story labels legible on the independently selected reading paper. */
+body{--interface-accent:color-mix(in srgb,var(--accent) 60%,var(--ink))}
+body[data-reading=dark]{--reading-accent:var(--interface-accent)}
+body[data-reading=light],body[data-reading=parchment]{--reading-accent:color-mix(in srgb,var(--accent) 25%,var(--reading-ink))}
+.story-reading .eyebrow,.story-reading .scene-header>.eyebrow,.story-reading .last-outcome>.eyebrow,.story-reading summary,.story-reading a{color:var(--reading-accent)}
+.quick-reading button[aria-pressed=true]{color:var(--interface-accent)}
 @media(max-width:700px){.own-response-panel>summary{padding-block:8px}.action-composer textarea{min-height:64px;max-height:140px}.composer-footer>small{margin-bottom:0}.action-composer .note{margin:5px 0}.composer-footer{margin-top:5px}}

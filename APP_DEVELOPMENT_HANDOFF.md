@@ -44,7 +44,18 @@ five observation/six work phases, explicit historical character creation,
 lost replies, reload, mobile layout and zero provider calls. These are the
 port commit's results, not new execution by this documentation handoff.
 
-## First continuation increment
+## First continuation delivery
+
+The bounded reading/navigation refinement is implemented in the current App
+source. See [its scope](INTERFACE_REFINEMENT.md) and
+[fresh executed evidence](INTERFACE_REFINEMENT_VALIDATION.json). It covers the
+reproduced settings/toolbar mismatch, keyboard focus, stacked drawers and Story
+label contrast across the three supported contexts. The original assignment
+below is retained as scope history; the next independent task is the protected
+operator/launcher configuration already specified here. Further interface work
+remains iterative and should be based on reproduced issues.
+
+## First continuation increment — original assignment
 
 Finish and refine the interface across IRGS, using the user's Emergent reference
 and the actual host contracts. Review desktop and 390px layouts, then choose a

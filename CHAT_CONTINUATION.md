@@ -15,9 +15,12 @@ chat and deferred the proposed App-only unified publication. Start with
 [APP_DEVELOPMENT_HANDOFF.md](APP_DEVELOPMENT_HANDOFF.md). It records the exact
 implemented source, pinned dependencies, previous checks and next increment.
 
-Continue the canonical port at `7a249dd9e8f0170a9419c97286d8d9fc46a6ae2e`.
-Finish interface integration and fix reproduced issues across IRGS, then resume
-protected operator/launcher configuration. Preserve all three browser suites.
+The first bounded reading/navigation refinement is delivered on top of the
+canonical port. Read [the refinement scope](INTERFACE_REFINEMENT.md) and
+[executed evidence](INTERFACE_REFINEMENT_VALIDATION.json) before choosing work.
+Preserve synchronized reading controls, focused quick adjustments, exclusive
+drawers, destination focus and Story contrast along with gameplay/recovery.
+Retain the original three browser suites plus the focused refinement qualifier.
 Joined IRGS stays 3.4.1 pending a later coordinator-reviewed release.
 
 ## Start here
@@ -78,12 +81,15 @@ the prior shared-response baseline is already integrated.
 
 ## Next bounded task
 
-Follow the interface continuation increment in
-[the handoff](APP_DEVELOPMENT_HANDOFF.md): review desktop/mobile flows against
-actual host capabilities, reproduce a bounded set of issues, fix them and qualify
-non-Rise and Rise behavior. Keep received records, explicit review and recovery.
-After that delivery, resume protected operator/launcher configuration. Engine
-participant/received-source contracts still govern communication controls.
+The handoff's first interface increment is complete for its recorded scope.
+Resume protected operator/launcher configuration for the existing optional Solo
+service: keep credentials and accounting server-side, preserve ordinary local
+play without a provider, validate missing/invalid configuration and launcher reuse
+without dispatching live inference. Follow existing authorization/charge contracts.
+Further interface refinement should reproduce a bounded issue before changing
+behavior. Preserve all four UI/gameplay browser checks and the explicit historical
+creation review. Engine participant/received-source contracts still govern
+communication controls; general freeform/combat remains unresolved.
 
 ## Preserve and finish
 

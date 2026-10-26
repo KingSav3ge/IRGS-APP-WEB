@@ -1,0 +1,525 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-26",
+  "component": "IRGS-APP-WEB",
+  "status": "passed",
+  "task": "First bounded Emergent interface continuation from APP_DEVELOPMENT_HANDOFF.md",
+  "edition": {
+    "schema_version": 1,
+    "version": "3.4.1",
+    "channel": "development",
+    "previous_version": "3.3.3"
+  },
+  "base_app_commit": "1a0bc65dd25a18dfd075b2d603d0351c2d035001",
+  "original_implemented_interface": "7a249dd9e8f0170a9419c97286d8d9fc46a6ae2e",
+  "original_design_reference": "IRGS/Emergent@437fa7586385fed14883e3d672ab3e51a9193311",
+  "dependencies": {
+    "engine": "aa30bb63a3828cbaeb5ee3d1db57edd388a8dc86",
+    "catalog": "526404128830a99fe8ea5c2bce43b6ea7d45fe6f",
+    "pins_changed": false,
+    "component_sources_changed": false
+  },
+  "reproduced_before_changes": {
+    "full_settings_to_toolbar": {
+      "size": 22,
+      "surface": "light",
+      "pressed": [
+        "18"
+      ],
+      "surfaceLabel": "Dark"
+    },
+    "quick_button_focus_after_adjustment": "BODY:",
+    "overlapping_drawers": {
+      "tools": true,
+      "navigation": true
+    },
+    "destination_focus": {
+      "active": "",
+      "tag": "BODY",
+      "view": "chronicle"
+    },
+    "authored_story_eyebrow_contrast": {
+      "dark": 9.312708113210718,
+      "light": 1.6738610502876243,
+      "parchment": 1.355285275183005
+    }
+  },
+  "changed_behavior": [
+    "All reading controls synchronize from normalized local preferences, including custom sizes and surface labels",
+    "Quick adjustments retain focused controls and the native settings dialog return target",
+    "Navigation, Character and Tools drawers are exclusive; destination content gets focus without overriding primary-tab keyboard focus",
+    "Story labels, links, disclosure summaries and pressed reading presets use legible surface-aware theme accents"
+  ],
+  "checks": [
+    {
+      "command": "python3 -B -m unittest discover -s IRGS_Web/tests -v",
+      "run": 229,
+      "passed": 222,
+      "skipped": 7,
+      "failed": 0,
+      "skip_reason": "Windows PowerShell launcher checks on Linux"
+    },
+    {
+      "command": "node IRGS_Web/tests/test_gameplay_ui.js",
+      "passed": 128,
+      "added": 7,
+      "failed": 0
+    },
+    {
+      "command": "node IRGS_Web/tests/test_responses.js",
+      "passed": 13,
+      "variants": 171,
+      "recipes": 8,
+      "provider_calls": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s tools/tests -v",
+      "run": 1,
+      "passed": 1
+    },
+    {
+      "command": "python3 -B tools/refresh_component_releases.py --component app",
+      "app_files": 75
+    },
+    {
+      "command": "python3 -B tools/verify_components.py --component app",
+      "status": "verified",
+      "app_files": 75,
+      "selected_engine_and_catalog_integrity": "verified"
+    },
+    {
+      "command": "node tools/qualify_shared_responses.js /tmp/irgs-refine-shared.json",
+      "result": {
+        "status": "passed",
+        "contexts": [
+          {
+            "adapter": "authored_scene",
+            "committed_actions": 4,
+            "elapsed_seconds": 43,
+            "zero_action_spans": [],
+            "local_drafts_non_submitting": true,
+            "lost_acknowledgement_recovered": true,
+            "stale_navigation_fenced": true,
+            "reload_preserves_draft": true
+          },
+          {
+            "adapter": "settlement",
+            "committed_actions": 5,
+            "elapsed_seconds": 3900,
+            "zero_action_spans": [
+              "found",
+              "build"
+            ],
+            "local_drafts_non_submitting": true,
+            "lost_acknowledgement_recovered": true,
+            "stale_navigation_fenced": true,
+            "reload_preserves_draft": true
+          }
+        ],
+        "common_response_schema": 1,
+        "catalog_library": "irgs-response-depot-v1",
+        "engine_library": "irgs-engine-routine-responses-v1",
+        "provider_configured": false,
+        "provider_calls": 0,
+        "browser_errors": 0,
+        "mobile_width": 390
+      }
+    },
+    {
+      "command": "node tools/qualify_process_bridge.js /tmp/irgs-refine-process.json",
+      "result": {
+        "status": "passed",
+        "contexts": [
+          {
+            "kind": "observation",
+            "committed_phases": 5,
+            "start_selected_from_engine": true,
+            "elapsed_seconds": 3,
+            "prepare_reload_recovered": true,
+            "cancel_does_not_execute": true,
+            "lost_commit_ack_recovered": true,
+            "phase_identity_preserved": true,
+            "pause_resume": true,
+            "stale_navigation_fenced": true
+          },
+          {
+            "kind": "work",
+            "committed_phases": 6,
+            "start_selected_from_engine": true,
+            "elapsed_seconds": 3900,
+            "prepare_reload_recovered": true,
+            "cancel_does_not_execute": true,
+            "lost_commit_ack_recovered": true,
+            "phase_identity_preserved": true,
+            "pause_resume": true,
+            "stale_navigation_fenced": true
+          }
+        ],
+        "provider_configured": false,
+        "provider_calls": 0,
+        "browser_errors": 0,
+        "mobile_width": 390
+      }
+    },
+    {
+      "command": "node tools/qualify_interface_port.js /tmp/irgs-refine-port.json /tmp/irgs-refine-port-shots",
+      "result": {
+        "status": "passed",
+        "desktop_width": 1568,
+        "mobile_width": 390,
+        "concepts": 44,
+        "reading_preferences_survive_reload": true,
+        "drawers_escape_and_focus": true,
+        "reviewed_character_creation": true,
+        "posts_before_explicit_creation": 0,
+        "explicit_creations": 1,
+        "original_fixture_saves_unchanged": true,
+        "local_assets_only": true,
+        "provider_calls": 0,
+        "browser_errors": 0,
+        "layout": {
+          "context-panel": {
+            "x": 24,
+            "width": 358.046875
+          },
+          "content": {
+            "x": 407.046875,
+            "width": 753.890625
+          },
+          "play-tools": {
+            "x": 1185.9375,
+            "width": 358.0625
+          }
+        },
+        "asset_responses_checked": 59
+      }
+    },
+    {
+      "command": "node tools/qualify_interface_refinement.js /tmp/irgs-refine-browser.json /tmp/irgs-refine-shots",
+      "result": {
+        "status": "passed",
+        "contexts": [
+          {
+            "context": "authored_scene",
+            "reading_surfaces": [
+              {
+                "surface": "dark",
+                "size": 18,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 7.094160119592146
+              },
+              {
+                "surface": "light",
+                "size": 20,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 6.31854080670167
+              },
+              {
+                "surface": "parchment",
+                "size": 22,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 5.0963502599978865
+              }
+            ],
+            "toolbar_synchronized": true,
+            "quick_button_focus_preserved": true,
+            "maximum_size_mobile": 26,
+            "exclusive_drawers": true,
+            "nested_escape_returns_focus": true,
+            "destination_focus": true,
+            "primary_tab_keyboard": true,
+            "draft_and_reload_preserved": true,
+            "save_unchanged": true
+          },
+          {
+            "context": "settlement",
+            "reading_surfaces": [
+              {
+                "surface": "dark",
+                "size": 18,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 6.8099876389274225
+              },
+              {
+                "surface": "light",
+                "size": 20,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 6.31854080670167
+              },
+              {
+                "surface": "parchment",
+                "size": 22,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 5.0963502599978865
+              }
+            ],
+            "toolbar_synchronized": true,
+            "quick_button_focus_preserved": true,
+            "maximum_size_mobile": 26,
+            "exclusive_drawers": true,
+            "nested_escape_returns_focus": true,
+            "destination_focus": true,
+            "primary_tab_keyboard": true,
+            "draft_and_reload_preserved": true,
+            "save_unchanged": true
+          },
+          {
+            "context": "historical_start",
+            "reading_surfaces": [
+              {
+                "surface": "dark",
+                "size": 18,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 6.134389208121182
+              },
+              {
+                "surface": "light",
+                "size": 20,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 6.663608659553884
+              },
+              {
+                "surface": "parchment",
+                "size": 22,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 5.395364623798076
+              }
+            ],
+            "toolbar_synchronized": true,
+            "quick_button_focus_preserved": true,
+            "maximum_size_mobile": 26,
+            "exclusive_drawers": true,
+            "nested_escape_returns_focus": true,
+            "destination_focus": true,
+            "primary_tab_keyboard": true,
+            "draft_and_reload_preserved": true,
+            "save_unchanged": true
+          }
+        ],
+        "desktop_width": 1568,
+        "mobile_width": 390,
+        "palette_checks": [
+          {
+            "genre": "military",
+            "surface": "dark",
+            "minimum_contrast": 5.660473170000904
+          },
+          {
+            "genre": "military",
+            "surface": "light",
+            "minimum_contrast": 5.660473170000904
+          },
+          {
+            "genre": "military",
+            "surface": "parchment",
+            "minimum_contrast": 5.395364623798076
+          },
+          {
+            "genre": "roman",
+            "surface": "dark",
+            "minimum_contrast": 7.141049775607952
+          },
+          {
+            "genre": "roman",
+            "surface": "light",
+            "minimum_contrast": 6.663608659553884
+          },
+          {
+            "genre": "roman",
+            "surface": "parchment",
+            "minimum_contrast": 5.395364623798076
+          },
+          {
+            "genre": "fantasy",
+            "surface": "dark",
+            "minimum_contrast": 7.633959418387948
+          },
+          {
+            "genre": "fantasy",
+            "surface": "light",
+            "minimum_contrast": 6.663608659553884
+          },
+          {
+            "genre": "fantasy",
+            "surface": "parchment",
+            "minimum_contrast": 5.395364623798076
+          },
+          {
+            "genre": "paf",
+            "surface": "dark",
+            "minimum_contrast": 7.288301806630693
+          },
+          {
+            "genre": "paf",
+            "surface": "light",
+            "minimum_contrast": 6.663608659553884
+          },
+          {
+            "genre": "paf",
+            "surface": "parchment",
+            "minimum_contrast": 5.395364623798076
+          },
+          {
+            "genre": "shinobi",
+            "surface": "dark",
+            "minimum_contrast": 7.566875012465465
+          },
+          {
+            "genre": "shinobi",
+            "surface": "light",
+            "minimum_contrast": 6.663608659553884
+          },
+          {
+            "genre": "shinobi",
+            "surface": "parchment",
+            "minimum_contrast": 5.395364623798076
+          },
+          {
+            "genre": "space",
+            "surface": "dark",
+            "minimum_contrast": 7.430910848986467
+          },
+          {
+            "genre": "space",
+            "surface": "light",
+            "minimum_contrast": 6.663608659553884
+          },
+          {
+            "genre": "space",
+            "surface": "parchment",
+            "minimum_contrast": 5.395364623798076
+          },
+          {
+            "genre": "settlement",
+            "surface": "dark",
+            "minimum_contrast": 7.328352093602904
+          },
+          {
+            "genre": "settlement",
+            "surface": "light",
+            "minimum_contrast": 6.663608659553884
+          },
+          {
+            "genre": "settlement",
+            "surface": "parchment",
+            "minimum_contrast": 5.395364623798076
+          }
+        ],
+        "historical_setup_cancel_and_review": true,
+        "explicit_creations": 1,
+        "reading_and_navigation_posts": 0,
+        "empty_trash_and_story": true,
+        "creator_round_trip_read_only": true,
+        "original_fixture_saves_unchanged": true,
+        "local_assets_only": true,
+        "provider_calls": 0,
+        "browser_errors": 0
+      }
+    },
+    {
+      "command": "git -c core.whitespace=cr-at-eol diff --check",
+      "status": "passed"
+    }
+  ],
+  "scope": {
+    "actual_supported_contexts": [
+      "existing authored non-Rise opening",
+      "Rise selected founding/work context",
+      "explicitly confirmed historical new-character start"
+    ],
+    "desktop_width": 1568,
+    "mobile_width": 390,
+    "reading_surfaces": [
+      "dark",
+      "light",
+      "parchment"
+    ],
+    "mobile_maximum_reading_size": 26,
+    "navigation": [
+      "Library",
+      "Saves",
+      "Play",
+      "World",
+      "Chronicle",
+      "empty Trash",
+      "Creator/player round trip",
+      "empty Story"
+    ],
+    "creation": "cancel and reviewed declaration/testimony retained; exactly one explicit synthetic creation per interface qualifier",
+    "reading_navigation_campaign_posts": 0,
+    "existing_save_bytes_unchanged": true,
+    "drafts_preserved": true,
+    "minimum_context_contrast": 5.0963502599978865,
+    "synthetic_genre_surface_checks": 21,
+    "synthetic_palette_scope": "Color portability only; no new mechanics",
+    "routine_provider_calls": 0,
+    "live_provider_calls": 0,
+    "browser_errors": 0,
+    "external_runtime_assets": 0,
+    "user_saves_used": false,
+    "unified_repository_published": false
+  },
+  "preserved_sources": [
+    "IRGS_Web/server.py",
+    "IRGS_Web/gameplay_views.py",
+    "IRGS_Web/process_bridge.py",
+    "IRGS_Web/assistance.py",
+    "IRGS_Web/static/processes.js",
+    "IRGS_Web/static/rise.js",
+    "IRGS_Web/static/solo.js",
+    "IRGS_Web/static/themes.css",
+    "IRGS_Web/EMERGENT_INTERFACE_SOURCE.json",
+    "IRGS_Web/INTERFACE_ASSETS.json",
+    "VERSION.json",
+    "EMERGENT_INTERFACE_VALIDATION.json"
+  ],
+  "remaining": [
+    "Protected operator/launcher configuration for optional Solo is next independent bounded task",
+    "Communication/source controls await matching Engine participant and received-source discovery",
+    "Coordinator review and later qualified joined publication/version increase remain separate",
+    "Windows launcher execution, wider accessibility/device coverage, general freeform/combat and full C2 remain outside this increment"
+  ],
+  "files_sha256": {
+    "IRGS_Web/static/preview.js": "154afb7db6679b3fa92d075de45eb22821dd75fee1d7a28d889b9c79242aaac0",
+    "IRGS_Web/static/preview.css": "3ad10efc67d1b7023bed7ebfebdecfff881ab5d8084e31a57d048a8072fd5946",
+    "IRGS_Web/static/app.js": "b20723f2f34d2da27e1352d53fd2a4ab350e4e60385916edf2dbd1d2f2354491",
+    "IRGS_Web/tests/test_gameplay_ui.js": "97d7e87a704e408af0b4977b775075ff53b55059031dc0ed4caa82e0e5280d26",
+    "IRGS_Web/release.json": "537b29f8862403423fe7f073ba27dff465d2f8efaa8103aac5660a4df0281f41",
+    "IRGS_Web/README.md": "58db50f660f564101998bceb2c228709cc6cd0dedf36d4ca532b09431ea70a55",
+    "tools/qualify_interface_refinement.js": "c65ed9a8a4299211830f24aa8ace1b8f3da06cb8995d6bf1fe1bc4bdc3a26e79",
+    "tools/qualify_interface_port.js": "48187e25605ed369d1d199103f6a144118f7488ba3463da0dcbb41a63a2d63cb",
+    "tools/qualify_shared_responses.js": "a237224e7624e1c93b70c16fe71d2863cfda802a4c48d8638e7122f8cf291d7f",
+    "tools/qualify_process_bridge.js": "9f95742d23008db3ce36b8d9bf91c9316ab845df6d4f27fc0ada8f7e4fd603aa",
+    "APP_DEVELOPMENT_HANDOFF.md": "e366a92694a0320a136702e1a25d7a002a9065e03672d7c1b261aaccaa741ad4",
+    "DEVELOPMENT.md": "71a0dff477401b7b8b9cd35f46495dc45ef6de819caa7431a7331999b434a17e",
+    "CHAT_CONTINUATION.md": "e97eb0842f168ab7616d87ce86bf3d813a8e4b1973aec8675ac7ba99b67cbe74",
+    "INTERFACE_REFINEMENT.md": "89fffcf7f869c8a36d0368986889449abc992e103b5428911ce9153a03bd6e54"
+  }
+}

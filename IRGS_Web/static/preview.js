@@ -41,7 +41,28 @@ function renderPreviewContext(){
   bindInspectors();
 }
 function previewReadingControls(){
-  return `<div class="quick-reading" aria-label="Reading preferences"><span aria-hidden="true">T</span>${[['S',16],['M',18],['L',22]].map(([title,size])=>`<button type="button" data-reading-size="${size}" aria-label="${title==='S'?'Small':title==='M'?'Medium':'Large'} reading text" aria-pressed="${preferences.fontSize===size}">${title}</button>`).join('')}<button type="button" data-reading-paper aria-label="Switch reading surface" title="Switch reading surface">${preferences.theme==='parchment'?'Paper':preferences.theme==='light'?'Light':'Dark'}</button></div>`;
+  return `<div class="quick-reading" role="group" aria-label="Reading preferences"><span data-reading-current-size aria-hidden="true">${preferences.fontSize}</span>${[['S',16],['M',18],['L',22]].map(([title,size])=>`<button type="button" data-reading-size="${size}" aria-label="${title==='S'?'Small':title==='M'?'Medium':'Large'} reading text" aria-pressed="${preferences.fontSize===size}">${title}</button>`).join('')}<button type="button" data-reading-paper aria-label="Switch reading surface" title="Switch reading surface">${preferences.theme==='parchment'?'Paper':preferences.theme==='light'?'Light':'Dark'}</button></div>`;
+}
+function syncPreviewReadingControls(){
+  const surface=preferences.theme==='parchment'?'Paper':preferences.theme==='light'?'Light':'Dark';
+  const next=preferences.theme==='dark'?'Paper':preferences.theme==='parchment'?'Light':'Dark';
+  document.querySelectorAll('.quick-reading').forEach(group=>group.setAttribute('aria-label',`Reading preferences: ${preferences.fontSize} px, ${surface} surface`));
+  document.querySelectorAll('[data-reading-current-size]').forEach(value=>value.textContent=preferences.fontSize);
+  document.querySelectorAll('[data-reading-size]').forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.readingSize)===preferences.fontSize)));
+  document.querySelectorAll('[data-reading-paper]').forEach(button=>{button.textContent=surface;button.setAttribute('aria-label',`${surface} reading surface; switch to ${next}`);button.setAttribute('title',`${surface} reading surface; switch to ${next}`);});
+}
+function closePreviewDrawers(){
+  for(const [state,toggle] of [['nav-open','toggle-nav'],['context-open','toggle-context'],['tools-open','toggle-tools']]){
+    document.body.classList.remove(state);$('#'+toggle).setAttribute('aria-expanded','false');
+  }
+}
+function togglePreviewDrawer(name){
+  const choices={navigation:['nav-open','toggle-nav',()=>$('#feature-nav').querySelector('button')||$('#toggle-nav')],
+    character:['context-open','toggle-context',()=>$('#close-context')],tools:['tools-open','toggle-tools',()=>$('#close-tools')]};
+  const [state,toggle,target]=choices[name],open=!document.body.classList.contains(state);
+  closePreviewDrawers();
+  if(open){document.body.classList.toggle(state,true);$('#'+toggle).setAttribute('aria-expanded','true');target().focus();}
+  else $('#'+toggle).focus();
 }
 function previewRecentText(entry){
   const text=String(entry.text??entry.declaration??entry.assertion??'');
@@ -64,8 +85,9 @@ function renderPreviewTools(){
   bindPreviewJourneys();
   document.querySelectorAll('[data-open-reading]').forEach(button=>button.onclick=openSettings);
   document.querySelectorAll('[data-preview-export]').forEach(button=>button.onclick=()=>$('#export').click());
-  document.querySelectorAll('[data-reading-size]').forEach(button=>button.onclick=()=>{preferences.fontSize=Number(button.dataset.readingSize);applyPreferences();renderPreviewTools();});
-  document.querySelectorAll('[data-reading-paper]').forEach(button=>button.onclick=()=>{preferences.theme=preferences.theme==='dark'?'parchment':preferences.theme==='parchment'?'light':'dark';applyPreferences();renderPreviewTools();});
+  document.querySelectorAll('[data-reading-size]').forEach(button=>button.onclick=()=>{preferences.fontSize=Number(button.dataset.readingSize);applyPreferences();});
+  document.querySelectorAll('[data-reading-paper]').forEach(button=>button.onclick=()=>{preferences.theme=preferences.theme==='dark'?'parchment':preferences.theme==='parchment'?'light':'dark';applyPreferences();});
+  syncPreviewReadingControls();
 }
 function syncPreviewCharacter(){
   const name=$('#new-character-name')?.value.trim()||'Your character',species=$('#new-character-species')?.value.trim()||'human';
@@ -78,7 +100,7 @@ function syncPreviewCharacter(){
 }
 function bindPreviewControls(){
   $('#preview-account').onclick=()=>$('#toggle-nav').click();
-  $('#toggle-tools').onclick=()=>{document.body.classList.remove('context-open');$('#toggle-context').setAttribute('aria-expanded','false');const open=document.body.classList.toggle('tools-open');$('#toggle-tools').setAttribute('aria-expanded',String(open));if(open)$('#close-tools').focus();};
+  $('#toggle-tools').onclick=()=>togglePreviewDrawer('tools');
   $('#close-tools').onclick=()=>{document.body.classList.remove('tools-open');$('#toggle-tools').setAttribute('aria-expanded','false');$('#toggle-tools').focus();};
   document.querySelectorAll('[data-character-detail]').forEach(button=>button.onclick=()=>{const guided=button.dataset.characterDetail==='guided';$('#guided-background').open=guided;document.querySelectorAll('[data-character-detail]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));if(guided)$('#character-origin').focus();});
   for(const id of ['new-character-name','new-character-species'])$('#'+id).addEventListener('input',syncPreviewCharacter);

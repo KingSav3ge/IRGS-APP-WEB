@@ -463,5 +463,31 @@ async function test(name,fn){await fn();results.push('PASS '+name);}
   h.elements.get('catalogue-reset').click();assert.equal(h.elements.get('catalogue-type').value,'');assert(h.elements.get('catalogue-result-count').textContent.startsWith('44 of 44'));assert(h.calls.every(call=>!call.body));assert(!h.elements.get('create-dialog').open);
  });
 
+
+ await test('Full Reading settings synchronize toolbar size and surface without changing campaign records',async()=>{
+  const h=environment();h.run('current='+JSON.stringify(projection('A'))+";view='story';render();openSettings();");const before=h.run('JSON.stringify(current)'),form=h.elements.get('preferences-form');
+  const size=form.elements.namedItem('fontSize');size.value='22';form.oninput({target:size});const surface=form.elements.namedItem('theme');surface.value='light';form.oninput({target:surface});
+  assert.equal(h.context.document.querySelectorAll('[data-reading-size]').find(b=>b.dataset.readingSize==='22').getAttribute('aria-pressed'),'true');assert.equal(h.context.document.querySelectorAll('[data-reading-size]').find(b=>b.dataset.readingSize==='18').getAttribute('aria-pressed'),'false');assert.equal(h.context.document.querySelectorAll('[data-reading-paper]')[0].textContent,'Light');assert(h.context.document.querySelectorAll('[data-reading-paper]')[0].getAttribute('aria-label').includes('switch to Dark'));assert.equal(h.run('JSON.stringify(current)'),before);assert.equal(h.calls.length,0);
+ });
+ await test('A custom reading size is shown accurately without selecting an unrelated preset',async()=>{
+  const h=environment();h.run('current='+JSON.stringify(projection('A'))+";view='story';render();preferences.fontSize=20;applyPreferences();");assert(h.context.document.querySelectorAll('[data-reading-size]').every(b=>b.getAttribute('aria-pressed')==='false'));assert.equal(String(h.context.document.querySelectorAll('[data-reading-current-size]')[0].textContent),'20');assert(h.context.document.querySelectorAll('.quick-reading')[0].getAttribute('aria-label').includes('20 px'));h.run('openSettings()');assert.equal(h.elements.get('preferences-form').elements.namedItem('fontSize').value,20);assert.equal(h.calls.length,0);
+ });
+ await test('Quick reading adjustments keep the focused button and reading-dialog opener connected',async()=>{
+  const h=environment();h.run('current='+JSON.stringify(projection('A'))+";view='story';render();");const button=h.context.document.querySelectorAll('[data-reading-size]').find(b=>b.dataset.readingSize==='22'),opener=h.context.document.querySelectorAll('[data-open-reading]')[0];button.focus();await button.click();assert.equal(h.context.document.activeElement,button);assert(h.context.document.querySelectorAll('[data-reading-size]').includes(button));assert(h.context.document.querySelectorAll('[data-open-reading]').includes(opener));const paper=h.context.document.querySelectorAll('[data-reading-paper]')[0];paper.focus();await paper.click();assert.equal(h.context.document.activeElement,paper);assert(h.context.document.querySelectorAll('[data-reading-paper]').includes(paper));assert.equal(h.calls.length,0);
+ });
+ await test('Navigation and character or tools drawers never remain open together',async()=>{
+  const h=environment();h.run('current='+JSON.stringify(projection('A'))+";view='story';render();");
+  for(const toggle of ['toggle-context','toggle-tools']){await h.elements.get(toggle).click();await h.elements.get('toggle-nav').click();assert(h.context.document.body.classList.contains('nav-open'));assert(!h.context.document.body.classList.contains('tools-open'));assert(!h.context.document.body.classList.contains('context-open'));assert.equal(h.elements.get(toggle).getAttribute('aria-expanded'),'false');assert.equal(h.elements.get('toggle-nav').getAttribute('aria-expanded'),'true');await h.elements.get('toggle-nav').click();assert.equal(h.context.document.activeElement.id,'toggle-nav');}
+  assert.equal(h.calls.length,0);
+ });
+ await test('Opening character or tools from navigation closes navigation and focuses the new drawer',async()=>{
+  const h=environment();h.run('current='+JSON.stringify(projection('A'))+";view='story';render();");for(const [toggle,close] of [['toggle-context','close-context'],['toggle-tools','close-tools']]){await h.elements.get('toggle-nav').click();await h.elements.get(toggle).click();assert(!h.context.document.body.classList.contains('nav-open'));assert.equal(h.elements.get('toggle-nav').getAttribute('aria-expanded'),'false');assert.equal(h.context.document.activeElement.id,close);await h.elements.get(close).click();assert.equal(h.context.document.activeElement.id,toggle);}assert.equal(h.calls.length,0);
+ });
+ await test('A drawer destination receives keyboard focus while preserving an independent composer draft',async()=>{
+  const h=environment();h.run('current='+JSON.stringify(projection('A'))+";view='story';render();$('#declaration').value='Keep my independent words.';");await h.elements.get('toggle-tools').click();await h.context.document.querySelectorAll('[data-preview-view]').find(b=>b.dataset.previewView==='saves').click();assert.equal(h.run('view'),'saves');assert.equal(h.context.document.activeElement.id,'content');assert(!h.context.document.body.classList.contains('tools-open'));assert.equal(h.run("readLocal('irgs-draft:A:PC')"),'Keep my independent words.');assert.equal(h.calls.length,0);
+ });
+ await test('Primary tab keyboard navigation retains its roving focus after a drawer closes',async()=>{
+  const h=environment();h.run('current='+JSON.stringify(projection('A'))+";view='story';render();");await h.elements.get('toggle-tools').click();h.elements.get('tab-story').onkeydown({key:'ArrowRight',preventDefault(){}});assert.equal(h.run('view'),'world');assert.equal(h.context.document.activeElement.id,'tab-world');assert.equal(h.elements.get('tab-world').getAttribute('aria-selected'),'true');assert.equal(h.calls.length,0);
+ });
  console.log(results.join('\n')+'\n'+results.filter(result=>result.startsWith('PASS ')).length+' frontend checks passed. No real save or live server was used.');
 })().catch(error=>{console.error(results.join('\n'));console.error(error);process.exitCode=1;});

@@ -52,6 +52,7 @@ python -B -m unittest discover -s tools/tests -v
 node tools/qualify_shared_responses.js /tmp/irgs-shared-browser.json
 node tools/qualify_process_bridge.js /tmp/irgs-process-browser.json
 node tools/qualify_interface_port.js /tmp/irgs-interface-browser.json /tmp/irgs-interface-screenshots
+node tools/qualify_interface_refinement.js /tmp/irgs-refinement-browser.json /tmp/irgs-refinement-screenshots
 python -B tools/verify_components.py --component app
 ```
 
@@ -66,3 +67,9 @@ PowerShell checks retain their actual Linux skips. No user saves participate.
 Unified publication remains a coordinator operation under the repository's
 integration and version policy. Publishing the App increment alone does not
 claim a new unified release or qualify the separate Emergent backend.
+
+
+The first interface continuation is documented in
+[INTERFACE_REFINEMENT.md](INTERFACE_REFINEMENT.md). Its separate validation record
+qualifies the current reading/navigation fixes; this original port record and
+`EMERGENT_INTERFACE_VALIDATION.json` retain their original tested source.

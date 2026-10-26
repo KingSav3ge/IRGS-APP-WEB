@@ -7,7 +7,32 @@ records below retain their original tested development identities.
 Current guide: 26 October 2026. Owner: `KingSav3ge/IRGS-APP-WEB/main`.
 Start with [CHAT_CONTINUATION.md](CHAT_CONTINUATION.md).
 
-## Latest interface delivery — 26 October 2026
+## Interface reading and navigation refinement — 26 October 2026
+
+The first bounded increment from [the handoff](APP_DEVELOPMENT_HANDOFF.md) fixes
+reproduced reading-toolbar synchronization, focused-control replacement, stacked
+drawers, lost destination focus and faint Story labels on reading paper. Full
+settings, presets and custom sizes now share the same local state. Drawers stay
+exclusive; Escape and primary-tab keyboard behavior retain their established roles.
+Story labels/links and pressed reading presets retain readable themed colors.
+
+The authored non-Rise opening, an explicitly reviewed historical character start
+and Rise use the same checks at 1568px and 390px, with dark/light/parchment surfaces.
+The original three browser regressions are retained; a focused refinement suite
+also checks local-only reading/navigation, drafts, empty states and Creator return.
+See [scope and reproduction](INTERFACE_REFINEMENT.md),
+[fresh evidence](INTERFACE_REFINEMENT_VALIDATION.json) and the current handoff report.
+Earlier port and component validation records retain their original sources.
+
+The next independent bounded task is protected operator/launcher configuration
+for the existing optional Solo service. Keep credentials and detailed accounting
+server-side, ordinary supported play available without a provider, and live
+inference separately authorized. Further interface polish should follow reproduced
+issues. Communication/source controls still need Engine's actor-safe participant
+and received-source contract. Coordinator review and joined publication remain
+separate; edition stays 3.4.1, previous release 3.3.3, with unchanged dependency pins.
+
+## Prior interface delivery — 26 October 2026
 
 The requested Emergent interface is adapted onto the canonical local host.
 Read [the port scope and checks](EMERGENT_INTERFACE_PORT.md) and

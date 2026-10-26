@@ -274,3 +274,13 @@ remain attempts checked by Core; themes create no operations. See the
 [HTTP, persistence and dependency contract](PROCESS_BRIDGE.md).
 Run `node tools/qualify_process_bridge.js /tmp/irgs-process-browser.json` in
 addition to the ordinary guide checks for actual Chromium process qualification.
+
+
+## Reading and navigation refinement
+
+The Play toolbar stays synchronized with full Reading settings, including custom
+text sizes. Quick adjustments keep keyboard focus on their control. Navigation,
+Character and Tools drawers close each other; choosing a destination focuses its
+content, while Escape returns to the drawer opener. Reading paper keeps Story
+labels and links legible without changing the campaign palette or world records.
+See [scope and checks](../INTERFACE_REFINEMENT.md).

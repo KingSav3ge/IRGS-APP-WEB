@@ -1,3 +1,59 @@
+# Emergent reading and navigation refinement — 26 October 2026
+
+Completed the first bounded increment in `APP_DEVELOPMENT_HANDOFF.md`, pulled at
+App `1a0bc65dd25a18dfd075b2d603d0351c2d035001`. The delivered source remains the
+canonical host/interface. Edition stays **3.4.1 development**, previous release
+**3.3.3**. Exact unchanged dependencies: Engine
+`aa30bb63a3828cbaeb5ee3d1db57edd388a8dc86`, Catalog
+`526404128830a99fe8ea5c2bce43b6ea7d45fe6f`. Only App main is pushed; the delivery
+response gives its full containing commit. Unified publication stays deferred.
+
+Reproduced and fixed full-settings/toolbar mismatches, focused quick controls
+being replaced, stacked drawers and lost destination focus, plus faint Story
+labels on reading paper. Settings, presets/custom sizes and surfaces now share
+normalized local state without rebuilding focused controls. Drawers close each
+other, restore their opener on Escape, and focus selected destinations while
+preserving primary-tab keyboard behavior. Story text accents stay legible on
+selected paper and retain the actual campaign/genre palette. No Core, API,
+process, assistance, action-review or recovery implementation changes.
+
+Fresh checks:
+
+- **229 Web run: 222 passed, seven Windows PowerShell skips, zero failures**.
+- **128 interface**, **13 formatter** (171 variants/eight recipes) and **one
+  tooling** check passed. App release refreshed/verified: **75 files**, with
+  selected Engine/Catalog integrity and committed pointers verified.
+- All **four Chromium suites passed**, retaining the original port/character
+  review, shared actions and typed-process suites. Shared gameplay still executes
+  four non-Rise/five Rise actions; process recovery still executes five observation/
+  six work phases, retaining actual elapsed spans, failed attempts, zero-second
+  phases, lost replies, reload and original results. The Web suite separately
+  retains failed-save, host-restart and restored-branch coverage.
+- The new refinement suite independently checks the authored opening, Rise and
+  a reviewed historical character start at **1568px/390px** on **dark/light/parchment**.
+  Custom sizing, 26px mobile text, nested Escape/focus, drawer destinations,
+  World/Chronicle tabs, drafts/reload, setup cancel/review, empty states and Creator
+  return pass. Reading/navigation perform **zero campaign writes**; only the
+  explicitly confirmed synthetic creation writes. Original save bytes stay exact.
+- Tested Story/toolbar text contrast is at least **5.09:1** across those contexts;
+  21 additional synthetic palette/surface cases pass 4.5:1 for color portability
+  only. Baseline parchment/light Story-label contrast was 1.36:1/1.67:1.
+- All browser runs: **zero provider calls, zero browser errors, local assets only**.
+  No user save, private external fixture or live model was used. Diff checks pass.
+
+See [scope/reproduction](INTERFACE_REFINEMENT.md) and
+[executed evidence](INTERFACE_REFINEMENT_VALIDATION.json) for exact commands,
+measured contexts, source hashes and limits. Earlier port/response records and
+asset attributions remain unchanged. Screenshots are temporary review artifacts.
+
+Next: protected operator/launcher configuration for the optional Solo service.
+Communication/source controls still require Engine's actor-safe participant and
+received-source contract. Additional interface issues need their own reproduction;
+this scoped contrast/focus work is not a complete accessibility audit. The
+coordinator owns review, joined qualification and any edition increase.
+
+---
+
 # User handoff decision — 26 October 2026
 
 The user assigned continued Emergent interface work to the existing App
