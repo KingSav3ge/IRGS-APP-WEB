@@ -343,7 +343,7 @@ class Store:
                        else 'This opening action could not be accepted. No action was committed. '
                             'Reload the campaign to review your options.')
             raise ValueError(message) from None
-        elapsed = ({'axis': 'authored-opening-seconds',
+        elapsed = ({'axis': world.s['elapsed_time']['axis'],
                     'duration_seconds': resolved['outcome']['elapsed_seconds'],
                     'total_seconds': resolved['outcome']['elapsed_total']}
                    if kind == 'scene_action' else None)
@@ -575,6 +575,8 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                 name, mime = files[path]
                 self.reply(200, (ROOT / 'static' / name).read_bytes(), mime)
             except FileNotFoundError:
+                if path in ('/api/starting-options', '/api/starting-preview'):
+                    return self.reply(503, {'error': 'The selected starting source is unavailable. No campaign was created. Retry review when its source is available.'})
                 self.reply(404, {'error': 'No saved action result exists for this request'
                                       if path.startswith('/api/action-result/') else 'Campaign not found'})
             except sqlite3.Error:

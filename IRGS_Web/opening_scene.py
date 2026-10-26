@@ -20,7 +20,14 @@ def build_opening(state, actor_id):
         blocks.append({'kind': 'scene', 'text': 'Your recorded location: ' + str(scene.get('title') or scene['location']), 'source_ids': []})
     else:
         blocks.append({'kind': 'scene', 'text': 'Your current location and nearby people have not been established.', 'source_ids': []})
-    evidence = [item for item in projection['evidence'] if item['id'] != 'setup:background-details']
+    civil = (projection.get('start_context') or {}).get('civil_time')
+    if civil:
+        blocks.append({'kind': 'civil_checkpoint',
+            'text': 'Received initial checkpoint: ' + civil['date'] + ' (' + civil['calendar']
+                    + ', ' + civil['precision'] + ' precision). Hour unknown; this is not a running civil clock.',
+            'status': civil['status'], 'record_id': civil['record_id'],
+            'source_ids': [civil['source_ref']]})
+    evidence = [item for item in projection['evidence'] if item['id'] not in ('setup:background-details', 'setup:civil-date')]
     if evidence:
         received = max(evidence, key=lambda item: item['received_at'])
         own_background = received['id'] == 'setup:background'
@@ -35,10 +42,10 @@ def build_opening(state, actor_id):
         blocks.append({'kind': 'received_record', 'text': 'Received order:\n' + received['content'],
                        'content': received['content'], 'status': 'received', 'source_kind': 'received_order',
                        'record_id': received['id'], 'source_ids': []})
-    prompt = ('Use a listed action to move, observe or deliver the dispatch in your selected fictional opening. '
-              'The actual result and stated local duration will be saved; an attempt can fail. '
-              'Your own written response remains available as unresolved intent.'
-              if projection['capabilities'].get('playable_opening') else PROMPT)
+    actions = projection['supported_actions']
+    prompt = ('Review a listed attempt: ' + '; '.join(item['title'] for item in actions) + '. '
+              'Only explicit confirmation executes it. The actual result and selected local duration will be saved; '
+              'an attempt can fail. Your own written response remains unresolved intent.' if actions else PROMPT)
     blocks.append({'kind': 'first_decision', 'text': prompt, 'source_ids': []})
     return {'id': 'opening:' + state['campaign_id'], 'version': VERSION,
         'scope_campaign_id': state['campaign_id'], 'actor_id': actor_id, 'title': 'Your opening', 'blocks': blocks,

@@ -1,12 +1,12 @@
-"""Ephemeral App preflight over the current Engine's actor-visible capabilities.
+"""Ephemeral App consumer of Engine's versioned starting review and actor view.
 
-Not the pending Engine start-context contract or a continuing-world migration.
-No action execution, persistence, provider use or private feasibility probes.
+No action execution, persistence, provider use or continuing-world migration.
 """
 from campaign_library import initial_campaign
 from gameplay_views import playthrough
 from starting_selection import initialize_player
 from phase_contract import actor_view
+from start_readiness import review_start, SCHEMA_VERSION
 
 
 def capability_summary(projection, starts):
@@ -39,13 +39,17 @@ def preview_start(fields):
         # Testimony and names grant no capability. Keep them out of URLs/logs;
         # real creation retains the exact user-supplied fields as before.
         character.update(name='Preview character', species=fields.get('species', 'human'), background='')
-        if fields.get('opening_id'):
-            character['opening_id'] = fields['opening_id']
     else:
-        if fields.get('opening_id') or fields.get('species'):
-            raise ValueError('Existing characters cannot receive a new-character fictional opening')
+        if fields.get('species'):
+            raise ValueError('Existing character species follows the selected identity')
         character.update({key: fields[key] for key in ('actor_id', 'entity_id') if key in fields})
+    if fields.get('opening_id'):
+        character['opening_id'] = fields['opening_id']
     world = initial_campaign(campaign_id='APP-START-PREVIEW', **base)
+    reviewed = review_start(world, character,
+                            starting_scenario_id=fields.get('starting_scenario_id', 'individual'))
+    if reviewed['selected_mode']['status'] == 'held':
+        raise ValueError('Starting mode unavailable for this selection: ' + reviewed['selected_mode']['reason_code'])
     world = initialize_player(world, character=character,
         starting_scenario_id=fields.get('starting_scenario_id', 'individual'),
         selection_digest=fields.get('selection_digest'), request_ref='explicit-app-start-preview')
@@ -54,7 +58,8 @@ def preview_start(fields):
                               'state': world.s}, actor)
     phases = actor_view(world, actor, branch_id='app-start-preview', restore_id='app-start-preview')
     return {**capability_summary(projection, phases['start_options']),
-            'preview_only': True, 'engine_start_context_contract': False,
+            'preview_only': True, 'engine_start_context_contract': SCHEMA_VERSION,
+            'engine_review': reviewed, 'start_context': projection['start_context'],
             'character_kind': character['kind'], 'opening_id': character.get('opening_id'),
             'scene': projection['scene'], 'campaign_time': projection['campaign_time'],
             'elapsed_time': projection['elapsed_time']}

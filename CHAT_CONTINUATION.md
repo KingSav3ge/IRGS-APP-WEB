@@ -4,6 +4,30 @@ Current coordinated edition: **3.4.2**; previous release: **3.3.3**.
 Updated 26 October 2026 following coordinator review of all three deliveries.
 Preserve local work before pulling. New user directions take precedence.
 
+## Delivered Engine start-context adoption — 26 October 2026
+
+The App consumes the published `irgs-start-readiness-1` contract at Engine
+`cc450a6f00a249d2169cdacdfc9c4b1e03f67cc8` and Catalog
+`e1778e080385b6ff2bbb93f47f91d0da6e9d6780`. Explicit Henry selection, exact
+opening IDs through preflight/creation/retry, actor-received context, initial
+Julian-day display and selected local elapsed axes are implemented. Default
+Henry, John and default new-character starts remain deliberate limited modes.
+The three calendar-receipt regressions retain their privacy exclusions.
+See [scope and checks](START_CONTEXT_ADOPTION.md) and
+[fresh evidence](START_CONTEXT_ADOPTION_VALIDATION.json).
+
+START-INT-002/003/004 are implemented and the exact compatible App gitlinks close
+005. Catalog still owns separate new-contract consumer qualification (006), and
+the coordinator owns exact-set/joined/browser/package review and publication.
+Do not reopen the Engine contract dependency or silently adopt a different pack.
+Keep the App's distinct `start_preview` module/test names.
+
+Next App work is the already delivered Engine communication/source/offer bridge,
+with actor-scoped preparations, explicit acceptance and durable original-result
+recovery. Protected operator setup, supported-intent mapping and non-secret build
+diagnostics remain subsequent work. Preserve the selected-start journeys and all
+five browser suites. The App stays 3.4.2 until coordinated 3.4.3 preparation.
+
 ## Current review and assignment
 
 Pull this repository's `main`, then read `AGENTS.md`,
@@ -18,7 +42,7 @@ contract dependency. The coordinator fixed module/discovery collisions by
 renaming App preflight to `start_preview.py` and its test to
 `tests/test_start_preview.py`; retain those separate names.
 
-Close START-INT-002 through 005 in order:
+Original adoption acceptance (implemented by this delivery):
 
 1. Consume Engine's versioned readiness review and actor-bound existing opening
    options. Offer the optional Henry start explicitly and include its opening ID

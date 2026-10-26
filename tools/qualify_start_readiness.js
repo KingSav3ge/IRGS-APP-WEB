@@ -89,8 +89,48 @@ finally: server.server_close()
   for(const action of ['walk_clearing','found','build','wait_hour','wait_hour']){const revision=await page.evaluate(()=>current.revision);await page.locator('[data-rise-action="'+action+'"]').click();await page.locator('#confirm-reviewed-action').click();await page.waitForFunction(revision=>current?.revision===revision+1&&!busy,revision);}
   const rise=await snapshot();assert.equal(await page.evaluate(()=>current.settlement.elapsed_seconds),3900);const riseReceipt=await page.evaluate(()=>current.completed_actions.at(-1));await reload(rise);assert.deepEqual(await page.evaluate(()=>current.completed_actions.at(-1)),riseReceipt);await fits();await shot('rise-mobile');
   contexts.push({name:'R00_regression',status:'supported_slice',confirmed_actions:5,elapsed_seconds:3900,received_result_retained:true});
-  assert.equal(count(),4);assert.equal(providerCalls,0);assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
-  const report={status:'passed',initial_campaigns:0,final_campaigns:4,cancel_and_selection_changes_create_nothing:true,source_unavailable_stays_unconfirmed:true,mobile_width:390,contexts,provider_calls:providerCalls,browser_errors:errors.length,external_requests:external.length,posts:posts.map(item=>item.url.slice(origin.length))};
+
+  await setup('Henry default reference');await page.locator('#character-kind').selectOption('existing');await page.locator('#starting-character').selectOption('HYW-HENRY-V');
+  assert.equal(await page.locator('#existing-character-opening').inputValue(),'');await review();
+  assert.equal(await page.evaluate(()=>reviewSelection.readiness.engine_review.selected_mode.status),'declaration_only');assert(await page.locator('#create-submit').isDisabled());
+  await page.locator('#confirm-declaration-start').check();const henryDefault=await create('Henry default reference');assert.equal(henryDefault.readiness.action_count,0);assert.equal(henryDefault.scene.location,null);assert.equal(henryDefault.elapsed,null);
+  assert.equal(await page.evaluate(()=>current.start_context.civil_time.current_calendar_binding),false);await reload(henryDefault);await fits();await shot('henry-default-mobile');
+  contexts.push({name:'existing_henry_default',status:'declaration_only',opening_not_added_automatically:true,received_initial_day:true});
+
+  await setup('Henry explicit observation');await page.locator('#character-kind').selectOption('existing');await page.locator('#starting-character').selectOption('HYW-HENRY-V');
+  assert.equal(await page.locator('#existing-character-opening option').count(),2);await page.locator('#existing-character-opening').selectOption('henry-1415-embarkation-v1');
+  await page.locator('#starting-character').selectOption('HYW-JOHN-BEDFORD');assert.equal(await page.locator('#existing-character-opening').inputValue(),'');assert(await page.locator('#existing-opening-section').isHidden());
+  await page.locator('#starting-character').selectOption('HYW-HENRY-V');assert.equal(await page.locator('#existing-character-opening').inputValue(),'');
+  await page.locator('#existing-character-opening').selectOption('henry-1415-embarkation-v1');await review();
+  assert.equal(await page.evaluate(()=>reviewSelection.readiness.engine_review.schema_version),'irgs-start-readiness-1');
+  assert.equal(await page.evaluate(()=>reviewSelection.readiness.engine_review.selected_mode.mode_id),'henry-1415-embarkation-v1');
+  assert((await page.locator('#setup-review').innerText()).includes('EXPLICIT SOURCED STARTING CONTEXT'));assert(!(await page.locator('#setup-review').innerText()).includes('AUTHORISED FICTIONAL OPENING'));
+  const henryPreview=await page.evaluate(()=>reviewSelection.readiness);assert.equal(henryPreview.action_count,1);assert(await page.locator('#declaration-start-consent').isHidden());
+  dropCreation=true;creationReplies.length=0;await page.route('**/api/create',creationRoute);await page.locator('#create-submit').click();await page.waitForFunction(()=>!busy&&reviewSelection?.recovery===true);
+  const henry=await create('Henry explicit observation');await page.unroute('**/api/create',creationRoute);assert.deepEqual(creationReplies[0],creationReplies[1]);assert.equal(creationReplies[0].character.opening_id,'henry-1415-embarkation-v1');
+  assert.equal(henry.actor,'HYW-HENRY-V');assert.equal(henry.scene.scope,'sourced_setting_with_selected_simulation_observation_rule');assert.equal(henry.scene.location,henryPreview.scene.location);assert.deepEqual(henry.elapsed,{axis:'selected-historical-observation-seconds',seconds:0});
+  assert.deepEqual(await page.evaluate(()=>current.supported_actions.map(item=>item.action_id)),['observe-embarkation']);assert.equal(await page.evaluate(()=>current.inventory.length),0);
+  const initialCivil=await page.evaluate(()=>current.start_context.civil_time);assert.equal(initialCivil.date,'1415-08-11');assert.equal(initialCivil.calendar,'julian');assert.equal(initialCivil.precision,'day');assert.equal(initialCivil.time,null);assert.equal(initialCivil.opening_hour,null);assert.equal(initialCivil.current_calendar_binding,false);
+  const firstPrompt=await page.evaluate(()=>current.opening.blocks.find(item=>item.kind==='first_decision').text);assert(firstPrompt.includes('Observe the embarkation setting'));assert(!/dispatch|deliver|move|travel/i.test(firstPrompt));
+  dropAction=true;requests.length=0;receipts.length=0;await page.locator('[data-supported-action]').click();await page.locator('#confirm-reviewed-action').click();await page.waitForFunction(revision=>current?.revision===revision+1&&!busy,henry.revision);
+  const henryAfter=await snapshot(),henryReceipt=await page.evaluate(()=>current.completed_actions.at(-1));assert.deepEqual(henryAfter.elapsed,{axis:'selected-historical-observation-seconds',seconds:20});assert.deepEqual(henryReceipt,receipts[0]);
+  assert.equal(henryReceipt.elapsed_time.axis,'selected-historical-observation-seconds');assert.equal(henryReceipt.elapsed_time.duration_seconds,20);assert.deepEqual(await page.evaluate(()=>current.start_context.civil_time),initialCivil);
+  assert((await page.locator('.opening-elapsed').innerText()).includes('20 seconds'));assert(/received initial checkpoint/i.test(await page.locator('#context-content').innerText()));
+  const token=await page.evaluate(()=>token),header={'X-IRGS-Token':token},henrySave=path.join(folder,'saves',henry.id+'.json');const savedHenry=fs.readFileSync(henrySave,'utf8');
+  for(const url of ['/api/playthrough/'+henry.id+'?actor_id=HYW-JOHN-BEDFORD','/api/action-result/'+henry.id+'/'+requests[0].request_id+'?actor_id=HYW-JOHN-BEDFORD'])assert.equal((await page.request.get(origin+url,{headers:header})).status(),403);
+  const changed=await page.request.post(origin+'/api/action',{headers:header,data:{...requests[0],text:'Changed after execution'}});assert.equal(changed.status(),400);assert.equal(fs.readFileSync(henrySave,'utf8'),savedHenry);
+  await reload(henryAfter);assert.deepEqual(await page.evaluate(()=>current.completed_actions.at(-1)),henryReceipt);assert.equal(fs.readFileSync(henrySave,'utf8'),savedHenry);
+  await fits();await page.locator('#own-response-panel').evaluate(node=>node.open=false);await shot('henry-explicit-mobile');await page.locator('#toggle-context').click();await shot('henry-clock-mobile');await page.keyboard.press('Escape');
+  await page.setViewportSize({width:1568,height:1000});await page.locator('#campaign-management').evaluate(node=>node.open=true);await page.locator('#delete-campaign').click();await page.locator('#delete-form .primary').click();await page.waitForFunction(id=>!busy&&current?.id!==id,henry.id);
+  await page.locator('#play-tools-content [data-preview-view="trash"]').click();await page.locator('[data-restore="'+henry.id+'"]').click();await page.waitForFunction(id=>current?.id===id&&!busy&&!loadingCampaign,henry.id);
+  assert.deepEqual(await page.evaluate(()=>current.completed_actions.at(-1)),henryReceipt);assert.deepEqual(await page.evaluate(()=>current.start_context.civil_time),initialCivil);assert.equal(fs.readFileSync(henrySave,'utf8'),savedHenry);
+  const restoredReplay=await page.request.post(origin+'/api/action',{headers:header,data:requests[0]});assert.deepEqual(await restoredReplay.json(),henryReceipt);assert.equal(fs.readFileSync(henrySave,'utf8'),savedHenry);
+  const evaluatorState=JSON.parse(savedHenry).state;for(const key of ['stocks','capacities','orders','obligations'])assert.deepEqual(evaluatorState[key],{});
+  assert.deepEqual(Object.keys(evaluatorState.actors['HYW-HENRY-V'].current),['location']);assert.equal(evaluatorState.campaign_time.day,0);
+  contexts.push({name:'existing_henry_explicit',status:'supported_slice',engine_contract:'irgs-start-readiness-1',actor_bound_choice:true,changed_actor_clears_choice:true,lost_creation_ack_recovered:true,lost_action_ack_recovered:true,elapsed_axis:'selected-historical-observation-seconds',elapsed_seconds:20,initial_julian_day:'1415-08-11',opening_hour:null,current_calendar_binding:false,no_dispatch_or_courier_actions:true,actor_boundaries:true,changed_replay_rejected:true,reload_and_restore_preserve_exact_bytes:true,restored_original_result_replay:true});
+
+  assert.equal(count(),6);assert.equal(providerCalls,0);assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
+  const report={status:'passed',initial_campaigns:0,final_campaigns:6,cancel_and_selection_changes_create_nothing:true,source_unavailable_stays_unconfirmed:true,mobile_width:390,contexts,provider_calls:providerCalls,browser_errors:errors.length,external_requests:external.length,posts:posts.map(item=>item.url.slice(origin.length))};
   if(process.argv[2])fs.writeFileSync(process.argv[2],JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
  }finally{if(browser)await browser.close();if(child.exitCode===null){child.kill('SIGINT');await new Promise(resolve=>child.once('exit',resolve));}fs.rmSync(folder,{recursive:true,force:true});}
 })().catch(error=>{console.error(error);process.exitCode=1;});

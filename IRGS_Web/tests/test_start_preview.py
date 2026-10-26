@@ -73,7 +73,10 @@ class StartReadinessTests(unittest.TestCase):
     def test_new_default_retains_unestablished_context_and_explicit_scope(self):
         first = self.preview()
         self.assertEqual(first['status'], 'declaration_only')
-        self.assertFalse(first['engine_start_context_contract'])
+        self.assertEqual(first['engine_start_context_contract'], 'irgs-start-readiness-1')
+        self.assertEqual(first['engine_review']['selected_mode']['status'], 'declaration_only')
+        self.assertEqual(first['start_context']['civil_time']['status'], 'received_initial_checkpoint')
+        self.assertFalse(first['start_context']['civil_time']['current_calendar_binding'])
         self.assertFalse(first['general_freeform_resolution'])
         self.assertIsNone(first['elapsed_time'])
         saved = self.create({'kind': 'new', 'name': 'Explicit reference', 'species': 'human', 'background': ''})

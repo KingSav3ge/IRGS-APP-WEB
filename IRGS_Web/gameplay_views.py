@@ -164,6 +164,12 @@ def playthrough(record, actor_id=None, *, mode='player'):
                if key in ('core', 'genre_id', 'library_ids', 'campaign_profile', 'scenario_id', 'entry_id')}
     pending = pending_declaration(record, actor_id) if actor_id else None
     exists = character_exists(state, actor_id)
+    from app_start_context import received_start_context
+    start_context = received_start_context(record, actor_id) if exists and actor_id else None
+    # The calendar is received initial information, never template-derived
+    # current time. Core's original relative campaign-day fields stay separate.
+    if start_context and start_context['civil_time']:
+        time['civil'] = copy.deepcopy(start_context['civil_time'])
     from player_actions import equipment_options
     from scene_actions import scene_options
     scene_supported = scene_options(state, actor_id) if exists and actor_id else []
@@ -176,8 +182,12 @@ def playthrough(record, actor_id=None, *, mode='player'):
     place = rules.get('places', {}).get(location, {}) if scene_scope else {}
     elapsed = state.get('elapsed_time', {})
     elapsed_view = ({'axis': elapsed['axis'], 'seconds': elapsed['seconds']}
-                    if scene_scope and elapsed.get('axis') == 'authored-opening-seconds'
-                    and type(elapsed.get('seconds')) is int else None)
+                    if scene_scope and elapsed.get('axis') == rules.get('elapsed_axis')
+                    and isinstance(elapsed.get('axis'), str)
+                    and type(elapsed.get('seconds')) is int and elapsed['seconds'] >= 0 else None)
+    context_kind = rules.get('context_kind', 'authored_fiction') if scene_scope else None
+    received_map = next((item['text'] for item in (start_context or {}).get('received_context', [])
+                         if item['record_id'] == 'setup:scene-map'), None)
     from response_options import response_choices
     prompt = response_choices(state, actor_id) if exists and actor_id else None
     completed = [safe_result(request['result']) for request in record.get('gameplay_requests', {}).values()
@@ -190,9 +200,11 @@ def playthrough(record, actor_id=None, *, mode='player'):
         'controlled_actors': [_identity(state['actors'][key]) for key in player_ids(state) if key in state['actors']],
         'binding': binding, 'campaign_time': time,
         'elapsed_time': elapsed_view,
+        'start_context': start_context,
         'scene': {'title': place.get('title') or location or 'Current scene', 'location': location,
-                  'scope': 'authored_fiction' if scene_scope else None,
-                  'description': copy.deepcopy(current.get('current_activity', current.get('last_confirmed_activity', 'No character-observed scene record is available.')))},
+                  'scope': context_kind,
+                  'description': copy.deepcopy(current.get('current_activity', current.get('last_confirmed_activity',
+                      received_map or 'No character-observed scene record is available.')))},
         'character': character, 'known_actors': identities, 'evidence': evidence, 'orders': orders,
         'inventory': inventory, 'pending_declaration': pending,
         'supported_actions': supported, 'completed_actions': completed,
@@ -207,7 +219,8 @@ def playthrough(record, actor_id=None, *, mode='player'):
         'capabilities': {'can_declare': exists and pending is None, 'can_withdraw': pending is not None,
                          'action_resolution': False, 'narrator': False, 'time_advance': False,
                          'supported_action_resolution': bool(supported), 'playable_opening': bool(scene_scope),
-                         'elapsed_scope': 'authored_opening_only' if scene_scope else None,
+                         'elapsed_scope': ('authored_opening_only' if context_kind == 'authored_fiction'
+                                           else 'selected_start_context') if scene_scope else None,
                          'creator_inspection': creator, 'inventory_scope': 'explicit_inspection_grants_only'}}
     if creator:
         result['clock'] = state['clock']

@@ -1,3 +1,7 @@
+> Historical App preflight record for `23184e1`. Its pending Engine dependency
+> was resolved by [the published-contract adoption](START_CONTEXT_ADOPTION.md).
+> The original body and evidence below retain that earlier tested scope.
+
 # App start preflight — 26 October 2026
 
 The selected person and start are checked before the final creation review.

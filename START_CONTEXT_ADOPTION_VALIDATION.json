@@ -1,0 +1,627 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-26",
+  "status": "passed",
+  "source": {
+    "repository": "KingSav3ge/IRGS-APP-WEB",
+    "tested_tree_parent": "d8e68848454ac7be68ce87fede6d04cc57bda86a",
+    "qualified_unified_reference": "ba551af285a6e1eb0766a9d06f83cbc0e5335b35",
+    "engine_commit": "cc450a6f00a249d2169cdacdfc9c4b1e03f67cc8",
+    "catalog_commit": "e1778e080385b6ff2bbb93f47f91d0da6e9d6780",
+    "app_version": "3.4.2",
+    "previous_version": "3.3.3",
+    "app_module": "IRGS_Web/start_preview.py",
+    "engine_module": "Engine/IRGS_3_3/runtime/start_readiness.py",
+    "app_test_module": "IRGS_Web/tests/test_start_preview.py",
+    "engine_contract": "irgs-start-readiness-1",
+    "final_sha256": {
+      "IRGS_Web/gameplay_views.py": "26adaed6b9988f1850679648872d728a74d3b84f1941a1920f6fc78fddfde9b3",
+      "IRGS_Web/opening_scene.py": "d4db33d55b588ac8f4612aa82d62cbf12d373d3d79889cdd38e1c57ca5e9d477",
+      "IRGS_Web/release.json": "840651b445c4c30766ae18d0867b602929cc2e4591a84393f7f3c8781fd4db07",
+      "IRGS_Web/server.py": "e314ea1ada8533dc7dd1f44110f3c3a228e7768c6d3cccc451ae6a7aa9505ef0",
+      "IRGS_Web/start_preview.py": "3597764cc3f07a98a59c40d10ea8288af9b4ae6890a3728705fbf0ea2e50425e",
+      "IRGS_Web/static/app.js": "2c8efd2c17cc3323706eb7d92115118d1dbde5778849d0e4f03f240b59664896",
+      "IRGS_Web/static/preview.js": "a7e86ddeca68bf1c130266a3a9fecdc5bce6ffb95a81eda3a742cf3eafacf34d",
+      "IRGS_Web/tests/test_gameplay_ui.js": "cf1a4cb1cd888d45049083fee0b5022ffcd9e09b7f5b0feba8a6a80437aca6a5",
+      "IRGS_Web/tests/test_host.py": "37c1f68c64f91abf3e040eb7b1a054e947a95ca5d5913a80cb6eb4069215b45c",
+      "IRGS_Web/tests/test_stage1.py": "342152c4587c739d1c746edf3caa7e096379a2946163f3e1addb7d7688cb113c",
+      "IRGS_Web/tests/test_start_preview.py": "b18e4a471817e79ad2f988784abe35551c58fe57d5cf6ccc480507317e10ae1b",
+      "IRGS_Web/tests/test_starting_flow.py": "94ac34ede527045cb758f487795e7b0b55e7ec1e53d7c7fedf77e6f017868b36",
+      "tools/qualify_start_readiness.js": "d1818bb0a97b8062b7b0dbe783411dac3ecefd6603c42e1a2a0a8099e5e3c83a",
+      "IRGS_Web/app_start_context.py": "60cd04b94b1fc6d30ee1d558c793d3642e69c78b83f83d221a443f167b44b622",
+      "IRGS_Web/tests/start_context_assertions.py": "4af5424d9b041c43f845c265856e42a307e930c2831774360d2c52f976a670ef",
+      "IRGS_Web/tests/test_start_context_adoption.py": "98586d2c835eecd5b3ae16d91a5442c5f5dcfb6dc0bcefa94b2739b1257adac3"
+    },
+    "unchanged_from_parent": [
+      "VERSION.json",
+      "IRGS_Web/process_bridge.py",
+      "IRGS_Web/local_presentation.py",
+      "IRGS_Web/assistance.py",
+      "IRGS_Web/static/solo.js",
+      "IRGS_Web/static/processes.js",
+      "IRGS_Web/static/rise.js",
+      "IRGS_Web/static/themes.js",
+      "IRGS_Web/static/themes.css",
+      "IRGS_Web/static/preview.css",
+      "IRGS_Web/INTERFACE_ASSETS.json",
+      "START_READINESS_VALIDATION.json",
+      "COORDINATOR_START_REVIEW_2026_10_26.json",
+      "EMERGENT_INTERFACE_VALIDATION.json",
+      "INTERFACE_REFINEMENT_VALIDATION.json"
+    ]
+  },
+  "adoption": {
+    "START-INT-002": {
+      "status": "implemented",
+      "engine_review_consumed": true,
+      "person_bound_opening": "henry-1415-embarkation-v1",
+      "requires_explicit_choice": true,
+      "opening_id_retained_through_creation_retry": true,
+      "changed_person_or_mode_clears_choice": true,
+      "default_henry_and_john_stay_declaration_only": true
+    },
+    "START-INT-003": {
+      "status": "implemented",
+      "actor_received_start_context": true,
+      "civil_status": "received_initial_checkpoint",
+      "initial_julian_day": "1415-08-11",
+      "precision": "day",
+      "opening_hour": null,
+      "current_calendar_binding": false,
+      "selected_elapsed_axis": "selected-historical-observation-seconds",
+      "observation_seconds": 20,
+      "context_classification": "sourced_setting_with_selected_simulation_observation_rule",
+      "dispatch_or_courier_guidance_for_henry": false,
+      "reads_initialize_or_repair_world": false
+    },
+    "START-INT-004": {
+      "status": "implemented",
+      "calendar_regressions_adopted": [
+        "test_host.HostTests.test_historical_create_requires_exact_ready_scope_and_preview_hash",
+        "test_stage1.StageOneTests.test_opening_does_not_disclose_historical_reference_or_fabricate_scene",
+        "test_starting_flow.StartingFlowTests.test_historical_review_has_only_five_configured_existing_characters"
+      ],
+      "privacy_assertions_preserved": true,
+      "calendar_exact_provenance_asserted": true
+    },
+    "START-INT-005": {
+      "status": "exact_compatible_gitlinks_verified",
+      "engine_commit": "cc450a6f00a249d2169cdacdfc9c4b1e03f67cc8",
+      "catalog_commit": "e1778e080385b6ff2bbb93f47f91d0da6e9d6780"
+    },
+    "START-INT-006": {
+      "status": "pending_Catalog_owner_new_contract_consumer"
+    }
+  },
+  "checks": {
+    "web": {
+      "command": "python3 -B -m unittest discover -s IRGS_Web/tests -v",
+      "run": 242,
+      "passed": 235,
+      "skipped": 7,
+      "failures": 0,
+      "seconds": 165.602,
+      "skip_scope": "Native Windows PowerShell launcher checks on Linux"
+    },
+    "adoption_http": {
+      "command": "python3 -B -m unittest discover -s IRGS_Web/tests -p test_start_context_adoption.py -v",
+      "passed": 8,
+      "included_in_full_web": true,
+      "cases": [
+        "versioned optional actor-bound review; default Henry/John held separately",
+        "legitimate first received context, exact civil provenance, no fabricated resources/authority/contacts/future",
+        "actual observation axis, immutable original result and creation/action retry",
+        "other people and new characters cannot borrow an incompatible context",
+        "missing pack blocks new review while existing state/results remain readable",
+        "reads/reload/restore do not call initialization or change saved bytes",
+        "diverged position and raw calendar are not replaced from opening metadata",
+        "unreceived date remains unknown despite template and raw saved civil fields"
+      ]
+    },
+    "interface": {
+      "command": "node IRGS_Web/tests/test_gameplay_ui.js",
+      "passed": 142,
+      "failures": 0,
+      "new_checks": 5,
+      "includes_prior_137": true
+    },
+    "engine_contract": {
+      "command": "python3 -B -m unittest discover -s IRGS_3_3/runtime -p test_start_readiness.py -v",
+      "cwd": "Engine",
+      "passed": 33,
+      "skipped": 0,
+      "failures": 0,
+      "full_engine_suite_rerun": false
+    },
+    "formatter": {
+      "command": "node IRGS_Web/tests/test_responses.js",
+      "passed": 13,
+      "variants": 171,
+      "recipes": 8,
+      "provider_calls": 0
+    },
+    "tooling": {
+      "command": "python3 -B -m unittest discover -s tools/tests -v",
+      "passed": 1
+    },
+    "browser": {
+      "browser": {
+        "status": "passed",
+        "initial_campaigns": 0,
+        "final_campaigns": 6,
+        "cancel_and_selection_changes_create_nothing": true,
+        "source_unavailable_stays_unconfirmed": true,
+        "mobile_width": 390,
+        "contexts": [
+          {
+            "name": "existing_john_1415",
+            "status": "declaration_only",
+            "new_engine_initializer_delivered": false,
+            "lost_creation_ack_recovered": true,
+            "unresolved_intent_reload_withdraw": true
+          },
+          {
+            "name": "new_human_reference",
+            "status": "declaration_only",
+            "explicit_choice": true,
+            "background_is_testimony": true
+          },
+          {
+            "name": "new_human_authored",
+            "status": "supported_slice",
+            "received_result_retained": true,
+            "lost_action_ack_recovered": true,
+            "replay_same_receipt": true,
+            "elapsed_seconds": 20
+          },
+          {
+            "name": "R00_regression",
+            "status": "supported_slice",
+            "confirmed_actions": 5,
+            "elapsed_seconds": 3900,
+            "received_result_retained": true
+          },
+          {
+            "name": "existing_henry_default",
+            "status": "declaration_only",
+            "opening_not_added_automatically": true,
+            "received_initial_day": true
+          },
+          {
+            "name": "existing_henry_explicit",
+            "status": "supported_slice",
+            "engine_contract": "irgs-start-readiness-1",
+            "actor_bound_choice": true,
+            "changed_actor_clears_choice": true,
+            "lost_creation_ack_recovered": true,
+            "lost_action_ack_recovered": true,
+            "elapsed_axis": "selected-historical-observation-seconds",
+            "elapsed_seconds": 20,
+            "initial_julian_day": "1415-08-11",
+            "opening_hour": null,
+            "current_calendar_binding": false,
+            "no_dispatch_or_courier_actions": true,
+            "actor_boundaries": true,
+            "changed_replay_rejected": true,
+            "reload_and_restore_preserve_exact_bytes": true,
+            "restored_original_result_replay": true
+          }
+        ],
+        "provider_calls": 0,
+        "browser_errors": 0,
+        "external_requests": 0,
+        "posts": [
+          "/api/create",
+          "/api/create",
+          "/api/declaration",
+          "/api/withdraw-declaration",
+          "/api/create",
+          "/api/create",
+          "/api/action",
+          "/api/rise/preview",
+          "/api/rise/create",
+          "/api/rise/action",
+          "/api/rise/action",
+          "/api/rise/action",
+          "/api/rise/action",
+          "/api/rise/action",
+          "/api/create",
+          "/api/create",
+          "/api/create",
+          "/api/action",
+          "/api/delete",
+          "/api/restore"
+        ]
+      },
+      "shared": {
+        "status": "passed",
+        "contexts": [
+          {
+            "adapter": "authored_scene",
+            "committed_actions": 4,
+            "elapsed_seconds": 43,
+            "zero_action_spans": [],
+            "local_drafts_non_submitting": true,
+            "lost_acknowledgement_recovered": true,
+            "stale_navigation_fenced": true,
+            "reload_preserves_draft": true
+          },
+          {
+            "adapter": "settlement",
+            "committed_actions": 5,
+            "elapsed_seconds": 3900,
+            "zero_action_spans": [
+              "found",
+              "build"
+            ],
+            "local_drafts_non_submitting": true,
+            "lost_acknowledgement_recovered": true,
+            "stale_navigation_fenced": true,
+            "reload_preserves_draft": true
+          }
+        ],
+        "common_response_schema": 1,
+        "catalog_library": "irgs-response-depot-v1",
+        "engine_library": "irgs-engine-routine-responses-v1",
+        "provider_configured": false,
+        "provider_calls": 0,
+        "browser_errors": 0,
+        "mobile_width": 390
+      },
+      "process": {
+        "status": "passed",
+        "contexts": [
+          {
+            "kind": "observation",
+            "committed_phases": 5,
+            "start_selected_from_engine": true,
+            "elapsed_seconds": 3,
+            "prepare_reload_recovered": true,
+            "cancel_does_not_execute": true,
+            "lost_commit_ack_recovered": true,
+            "phase_identity_preserved": true,
+            "pause_resume": true,
+            "stale_navigation_fenced": true
+          },
+          {
+            "kind": "work",
+            "committed_phases": 6,
+            "start_selected_from_engine": true,
+            "elapsed_seconds": 3900,
+            "prepare_reload_recovered": true,
+            "cancel_does_not_execute": true,
+            "lost_commit_ack_recovered": true,
+            "phase_identity_preserved": true,
+            "pause_resume": true,
+            "stale_navigation_fenced": true
+          }
+        ],
+        "provider_configured": false,
+        "provider_calls": 0,
+        "browser_errors": 0,
+        "mobile_width": 390
+      },
+      "port": {
+        "status": "passed",
+        "desktop_width": 1568,
+        "mobile_width": 390,
+        "concepts": 44,
+        "reading_preferences_survive_reload": true,
+        "drawers_escape_and_focus": true,
+        "reviewed_character_creation": true,
+        "posts_before_explicit_creation": 0,
+        "explicit_creations": 1,
+        "original_fixture_saves_unchanged": true,
+        "local_assets_only": true,
+        "provider_calls": 0,
+        "browser_errors": 0,
+        "layout": {
+          "context-panel": {
+            "x": 24,
+            "width": 358.046875
+          },
+          "content": {
+            "x": 407.046875,
+            "width": 753.890625
+          },
+          "play-tools": {
+            "x": 1185.9375,
+            "width": 358.0625
+          }
+        },
+        "asset_responses_checked": 59
+      },
+      "refinement": {
+        "status": "passed",
+        "contexts": [
+          {
+            "context": "authored_scene",
+            "reading_surfaces": [
+              {
+                "surface": "dark",
+                "size": 18,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 7.094160119592146
+              },
+              {
+                "surface": "light",
+                "size": 20,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 6.31854080670167
+              },
+              {
+                "surface": "parchment",
+                "size": 22,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 5.0963502599978865
+              }
+            ],
+            "toolbar_synchronized": true,
+            "quick_button_focus_preserved": true,
+            "maximum_size_mobile": 26,
+            "exclusive_drawers": true,
+            "nested_escape_returns_focus": true,
+            "destination_focus": true,
+            "primary_tab_keyboard": true,
+            "draft_and_reload_preserved": true,
+            "save_unchanged": true
+          },
+          {
+            "context": "settlement",
+            "reading_surfaces": [
+              {
+                "surface": "dark",
+                "size": 18,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 6.8099876389274225
+              },
+              {
+                "surface": "light",
+                "size": 20,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 6.31854080670167
+              },
+              {
+                "surface": "parchment",
+                "size": 22,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 5.0963502599978865
+              }
+            ],
+            "toolbar_synchronized": true,
+            "quick_button_focus_preserved": true,
+            "maximum_size_mobile": 26,
+            "exclusive_drawers": true,
+            "nested_escape_returns_focus": true,
+            "destination_focus": true,
+            "primary_tab_keyboard": true,
+            "draft_and_reload_preserved": true,
+            "save_unchanged": true
+          },
+          {
+            "context": "historical_start",
+            "reading_surfaces": [
+              {
+                "surface": "dark",
+                "size": 18,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 6.134389208121182
+              },
+              {
+                "surface": "light",
+                "size": 20,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 6.663608659553884
+              },
+              {
+                "surface": "parchment",
+                "size": 22,
+                "widths_checked": [
+                  1568,
+                  390
+                ],
+                "minimum_contrast": 5.395364623798076
+              }
+            ],
+            "toolbar_synchronized": true,
+            "quick_button_focus_preserved": true,
+            "maximum_size_mobile": 26,
+            "exclusive_drawers": true,
+            "nested_escape_returns_focus": true,
+            "destination_focus": true,
+            "primary_tab_keyboard": true,
+            "draft_and_reload_preserved": true,
+            "save_unchanged": true
+          }
+        ],
+        "desktop_width": 1568,
+        "mobile_width": 390,
+        "palette_checks": [
+          {
+            "genre": "military",
+            "surface": "dark",
+            "minimum_contrast": 5.660473170000904
+          },
+          {
+            "genre": "military",
+            "surface": "light",
+            "minimum_contrast": 5.660473170000904
+          },
+          {
+            "genre": "military",
+            "surface": "parchment",
+            "minimum_contrast": 5.395364623798076
+          },
+          {
+            "genre": "roman",
+            "surface": "dark",
+            "minimum_contrast": 7.575299342145355
+          },
+          {
+            "genre": "roman",
+            "surface": "light",
+            "minimum_contrast": 6.663608659553884
+          },
+          {
+            "genre": "roman",
+            "surface": "parchment",
+            "minimum_contrast": 5.395364623798076
+          },
+          {
+            "genre": "fantasy",
+            "surface": "dark",
+            "minimum_contrast": 7.633959418387948
+          },
+          {
+            "genre": "fantasy",
+            "surface": "light",
+            "minimum_contrast": 6.663608659553884
+          },
+          {
+            "genre": "fantasy",
+            "surface": "parchment",
+            "minimum_contrast": 5.395364623798076
+          },
+          {
+            "genre": "paf",
+            "surface": "dark",
+            "minimum_contrast": 7.288301806630693
+          },
+          {
+            "genre": "paf",
+            "surface": "light",
+            "minimum_contrast": 6.663608659553884
+          },
+          {
+            "genre": "paf",
+            "surface": "parchment",
+            "minimum_contrast": 5.395364623798076
+          },
+          {
+            "genre": "shinobi",
+            "surface": "dark",
+            "minimum_contrast": 7.566875012465465
+          },
+          {
+            "genre": "shinobi",
+            "surface": "light",
+            "minimum_contrast": 6.663608659553884
+          },
+          {
+            "genre": "shinobi",
+            "surface": "parchment",
+            "minimum_contrast": 5.395364623798076
+          },
+          {
+            "genre": "space",
+            "surface": "dark",
+            "minimum_contrast": 7.430910848986467
+          },
+          {
+            "genre": "space",
+            "surface": "light",
+            "minimum_contrast": 6.663608659553884
+          },
+          {
+            "genre": "space",
+            "surface": "parchment",
+            "minimum_contrast": 5.395364623798076
+          },
+          {
+            "genre": "settlement",
+            "surface": "dark",
+            "minimum_contrast": 7.328352093602904
+          },
+          {
+            "genre": "settlement",
+            "surface": "light",
+            "minimum_contrast": 6.663608659553884
+          },
+          {
+            "genre": "settlement",
+            "surface": "parchment",
+            "minimum_contrast": 5.395364623798076
+          }
+        ],
+        "historical_setup_cancel_and_review": true,
+        "explicit_creations": 1,
+        "reading_and_navigation_posts": 0,
+        "empty_trash_and_story": true,
+        "creator_round_trip_read_only": true,
+        "original_fixture_saves_unchanged": true,
+        "local_assets_only": true,
+        "provider_calls": 0,
+        "browser_errors": 0
+      }
+    },
+    "component_integrity": {
+      "command": "python3 -B tools/verify_components.py --component app",
+      "status": "verified",
+      "app_files": 80,
+      "catalog_files": 188,
+      "engine_commit": "cc450a6f00a249d2169cdacdfc9c4b1e03f67cc8",
+      "catalog_commit": "e1778e080385b6ff2bbb93f47f91d0da6e9d6780",
+      "selected_Core": "3.3",
+      "behavioral_tests_executed_by_manifest_verifier": false,
+      "verified_after_committing_selected_gitlinks": true
+    },
+    "whitespace": {
+      "command": "git -c core.whitespace=cr-at-eol diff --check",
+      "status": "passed"
+    }
+  },
+  "information_and_recovery": {
+    "calendar_projected_from_actual_received_record_only": true,
+    "scene_classification_and_axis_from_selected_Core_state": true,
+    "display_snapshot_is_not_execution_authorization": true,
+    "read_only_view_templates_reapplied": false,
+    "read_only_view_campaign_files_written": false,
+    "original_results_survive_retry_reload_and_restore": true,
+    "old_saved_receipts_or_opening_presentations_rewritten": false,
+    "private_actor_view_and_result_requests_denied": true,
+    "late_reply_and_changed_selection_guards_retained": true
+  },
+  "boundaries": {
+    "user_campaigns_used": false,
+    "private_fixture_used": false,
+    "live_provider_calls": 0,
+    "Engine_or_Catalog_source_edits": false,
+    "App_introduced_mechanics": false,
+    "historical_sources_archives_response_banks_modified": false,
+    "all_historical_people_playable": false,
+    "general_freeform_combat_or_full_C2_completed": false,
+    "native_Windows_execution": false,
+    "unified_import_or_version_increase": false
+  },
+  "remaining": [
+    "Catalog separate new-contract consumer at an exact published App source; historical fixture identities remain unchanged",
+    "Coordinator exact-set approval and fresh joined/browser/package qualification before any unified 3.4.3 publication",
+    "App communication/source/offer bridge over the delivered Engine contract",
+    "Protected operator setup, supported-intent mapping and non-secret build diagnostics",
+    "John and other contexts without sourced adapters remain declaration/reference; broader travel/freeform/combat remain open"
+  ]
+}

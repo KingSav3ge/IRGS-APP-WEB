@@ -1,3 +1,64 @@
+# App published-start-contract adoption — 26 October 2026
+
+App source was pulled at `d8e68848454ac7be68ce87fede6d04cc57bda86a`.
+The exact delivery is the App commit containing this report. Current component
+edition remains **3.4.2**, previous release **3.3.3**. Push scope is only
+`KingSav3ge/IRGS-APP-WEB/main`; no joined import or new publication is performed.
+
+**START-INT-002/003/004 are implemented; 005 selects compatible exact gitlinks.**
+The App consumes Engine `irgs-start-readiness-1`, offers Henry's sourced context
+only through an explicit person-bound choice, and retains its opening ID in
+preflight/review/creation/retry. Changing actor/perspective clears the old context
+and consent. Default Henry, John and default new characters remain deliberate
+declaration/reference starts. The App/Engine module and test names remain distinct.
+
+The live known view projects Engine's actor-received `start_context`, initial
+Julian civil day and actual selected elapsed axis. Hour remains unknown and
+`current_calendar_binding=false`; local twenty-second progress is separate from
+a running civil clock. Henry has one bounded observation and no dispatch, courier
+travel, initialized stock, mandate or private contacts. Opening guidance lists
+actual offered attempts instead of assuming a fictional delivery. Current views
+never initialize/migrate/repair/reseed continuing worlds or copy template facts.
+
+Selected product dependencies:
+
+- Engine: `cc450a6f00a249d2169cdacdfc9c4b1e03f67cc8`.
+- Catalog: `e1778e080385b6ff2bbb93f47f91d0da6e9d6780`.
+
+Fresh executed results:
+
+- Full Web: **242 run, 235 passed, seven native Windows skips**, no failures.
+  The three exact calendar failures now assert the legitimate receipt, source,
+  precision and absent operational news while retaining privacy checks.
+- **142 interface** checks passed, including five new context/clock/schema guards;
+  **13 formatter** checks passed over the existing 171 variants/eight recipes;
+  **one tooling** check passed.
+- Published Engine start contract: **33 passed**, zero skips. This is a focused
+  rerun, not a claim that the owner's full 773-case suite was rerun by App.
+- **Five Chromium suites passed**, including actual empty-store journeys for
+  explicit Henry, default Henry, John, default new, authored new and R00.
+  Tests cover 390px, source absence, changed/cancelled selection, lost creation
+  and action replies, exact original-result retry, reload, byte-preserving
+  Trash/restore and denied foreign-actor views/results. Provider calls, browser
+  errors and external browser requests: **zero**.
+- Component verification passed after committing the selected gitlinks: **80 App
+  files**, Core 3.3, Catalog source integrity and both exact dependency pointers.
+
+See [contract adoption and reproduction](START_CONTEXT_ADOPTION.md) and
+[fresh executed evidence](START_CONTEXT_ADOPTION_VALIDATION.json). Original
+owner/coordinator records below remain attributed to their tested source.
+No user save, private fixture, live model or native Windows launcher was used.
+
+Catalog's **START-INT-006** new-contract consumer remains owner work and is now
+unblocked by this App publication. Keep its original baseline identities intact.
+The coordinator still owns exact-set review and the joined/browser/package gate
+before unified 3.4.3. Communication UI/HTTP, protected operator setup,
+supported-intent mapping and build diagnostics remain subsequent App work.
+Henry's single observation is not general historical campaign completion; John
+and other unsupported operational starts remain held.
+
+---
+
 # App selected-start preflight delivery — 26 October 2026
 
 ## Current coordinator review — 26 October 2026

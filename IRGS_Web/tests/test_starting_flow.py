@@ -12,6 +12,7 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from start_context_assertions import assert_initial_calendar
 from server import Store, make_server
 from campaign_library import initial_campaign
 
@@ -119,7 +120,9 @@ class StartingFlowTests(unittest.TestCase):
         record = self.store.read(created['id'])
         self.assertEqual(record['state']['player_actor_ids'], [chosen])
         self.assertEqual(len(record['state']['actors']), 5)
-        self.assertEqual(record['state']['knowledge'], {})
+        assert_initial_calendar(self,record['state'],chosen,snapshot_sha256=fields['snapshot_sha256'])
+        for key in ('stocks','orders','capacities','obligations'):
+            self.assertEqual(record['state'][key],{})
         player = self.call('/api/playthrough/' + created['id'])
         self.assertEqual([actor['id'] for actor in player['known_actors']], [chosen])
         self.assertNotIn('historical_start', json.dumps(player))

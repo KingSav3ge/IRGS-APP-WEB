@@ -8,6 +8,7 @@ from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 from urllib.parse import urlencode
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from start_context_assertions import assert_initial_calendar
 from server import make_server, Store
 from ast_runtime import initial_ast
 
@@ -374,7 +375,8 @@ class HostTests(unittest.TestCase):
         self.assertEqual(state['historical_start']['calendar'],'julian')
         self.assertEqual(len(state['player_actor_ids']),1)
         self.assertEqual(state['campaign_time']['day'],0)
-        for field in ('pending','knowledge','stocks','capacities','player_actions'):
+        assert_initial_calendar(self,state,state['player_actor_ids'][0],snapshot_sha256=preview['snapshot_sha256'])
+        for field in ('pending','stocks','capacities','player_actions'):
             self.assertFalse(state[field])
 
     def test_historical_fork_and_scene_preserve_opening_and_original_save(self):

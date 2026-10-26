@@ -12,6 +12,7 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from start_context_assertions import assert_initial_calendar
 from server import Store, make_server
 from features import FEATURES, content_library, feature_registry
 from opening_scene import build_opening
@@ -192,10 +193,16 @@ class StageOneTests(unittest.TestCase):
     def test_opening_does_not_disclose_historical_reference_or_fabricate_scene(self):
         created = self.call('/api/create', self.reviewed())
         record = self.store.read(created['id']); state = record['state']
-        self.assertEqual(state['knowledge'], {})
+        assert_initial_calendar(self,state,state['player_actor_ids'][0],snapshot_sha256=state['historical_start']['snapshot_sha256'])
         view = self.call('/api/playthrough/' + created['id']); opening = view['opening']
         self.assertEqual(opening['status'], 'awaiting_first_action'); self.assertTrue(opening['presentation_only'])
-        self.assertFalse(opening['effects_applied']); self.assertEqual(view['chronicle'], [])
+        self.assertFalse(opening['effects_applied']); self.assertEqual(len(view['chronicle']), 1)
+        self.assertEqual(view['chronicle'][0]['text'], state['evidence']['setup:civil-date']['assertion'])
+        self.assertEqual(view['start_context']['civil_time']['status'],'received_initial_checkpoint')
+        self.assertFalse(view['start_context']['civil_time']['current_calendar_binding'])
+        self.assertEqual(view['scene']['location'],None)
+        self.assertEqual(view['inventory'],[])
+        self.assertEqual(view['orders'],[])
         text = json.dumps(view)
         for facts in state['historical_start']['snapshot']['domains'].values():
             for fact in facts: self.assertNotIn(fact['statement'], text)

@@ -49,3 +49,13 @@ qualify the new contract. Report exact published code and compatible dependencie
 actual passes/failures/skips and remaining work. Coordinator owns joined import,
 fresh execution capture, joined/browser/package qualification and versioned
 publication after all three viable updates are approved. No dispatch is implied.
+
+## App adoption delivery
+
+START-INT-002/003/004 and compatible pins for 005 are implemented. The exact
+executed source, results and limits are recorded in
+[START_CONTEXT_ADOPTION_VALIDATION.json](START_CONTEXT_ADOPTION_VALIDATION.json)
+and [the delivery scope](START_CONTEXT_ADOPTION.md). Engine is consumed through
+its published contract; Catalog's separate consumer qualification and coordinator
+exact-set review remain pending. Earlier work-order acceptance above remains
+available for review; this delivery creates no new unified release.
