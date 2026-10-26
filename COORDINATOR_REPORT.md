@@ -1,3 +1,14 @@
+# Emergent interface adaptation — 26 October 2026
+
+The requested interface port is implemented on the canonical App. See
+[scope and reproduction](EMERGENT_INTERFACE_PORT.md) and
+[fresh validation](EMERGENT_INTERFACE_VALIDATION.json). Engine and Catalog pins
+remain the exact coordinated 3.4.1 selections; their source is unchanged.
+Publication of this component does not claim a new unified edition. The containing
+commit identifies this delivery; historical reports below retain their own sources.
+
+---
+
 # App-side current development compatibility — 25 October 2026
 
 Pulled App main at `67411f8ef5214c8cb51af2b244590751e6ea20df` and fetched current

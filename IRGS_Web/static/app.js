@@ -6,6 +6,7 @@ const rows=value=>Array.isArray(value)?value.map((item,index)=>item&&typeof item
 let token,current=null,currentBinding=null,view='story',workspaceMode='player',busy=false,library={},deleteTarget=null,campaignRequest=0,loadingCampaign=false;
 let historicalCatalogue=null,historicalEntryId=null,historicalPreview=null,historicalRequest=0,historicalLoading=false;
 let wizardStep=0,startingOptions=null,startingRequest=0,startingLoading=false,reviewSelection=null,chronicleRequest=0,chronicleCursor=null,transportPending=null,inspectorRequest=0;
+let campaignSummaries=[];
 let features=[],featuresRequest=0,contentLibraryRequest=0,routeFeatureId=null,approvedEntries=new Map(),setupEntryContext=null,createDialogRequest=0;
 const scrollPositions=new Map();
 const defaultPreferences={theme:'dark',font:'serif',fontSize:18,lineHeight:1.8,width:740,mechanics:'concise',motion:'system',submitKey:'ctrl-enter'};
@@ -40,7 +41,7 @@ function pendingKey(){return current?`irgs-pending:${current.id}:${current.actor
 function stashDraft(){const key=draftKey();if(key)writeLocal(key,$('#declaration').value||'');}
 function loadDraft(){const key=draftKey();$('#declaration').value=key?readLocal(key,''):'';transportPending=pendingKey()?readLocal(pendingKey()):null;loadSoloAttempt();}
 function displayTime(){if(current?.settlement)return current.settlement.opening_date+' \u00b7 '+riseElapsedLabel(current.settlement.elapsed_seconds)+' since arrival';const time=current?.campaign_time||{};return [time.date||time.calendar_date||(time.day!==undefined?'Day '+time.day:null),time.time||'time unknown',time.precision&&time.precision!=='exact'?time.precision:null].filter(Boolean).join(' · ');}
-async function refreshList(selected){const data=await api('campaigns');token=data.token;$('#campaign').innerHTML='<option value="">Choose a campaign</option>'+data.campaigns.map(campaign=>`<option value="${esc(campaign.id)}">${esc(campaign.name)}</option>`).join('');if(selected)$('#campaign').value=selected;return data.campaigns;}
+async function refreshList(selected){const data=await api('campaigns');token=data.token;campaignSummaries=data.campaigns;$('#campaign').innerHTML='<option value="">Choose a campaign</option>'+data.campaigns.map(campaign=>`<option value="${esc(campaign.id)}">${esc(campaign.name)}</option>`).join('');if(selected)$('#campaign').value=selected;return data.campaigns;}
 function syncControls(){
   const selected=current&&!loadingCampaign&&$('#campaign').value===current.id;
   $('#campaign').disabled=busy||!token;$('#player-character').disabled=busy||!selected||!(current?.controlled_actors||[]).length;
@@ -51,7 +52,7 @@ function syncControls(){
   $('#workspace-mode').textContent=workspaceMode==='creator'?'Return to player view':'Creator workspace';$('#mode-label').textContent=workspaceMode==='creator'?'Creator access · full records':'Player view · filtered by the server';
   $('#mode-badge').textContent=workspaceMode==='creator'?'CREATOR WORKSPACE':'PLAYER VIEW';$('#export').textContent=workspaceMode==='creator'?'Export full save':'Export known view';
   $('#saved').textContent=busy?'Saving…':loadingCampaign?'Loading campaign…':current?`Saved · revision ${current.revision}`:'Local host connected';
-  $('#journey-name').textContent=current?.name||'Your adventures';
+  $('#journey-name').textContent=current?.name||'Your adventures';$('#tome-title').textContent=current?.name||'Your story';
   syncCreateControls();syncComposer();
 }
 function setBusy(value){busy=value;syncControls();}
@@ -68,20 +69,20 @@ async function openCampaign(id,options={}){
     loadDraft();render();restoreScroll();return true;
   }catch(error){if(request!==campaignRequest||$('#campaign').value!==selected||workspaceMode!==mode)return false;loadingCampaign=false;render();throw error;}
 }
-function changeView(next,options={}){rememberScroll();stashDraft();invalidateActionReview();++historicalReferenceRequest;++inspectorRequest;view=next;if($('#inspect-dialog').open)$('#inspect-dialog').close();document.body.classList.remove('nav-open');$('#toggle-nav').setAttribute('aria-expanded','false');if(options.route!==false)updateViewRoute(next,options.featureId);render();restoreScroll();}
+function changeView(next,options={}){rememberScroll();stashDraft();invalidateActionReview();++historicalReferenceRequest;++inspectorRequest;view=next;if($('#inspect-dialog').open)$('#inspect-dialog').close();document.body.classList.remove('nav-open');document.body.classList.remove('tools-open');document.body.classList.remove('context-open');$('#toggle-nav').setAttribute('aria-expanded','false');$('#toggle-tools').setAttribute('aria-expanded','false');$('#toggle-context').setAttribute('aria-expanded','false');if(options.route!==false)updateViewRoute(next,options.featureId);render();restoreScroll();}
 function empty(){return '<div class="empty adventure-welcome"><div class="welcome-copy"><span class="eyebrow">HISTORY IS ONLY THE BEGINNING</span><h2>Find your place.<br>Choose your path.</h2><p>A life at the edge of a changing world. Begin with a character, a moment in history, and a choice.</p><button id="empty-create" class="primary">Find your adventure <span aria-hidden="true">→</span></button><small>All 37 Century of Conflict starts offer an optional local Solo opening.</small></div><span class="art-caption">Illustrative campaign artwork</span></div>';}
 function render(){
   applyPresentationTheme();$('#inspection-note').textContent=routineText('inspection.local');
   document.body.dataset.workspace=view;
   document.body.dataset.mode=workspaceMode;
-  const headings={home:['Home','Resume a saved world or browse verified starts.'],story:['Story','Your next meaningful choice.'],world:['World','Inspect what your character can access.'],chronicle:['Chronicle','The record available to your character.'],creator:['Creator workspace','Explicitly sourced changes to the authoritative world.'],library:['Engines & libraries','Creator reference material.'],trash:['Campaign Trash','Recover complete saved campaigns.'],'content-library':['Content Library','Choose a sourced campaign and starting point.']};
+  const headings={home:['Home','Resume a saved world or browse verified starts.'],story:['Story','Your next meaningful choice.'],world:['World','Inspect what your character can access.'],chronicle:['Chronicle','The record available to your character.'],creator:['Creator workspace','Explicitly sourced changes to the authoritative world.'],library:['Engines & libraries','Creator reference material.'],saves:['Your saved stories','Return to a world you have already begun.'],trash:['Campaign Trash','Recover complete saved campaigns.'],'content-library':['Content Library','Choose a sourced campaign and starting point.']};
   const heading=headings[view]||(view.startsWith('feature:')?[features.find(feature=>feature.id===view.slice(8))?.label||'Unavailable section','Registered section and implementation status.']:headings.story);$('#section-label').textContent=heading[0].toUpperCase();$('#page-title').textContent=current&&['story','world','chronicle','creator'].includes(view)?current.name:heading[0];$('#page-subtitle').textContent=heading[1];
   $('#header-campaign').textContent=current?.name||'Your campaign';$('#world-time').textContent=current?displayTime():'No campaign selected';$('#header-scene').textContent=current?.scene?.location||current?.scene?.title||'Persistent local worlds';
   $('#binding-badge').textContent=current?'Core '+(current.binding?.core||'3.3')+' · '+label(current.binding?.genre_id||'campaign'):'CORE 3.3';
   document.querySelectorAll('[data-view]').forEach(button=>{const active=button.dataset.view===view;button.classList.toggle('selected',active);if(button.getAttribute('role')==='tab'){button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;}});
-  $('#content').setAttribute('role',['story','world','chronicle'].includes(view)?'tabpanel':'region');$('#content').setAttribute('aria-label',heading[0]);$('#content').setAttribute('aria-labelledby',['story','world','chronicle'].includes(view)?'tab-'+view:'page-title');syncControls();renderContext();
+  $('#content').setAttribute('role',['story','world','chronicle'].includes(view)?'tabpanel':'region');$('#content').setAttribute('aria-label',heading[0]);$('#content').setAttribute('aria-labelledby',['story','world','chronicle'].includes(view)?'tab-'+view:'page-title');syncControls();renderContext();renderPreviewTools();
   if(loadingCampaign){$('#content').innerHTML='<div class="empty">'+esc(routineText('campaign.loading'))+'</div>';return;}
-  if(view==='home'){renderHome();return;}if(view==='trash'){renderTrash();return;}if(view==='library'){renderLibrary();return;}if(view==='content-library'){renderContentLibrary();return;}if(view.startsWith('feature:')){renderFeature(view.slice(8));return;}
+  if(view==='home'){renderHome();return;}if(view==='saves'){renderPreviewSaves();return;}if(view==='trash'){renderTrash();return;}if(view==='library'){renderLibrary();return;}if(view==='content-library'){renderContentLibrary();return;}if(view.startsWith('feature:')){renderFeature(view.slice(8));return;}
   if(!current){$('#content').innerHTML=empty();$('#empty-create').onclick=openCreateDialog;return;}
   ({story:renderStory,world:renderWorld,chronicle:renderChronicle,creator:renderCreator}[view]||renderStory)();
 }
@@ -112,13 +113,8 @@ async function renderChronicle(){
   const load=async(cursor=null)=>{const search=++searchRequest;const fields=Object.fromEntries(new FormData($('#chronicle-search'))),query=new URLSearchParams({...fields,limit:'30'});if(actor)query.set('actor_id',actor);if(cursor)query.set('cursor',cursor);$('#chronicle-results').innerHTML='<p class="note">Loading accessible history…</p>';try{const result=await api('chronicle/'+campaign+'?'+query.toString());if(search!==searchRequest||request!==chronicleRequest||view!=='chronicle'||current?.id!==campaign||current.actor_id!==actor||workspaceMode!==mode)return;const memory=result.memory||{};$('#chronicle-results').innerHTML=`<section class="panel archive-status"><h3>Historical memory</h3><p>${esc(memory.reason||'Archive periods require committed calendar boundaries.')}</p><small>Status: ${esc(memory.status||'unconfigured')} · summary budgets: ${esc(memory.budget_policy?.status||'unconfigured')}</small><p class="note">The consolidation structure is annual → five-year → twenty-five-year → expanding century records → sealed 500-year epochs. No summary is generated by inspecting this screen.</p></section><section class="panel">${(result.entries||[]).map(entryMarkup).join('')||'<p class="note">No accessible records match this area and search.</p>'}${result.pagination?.next_cursor?'<button id="chronicle-next" class="quiet">Next records →</button>':''}</section>`;if($('#chronicle-next'))$('#chronicle-next').onclick=()=>load(result.pagination.next_cursor);}catch(error){if(search===searchRequest&&request===chronicleRequest&&view==='chronicle')$('#chronicle-results').innerHTML=`<p class="note">${esc(error.message)}</p>`;}};
   $('#chronicle-search').onsubmit=event=>{event.preventDefault();load();};load();
 }
-function renderContext(){
-  if(!current){$('#context-content').innerHTML='<p class="note">Select a campaign to inspect its available context.</p>';return;}
-  const character=current.character,known=rows(current.known_actors).filter(actor=>actor.id!==character?.id),orders=rows(current.orders),obligations=rows(current.world?.obligations);
-  const initials=String(character?.name||'?').trim().split(/\s+/).slice(0,2).map(part=>Array.from(part)[0]).join('').toUpperCase();
-  $('#context-content').innerHTML=`<section class="character-card"><div class="character-sigil" aria-hidden="true">${esc(initials)}</div><span class="eyebrow">YOUR CHARACTER</span><h2>${esc(character?.name||'No selected player character')}</h2>${current.scene?.location?`<p class="character-place"><span aria-hidden="true">⌖</span> ${esc(current.scene.title||current.scene.location)}</p>`:''}<div class="character-links"><button class="quiet" data-inspect="character">Character details</button><button class="quiet" data-inspect="inventory">Belongings</button><button class="quiet" data-inspect="map">Known places</button></div>${character?`<details class="character-notes"><summary>Character records</summary>${facts(character.current)}</details>`:'<p class="note">Choose a character to begin.</p>'}</section>${known.length?`<section><h3>People you know</h3>${known.slice(0,6).map(actor=>`<p>${esc(actor.name)}${actor.role?`<small>${esc(actor.role)}</small>`:''}</p>`).join('')}</section>`:''}${orders.length?`<section><h3>Received orders</h3>${orders.map(order=>`<p>${esc(order.content||order.text||order.description||'Order record')}<small>${order.executed?'Recorded as executed':'Received · not yet executed'}</small></p>`).join('')}</section>`:''}${obligations.length?`<section><h3>Your commitments</h3>${obligations.map(item=>`<p>${esc(item.description||item.title||item.id)}<small>${esc(item.status||'status unknown')}</small></p>`).join('')}</section>`:''}`;
-  bindInspectors();
-}
+function renderContext(){renderPreviewContext();}
+
 function bindInspectors(){document.querySelectorAll('[data-inspect]').forEach(button=>button.onclick=()=>openInspector(button.dataset.inspect));}
 async function openInspector(kind){
   if(!current)return;const inspect=++inspectorRequest;const world=current.world||{},titles={character:'Character',inventory:'Inventory',relationships:'Relationships',map:'Known places',projects:'Projects & research',factions:'Institutions & factions'};$('#inspect-title').textContent=titles[kind]||'Campaign information';
@@ -211,7 +207,7 @@ function renderLibrary() {
 }
 
 const LIFECYCLE_LABEL={planned:'Planned',scaffold:'Scaffold',in_development:'In development',functional:'Available',deferred:'Deferred'};
-const VIEW_ALIASES={'content-library':'content-library','my-campaigns':'story',home:'home','character-creation':'content-library',play:'story','hyw-detail':'content-library','starting-periods':'content-library','starting-scenarios':'content-library',character:'story',inventory:'story',story:'story',world:'world',chronicle:'chronicle',creator:'creator','creator-workspace':'creator','creator-tools':'creator',library:'library','engines-libraries':'library','campaign-trash':'trash',trash:'trash'};
+const VIEW_ALIASES={'content-library':'content-library','my-campaigns':'saves',home:'home','character-creation':'content-library',play:'story','hyw-detail':'content-library','starting-periods':'content-library','starting-scenarios':'content-library',character:'story',inventory:'story',story:'story',world:'world',chronicle:'chronicle',creator:'creator','creator-workspace':'creator','creator-tools':'creator',library:'library','engines-libraries':'library','campaign-trash':'trash',trash:'trash'};
 function featureView(feature){return feature.view||VIEW_ALIASES[feature.id]||'feature:'+feature.id;}
 function routePath(route){return String(route||'').replace(/^#\/?/,'').replace(/^\/|\/$/g,'');}
 function currentHash(){return typeof location==='undefined'?'':routePath(location.hash);}
@@ -388,7 +384,7 @@ async function renderContentLibrary(){
         }catch(error){if(selected===selectionRequest&&request===contentLibraryRequest&&view==='content-library'&&mode===workspaceMode&&picker.value===id)target.innerHTML='<p class="note">'+esc(error.message)+'</p>';}
       };
     });
-    bindLibraryControls();
+    bindLibraryControls();bindPreviewJourneys();
   }catch(error){if(request!==contentLibraryRequest||view!=='content-library'||mode!==workspaceMode)return;$('#content').innerHTML='<div class="empty"><p>'+esc(error.message)+'</p><button id="retry-content-library" class="quiet">Retry Content Library</button></div>';$('#retry-content-library').onclick=renderContentLibrary;}
 }
 function bindLibraryControls(){
@@ -434,7 +430,7 @@ function openingElapsedMarkup(){
   return `<p class="opening-elapsed"><span aria-hidden="true">◷</span> ${esc(elapsed.seconds)} seconds elapsed in this opening</p>`;
 }
 function openingMarkup(){const opening=current?.opening;if(!opening||!Array.isArray(opening.blocks))return '';const fresh=opening.status==='awaiting_first_action';return `<details class="opening-presentation" ${fresh?'open':''}><summary>${fresh?'Before your first move':'Where your story began'}</summary>${opening.blocks.filter(block=>!['character','scene','first_decision'].includes(block.kind)).map(block=>`${block.status?`<span class="badge">${esc(label(block.status))}</span>`:''}<p>${esc(block.text||'')}</p>`).join('')}${fresh?'':'<p class="note">Your original opening. The Chronicle records what has happened since.</p>'}</details>`;}
-function renderHome(){$('#content').innerHTML=`<section class="panel home-hero"><span class="eyebrow">YOUR STORIES · LOCAL SOLO</span><div class="home-ornament" aria-hidden="true">IRGS</div><h2>A world.<br>A life.<br>Your next choice.</h2><p>${current?'Your selected campaign is '+esc(current.name)+'. Resume it at its saved checkpoint.':'Choose an existing campaign from the selector, or browse verified new starting points.'}</p><div class="buttons">${current?'<button id="home-resume" class="quiet">Resume selected campaign</button>':''}<button id="home-library" class="primary">Browse Content Library</button></div><p class="note">${current?.capabilities?.playable_opening?'Your selected campaign has a playable authored opening. Resume to attempt its available actions. General freeform resolution and narration remain unavailable.':'Each Century of Conflict new-character setup offers an optional playable authored opening. Other freeform attempts are preserved as pending intent; general resolution and narration remain unavailable.'}</p></section>`;$('#home-library').onclick=()=>changeView('content-library');if($('#home-resume'))$('#home-resume').onclick=()=>changeView('story');}
+function renderHome(){renderPreviewHome();}
 
 let historyPlanningRequest=0;
 function referenceDate(date){if(!date)return 'Date not established';if(typeof date==='string')return date;return [date.start||date.date||'Date unknown',date.end&&date.end!==date.start?'to '+date.end:null,date.calendar,date.precision?date.precision+' precision':null].filter(Boolean).join(' · ');}
@@ -584,7 +580,7 @@ function wizardBase(){
 }
 function setupOriginKey(){try{return JSON.stringify(wizardBase());}catch{return null;}}
 function validStartingOptions(){return !startingLoading&&startingOptions?.available===true&&startingOptions.queryKey===setupOriginKey()&&startingOptions.request===startingRequest&&startingOptions.default_scenario_id===$('#starting-scenario').value&&/^[a-f0-9]{64}$/i.test(startingOptions.selection_digest||'');}
-function invalidateReview(){reviewSelection=null;}
+function invalidateReview(){syncPreviewCharacter();reviewSelection=null;}
 function syncCreateControls(){
   const historical=$('#create-profile').value==='__hyw',pendingReview=Boolean(reviewSelection?.recovery);
   $('#create-profile').disabled=busy||workspaceMode==='player';$('#cancel-create').disabled=busy;$('#historical-entry-select').disabled=busy;
@@ -595,7 +591,7 @@ function syncCreateControls(){
   $('#setup-next').hidden=wizardStep===3;$('#setup-next').disabled=busy||(wizardStep===1&&historical&&!validHistoricalPreview())||(wizardStep===2&&!validStartingOptions());
   $('#setup-next').textContent=wizardStep===0?'Choose starting point →':wizardStep===1?'Choose character →':'Review campaign →';
   $('#create-submit').hidden=wizardStep!==3;$('#create-submit').disabled=busy||wizardStep!==3||!reviewSelection;$('#create-submit').textContent=pendingReview?'Check / retry campaign creation':'Start campaign';
-  $('#create-title').textContent=['Name your adventure','Choose your moment','Who will you be?','Your story begins here'][wizardStep];$('#create-step-intro').textContent=['A world to enter. A life to make your own.','Choose where history leaves off and your story begins.','Create a character or step into an existing life.','Review your place in the world before taking the first step.'][wizardStep];
+  $('#create-dialog').dataset.step=String(wizardStep);syncPreviewCharacter();$('#create-title').textContent=['Name your adventure','Choose your moment','Forge your character','Your story begins here'][wizardStep];$('#create-step-intro').textContent=['A world to enter. A life to make your own.','Choose where history leaves off and your story begins.','Create a character or step into an existing life.','Review your place in the world before taking the first step.'][wizardStep];
 }
 function setupDescriptionMarkup(description){
   if(!description)return '';
@@ -738,11 +734,11 @@ function loadProfiles(){
 
 document.querySelectorAll('[data-view]').forEach(button=>button.onclick=()=>changeView(button.dataset.view));
 document.querySelectorAll('[role=tab]').forEach(button=>button.onkeydown=event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const tabs=[...document.querySelectorAll('[role=tab]')],index=tabs.indexOf(button),next=event.key==='Home'?0:event.key==='End'?tabs.length-1:(index+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;changeView(tabs[next].dataset.view);tabs[next].focus();});
-bindInspectors();bindSoloControls();$('#inspect-dialog').addEventListener('close',()=>{++inspectorRequest;});$('#close-inspector').onclick=()=>$('#inspect-dialog').close();
+bindInspectors();bindSoloControls();bindPreviewControls();$('#inspect-dialog').addEventListener('close',()=>{++inspectorRequest;});$('#close-inspector').onclick=()=>$('#inspect-dialog').close();
 $('#toggle-nav').onclick=()=>{const open=document.body.classList.toggle('nav-open');$('#toggle-nav').setAttribute('aria-expanded',String(open));};
-$('#toggle-context').onclick=()=>{const open=document.body.classList.toggle('context-open');$('#toggle-context').setAttribute('aria-expanded',String(open));if(open)$('#close-context').focus();};
+$('#toggle-context').onclick=()=>{document.body.classList.remove('tools-open');$('#toggle-tools').setAttribute('aria-expanded','false');const open=document.body.classList.toggle('context-open');$('#toggle-context').setAttribute('aria-expanded',String(open));if(open)$('#close-context').focus();};
 $('#close-context').onclick=()=>{document.body.classList.remove('context-open');$('#toggle-context').setAttribute('aria-expanded','false');$('#toggle-context').focus();};
-document.addEventListener('keydown',event=>{if(event.key!=='Escape'||document.querySelector('dialog[open]'))return;if(document.body.classList.contains('context-open')){$('#close-context').click();event.preventDefault();}else if(document.body.classList.contains('nav-open')){document.body.classList.remove('nav-open');$('#toggle-nav').setAttribute('aria-expanded','false');$('#toggle-nav').focus();event.preventDefault();}});
+document.addEventListener('keydown',event=>{if(event.key!=='Escape'||document.querySelector('dialog[open]'))return;if(document.body.classList.contains('tools-open')){$('#close-tools').click();event.preventDefault();}else if(document.body.classList.contains('context-open')){$('#close-context').click();event.preventDefault();}else if(document.body.classList.contains('nav-open')){document.body.classList.remove('nav-open');$('#toggle-nav').setAttribute('aria-expanded','false');$('#toggle-nav').focus();event.preventDefault();}});
 $('#settings').onclick=openSettings;$('#close-settings').onclick=()=>$('#preferences-dialog').close();$('#preferences-form').onsubmit=event=>event.preventDefault();
 $('#preferences-form').oninput=event=>{const control=event.target;if(control.name){preferences[control.name]=control.type==='range'?Number(control.value):control.value;applyPreferences();document.querySelectorAll('.mechanical-detail').forEach(detail=>detail.open=preferences.mechanics==='expanded');}};
 $('#declaration').oninput=()=>{invalidateSoloProposal();stashDraft();syncComposer();};$('#declaration').onkeydown=event=>{const submit=event.key==='Enter'&&(preferences.submitKey==='enter'?!event.shiftKey:(event.ctrlKey||event.metaKey));if(submit){event.preventDefault();if(!$('#send-declaration').disabled)$('#composer-form').requestSubmit();}};
@@ -780,4 +776,4 @@ $('#delete-form').onsubmit=async event=>{event.preventDefault();if(!deleteTarget
 $('#export').onclick=()=>{if(!current||busy||loadingCampaign)return;const full=workspaceMode==='creator'&&current.mode==='creator'&&current.state,data=full||current,blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=`IRGS-${full?'full-save':'known-view'}-${current.id}-r${current.revision}.json`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
 if(typeof addEventListener==='function')addEventListener('hashchange',applyCurrentRoute);
 applyPreferences();syncControls();
-(async()=>{try{const campaigns=await refreshList();await loadFeatureNav({applyRoute:false});const previous=localStorage.getItem('irgs-active'),id=campaigns.find(campaign=>campaign.id===previous)?.id||campaigns[0]?.id;if(id)await openCampaign(id);else render();applyCurrentRoute();}catch(error){notice('Cannot connect to the IRGS host: '+error.message,true);$('#content').innerHTML='<div class="empty">Start the local server and reload this page.</div>';}})();
+(async()=>{try{const campaigns=await refreshList();await loadFeatureNav({applyRoute:false});const previous=localStorage.getItem('irgs-active'),id=campaigns.find(campaign=>campaign.id===previous)?.id||campaigns[0]?.id;if(id)await openCampaign(id);else{view='home';render();}applyCurrentRoute();}catch(error){notice('Cannot connect to the IRGS host: '+error.message,true);$('#content').innerHTML='<div class="empty">Start the local server and reload this page.</div>';}})();

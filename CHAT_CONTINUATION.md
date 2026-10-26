@@ -8,6 +8,20 @@ Prepared 25 October 2026 for `KingSav3ge/IRGS-APP-WEB/main`. Preserve local chan
 before pulling. Resume this existing chat's component work; publish only its
 own repository. Read this file after pull; fresh user directions take precedence.
 
+## Current interface continuation — 26 October 2026
+
+The requested Emergent interface is adapted onto the canonical local host.
+Read [the port scope and checks](EMERGENT_INTERFACE_PORT.md) and
+[executed evidence](EMERGENT_INTERFACE_VALIDATION.json). Preserve the new local
+assets, reviewed character fields, saved-story navigation guard and responsive
+Play layout. Engine remains `aa30bb63a3828cbaeb5ee3d1db57edd388a8dc86`; Catalog
+remains `526404128830a99fe8ea5c2bce43b6ea7d45fe6f`. These are the selected 3.4.1
+dependencies; dated dependency tables below retain their historical selections.
+
+This interface task adds no simulation or provider service. The independent
+operator/launcher task below remains next for shared-system development. Retain
+`tools/qualify_interface_port.js` alongside both existing gameplay browser checks.
+
 ## Start here
 
 ```bash

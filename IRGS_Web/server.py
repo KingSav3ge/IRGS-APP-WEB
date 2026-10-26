@@ -547,6 +547,12 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                         self.creator(mode)
                         return self.reply(200, presentation_binding(store.read(path.rsplit('/', 1)[1])['state']))
                 files = {'/': ('index.html', 'text/html'), '/app.js': ('app.js', 'text/javascript'), '/style.css': ('style.css', 'text/css'), '/voyage.svg': ('voyage.svg', 'image/svg+xml'), '/rise.js': ('rise.js', 'text/javascript'), '/catalogue.js': ('catalogue.js', 'text/javascript'), '/solo.js': ('solo.js', 'text/javascript'), '/processes.js': ('processes.js', 'text/javascript'), '/responses.data.js': ('responses.data.js', 'text/javascript'), '/responses.js': ('responses.js', 'text/javascript'), '/routine.js': ('routine.js', 'text/javascript'), '/themes.js': ('themes.js', 'text/javascript'), '/themes.css': ('themes.css', 'text/css')}
+                files.update({'/preview.js': ('preview.js', 'text/javascript'),
+                    '/preview.css': ('preview.css', 'text/css'), '/fonts.css': ('fonts.css', 'text/css'),
+                    '/historical-landscape.jpg': ('historical-landscape.jpg', 'image/jpeg')})
+                for font in ('newsreader', 'fraunces', 'instrument-sans', 'ibm-plex-mono', 'im-fell-english', 'im-fell-english-sc'):
+                    name = font + '-latin.woff2'
+                    files['/' + name] = (name, 'font/woff2')
                 if path not in files:
                     return self.reply(404, {'error': 'Not found'})
                 name, mime = files[path]

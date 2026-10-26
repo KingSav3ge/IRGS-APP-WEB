@@ -1,0 +1,422 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "executed_at_utc": "2026-10-26T12:33:18.202661+00:00",
+  "scope": "Emergent visual/interaction adaptation onto canonical IRGS App; no new mechanics or provider adoption",
+  "edition": "3.4.1",
+  "previous_release": "3.3.3",
+  "app_base": "6be1eab168c7ad29fb66839bd85799c3c72a09ff",
+  "emergent_design_source": "437fa7586385fed14883e3d672ab3e51a9193311",
+  "dependencies": {
+    "engine": "aa30bb63a3828cbaeb5ee3d1db57edd388a8dc86",
+    "catalog": "526404128830a99fe8ea5c2bce43b6ea7d45fe6f",
+    "pins_changed": false
+  },
+  "source_sha256": {
+    "IRGS_Web/server.py": "d7099a60dbde3ba7279f0e7cfa88b90d066374383ce2040faaca141f7d2a04c9",
+    "IRGS_Web/static/app.js": "2995b4c1b7f317fb9a13f272462f041edca586f4bcc7bc9f839c223efeca267f",
+    "IRGS_Web/static/index.html": "d5b145caa4331f1a8473e51cc08eb1cca4d3268f63ca2b17af9d117d341d52d7",
+    "IRGS_Web/static/catalogue.js": "b901e075d042da012ed1cdb079401804766b10048a6dfebeddd6dfde183f7863",
+    "IRGS_Web/static/preview.js": "bd2e57c9b68db759737e67061af7948e360e1739dce499d80a30db5ef8587adf",
+    "IRGS_Web/static/preview.css": "fee847f479256d77d5c9db9d57189f5c9172dbacc6889a3aedb96fef0a0bdc5b",
+    "IRGS_Web/static/fonts.css": "e94bc3eb39e441466040bd3b1440cad9a381fa49fffbd9a15e13e6350253b31f",
+    "IRGS_Web/tests/test_gameplay_ui.js": "44396a448f82ecb95953ec6ed2f3d3c14fd414ce5f56e96f8f5f5ba7055e8a9f",
+    "tools/qualify_interface_port.js": "48187e25605ed369d1d199103f6a144118f7488ba3463da0dcbb41a63a2d63cb",
+    "IRGS_Web/release.json": "611092dd5abaf8e9156ac302b97b8d227f2965b6311398a09ac304a7dd15b051"
+  },
+  "checks": {
+    "web": {
+      "run": 229,
+      "passed": 222,
+      "skipped": 7,
+      "skip_reason": "Windows PowerShell unavailable on Linux",
+      "failures": 0
+    },
+    "interface": {
+      "passed": 121,
+      "failures": 0
+    },
+    "formatter": {
+      "passed": 13,
+      "failures": 0
+    },
+    "app_tooling": {
+      "passed": 1,
+      "failures": 0
+    },
+    "integrity": {
+      "status": "verified",
+      "app_files": 75,
+      "historical_archive_parts": 32,
+      "historical_archive_members": 5146
+    },
+    "whitespace": {
+      "first_party_diff": "passed",
+      "vendored_font_licenses": "Original upstream license bytes retained, including upstream trailing whitespace."
+    }
+  },
+  "browser": {
+    "shared_actions": {
+      "status": "passed",
+      "contexts": [
+        {
+          "adapter": "authored_scene",
+          "committed_actions": 4,
+          "elapsed_seconds": 43,
+          "zero_action_spans": [],
+          "local_drafts_non_submitting": true,
+          "lost_acknowledgement_recovered": true,
+          "stale_navigation_fenced": true,
+          "reload_preserves_draft": true
+        },
+        {
+          "adapter": "settlement",
+          "committed_actions": 5,
+          "elapsed_seconds": 3900,
+          "zero_action_spans": [
+            "found",
+            "build"
+          ],
+          "local_drafts_non_submitting": true,
+          "lost_acknowledgement_recovered": true,
+          "stale_navigation_fenced": true,
+          "reload_preserves_draft": true
+        }
+      ],
+      "common_response_schema": 1,
+      "catalog_library": "irgs-response-depot-v1",
+      "engine_library": "irgs-engine-routine-responses-v1",
+      "provider_configured": false,
+      "provider_calls": 0,
+      "browser_errors": 0,
+      "mobile_width": 390
+    },
+    "processes": {
+      "status": "passed",
+      "contexts": [
+        {
+          "kind": "observation",
+          "committed_phases": 5,
+          "start_selected_from_engine": true,
+          "elapsed_seconds": 3,
+          "prepare_reload_recovered": true,
+          "cancel_does_not_execute": true,
+          "lost_commit_ack_recovered": true,
+          "phase_identity_preserved": true,
+          "pause_resume": true,
+          "stale_navigation_fenced": true
+        },
+        {
+          "kind": "work",
+          "committed_phases": 6,
+          "start_selected_from_engine": true,
+          "elapsed_seconds": 3900,
+          "prepare_reload_recovered": true,
+          "cancel_does_not_execute": true,
+          "lost_commit_ack_recovered": true,
+          "phase_identity_preserved": true,
+          "pause_resume": true,
+          "stale_navigation_fenced": true
+        }
+      ],
+      "provider_configured": false,
+      "provider_calls": 0,
+      "browser_errors": 0,
+      "mobile_width": 390
+    },
+    "interface_acceptance": {
+      "status": "passed",
+      "desktop_width": 1568,
+      "mobile_width": 390,
+      "concepts": 44,
+      "reading_preferences_survive_reload": true,
+      "drawers_escape_and_focus": true,
+      "reviewed_character_creation": true,
+      "posts_before_explicit_creation": 0,
+      "explicit_creations": 1,
+      "original_fixture_saves_unchanged": true,
+      "local_assets_only": true,
+      "provider_calls": 0,
+      "browser_errors": 0,
+      "layout": {
+        "context-panel": {
+          "x": 24,
+          "width": 358.046875
+        },
+        "content": {
+          "x": 407.046875,
+          "width": 753.890625
+        },
+        "play-tools": {
+          "x": 1185.9375,
+          "width": 358.0625
+        }
+      },
+      "assets": [
+        {
+          "url": "/fonts.css",
+          "status": 200
+        },
+        {
+          "url": "/style.css",
+          "status": 200
+        },
+        {
+          "url": "/preview.css",
+          "status": 200
+        },
+        {
+          "url": "/themes.css",
+          "status": 200
+        },
+        {
+          "url": "/themes.js",
+          "status": 200
+        },
+        {
+          "url": "/responses.data.js",
+          "status": 200
+        },
+        {
+          "url": "/routine.js",
+          "status": 200
+        },
+        {
+          "url": "/responses.js",
+          "status": 200
+        },
+        {
+          "url": "/rise.js",
+          "status": 200
+        },
+        {
+          "url": "/processes.js",
+          "status": 200
+        },
+        {
+          "url": "/catalogue.js",
+          "status": 200
+        },
+        {
+          "url": "/solo.js",
+          "status": 200
+        },
+        {
+          "url": "/preview.js",
+          "status": 200
+        },
+        {
+          "url": "/app.js",
+          "status": 200
+        },
+        {
+          "url": "/instrument-sans-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/ibm-plex-mono-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/fraunces-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/newsreader-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/historical-landscape.jpg",
+          "status": 200
+        },
+        {
+          "url": "/im-fell-english-sc-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/themes.css",
+          "status": 200
+        },
+        {
+          "url": "/style.css",
+          "status": 200
+        },
+        {
+          "url": "/fonts.css",
+          "status": 200
+        },
+        {
+          "url": "/preview.css",
+          "status": 200
+        },
+        {
+          "url": "/themes.js",
+          "status": 200
+        },
+        {
+          "url": "/routine.js",
+          "status": 200
+        },
+        {
+          "url": "/rise.js",
+          "status": 200
+        },
+        {
+          "url": "/responses.js",
+          "status": 200
+        },
+        {
+          "url": "/responses.data.js",
+          "status": 200
+        },
+        {
+          "url": "/catalogue.js",
+          "status": 200
+        },
+        {
+          "url": "/processes.js",
+          "status": 200
+        },
+        {
+          "url": "/solo.js",
+          "status": 200
+        },
+        {
+          "url": "/preview.js",
+          "status": 200
+        },
+        {
+          "url": "/app.js",
+          "status": 200
+        },
+        {
+          "url": "/instrument-sans-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/ibm-plex-mono-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/fraunces-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/newsreader-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/historical-landscape.jpg",
+          "status": 200
+        },
+        {
+          "url": "/im-fell-english-sc-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/fonts.css",
+          "status": 200
+        },
+        {
+          "url": "/themes.css",
+          "status": 200
+        },
+        {
+          "url": "/style.css",
+          "status": 200
+        },
+        {
+          "url": "/preview.css",
+          "status": 200
+        },
+        {
+          "url": "/routine.js",
+          "status": 200
+        },
+        {
+          "url": "/themes.js",
+          "status": 200
+        },
+        {
+          "url": "/responses.data.js",
+          "status": 200
+        },
+        {
+          "url": "/rise.js",
+          "status": 200
+        },
+        {
+          "url": "/catalogue.js",
+          "status": 200
+        },
+        {
+          "url": "/responses.js",
+          "status": 200
+        },
+        {
+          "url": "/processes.js",
+          "status": 200
+        },
+        {
+          "url": "/solo.js",
+          "status": 200
+        },
+        {
+          "url": "/app.js",
+          "status": 200
+        },
+        {
+          "url": "/preview.js",
+          "status": 200
+        },
+        {
+          "url": "/instrument-sans-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/fraunces-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/ibm-plex-mono-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/newsreader-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/im-fell-english-sc-latin.woff2",
+          "status": 200
+        }
+      ]
+    }
+  },
+  "logs_sha256": {
+    "web": "93b850f48bedf7f1e7faa0201129c4a544f5a9cb0c4c71c363a1448e9268d83e",
+    "interface": "d1dbcdd4c2c9b27d7c6b171883726a462c69e57bbb609fbd54448a4f704004fd",
+    "formatter": "74534e61e9178277efa9cf73faeb7fd54175ab4500e423b70b8c6aa552f4bc37",
+    "tooling": "f71aaf059610953b92091a8082c2a525931daa431561b70dff209f3bcadb4fd8",
+    "integrity": "0fa73ffd9002cd82ab2bb9718e39ff47ec8f56df5e81024992c18ab5968ac9ba"
+  },
+  "screenshots_sha256": {
+    "character-desktop.png": "fc7ebb989222b797e647fe00745b15d1e9221f16ea05969f6a7e1c09e80a2e67",
+    "character-mobile.png": "3ccd03da4a26a1c6ececb701836aa3cf900cdf5a043af0e12bbe9afc156c6eac",
+    "concepts-desktop.png": "f6d8a8da78064d6090662a1e5efab382403b1ac6b74df02c2125637997919ed0",
+    "historical-play-desktop.png": "2f8a37f6c70994c488b409b51af6f0023224c7880c0ded08a2d5efbd1b0935b0",
+    "home-desktop.png": "e3fd094ce768c72cd76891d73717802672a753106e7e74ffe5ccd0eb1ea406f2",
+    "library-desktop.png": "965b1d2d50ac2fcd1ccffe9e766516a8a2dffad2845b8c30ee3056ad3e6d986a",
+    "play-desktop.png": "be4c5637508a1b6db79b042c380e78520398f1003684a8988292a68da618187e",
+    "play-mobile.png": "e9f7b3535200a7d064e3fb9368c3d8af9cc56eba07296198762753e9166add05",
+    "tools-mobile.png": "cf2be78b25ce67725f30c2939df85dba1663417a451b7633244e5cea830c9a0e"
+  },
+  "limits": {
+    "user_saves_used": false,
+    "live_ai_used": false,
+    "new_engine_rules": false,
+    "core_full_suite_rerun": false,
+    "windows_executed": false,
+    "unified_release_published_by_this_component": false
+  },
+  "reproduction": "EMERGENT_INTERFACE_PORT.md"
+}

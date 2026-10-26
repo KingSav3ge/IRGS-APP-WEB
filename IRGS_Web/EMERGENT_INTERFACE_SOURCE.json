@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "source_repository": "https://github.com/KingSav3ge/IRGS.git",
+  "source_branch": "Emergent",
+  "source_commit": "437fa7586385fed14883e3d672ab3e51a9193311",
+  "source_files": [
+    "frontend/src/index.css",
+    "frontend/src/components/AppShell.jsx",
+    "frontend/src/pages/Library.jsx",
+    "frontend/src/pages/AuthPage.jsx",
+    "frontend/src/pages/CharacterCreator.jsx",
+    "frontend/src/pages/Play.jsx",
+    "frontend/src/components/play/StatusPanel.jsx",
+    "frontend/src/components/play/ControlPanel.jsx"
+  ],
+  "scope": "Visual and interaction adaptation onto canonical local IRGS host, actor-filtered views and existing explicit action contracts. The Emergent branch retains the complete original project."
+}
