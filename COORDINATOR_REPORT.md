@@ -1,3 +1,25 @@
+# A4-APP-01 partial delivery: running build identity — 27 October 2026
+
+The App now displays the running host's edition and selected App/Engine/Catalog
+manifest fingerprints, with an explicit message when an older host cannot report
+its build. The host snapshots fingerprints at startup and exposes no paths or
+configuration in that identity. Component verification remains a separate check.
+See [scope](APP_BUILD_IDENTITY.md) and [evidence](APP_BUILD_IDENTITY_VALIDATION.json).
+
+Web: 251 passed and seven Windows skips, before the final client-only fallback;
+final-source interface: 151 passed; formatter: 13; tooling: one. Seven final-source
+Chromium journeys passed, including offline synthetic Solo review (six synthetic
+transport calls, zero live-provider calls). Component verification passed for 86
+App and 200 Catalog files. Engine is `efc84364b86e640f5028bfac2dfd5ae3021695a9`;
+Catalog is `6f927b00e12a3339861ac353bc38d03c68279662`. Edition remains 3.4.3.
+
+A4-APP-01 remains in progress: protected operator configuration and a qualified
+production provider transport are not implemented. Native Windows and live-provider
+qualification, ordinary-start participant/travel dependencies, and coordinator
+joined/Alpha gate review remain open. Continue protected setup next.
+
+---
+
 # App communication/source/offer delivery — 26 October 2026
 
 Source was pulled at `40a55154d0a7ca1212e609668f09c0d279f56f1e`.

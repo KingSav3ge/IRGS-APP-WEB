@@ -3,16 +3,6 @@
 Current edition **3.4.3 Pre-Alpha**; target **4.0.0 Alpha**; previous release field
 **3.3.3**. Updated 27 October 2026. User directions take precedence.
 
-## Publication interrupted — resume the local delivery
-
-The build-identity increment below is committed locally but publication was
-interrupted when automatic review of network-enabled commands hit the account
-usage limit. Preserve the local commit. Run the full final-source interface and
-browser checks, verify the App component, then push this component's `main`.
-The prior full Web run and six browser suites passed before the final client-only
-older-host fallback; the fallback and 149 other interface checks passed in the
-sandbox. See [the delivery record](APP_BUILD_IDENTITY.md) for exact limits.
-
 ## A4-APP-01 in progress — running build identity
 
 The App host now snapshots the current edition and SHA-256 fingerprints of its

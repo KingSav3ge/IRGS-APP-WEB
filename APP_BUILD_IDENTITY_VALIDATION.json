@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-27",
+  "status": "passed_with_limits",
+  "task": "A4-APP-01 partial: running build identity",
+  "candidate_source_parent": "829a52c141ca6d1b1cfbbfa6a0047eef37c7ee2f",
+  "engine_commit": "efc84364b86e640f5028bfac2dfd5ae3021695a9",
+  "catalog_commit": "6f927b00e12a3339861ac353bc38d03c68279662",
+  "edition": "3.4.3 Pre-Alpha",
+  "source_sha256": {
+    "IRGS_Web/build_identity.py": "66a4b3561163dacd0ccd1c391d73fa868ccef24e0107669157ca78d57947c57a",
+    "IRGS_Web/server.py": "1eef9cc82d6bc16978a62e1db730a9d4223709d28edbff2505d07b7c339bd27b",
+    "IRGS_Web/static/app.js": "6542131d787d5aaa2ba49ef2e7f94a8ae60c7b917ab497d9e228213e311dc381",
+    "IRGS_Web/static/index.html": "ea2c316242f99302d1882d84bdd728c64ebdd9009386b413b8d72ec304552955",
+    "IRGS_Web/static/preview.css": "3193b907e268c77d51012357a375fcba2ddf41151d2c2636ebc69949c7e739c5",
+    "IRGS_Web/release.json": "049ada54e751f66546bdfe5985a9535cb4f796a2a526ee4cc38a5e5a07281452",
+    "IRGS_Web/tests/test_build_identity.py": "e1debbdde3fedf1d8c1bb2938422aeb5931722e9b2c8a846f70bab4d669ec87a",
+    "IRGS_Web/tests/test_gameplay_ui.js": "e35319226ec4def3bdb22b67ff8cfcd1dc47a60a2b7335825d0659f58b84cf57",
+    "tools/qualify_interface_port.js": "c65bcabe8d6c1046e63fe8d5e78457e5ca0dee870603da84368050fa3950dcbc"
+  },
+  "checks": {
+    "web": {
+      "run": 258,
+      "passed": 251,
+      "windows_skips": 7,
+      "timing": "before client-only older-host fallback; backend unchanged"
+    },
+    "interface": {
+      "passed": 151,
+      "source": "final"
+    },
+    "formatter": {
+      "passed": 13
+    },
+    "tooling": {
+      "passed": 1
+    },
+    "chromium": {
+      "port": {
+        "status": "passed",
+        "browser_errors": 0,
+        "live_provider_calls": 0,
+        "synthetic_transport_calls": 0
+      },
+      "starts": {
+        "status": "passed",
+        "browser_errors": 0,
+        "live_provider_calls": 0,
+        "synthetic_transport_calls": 0
+      },
+      "communication": {
+        "status": "passed",
+        "browser_errors": 0,
+        "live_provider_calls": 0,
+        "synthetic_transport_calls": 0
+      },
+      "process": {
+        "status": "passed",
+        "browser_errors": 0,
+        "live_provider_calls": 0,
+        "synthetic_transport_calls": 0
+      },
+      "shared": {
+        "status": "passed",
+        "browser_errors": 0,
+        "live_provider_calls": 0,
+        "synthetic_transport_calls": 0
+      },
+      "refinement": {
+        "status": "passed",
+        "browser_errors": 0,
+        "live_provider_calls": 0,
+        "synthetic_transport_calls": 0
+      },
+      "solo": {
+        "status": "passed",
+        "browser_errors": 0,
+        "live_provider_calls": 0,
+        "synthetic_transport_calls": 6
+      }
+    },
+    "component_integrity": {
+      "status": "verified",
+      "app_files": 86,
+      "catalog_files": 200
+    }
+  },
+  "remaining": [
+    "Protected operator configuration and a qualified production provider transport.",
+    "Final native Windows launch/extraction and separately authorized live-provider qualification.",
+    "A4-G01 and A4-G08 remain unqualified; coordinator owns joined review and Alpha gates."
+  ]
+}

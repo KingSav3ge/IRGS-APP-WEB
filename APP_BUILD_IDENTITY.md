@@ -52,23 +52,23 @@ release and all Alpha gate qualification. Next continue protected setup, includi
 configuration validation without dispatch, separate operator/player exposure,
 restart/offline behavior and a qualified adapter; then A4-APP-02 and A4-APP-03.
 
-## Executed checks and pending publication
+## Executed checks
 
 - Full Web suite: 258 run, 251 passed and seven Windows-only skips. It completed
-  before the final client-only older-host fallback and its new interface test.
-- Interface suite: 150 passed against the preceding client. After the fallback,
-  a sandbox-only run passed 150 checks, including the new fallback check; one
-  registry enumeration check was omitted because its Python subprocess is denied
-  in the sandbox. A full final-source interface rerun remains pending.
-- Six Chromium suites passed before the final client-only fallback, including
-  the visible identity, normal creation and recovery journeys. Final-source
-  browser execution remains pending. These checks made zero provider calls.
-- Formatter: 13 passed; tooling: one passed. Final App component verification
-  passed for 86 App files, 200 Catalog files and the selected dependency pins.
-- JavaScript syntax and CRLF-aware diff checks passed. A final full interface
-  and browser rerun, and repository push, need the network-enabled environment.
+  before the final client-only older-host fallback and its new interface test;
+  Python/backend source did not change afterward.
+- Final-source interface: 151 checks passed, including the older-host fallback.
+  Formatter: 13 passed; tooling: one passed.
+- Seven final-source Chromium journeys passed: interface port, selected starts,
+  communication, process, shared responses, interface refinement and offline
+  Solo review. The Solo journey used six synthetic transport calls and no live
+  provider calls; the other six made zero provider calls. All had zero browser
+  errors. The port journey verifies that the actual host identity is visible.
+- App component verification passed: 86 App files, 200 Catalog files and the
+  exact selected Engine and Catalog pins. Whitespace and JavaScript syntax checks
+  passed. Native Windows launch/extraction and live-provider qualification remain
+  untested; no Alpha gate is qualified by these results.
 
-The automatic review for network-enabled execution failed due to the account
-usage limit; it was not a finding about safety. Preserve the local commit and
-resume the final checks and publication when review is available. No unified
-integration or Alpha qualification is implied.
+The initial publication attempt was interrupted when automatic review hit an
+account usage limit. The final-source checks above were rerun after access
+returned. See [machine-readable evidence](APP_BUILD_IDENTITY_VALIDATION.json).
