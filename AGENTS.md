@@ -4,19 +4,21 @@ Current coordinated edition: **3.4.3**; previous release: **3.3.3**.
 See [version policy](VERSION_POLICY.md). Earlier baseline tables and execution
 records below retain their original tested development identities.
 
-## Current guide and continuation
+## Active direction — functional Alpha 4.0
 
-Start with [DEVELOPMENT.md](DEVELOPMENT.md) and
-[CHAT_CONTINUATION.md](CHAT_CONTINUATION.md). They record the previously qualified 3.4.0
-source baseline, the next bounded task and required checks. Dated histories
-retain original scope; their pending notes do not reopen completed integration.
+The entire 3.x.x series is **Pre-Alpha**. Current published edition is 3.4.3;
+target 4.0.0 is **Alpha only after functional qualification**. Read
+[ALPHA_4_0_PLAN.md](ALPHA_4_0_PLAN.md),
+[ALPHA_4_0_ACCEPTANCE.json](ALPHA_4_0_ACCEPTANCE.json),
+[COORDINATOR_WORK_ORDER.md](COORDINATOR_WORK_ORDER.md) and
+[CHAT_CONTINUATION.md](CHAT_CONTINUATION.md) before selecting work.
+[DEVELOPMENT.md](DEVELOPMENT.md) is the active guide.
 
-## Current priority — shared IRGS systems
-
-The current user-directed priority is the player-start assessment and first
-implementation increment in [COORDINATOR_WORK_ORDER.md](COORDINATOR_WORK_ORDER.md)
-and [PLAYABILITY_REVIEW_3_4_2.md](PLAYABILITY_REVIEW_3_4_2.md). These supersede older
-next-task ordering; preserve the rules and qualified behavior below.
+These replace older next-task ordering and pending-3.4.3 adoption notes.
+The compatible start-context/communication set is already published in 3.4.3.
+Do not repeat completed adoption or relabel bounded existing foundations as
+Alpha completion. Implement the next owner task and report actual evidence.
+Keep stable DEV/C2 IDs, wider open requirements and original qualification scope.
 
 The user's current direction is development across campaigns and themes.
 Read [the shared scope](IRGS_SYSTEMS_SCOPE.md) and

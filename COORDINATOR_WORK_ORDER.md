@@ -1,78 +1,90 @@
-# Coordinator work order — IRGS App/Website
+# Alpha 4.0 work order — IRGS-APP-WEB
 
-Active cycle: shared start-context adoption, candidate next unified **3.4.3**.
-Current published unified edition remains **3.4.2**. Previous release: **3.3.3**.
+Current product: **3.4.3 Pre-Alpha**. Target: **functional 4.0.0 Alpha**.
+Start-context adoption and the received communication bridge are already
+integrated. Preserve the ported interface and six existing browser suites.
 
-Read [the coordinator review](COORDINATOR_START_REVIEW_2026_10_26.md) and
-[the exact evidence](COORDINATOR_START_REVIEW_2026_10_26.json). These instructions replace older
-next-task ordering; historical delivery records retain their tested scope.
+## Ownership and first delivery
 
-Adopt the already published Engine `cc450a6` API, documented in
-`engine/START_READINESS_API.md` in IRGS-Engine. Engine is no longer the missing
-contract dependency. The coordinator fixed module/discovery collisions by
-renaming App preflight to `start_preview.py` and its test to
-`tests/test_start_preview.py`; retain those separate names.
+Own IRGS_Web/, the host, launcher, Catalog viewer and deliberate Engine/Catalog
+dependency pins. Do not implement an alternate simulation, duplicate editable
+Catalog data, or revive the Emergent backend. Engine owns rules/initializers;
+Catalog owns content and independent evaluation.
 
-Close START-INT-002 through 005 in order:
+**Start A4-APP-01 now:** protected operator setup and visible build identity.
+This has no dependency on future travel/NPC work. Then expose ordinary-start
+participant/travel capabilities as Engine publishes them, and implement
+A4-APP-03's reviewed supported-intent experience. Avoid additional cosmetic
+sections while the sustained play loop remains incomplete.
 
-1. Consume Engine's versioned readiness review and actor-bound existing opening
-   options. Offer the optional Henry start explicitly and include its opening ID
-   in actual review/creation/retry payloads. The old blanket App rejection of
-   existing-person opening IDs must be replaced by Engine validation. A changed
-   actor/mode clears the old choice/consent and forces review. Henry default and
-   John remain declaration-only; no arbitrary/courier context can be borrowed.
-2. Project Engine's actor-received `start_context`, initial Julian civil day and
-   selected elapsed axis. Preserve unknown hour and `current_calendar_binding:
-   false`; do not present local 20-second progress as a running civil clock. Use
-   the real context classification and available operations in scene/opening
-   guidance. Henry has no dispatch and no supported courier travel. Read-only
-   views must not initialize, migrate, repair or reseed continuing saves.
-3. Update the three exact Web failures listed in the review with positive checks
-   for the legitimate calendar receipt and negative checks for unsourced scene,
-   stock, authority, personal contacts and historical future. Do not remove the
-   privacy assertions or suppress the received date to obtain a green suite.
-4. Run full Web/interface checks and actual browser journeys for explicit Henry,
-   default Henry, John, default new, authored new and R00; 390px, source absence,
-   changed selection, lost creation/action reply, exact retry, reload, restore
-   and actor boundaries. No live provider is needed. Then commit exact compatible
-   published Engine/Catalog gitlinks and report the clean tested source set.
+## Implementation queue
 
-Publish adoption early for Catalog's separate consumer. Communication UI/HTTP,
-protected operator configuration, supported-intent mapping and build diagnostics
-remain subsequent work; cosmetic refinements do not replace the blocked start.
+| Task | Work and completion evidence | Dependencies; gates |
+| --- | --- | --- |
+| A4-APP-01 | Add protected server-side provider/operator setup using existing Engine contracts. Display the running edition/build and actual component identities to diagnose stale hosts. Validate configuration without dispatch. No key in HTML, browser storage, query strings, response JSON, logs or exports. Test missing/invalid configuration, restart/reuse, offline mode and clear operator/player separation. | Existing provider API; G01/G08 |
+| A4-APP-02 | Consume legitimate normal-start participants/channels, received sources/offers and selected travel through capability discovery. Preserve reviewed creation, eligibility/context distinctions and actor-safe controls. Reach real NPC interaction from ordinary creation without creator/test-only seeding. Unsupported starts remain accurately limited; no UI-added world facts. | Engine 01/02; Catalog 02; G02/G05 |
+| A4-APP-03 | Make suggestions and editable own responses converge on a typed supported-intent review. Show the actual attempted operation, selected scope/time/requirements and unresolved clarification. Drafting/review commits nothing; explicit acceptance sends the exact reviewed identity. Preserve edits after ambiguity, rejection, stale capability, connection loss and provider failure. Unsupported text must never appear resolved. | Engine 03; G03 |
+| A4-APP-04 | Present consecutive effects, resources, location, work/needs/recovery, NPC decisions, offers/obligations and selected conflict honestly from received Core records. Expose relevant phase continuation/interruption controls. Keep causal sequence, civil day and selected elapsed time distinct; no invented live clock or decorative success. A next decision must reflect the changed world. | Engine 02/04–06; G04–G07 |
+| A4-APP-05 | Complete protected AI request/review/narration flow over the existing Engine provider path. Show pending/error/budget states and support cancellation, timeout, invalid response, rate failure and offline fallback to supported local controls. Do not silently retry paid requests or commit after an abandoned review. Keep technical accounting server-side and player output grounded. | 01/03 plus Engine 07; Catalog 04; G08 |
+| A4-APP-06 | Prove multi-session saves, continue, checkpoint/restore, archive/Trash, original-result retry and stale navigation through real controls. Handle failed disk save, lost response, duplicate tab/frontier and restart without lost intent or duplicated effects. Maintain responsive layout, keyboard operation and readable status/errors across these paths. | Throughout; Engine 08; G09/G11 |
+| A4-APP-07 | Qualify exact dependency pins, standalone App and the coordinator's clean joined package. Run actual browser journeys and native Windows launcher/extraction checks; label Linux skips honestly. Document clean install/start, operator setup, supported starts, recovery and known limits. Fix ordinary-play and privacy/data-loss defects before Alpha handoff. | All selected Engine/Catalog deliveries; G01/G11/G12 |
 
-## Completion and ownership
+## Dependencies and evidence
 
-Read `CHAT_CONTINUATION.md` for source selections, rules and checks. Publish only
-this component. A work-order/plan change does not complete implementation or
-qualify the new contract. Report exact published code and compatible dependencies,
-actual passes/failures/skips and remaining work. Coordinator owns joined import,
-fresh execution capture, joined/browser/package qualification and versioned
-publication after all three viable updates are approved. No dispatch is implied.
+Initialize pinned dependencies with git submodule update --init --recursive.
+Keep Engine and Catalog pins deliberate: select published exact commits, verify
+the selected pair, run relevant real interactions, then commit pointers with the
+App delivery. A temporary environment override is evidence about that explicit
+pair, not proof that committed pins adopted it. Do not repin for another owner's
+documentation-only commit unless needed for a deliberate compatibility selection.
 
-## App adoption delivery
+Preserve existing review, actor-filtered API, request identities, save protections,
+received Chronicle, local drafts, interface preferences and mobile drawers.
+A playable badge or a character selection cannot create executable mechanics.
 
-START-INT-002/003/004 and compatible pins for 005 are implemented. The exact
-executed source, results and limits are recorded in
-[START_CONTEXT_ADOPTION_VALIDATION.json](START_CONTEXT_ADOPTION_VALIDATION.json)
-and [the delivery scope](START_CONTEXT_ADOPTION.md). Engine is consumed through
-its published contract; Catalog's separate consumer qualification and coordinator
-exact-set review remain pending. Earlier work-order acceptance above remains
-available for review; this delivery creates no new unified release.
+Use Python 3.12+ without -O and Node for interface/browser checks:
 
+~~~bash
+python -B tools/verify_components.py --component app
+python -B -m unittest discover -s IRGS_Web/tests -v
+node IRGS_Web/tests/test_responses.js
+node IRGS_Web/tests/test_gameplay_ui.js
+~~~
 
-## Subsequent App communication delivery
+Run the applicable real Playwright/Chromium journeys in tools/, including start,
+communication, process and Solo review paths. Write outputs outside source and
+verify zero routine inference. Real browser controls must lead to actual Core
+effects/recovery; request mocks or formatting assertions alone are insufficient.
+Capture native Windows results separately; Linux skips do not qualify that gate.
+After intentional App source edits:
 
-The next communication/source/offer increment named in `CHAT_CONTINUATION.md`
-is implemented over Engine `cc450a6` with Catalog `e1778e0` unchanged. It adds
-actor-scoped preparation/review/acceptance, exact speech, received terms and
-sources, conserved Engine transfers and durable original-result recovery.
-Legacy receipt privacy remains preserved. See [scope](COMMUNICATION_BRIDGE.md)
-and [fresh executed evidence](COMMUNICATION_BRIDGE_VALIDATION.json).
+~~~bash
+python -B tools/refresh_component_releases.py --component app
+python -B tools/verify_components.py --component app
+~~~
 
-Qualification uses explicitly selected synthetic non-Rise/R00 channels. Product
-initializers still need owned Engine/content channel and introduction selections;
-App does not fabricate them or migrate saves. Protected operator configuration
-is the next bounded App task. The START-INT-006 Catalog consumer and coordinator
-exact-set/joined/browser/package gate remain pending. No unified import, new
-release or edition increase is part of this component delivery.
+Run on a separate loopback port such as 8766 with synthetic temporary stores.
+Do not stop another valid host, touch an existing installation's saves, or rely
+on an already running different build to qualify this checkout.
+
+## Required boundaries and delivery
+
+Follow [the shared plan](ALPHA_4_0_PLAN.md), [acceptance register](ALPHA_4_0_ACCEPTANCE.json)
+and [version policy](VERSION_POLICY.md). Keep one Core, nine K-owners, six Director
+categories, actual authority/resources, actor-scoped knowledge and explicit
+review before atomic acceptance. Preserve immutable original results, recovery
+fences and the distinctions between intent, effect, outcome and presentation.
+No guessed universal durations, stock, permissions, dice or historical hours.
+
+Use synthetic temporary stores and exact declared dependencies. Preserve original
+archive bytes/citations, adopted canon, historical evidence and legacy fixture
+identities. Credentials, user saves, personal configuration, caches and runtime
+logs are not test inputs or committed source. Live provider evaluation requires
+a separately authorized finite budget; do not delay independent offline work.
+
+Publish only this repository. Deliver one meaningful implement/test/report
+increment at a time. Report task/gate IDs, full pushed SHA, exact dependencies and
+App pins, commands and actual passes/failures/skips, evidence, capability limits,
+next task and specific blockers. A schema, guide, hash refresh or fixture alone
+does not complete product behavior. Keep 3.4.3 metadata during component
+development; the coordinator controls the next unified edition and Alpha gate.

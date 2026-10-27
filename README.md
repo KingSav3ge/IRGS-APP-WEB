@@ -1,5 +1,13 @@
 # IRGS App / Web — 3.4.3 development
 
+Current stage: **3.4.3 Pre-Alpha**. Development target: **functional 4.0.0 Alpha**.
+Start with [the Alpha plan](ALPHA_4_0_PLAN.md),
+[owner work order](COORDINATOR_WORK_ORDER.md) and
+[continuation](CHAT_CONTINUATION.md). All 3.x editions are Pre-Alpha.
+The reviewed start/communication set is already integrated in unified 3.4.3;
+older pending-adoption claims below are dated history, not the current task.
+The new plan does not claim Alpha is implemented or qualified.
+
 Current coordinated edition: **3.4.3**; previous release: **3.3.3**.
 See [version policy](VERSION_POLICY.md). Earlier baseline tables and execution
 records below retain their original tested development identities.

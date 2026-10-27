@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "kind": "development_acceptance_plan",
+  "plan_revision": "alpha-4.0-plan-1",
+  "instruction_date": "2026-10-27",
+  "current_edition": {
+    "version": "3.4.3",
+    "stage": "pre-alpha",
+    "previous_version": "3.3.3"
+  },
+  "target": {
+    "version": "4.0.0",
+    "stage": "alpha",
+    "qualified": false
+  },
+  "baseline_commits": {
+    "joined": "9dc27f82f7f49e6f8b1de66573b991b22e68cb2a",
+    "engine": "efc84364b86e640f5028bfac2dfd5ae3021695a9",
+    "app": "de4e6926f6236f720365d552c69e02756ce18605",
+    "catalog": "6f927b00e12a3339861ac353bc38d03c68279662"
+  },
+  "rule": "All mandatory gates require independently reviewed evidence against the same exact compatible candidate. This file contains planned acceptance, not executed results.",
+  "allowed_implementation_states": [
+    "planned",
+    "in_progress",
+    "implemented",
+    "blocked"
+  ],
+  "allowed_qualification_states": [
+    "not_qualified",
+    "in_review",
+    "qualified",
+    "blocked"
+  ],
+  "release_candidate": null,
+  "evidence_executed_by_this_update": false,
+  "live_inference_authorized_by_this_plan": false,
+  "gates": [
+    {
+      "id": "A4-G01",
+      "title": "Installation, launch and protected setup",
+      "mandatory": true,
+      "owners": [
+        "app",
+        "coordinator"
+      ],
+      "tasks": [
+        "A4-APP-01",
+        "A4-APP-07"
+      ],
+      "acceptance": "Clean normal launch, correct build/dependency identity, understandable offline and missing-config paths; no developer world seeding.",
+      "implementation_state": "planned",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G02",
+      "title": "Honest ordinary playable starts",
+      "mandatory": true,
+      "owners": [
+        "engine",
+        "catalog",
+        "app"
+      ],
+      "tasks": [
+        "A4-ENG-01",
+        "A4-APP-02",
+        "A4-CAT-02"
+      ],
+      "acceptance": "Reviewed atomic creation gives real actor/location/knowledge/capabilities; unsupported starts remain limited.",
+      "implementation_state": "planned",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G03",
+      "title": "Reviewed supported player intents",
+      "mandatory": true,
+      "owners": [
+        "engine",
+        "app"
+      ],
+      "tasks": [
+        "A4-ENG-03",
+        "A4-APP-03"
+      ],
+      "acceptance": "Suggestions and own responses map to exact versioned attempts, commit only on acceptance, and preserve unsupported/ambiguous intent.",
+      "implementation_state": "planned",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G04",
+      "title": "Material constraints, movement and time",
+      "mandatory": true,
+      "owners": [
+        "engine",
+        "app"
+      ],
+      "tasks": [
+        "A4-ENG-02",
+        "A4-ENG-06",
+        "A4-APP-04"
+      ],
+      "acceptance": "Selected movement/perception, work/needs/recovery, stock and commitments persist across interruption; no invented time/resources.",
+      "implementation_state": "planned",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G05",
+      "title": "Communication, consent and obligations",
+      "mandatory": true,
+      "owners": [
+        "engine",
+        "app",
+        "catalog"
+      ],
+      "tasks": [
+        "A4-ENG-01",
+        "A4-ENG-04",
+        "A4-APP-02",
+        "A4-CAT-01"
+      ],
+      "acceptance": "Normal-start participants/channels and real social consequences keep received testimony, offer, consent and fulfillment distinct.",
+      "implementation_state": "planned",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G06",
+      "title": "Continuing NPC and institutional agency",
+      "mandatory": true,
+      "owners": [
+        "engine",
+        "app"
+      ],
+      "tasks": [
+        "A4-ENG-05",
+        "A4-APP-04"
+      ],
+      "acceptance": "At least one NPC and local institution act on legitimate knowledge/authority/shared resources and alter later choices across continuation.",
+      "implementation_state": "planned",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G07",
+      "title": "Consequential selected risk/conflict and recovery",
+      "mandatory": true,
+      "owners": [
+        "engine",
+        "catalog",
+        "app"
+      ],
+      "tasks": [
+        "A4-ENG-06",
+        "A4-APP-04",
+        "A4-CAT-02",
+        "A4-CAT-03"
+      ],
+      "acceptance": "An adopted bounded profile supports consequential success/failure/withdrawal and persistent recovery, not narrator truth writes.",
+      "implementation_state": "planned",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G08",
+      "title": "Grounded AI-enabled play and failure handling",
+      "mandatory": true,
+      "owners": [
+        "engine",
+        "app",
+        "catalog"
+      ],
+      "tasks": [
+        "A4-ENG-07",
+        "A4-APP-01",
+        "A4-APP-05",
+        "A4-CAT-04"
+      ],
+      "acceptance": "One protected provider completes a budgeted live synthetic cycle; invalid output, cancellation, timeout, outage and budget exhaustion remain safe; routine calls zero.",
+      "implementation_state": "planned",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G09",
+      "title": "Durability, concurrency, retry and restore",
+      "mandatory": true,
+      "owners": [
+        "engine",
+        "app"
+      ],
+      "tasks": [
+        "A4-ENG-08",
+        "A4-APP-06",
+        "A4-CAT-03"
+      ],
+      "acceptance": "Atomic result/state, immutable original receipt, no duplication, lost-reply recovery, stale handling and restore fencing in multi-session play.",
+      "implementation_state": "planned",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G10",
+      "title": "Sustained cross-campaign product journeys",
+      "mandatory": true,
+      "owners": [
+        "catalog",
+        "engine",
+        "app"
+      ],
+      "tasks": [
+        "A4-CAT-02",
+        "A4-CAT-03",
+        "A4-CAT-05"
+      ],
+      "acceptance": "Two independent ordinary contexts from distinct families including non-Rise personal play; actual different constraints, evolving consequences and retained R00 regressions.",
+      "implementation_state": "planned",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G11",
+      "title": "Usable browser and Windows distribution",
+      "mandatory": true,
+      "owners": [
+        "app",
+        "coordinator"
+      ],
+      "tasks": [
+        "A4-APP-06",
+        "A4-APP-07"
+      ],
+      "acceptance": "Actual browser plus native Windows clean-package launch, responsive/keyboard controls, truthful status/time, saves and actionable errors.",
+      "implementation_state": "planned",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G12",
+      "title": "Qualified exact compatible release",
+      "mandatory": true,
+      "owners": [
+        "coordinator",
+        "engine",
+        "app",
+        "catalog"
+      ],
+      "tasks": [
+        "A4-ENG-08",
+        "A4-APP-07",
+        "A4-CAT-05"
+      ],
+      "acceptance": "One exact compatible set/pins with all mandatory gates reviewed, scoped DEV/C2 evidence, preserved archives, clean package and no blocking ordinary-play/privacy/data-loss defect.",
+      "implementation_state": "planned",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    }
+  ],
+  "outside_minimum_scope": [
+    "Co-op and public multiplayer",
+    "Store, marketplace and monetization",
+    "All 44 concepts playable",
+    "All eight Rise families playable",
+    "Complete grand-strategy/national economy or worldwide military simulation",
+    "Every AI provider or specialist model",
+    "Unspecified general combat beyond the adopted Alpha profile"
+  ],
+  "status_note": "3.4.3 contains qualified bounded foundations. Planned states describe the wider Alpha requirements, not a claim that those foundations are absent or freshly tested."
+}

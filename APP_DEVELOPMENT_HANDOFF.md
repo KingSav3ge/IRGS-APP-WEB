@@ -1,3 +1,18 @@
+# Active Alpha 4.0 development handoff
+
+Current published edition is **3.4.3 Pre-Alpha**. The functional target is
+**4.0.0 Alpha** under [the shared plan](ALPHA_4_0_PLAN.md).
+Read [the owner work order](COORDINATOR_WORK_ORDER.md) and
+[current continuation](CHAT_CONTINUATION.md) for the active queue.
+
+The start-context adoption/communication set was already integrated and
+qualified for its bounded 3.4.3 scope. The earlier handoff below retains its
+original source identities, limits and pending-at-the-time notes; it does not
+describe current release blockers. This new assignment is not implementation
+or fresh test evidence.
+
+---
+
 # App development handoff — 26 October 2026
 
 ## Current delivered scope and next task
