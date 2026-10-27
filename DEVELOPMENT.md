@@ -16,7 +16,10 @@ published 3.4.3 integration.
 
 ## Current assignment and ownership
 
-**A4-APP-01 protected operator setup and build identity, then A4-APP-02 ordinary capability controls and A4-APP-03 supported-intent review.**
+**A4-APP-01 is in progress:** running build identity is implemented; protected
+operator setup and a qualified provider adapter remain. See
+[build identity](APP_BUILD_IDENTITY.md). Then continue A4-APP-02 ordinary
+capability controls and A4-APP-03 supported-intent review.
 
 Own IRGS_Web/, launcher, host and Catalog viewer; deliberate Engine and Catalog submodule pins. Publish only KingSav3ge/IRGS-APP-WEB/main. The coordinator reviews a
 viable compatible Engine/App/Catalog set and owns unified integration/publication.

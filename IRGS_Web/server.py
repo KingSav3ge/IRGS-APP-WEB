@@ -376,6 +376,8 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
     from communication_bridge import CommunicationService
     communications = CommunicationService(store)
     token = secrets.token_urlsafe(32)
+    from build_identity import running_build
+    build = running_build()
 
     class Handler(BaseHTTPRequestHandler):
         def reply(self, status, data, content_type='application/json'):
@@ -565,7 +567,7 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                         return self.reply(200, lookup_content(query.get('library',[''])[0],
                             query.get('q',[''])[0], int(query.get('limit',['30'])[0])))
                     if path == '/api/campaigns':
-                        return self.reply(200, {'campaigns': store.listing(), 'token': token})
+                        return self.reply(200, {'campaigns': store.listing(), 'token': token, 'build': build})
                     if path == '/api/trash':
                         return self.reply(200, {'campaigns': store.trash_listing()})
                     if path.startswith('/api/campaign/'):

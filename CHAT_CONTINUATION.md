@@ -3,6 +3,32 @@
 Current edition **3.4.3 Pre-Alpha**; target **4.0.0 Alpha**; previous release field
 **3.3.3**. Updated 27 October 2026. User directions take precedence.
 
+## Publication interrupted — resume the local delivery
+
+The build-identity increment below is committed locally but publication was
+interrupted when automatic review of network-enabled commands hit the account
+usage limit. Preserve the local commit. Run the full final-source interface and
+browser checks, verify the App component, then push this component's `main`.
+The prior full Web run and six browser suites passed before the final client-only
+older-host fallback; the fallback and 149 other interface checks passed in the
+sandbox. See [the delivery record](APP_BUILD_IDENTITY.md) for exact limits.
+
+## A4-APP-01 in progress — running build identity
+
+The App host now snapshots the current edition and SHA-256 fingerprints of its
+selected App, Engine and Catalog manifests and representative source files at
+startup. The interface displays the edition and manifest fingerprints received
+from the actual host, including a reused host. See
+[the increment and checks](APP_BUILD_IDENTITY.md). These identifiers do not
+replace full component verification or independently identify a Git commit.
+
+Continue **A4-APP-01**: protected operator configuration and a qualified provider
+transport still need implementation and testing. The pinned Engine supplies a
+transport protocol and broker but no product transport adapter. Do not mark
+A4-G01 or A4-G08 qualified, place credentials in browser data, or dispatch a
+live provider call without separately authorized finite evaluation budget. After
+that, continue A4-APP-02 and A4-APP-03 against their published dependencies.
+
 ## On resume
 
 1. Preserve local edits, verify origin is KingSav3ge/IRGS-APP-WEB, fetch main and
@@ -13,7 +39,7 @@ Current edition **3.4.3 Pre-Alpha**; target **4.0.0 Alpha**; previous release fi
    [your work order](COORDINATOR_WORK_ORDER.md). They supersede old next-task
    ordering. The start-context adoption set is already integrated in 3.4.3;
    dated pending-adoption reports are history, not a current blocker.
-3. Start: **A4-APP-01 protected operator setup and build identity, then A4-APP-02 ordinary capability controls and A4-APP-03 supported-intent review.**
+3. Continue **A4-APP-01 protected operator setup** (build identity is delivered), then A4-APP-02 ordinary capability controls and A4-APP-03 supported-intent review.
 4. Publish versioned interface/evaluation handoffs early. Continue independent
    tasks while another owner's implementation is pending. Test real ordinary
    creation/interaction, not only a privileged fixture.

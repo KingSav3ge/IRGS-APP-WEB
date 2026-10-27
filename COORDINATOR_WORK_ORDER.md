@@ -88,3 +88,15 @@ App pins, commands and actual passes/failures/skips, evidence, capability limits
 next task and specific blockers. A schema, guide, hash refresh or fixture alone
 does not complete product behavior. Keep 3.4.3 metadata during component
 development; the coordinator controls the next unified edition and Alpha gate.
+
+
+## A4-APP-01 partial delivery — build identity
+
+Running edition and selected App/Engine/Catalog manifest fingerprints are now
+served by the actual host and displayed in the interface. The separate
+[delivery record](APP_BUILD_IDENTITY.md) records scope, checks and limitations.
+A4-APP-01 remains in progress: protected operator setup and a qualified provider
+transport are not yet implemented. The pinned Engine exposes the broker and
+transport protocol; no production transport adapter is provided by this App.
+No live provider evaluation is authorized or performed, and no Alpha gate is
+qualified by this increment. Continue protected setup before A4-APP-02/03.

@@ -111,3 +111,6 @@ body[data-reading=light],body[data-reading=parchment]{--reading-accent:color-mix
 .received-offer,.received-source{border-top:1px solid var(--line);padding-block:1rem;overflow-wrap:anywhere}
 .received-source-text{white-space:pre-wrap;overflow-wrap:anywhere}
 #communication-reviewed-details{max-width:100%;overflow-wrap:anywhere}
+
+body[data-workspace=home] .app-footer{display:block;padding:6px 14px}
+#build-identity{overflow-wrap:anywhere}
