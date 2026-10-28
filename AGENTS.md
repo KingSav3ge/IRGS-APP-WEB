@@ -9,8 +9,11 @@ records below retain their original tested development identities.
 Before selecting the next increment, read
 [the 28 October review](COORDINATOR_REVIEW_2026_10_28.md) and
 [shared world-builder direction](WORLD_BUILDER_PLAN.md). They supplement the
-Alpha plan and supersede older first-task ordering. The world-builder executable
-has not been inspected or decompiled; its file transfer exceeded the tool limit.
+Alpha plan and supersede older first-task ordering. The uploaded executable
+remains uninspected/unmatched after its transfer limit. The public v0.35.4 GPL
+source was assessed separately; read
+[the reference findings](WORLD_BUILDER_REFERENCE_ASSESSMENT.md). No vendor code
+or artwork has been incorporated into IRGS.
 
 ## Active direction — functional Alpha 4.0
 

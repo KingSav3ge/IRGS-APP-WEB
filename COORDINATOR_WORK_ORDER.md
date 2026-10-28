@@ -14,10 +14,12 @@ WB-APP-01 only against a published Engine authoring contract.
 
 The user directs a shared development/Creator Workshop world builder:
 [implementation plan and owner tasks](WORLD_BUILDER_PLAN.md).
-The supplied executable is uninspected because it exceeds the attachment tool's
-32 MiB transfer limit. Do not claim recovered code, observed features or a working
-editor. Develop shared data/initialization/editor contracts without creating a
-second simulator or delaying the Alpha gameplay critical path.
+The uploaded executable remains uninspected/unmatched after the transfer limit,
+but the public v0.35.4 GPL source has now been assessed separately:
+[reference findings](WORLD_BUILDER_REFERENCE_ASSESSMENT.md).
+Do not claim binary equivalence, runtime qualification or an implemented editor.
+Use the observed source workflows to inform original IRGS contracts and UI,
+keeping one Core and the Alpha gameplay critical path.
 
 Current edition remains 3.4.3 Pre-Alpha. A joined 3.4.4 publication is held for
 the review's fixes, compatible pins, fresh execution capture and final qualification.

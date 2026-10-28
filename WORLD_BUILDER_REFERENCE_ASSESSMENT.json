@@ -1,0 +1,52 @@
+{
+  "repository": "https://github.com/Pfadfinder-Adam/RTW-M2TW-Campaign-Editor",
+  "tag": "v0.35.4",
+  "commit": "9567aee8c2066d4c8b3838c734141ad1516a89e3",
+  "source_archive_sha256": "b65907f59aa91e48b2c6de7ffd95b5b329eb1d3070f9ccc52a48a0cc38c4c6a7",
+  "source_archive_bytes": 6241686,
+  "files": 270,
+  "license": "GPL-3.0, verified release-tag LICENSE",
+  "license_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+  "source_executed": false,
+  "uploaded_executable_downloaded": false,
+  "uploaded_binary_match_verified": false,
+  "assessment_id": "irgs-world-builder-public-reference-1",
+  "static_only": true,
+  "inventoried_modules": 15,
+  "source_file_sha256": {
+    "campaign_editor/plan.py": "2e51ba24ec600abe54100f66293d8fff470ae8c2f8632fa4736a06388c2721f4",
+    "campaign_editor/mapdata.py": "c8f1431ac98bf08fc3eebfbd71e3db7381ae0bd54d8be28aae5adfc4dd9f7ffa",
+    "campaign_editor/mapedit.py": "de5e0071e4159472b8e54992bfd43b018f29071a637c66a2ce9ec0b602039e15",
+    "campaign_editor/mapzero.py": "7f63941444111cc9e5be28c74ccb39c598d0e696926175f6fe0882ce9fe924c4",
+    "campaign_editor/terrain.py": "2458677852567355d3fe1d02f109b8d34912ebf5af21b6f928ebc8a0d37be646",
+    "campaign_editor/terrain3d.py": "4c18c25b1063c34135862396c8ce475cf829d35e9d49db29ea85812333764a73",
+    "campaign_editor/moddata.py": "e41975de739192dd824cb6d1a3240dc11f3ac9a5b3153958a83feaa77378f715",
+    "campaign_editor/modbuilder.py": "f9f9f0861e008ebcbbd539441ea0ee332a27800fda73294d74d4b1bc350865cd",
+    "campaign_editor/fromzero.py": "6d01961b69f9b002fbef1d063a3d4f952320817a55602c09f64bc7c4e0bb1530",
+    "campaign_editor/relocate.py": "8d58d3ec764dfc0c39e09c99689163733792e3455d69367589c2d8899ded151f",
+    "campaign_editor/check.py": "a434e27a59c962d20e7b47f593d422065ab47d2e9302063fd7909f80c9bfe0c2",
+    "campaign_editor/strat.py": "d2428076316a3ab6beacd26bb501f9b44afc72f7c56b1856efe6579047f7c330",
+    "campaign_editor/gui_map.py": "48e1ef7621df69496e3a2b2a72ea313fdb8ec2895331f38e220b1d8b247f38ec",
+    "campaign_editor/gui_terrain.py": "a047766f7b44ff00328ba900c7b063d557982a2c37655bff7dba37e9392c96be",
+    "campaign_editor/gui_fromzero.py": "c1f9c38a127c480faa9f28bf45691c6b56c42bdeb78e509f332a364178c1cc2f"
+  },
+  "tag_source_license": "GPL-3.0 as shipped in tagged LICENSE",
+  "current_main_license_scope": "Different terms for versions after v0.35.4; older GPL grants acknowledged",
+  "binary_release_metadata": {
+    "tag_name": "v0.35.4",
+    "published_at": "2026-10-22T17:08:29Z",
+    "html_url": "https://github.com/Pfadfinder-Adam/RTW-M2TW-Campaign-Editor/releases/tag/v0.35.4",
+    "assets": [
+      {
+        "name": "RTW-M2TW-Campaign-Editor.exe",
+        "size": 37637737,
+        "digest": "sha256:a060661f1eb856a486bb01598c5e8167c02fe577a916425663157153a4fe791d",
+        "browser_download_url": "https://github.com/Pfadfinder-Adam/RTW-M2TW-Campaign-Editor/releases/download/v0.35.4/RTW-M2TW-Campaign-Editor.exe"
+      }
+    ]
+  },
+  "vendor_code_or_artwork_added_to_irgs": false,
+  "implementation_status": "planned_not_implemented",
+  "alpha_qualified": false,
+  "decision": "Independent IRGS web authoring over existing Engine contracts; reference only, no direct vendor code adoption"
+}

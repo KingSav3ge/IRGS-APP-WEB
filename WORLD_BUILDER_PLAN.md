@@ -7,19 +7,21 @@ usable both by IRGS developers and in Creator Workshop. Build **one shared
 authoring system** over the authoritative Engine, with role-appropriate screens.
 This is a development direction and implementation plan, not a delivered editor.
 
-The supplied Windows executable has **not been inspected**: the attachment
-download tool rejects it because it exceeds its 32 MiB transfer limit. Its
-language, recoverable source, assets, supported formats and actual editing
-features are therefore unknown. The workflows below are IRGS requirements,
-not claims about the executable. Do not claim decompilation or compatibility.
+The uploaded Windows executable is **uninspected and unmatched** because it
+exceeds the attachment tool's 32 MiB transfer limit. Separately, the public
+**v0.35.4 GPLv3 source tag** was located and statically assessed.
+Read [the reference assessment](WORLD_BUILDER_REFERENCE_ASSESSMENT.md) and
+[verified provenance](WORLD_BUILDER_REFERENCE_ASSESSMENT.json) for exact commits,
+observed source workflows and limits. Source availability makes binary
+decompilation unnecessary for the current design assessment.
 
-When the source project, a smaller archive, or complete split parts are available,
-first record hash/size and inspect PE architecture, runtime metadata, version
-information, resources, strings and file-format references without launching or
-installing it. Managed code may permit useful decompilation; native code may
-permit only partial reconstruction. Recoverability must be measured. Record
-observed workflows/formats separately from proposed IRGS behavior. Preserve the
-original input and attribution independently of IRGS-authored code and data.
+The source confirms edit plans, preview/apply/backups, map/terrain tools,
+placement checks and recipe authoring. It does not establish that the uploaded
+binary is the same build, that those features work correctly at runtime, or that
+its original formats/rules are compatible with IRGS. No vendor code or artwork
+is incorporated by this plan. Direct reuse needs a deliberate applicable-license
+and dependency decision; the current direction is an IRGS-authored web editor
+over existing Core owners.
 
 ## Shared user workflow
 
@@ -124,8 +126,9 @@ A4-G02/G10/G12; it does not close the remaining Alpha gameplay gates.
 | WB-CAT-02 | Prepare geography/source/asset provenance and content metadata; preserve original records and qualify proposed conversions before adopting them into working packs. |
 | WB-CAT-03 | Independently qualify exported/imported packs and ordinary reviewed playtests against exact Engine/App revisions; require actual effects, failure/recovery and source/privacy separation. |
 
-The coordinator's executable inspection remains blocked on accessible input.
-Owner contract/design work can proceed now. First fix the review's reproduced
+The public source assessment is available now; the uploaded binary remains
+unmatched and uninspected. Binary comparison is not a dependency for the owner
+contract/design work. First fix the review's reproduced
 App harness issues, continue protected operator setup and shared gameplay, and
 publish small useful authoring increments alongside that work. Do not pause the
 Alpha critical path for a speculative complete editor rewrite.
