@@ -202,7 +202,7 @@ Work orders and reports alone are not viable runtime increments.
 
 The coordinator reviews all three viable compatible updates, assembles and
 reproduces joined/browser/package checks, and controls unified publication.
-Every push to unified main increments the edition: next is **3.4.4 Pre-Alpha**,
+Every push to unified main increments the edition: next is **3.4.5 Pre-Alpha**,
 then through 3.4.9, then 3.5.0. Continue 3.x Pre-Alpha work as needed; reaching a
 number does not establish Alpha. Only a qualifying functional milestone becomes
 a **4.0.0 Alpha** candidate. Align all four edition files at that publication.

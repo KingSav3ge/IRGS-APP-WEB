@@ -1,5 +1,20 @@
 # IRGS App/Web development guide
 
+## Coordinated 3.4.4 Pre-Alpha continuation
+
+Current coordinated edition: **3.4.4 Pre-Alpha**; previous release field: **3.3.3**.
+The selected travel and ordinary communication increment preserves one Core,
+explicit acceptance, actor filtering, conserved stock/time and original-result
+recovery. No Alpha gate is closed and live/provider/Windows qualification remains open.
+
+The recipient/version harness fixes are delivered. Next: A4-APP-01 protected operator setup, then A4-APP-03 supported-intent review. Consume published authoring contracts for WB-APP-01; use the existing phase API for selected travel.
+
+This current ordering supersedes earlier review and pending-3.4.3/3.4.4 notes below.
+Original tested source identities and older evidence remain unchanged.
+The coordinator owns the exact all-three integration and final package review.
+Every later unified main push increments the edition; next is 3.4.5 Pre-Alpha.
+Continue toward the shared Alpha 4.0 functional gates and World Builder plan.
+
 ## Coordinator review and world-builder direction — 28 October 2026
 
 Read [the current review](COORDINATOR_REVIEW_2026_10_28.md) and
