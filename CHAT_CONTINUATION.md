@@ -6,11 +6,13 @@ Read [the current review](COORDINATOR_REVIEW_2026_10_28.md) and
 [its executed scope](COORDINATOR_REVIEW_2026_10_28.json). This priority supersedes
 older first-task ordering below; existing task IDs and historical evidence remain.
 
-First correct the two reproduced integration harness findings in the current
-review, then deliberately qualify/adopt exact current Engine/Catalog pins.
-The diagnostic fix is not committed source. Continue A4-APP-01 protected operator
-setup; running-build identity is delivered, not the full setup task. Begin
-WB-APP-01 only against a published Engine authoring contract.
+The two reproduced integration harness findings are corrected and the reviewed
+Engine/Catalog runtime pair is committed and qualified. See
+[the delivery and remaining work](INTEGRATION_HARNESS_ADOPTION.md) and
+[executed evidence](INTEGRATION_HARNESS_ADOPTION_VALIDATION.json). Continue
+A4-APP-01 protected operator setup; running-build identity is delivered, not
+the full setup task. Begin WB-APP-01 only against a published Engine authoring
+contract.
 
 The user directs a shared development/Creator Workshop world builder:
 [implementation plan and owner tasks](WORLD_BUILDER_PLAN.md).
@@ -22,8 +24,8 @@ Use the observed source workflows to inform original IRGS contracts and UI,
 keeping one Core and the Alpha gameplay critical path.
 
 Current edition remains 3.4.3 Pre-Alpha. A joined 3.4.4 publication is held for
-the review's fixes, compatible pins, fresh execution capture and final qualification.
-No Alpha gate is closed by this documentation update.
+Catalog's current-set consumer, coordinator execution capture and final joined
+qualification. No Alpha gate is closed by the App delivery.
 
 Current edition **3.4.3 Pre-Alpha**; target **4.0.0 Alpha**; previous release field
 **3.3.3**. Updated 27 October 2026. User directions take precedence.

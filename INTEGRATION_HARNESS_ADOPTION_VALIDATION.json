@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-28",
+  "source_commit": "20853766f62960b615f09cd9bf63d76b56c0a197",
+  "reviewed_parent": "42c4cdf62b8bcc571d5524170baced1294aacf55",
+  "engine_commit": "0a50694ae1defcbd85143e3de4de3ae5157ea29c",
+  "catalog_commit": "476f459aed4903bdacbe4c37041d5ed8308d94a4",
+  "edition": "3.4.3 Pre-Alpha",
+  "source_sha256": {
+    "IRGS_Web/release.json": "920ce62739ddfd9b332dec330514bbbae9780c840f13066abb7a82b610fc34eb",
+    "IRGS_Web/tests/test_build_identity.py": "74fcac2a518973fdce02e75b2e12f2b6f5c2dd899589ff76517c4be5ea43419d",
+    "tools/qualify_communication_bridge.js": "5eaa74a5ed97e20c537647c9960323d876cd8bdd7eee9f8e10b83bde44227c37",
+    "tools/qualify_interface_port.js": "b4d6d34514f5516219e4563755c0f2cb370e1a5124ed588caed2c1228860c340"
+  },
+  "checks": {
+    "web": {
+      "run": 258,
+      "passed": 251,
+      "windows_skips": 7,
+      "failures": 0
+    },
+    "interface": {
+      "passed": 151
+    },
+    "formatter": {
+      "passed": 13
+    },
+    "tooling": {
+      "passed": 1
+    },
+    "engine_communication": {
+      "passed": 54,
+      "skips": 0
+    },
+    "browser": {
+      "port": {
+        "status": "passed",
+        "browser_errors": 0,
+        "provider_calls": 0,
+        "offline_provider_calls": 0,
+        "live_provider_calls": 0
+      },
+      "starts": {
+        "status": "passed",
+        "browser_errors": 0,
+        "provider_calls": 0,
+        "offline_provider_calls": 0,
+        "live_provider_calls": 0
+      },
+      "communication": {
+        "status": "passed",
+        "browser_errors": 0,
+        "provider_calls": 0,
+        "offline_provider_calls": 0,
+        "live_provider_calls": 0
+      },
+      "process": {
+        "status": "passed",
+        "browser_errors": 0,
+        "provider_calls": 0,
+        "offline_provider_calls": 0,
+        "live_provider_calls": 0
+      },
+      "shared": {
+        "status": "passed",
+        "browser_errors": 0,
+        "provider_calls": 0,
+        "offline_provider_calls": 0,
+        "live_provider_calls": 0
+      },
+      "refinement": {
+        "status": "passed",
+        "browser_errors": 0,
+        "provider_calls": 0,
+        "offline_provider_calls": 0,
+        "live_provider_calls": 0
+      },
+      "solo": {
+        "status": "passed",
+        "browser_errors": 0,
+        "provider_calls": null,
+        "offline_provider_calls": 6,
+        "live_provider_calls": 0
+      }
+    },
+    "ordinary_HTTP": {
+      "quay": "passed",
+      "rise": "passed",
+      "executed_against_committed_gitlinks": true,
+      "provider_calls": 0
+    },
+    "integrity": {
+      "status": "verified",
+      "app_files": 86,
+      "catalog_files": 213,
+      "core": "3.3",
+      "behavioral_tests_executed_by_verifier": false
+    }
+  },
+  "remaining": [
+    "Catalog independent current-set consumer for App, Engine and R00 initial participants",
+    "Coordinator operation/dependency evidence, joined/browser/clean-package review and publication",
+    "A4-APP-01 protected operator configuration and qualified provider adapter",
+    "Engine selected travel, supported-intent DTOs and versioned world-authoring contract",
+    "NPC/institution decisions, selected conflict, live provider quality and native Windows qualification"
+  ],
+  "limits": {
+    "user_saves_used": false,
+    "dependency_source_edits": false,
+    "live_provider_calls": 0,
+    "native_windows_execution": false,
+    "full_engine_suite_rerun": false,
+    "unified_release": false,
+    "alpha_gates_qualified": false
+  }
+}

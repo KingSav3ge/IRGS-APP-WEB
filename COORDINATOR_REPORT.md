@@ -1,3 +1,28 @@
+# App integration harness correction and dependency adoption — 28 October 2026
+
+App source `20853766f62960b615f09cd9bf63d76b56c0a197` corrects both reproduced
+harness findings and commits Engine `0a50694ae1defcbd85143e3de4de3ae5157ea29c`
+and Catalog `476f459aed4903bdacbe4c37041d5ed8308d94a4`. The later fetched heads
+are documentation-only. The proposal helper selects Oren explicitly; actual Core
+recipient checks and Elin's legitimate introduction remain. Identity checks use
+selected metadata and host output, including a simulated 3.4.4 Pre-Alpha case.
+
+Full Web: 251 passed/seven Windows skips; interface: 151; formatter: 13; tooling:
+one; Engine communication: 54. Seven Chromium suites passed, including a synthetic
+Solo transport with six offline calls and zero live calls. Ordinary quay and R00
+HTTP creation/speech/retry/reload passed again after the gitlinks were committed.
+Component verification passed 86 App and 213 Catalog files against those pins.
+No user save, credential, native Windows host, full Engine rerun or unified package
+was used. No Alpha gate is qualified.
+
+Catalog's separate current-set consumer, coordinator fresh operation/dependency
+capture and joined/clean-package review remain pending. Next App task is protected
+operator setup; selected travel/intent and the world-builder authoring API remain
+Engine dependencies. [Scope](INTEGRATION_HARNESS_ADOPTION.md) and
+[evidence](INTEGRATION_HARNESS_ADOPTION_VALIDATION.json) retain exact boundaries.
+
+---
+
 # A4-APP-01 partial delivery: running build identity — 27 October 2026
 
 The App now displays the running host's edition and selected App/Engine/Catalog
