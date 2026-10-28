@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "review_id": "irgs-component-review-2026-10-28",
+  "reviewed_at_utc": "2026-10-28T15:05:19.780670+00:00",
+  "edition": "3.4.3",
+  "classification": "pre-alpha",
+  "next_joined_edition": "3.4.4",
+  "reviewed_components": {
+    "engine": "0a50694ae1defcbd85143e3de4de3ae5157ea29c",
+    "app": "41ca38473dd7ad30f201c7104f26e51d3df85df2",
+    "catalog": "476f459aed4903bdacbe4c37041d5ed8308d94a4"
+  },
+  "joined_commit": "9dc27f82f7f49e6f8b1de66573b991b22e68cb2a",
+  "disposition": "bounded_component_progress_reviewed_unified_release_held",
+  "alpha_qualified": false,
+  "product_sources_modified_by_review": false,
+  "unified_pushed": false,
+  "app_committed_pins": {
+    "engine": "efc84364b86e640f5028bfac2dfd5ae3021695a9",
+    "catalog": "6f927b00e12a3339861ac353bc38d03c68279662"
+  },
+  "findings": [
+    {
+      "id": "IRGS-REVIEW-2026-10-28-01",
+      "priority": "P2",
+      "owner": "app",
+      "path": "tools/qualify_communication_bridge.js",
+      "line": 26,
+      "title": "Explicitly select the intended offer recipient in the browser journey",
+      "trigger": "Latest Engine supplies received Elin and Oren introductions to the founder. The existing synthetic transfer fixture preserves them.",
+      "actual": "The browser helper accepts the first participant, Elin, while filling to=oren-home. Core correctly rejects the mismatched recipient; confirm waits 30 seconds for a revision that never commits.",
+      "reproduction": "Run the committed communication browser qualifier with exact latest Engine/Catalog root overrides. The first Rise offer times out.",
+      "diagnosis": "A diagnostic copy explicitly selecting oren passes all six commands, conserved transfers, original-result recovery, privacy and mobile checks. Product source and committed tests were not patched.",
+      "required_change": "Select the received recipient explicitly before preparing the offer; assert intended recipient and report rejected responses instead of silently timing out. Preserve the new legitimate introductions and existing Core recipient checks."
+    },
+    {
+      "id": "IRGS-REVIEW-2026-10-28-02",
+      "priority": "P2",
+      "owner": "app",
+      "path": "IRGS_Web/tests/test_build_identity.py",
+      "line": 22,
+      "related_path": "tools/qualify_interface_port.js",
+      "related_line": 21,
+      "title": "Remove the 3.4.3-only expectation from running-build checks",
+      "trigger": "The next unified push must increment the edition to 3.4.4.",
+      "actual": "With only edition metadata simulated as 3.4.4, runtime correctly returns 3.4.4/pre_alpha, but the unit test fails against literal 3.4.3. The browser qualifier also waits for literal IRGS 3.4.3 Pre-Alpha.",
+      "reproduction": "Intercept VERSION.json read in memory with version=3.4.4; run the existing selected-files identity test.",
+      "required_change": "Derive expected edition from the selected VERSION.json and compare rendered identity with the running host response; retain Pre-Alpha checks for 3.x and missing/invalid metadata coverage."
+    }
+  ],
+  "release_prerequisites": [
+    {
+      "owner": "app",
+      "requirement": "Publish both harness corrections and deliberately adopt exact qualified Engine/Catalog pins with actual consumer checks."
+    },
+    {
+      "owner": "catalog",
+      "requirement": "Preserve old fixture identities and add a separately selected acceptance record for adopted latest App/Engine, including the newly introduced R00 participants."
+    },
+    {
+      "owner": "coordinator",
+      "requirement": "Refresh executed operation/dependency capture for changed Engine tests; the existing exact-set automatic report fails evidence freshness, not runtime or Web behavior."
+    },
+    {
+      "owner": "coordinator",
+      "requirement": "Qualify the exact pinned set, full regressions, browser journeys and a clean package before any versioned joined publication."
+    }
+  ],
+  "fresh_checks": [
+    {
+      "scope": "latest Engine",
+      "kind": "focused_python",
+      "run": 102,
+      "passed": 102,
+      "skipped": 0,
+      "command": "python -B -m unittest test_ordinary_communication test_rise_start_communication test_communication_contract test_start_readiness test_phase_contract -q"
+    },
+    {
+      "scope": "latest Catalog",
+      "kind": "contract_python",
+      "run": 5,
+      "passed": 5,
+      "skipped": 0
+    },
+    {
+      "scope": "latest App with explicit latest roots",
+      "kind": "identity_python",
+      "run": 2,
+      "passed": 2,
+      "skipped": 0
+    },
+    {
+      "scope": "latest App with explicit latest roots",
+      "kind": "interface",
+      "passed": 151
+    },
+    {
+      "scope": "latest Engine/App/Catalog overrides, not pin adoption",
+      "kind": "ordinary_creation_http",
+      "journeys": 2,
+      "passed": 2
+    },
+    {
+      "scope": "latest Engine/App/Catalog overrides",
+      "kind": "browser",
+      "name": "interface and running identity",
+      "status": "passed"
+    },
+    {
+      "scope": "latest Engine/App/Catalog overrides",
+      "kind": "browser",
+      "name": "reviewed starts and recovery",
+      "status": "passed"
+    },
+    {
+      "scope": "latest Engine/App/Catalog overrides",
+      "kind": "browser",
+      "name": "committed communication qualifier",
+      "status": "failed"
+    },
+    {
+      "scope": "same product sources; diagnostic helper selects oren explicitly",
+      "kind": "diagnostic_browser",
+      "name": "all six communication commands",
+      "status": "passed",
+      "committed_qualifier_fixed": false
+    },
+    {
+      "scope": "Catalog fixture-declared baseline efc8436/de4e692",
+      "kind": "independent_http_consumers",
+      "run": 5,
+      "passed": 5,
+      "skipped": 0
+    },
+    {
+      "scope": "Catalog fixture-declared journey ea0631b/b3a53cf",
+      "kind": "independent_http_consumers",
+      "run": 6,
+      "passed": 6,
+      "skipped": 0
+    }
+  ],
+  "prior_automatic_qa": {
+    "label": "Previously executed against these exact component heads; not a fresh full rerun by this review.",
+    "report_finished_at_utc": "2026-10-27T16:31:52.434772+00:00",
+    "runtime": {
+      "run": 782,
+      "passed": 781,
+      "skipped": 1
+    },
+    "web": {
+      "run": 258,
+      "passed": 251,
+      "skipped": 7
+    },
+    "tooling": {
+      "run": 32,
+      "passed": 32
+    },
+    "independent_http": {
+      "run": 8,
+      "passed": 8
+    },
+    "evidence_freshness": "failed"
+  },
+  "limits": [
+    "No live provider evaluation",
+    "No native Windows execution",
+    "No Alpha gate closed",
+    "Independent Catalog consumers remain attributed to their declared older source selections",
+    "No new joined package qualification by this review"
+  ],
+  "live_provider_calls": 0,
+  "user_saves_opened": false,
+  "evidence_sha256": {
+    "focused-checks.json": "db128fa0b183113c8a3d92d16ed285c2ac32f9179fb02fd05f7745f2003ff850",
+    "diagnose-communication.json": "2d67a1b9a6ec6369cea688df5a72c800ec6e00488b8b888b28bdbed7d6153958",
+    "explicit-recipient-communication.json": "8dc62f297db352745f893427da32fdc50461f977ee58290639f5d0a02cb3465b",
+    "next-edition-identity-reproduction.json": "f3e63657595d716ab3315c0984a655d5f8e5050cd0ee2fdecbb962d9370c3fc5",
+    "catalog-consumer-checks.json": "1edac7b746b014b812d03fbac9793025249a0737c21ccf9666eee08671f26210"
+  }
+}

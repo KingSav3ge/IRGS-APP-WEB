@@ -4,6 +4,14 @@ Current coordinated edition: **3.4.3**; previous release: **3.3.3**.
 See [version policy](VERSION_POLICY.md). Earlier baseline tables and execution
 records below retain their original tested development identities.
 
+## Current coordinator handoff
+
+Before selecting the next increment, read
+[the 28 October review](COORDINATOR_REVIEW_2026_10_28.md) and
+[shared world-builder direction](WORLD_BUILDER_PLAN.md). They supplement the
+Alpha plan and supersede older first-task ordering. The world-builder executable
+has not been inspected or decompiled; its file transfer exceeded the tool limit.
+
 ## Active direction — functional Alpha 4.0
 
 The entire 3.x.x series is **Pre-Alpha**. Current published edition is 3.4.3;
