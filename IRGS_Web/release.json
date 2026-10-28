@@ -66,7 +66,7 @@
     "tests/start_context_assertions.py": "4af5424d9b041c43f845c265856e42a307e930c2831774360d2c52f976a670ef",
     "tests/test_ai_usage.py": "c153f607e920b89cd3a98712ab60a2414bd9d488691151493ea31a249e4fa670",
     "tests/test_assistance.py": "4f49a11c6675d6e4c65a349ecb05436572897bf3eb1d60f24b5ae152cca61e8b",
-    "tests/test_build_identity.py": "e1debbdde3fedf1d8c1bb2938422aeb5931722e9b2c8a846f70bab4d669ec87a",
+    "tests/test_build_identity.py": "74fcac2a518973fdce02e75b2e12f2b6f5c2dd899589ff76517c4be5ea43419d",
     "tests/test_campaign_portfolio.py": "bb5c61cfb46b12ff1184d61f179123d2ffc3bcc996573a76cd2010ab7e2aff18",
     "tests/test_communication_bridge.py": "8fce701728dc8d952bd54cb71745e021543002edb6eeed02ca1c63c978f9f3f3",
     "tests/test_current_catalog_consumers.py": "34a775456890d89e393c5eeab15ff54df2e8c4890e570c16b39e492788787602",

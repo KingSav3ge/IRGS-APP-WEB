@@ -19,14 +19,21 @@ from server import make_server
 class BuildIdentityTests(unittest.TestCase):
     def test_selected_files_and_missing_edition_are_reported_without_private_paths(self):
         identity = running_build()
-        self.assertEqual(identity['edition'], '3.4.3')
-        self.assertEqual(identity['classification'], 'pre_alpha')
+        edition = json.loads((Path(__file__).resolve().parents[2] / 'VERSION.json').read_text())['version']
+        self.assertEqual(identity['edition'], edition)
+        self.assertEqual(identity['classification'], 'pre_alpha' if edition.startswith('3.') else 'unclassified')
         for field, path in [('engine_manifest_sha256', ENGINE_ROOT / 'release.json'),
                             ('catalog_manifest_sha256', CATALOG_ROOT / 'release.json')]:
             self.assertEqual(identity[field], hashlib.sha256(path.read_bytes()).hexdigest())
         self.assertNotIn(str(ENGINE_ROOT), json.dumps(identity))
         self.assertNotIn(str(CATALOG_ROOT), json.dumps(identity))
         with patch('build_identity.json.loads', side_effect=ValueError):
+            self.assertIsNone(running_build()['edition'])
+        with patch('build_identity.json.loads', return_value={'version': '3.4.4'}):
+            future = running_build()
+            self.assertEqual(future['edition'], '3.4.4')
+            self.assertEqual(future['classification'], 'pre_alpha')
+        with patch('build_identity.json.loads', return_value={'version': 'not-a-version'}):
             self.assertIsNone(running_build()['edition'])
 
     def test_running_host_identity_is_stable_until_restart_and_never_exposes_configuration(self):
