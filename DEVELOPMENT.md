@@ -8,6 +8,16 @@ This edition joins reviewed intentions, protected server-side POSIX operator set
 
 Preserve one authoritative Core, the existing nine K owners and six Directors, actor-scoped information, conserved resources/capacity, atomic rejection and original-result recovery. Distinguish causal sequence, revision, elapsed work and civil time. Broader NPC/institution behavior, needs/recovery, selected conflict, arbitrary world authoring, live-model quality, native Windows and full Alpha qualification remain open.
 
+## Communication DTO delivery — 29 October 2026
+
+New UI communications now consume the pinned Engine's supported-intent review,
+prepare and immutable result DTOs. Unsupported/clarification statuses keep exact
+words as drafts; supported attempts still require explicit confirmation. Older
+pending/committed communications retain their original recovery path. Read
+[scope](COMMUNICATION_INTENT_ADOPTION.md) and
+[evidence](COMMUNICATION_INTENT_ADOPTION_VALIDATION.json). Grant prerequisites
+and the world-draft preview/editor remain next App work.
+
 ## Optional offer setup delivery — 29 October 2026
 
 The normal Rise UI now explicitly selects or omits the Engine's optional
@@ -22,7 +32,7 @@ supported-intent communication module or the world-draft editor.
 
 **A4-APP-03 and WB-APP-01: adopt supported-intent/draft contracts and explicit offer selection.**
 
-Protected POSIX operator setup, explicit shared-capability review and WorldWard branding are delivered. The current UI uses the shared runtime contract; the optional start offer-profile choice is now adopted through normal reviewed Rise creation. Newer supported-intent communication DTOs, grant prerequisites and world-draft preview/editor remain unadopted. Add explicit source-bound controls incrementally, preserving exact words, independent drafts, review/cancel/confirmation, original-result recovery and the chronological tale. Keep Windows setup unavailable until ACL handling is implemented and tested; live-provider quality requires a separately authorized eligible route and finite budget.
+Protected POSIX operator setup, explicit shared-capability review and WorldWard branding are delivered. The current UI uses the shared runtime contract; the optional start offer-profile choice is now adopted through normal reviewed Rise creation. New UI communications now adopt supported-intent communication DTOs, while older requests retain their original path. Grant prerequisites and world-draft preview/editor remain unadopted. Add explicit source-bound controls incrementally, preserving exact words, independent drafts, review/cancel/confirmation, original-result recovery and the chronological tale. Keep Windows setup unavailable until ACL handling is implemented and tested; live-provider quality requires a separately authorized eligible route and finite budget.
 
 ## Development and handoff
 

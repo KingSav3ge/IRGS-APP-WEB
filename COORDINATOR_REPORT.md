@@ -1,3 +1,34 @@
+# Supported communication DTO adoption — 29 October 2026
+
+App source `9b16658c17c7dcfc639d388752108b30380a03d9` adopts the pinned Engine's
+`irgs-supported-intent-1` communication review, prepare and immutable result DTOs
+for new UI requests. Exact words and structured selection remain independent.
+Unsupported/clarification results retain drafts and commit no native request or
+world effect. Supported reviews still require explicit confirmation; execution
+uses actual Core checks and atomically retains the exact versioned result.
+Old prepared/accepted requests recover through their original contract. No
+simulation, actor control, authority, material, consent or elapsed/civil time is
+created by this adoption. Received sources and the chronological Story remain.
+
+Engine remains `fe9c2c10ec3a66f1be590e1b34860119670b22cb`; Catalog remains
+`cf69a6cf628a6d9249124cc6b0700dfc59287677`. Full Web: 277 tests ran, 270 passed
+and seven Windows PowerShell launcher tests skipped. Frontend: 158 passed.
+Legacy communication focused: 14 passed. Three Chromium journeys passed:
+ordinary non-Rise/Rise creation with versioned testimony and offered proposal;
+selected-fixture all-six-command communication and lost reply recovery;
+chronological Story/draft/mobile checks. Integrity verified 93 App and 230 Catalog
+files. No user save, live provider, native Windows or joined package was used.
+
+Next: grant prerequisite controls and the world-draft preview/editor. General
+language interpretation, broader NPC/institution decisions, Windows profile ACL
+handling, live-provider quality and the wider Alpha gates remain open. App stays
+3.4.6 Pre-Alpha; the coordinator owns the next qualified joined edition, 3.4.7.
+Only App source is published through the user's GitHub plugin connection; CLI
+credential repair is not required for this publication. See [scope](COMMUNICATION_INTENT_ADOPTION.md)
+and [executed evidence](COMMUNICATION_INTENT_ADOPTION_VALIDATION.json).
+
+---
+
 # Optional reviewed Rise offer setup — 29 October 2026
 
 App source `51a5294c865373683ea0f3a9821b6465fdca5940` exposes the Engine's optional

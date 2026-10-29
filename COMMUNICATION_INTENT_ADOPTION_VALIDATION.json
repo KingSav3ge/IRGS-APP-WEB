@@ -1,0 +1,165 @@
+{
+  "source_commit": "9b16658c17c7dcfc639d388752108b30380a03d9",
+  "base_commit": "4ffd53a351a4d21c2005505076641c1827425147",
+  "engine_commit": "fe9c2c10ec3a66f1be590e1b34860119670b22cb",
+  "catalog_commit": "cf69a6cf628a6d9249124cc6b0700dfc59287677",
+  "source_sha256": {
+    "IRGS_Web/communication_bridge.py": "7384bab7ddf3baf8b47c94f2f55be979908185f679a328075ab510ba84881cd1",
+    "IRGS_Web/gameplay_views.py": "9066cc7ca2e13be261ad54696a88a702321e2f3d5a60eaa41a7d223491664f80",
+    "IRGS_Web/release.json": "c4ed12e2b53195303b70d099141fba7881c1dbe400e8887d2493d7df3ab9d34f",
+    "IRGS_Web/server.py": "a037064677d5a7609388fe218a36099a6a25fcb73fd208efe865911f72450d3c",
+    "IRGS_Web/static/communications.js": "b0c82910f068545a712bce1bfcc20ae8aa2126067e180ac73aa104e389424ac5",
+    "IRGS_Web/tests/test_communication_intents.py": "703a65d4976cd19072156a6bad9d358de6d5c09419c63c2dfb21cf7a217a2554",
+    "IRGS_Web/tests/test_gameplay_ui.js": "49019c9b461a646bf8fd25c5cb0f198ea58cd11c79de83a19a590d9aa960f82a",
+    "tools/qualify_communication_bridge.js": "bc25975a593c9ed256e70adb0febd064df407a96685c6ade5877480daff1b672",
+    "tools/qualify_communication_intents.js": "7c435ce2bdae71c66ca2a1d76d91ac64bbf4afb7ef1f672a3b61c58b2cfb69c6"
+  },
+  "checks": {
+    "web_unittest": {
+      "command": "python3 -B -m unittest discover -s IRGS_Web/tests -v",
+      "ran": 277,
+      "passed": 270,
+      "skipped": 7,
+      "skip_reason": "Windows PowerShell launcher tests on non-Windows host",
+      "new_communication_intent_cases": 5
+    },
+    "legacy_communication_focused": {
+      "passed": 14
+    },
+    "frontend": {
+      "command": "node IRGS_Web/tests/test_gameplay_ui.js",
+      "passed": 158
+    },
+    "javascript_syntax": "passed",
+    "component_integrity": {
+      "status": "verified",
+      "app_files": 93,
+      "catalog_files": 230,
+      "behavioral_tests_executed": false
+    },
+    "browser": {
+      "ordinary_creation": {
+        "status": "passed",
+        "supported_intent_dtos": true,
+        "ordinary_quay_testimony": true,
+        "ordinary_Rise_offer": true,
+        "contexts": [
+          {
+            "action": "look-quay",
+            "normal_reviewed_creation": true,
+            "review_cancel_no_effect": true,
+            "actual_commit": true,
+            "exact_words": true,
+            "retained_draft": true,
+            "reload": true,
+            "mobile_width": 390
+          },
+          {
+            "action": "inspect",
+            "normal_reviewed_creation": true,
+            "review_cancel_no_effect": true,
+            "actual_commit": true,
+            "exact_words": true,
+            "retained_draft": true,
+            "reload": true,
+            "mobile_width": 390
+          }
+        ],
+        "optional_profile_default_omitted": true,
+        "reviewed_source_and_scope": true,
+        "back_and_cancel_preserved": true,
+        "lost_creation_acknowledgement_recovered": true,
+        "explicit_offer_review_cancel_confirm": true,
+        "offer_status": "offered",
+        "stock_transfer": false,
+        "npc_control_or_consent": false,
+        "independent_drafts_reload": true,
+        "provider_calls": 0,
+        "browser_errors": 0,
+        "external_requests": 0
+      },
+      "selected_communication_recovery": {
+        "status": "passed",
+        "supported_intent_dtos": true,
+        "contexts": [
+          "selected_non_rise_quay",
+          "selected_R00_transfer"
+        ],
+        "mobile_width": 390,
+        "exact_words_and_testimony": true,
+        "speech_does_not_accept_offer": true,
+        "elapsed_time_unchanged": true,
+        "all_six_structured_commands": true,
+        "conserved_transfers": true,
+        "terminal_statuses_distinct": true,
+        "original_proposal_result_retained": true,
+        "private_actor_record_denied": true,
+        "lost_prepare_ack_reload_recovered": true,
+        "lost_execute_ack_original_result_recovered": true,
+        "independent_own_response_preserved": true,
+        "HTML_is_literal_text": true,
+        "provider_calls": 0,
+        "browser_errors": 0,
+        "external_requests": 0,
+        "prepared": 10,
+        "executed": 10
+      },
+      "chronological_story": {
+        "status": "passed",
+        "contexts": [
+          {
+            "context": "authored_scene",
+            "entries": 4,
+            "chronological": true,
+            "choices_and_composer_below_tale": true,
+            "one_reading_viewport": true,
+            "review_cancel_no_effect": true,
+            "one_confirmed_commit": true,
+            "draft_and_reload_preserved": true,
+            "widths": [
+              1568,
+              390
+            ]
+          },
+          {
+            "context": "settlement",
+            "entries": 5,
+            "chronological": true,
+            "choices_and_composer_below_tale": true,
+            "one_reading_viewport": true,
+            "review_cancel_no_effect": true,
+            "one_confirmed_commit": true,
+            "draft_and_reload_preserved": true,
+            "widths": [
+              1568,
+              390
+            ]
+          }
+        ],
+        "known_view_replay": null,
+        "browser_errors": 0,
+        "provider_calls": 0,
+        "external_requests": 0,
+        "user_saves_opened": false
+      }
+    }
+  },
+  "boundaries": {
+    "provider_calls": 0,
+    "user_saves_opened": false,
+    "native_windows_executed": false,
+    "live_provider_quality_qualified": false,
+    "new_communication_DTOs_adopted": true,
+    "legacy_pending_and_committed_results_preserved": true,
+    "general_language_interpretation": false,
+    "grant_prerequisites_adopted": false,
+    "world_draft_editor_adopted": false,
+    "alpha_qualified": false
+  },
+  "publication": {
+    "connection": "user-selected GitHub plugin",
+    "remote_blobs_and_trees_match_local_git_objects": true,
+    "edition_changed": false,
+    "dependency_pins_changed": false
+  }
+}
