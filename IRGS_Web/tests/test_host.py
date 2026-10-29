@@ -121,7 +121,7 @@ class HostTests(unittest.TestCase):
 
     def test_static_entrypoint(self):
         with urlopen(self.url) as r:
-            self.assertIn(b'IRGS',r.read())
+            self.assertIn(b'WorldWard',r.read())
             self.assertIn("frame-ancestors 'none'",r.headers['Content-Security-Policy'])
 
     def test_catalog_separates_core_genres_libraries_and_campaign_profiles(self):

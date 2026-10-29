@@ -1,4 +1,8 @@
-# IRGS local website
+# WorldWard local website
+
+WorldWard is developed by T!DEMARCH Studios and powered by Fulcrum Engine. IRGS remains the internal development project. The working names remain subject to the user-directed commercial clearance.
+
+For optional server-only provider configuration and offline fallback, see [operator setup](OPERATOR_SETUP.md).
 
 IRGS uses Core 3.3 as one campaign-state kernel. Genre engines supply domain rules, content libraries supply references, and campaign profiles select them. Player campaign discovery is separate from installed technical and legacy library assets.
 

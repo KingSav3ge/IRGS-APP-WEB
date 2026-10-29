@@ -9,6 +9,7 @@ import json
 import os
 from pathlib import Path
 import re
+import sqlite3
 import uuid
 
 from core_world import CoreWorld
@@ -61,11 +62,13 @@ class SoloConfiguration:
     private_dir: object
     deadline_seconds: float
     max_output_tokens: int
+    operator_route: object = None
 
 
 class SoloService:
-    def __init__(self, store, configuration=None):
+    def __init__(self, store, configuration=None, *, configuration_error=False):
         self.store, self.config, self.closed = store, configuration, False
+        self.configuration_error = configuration_error
         if configuration is None:
             return
         # Lazy imports keep the reviewed older Core usable while candidates are
@@ -89,26 +92,61 @@ class SoloService:
 
     def status(self, *, developer=False, record=None, actor=None):
         if self.config is None or self.closed:
-            return assistance_status(developer=developer)
-        available = self.broker.enabled is True
+            result = assistance_status(developer=developer)
+            if developer and self.configuration_error:
+                result['diagnostics']['reason_code'] = 'invalid_operator_configuration'
+            return result
+        available, reason = self.readiness()
         if record is not None:
             if record['state'].get('binding', {}).get('campaign_profile') == 'rise':
                 from settlement_runtime import ACTIONS
                 supported = actor == 'founder' and bool(ACTIONS)
+                operation = self.api.RISE_OPERATION
             else:
                 from scene_actions import scene_options
                 supported = bool(actor) and bool(scene_options(record['state'], actor))
+                operation = self.api.LOCAL_OPERATION
+            if self.config.operator_route is not None:
+                supported = supported and operation in self.config.operator_route.operations
             available = available and supported
         result = {'status': 'configured' if available else 'unavailable', 'available': available,
                   'campaign_effects': False, 'message': (
                       'Review an assisted proposal for a listed action. Only your explicit acceptance submits it.'
                       if available else 'Assistance is unavailable for this situation. Freeform declarations remain unresolved. Inspect your character’s current capabilities in Story.')}
+        if available and self.config.operator_route is not None:
+            result['message'] = ('Review with assistance sends your words and received context to the selected provider '
+                'using an operator budget reservation. Only your explicit acceptance submits an action.')
         if developer:
             result['diagnostics'] = {'reason_code': 'explicit_host_configuration',
-                'dispatch_enabled': self.broker.enabled is True,
+                'dispatch_enabled': available,
                 'provider_runtime': 'engine_capability_broker',
                 'model_evaluations': 'host_selected_route_requires_engine_eligibility'}
+            if self.config.operator_route is not None:
+                result['diagnostics'].update(reason_code=reason,
+                    model=self.config.operator_route.model, workload=self.api.TASK,
+                    operations=list(self.config.operator_route.operations),
+                    readiness_available=available)
         return result
+
+    def readiness(self):
+        if self.broker.enabled is not True:
+            return False, 'provider_disabled'
+        route = self.config.operator_route
+        if route is None:  # Existing explicitly injected hosts retain their contract.
+            return True, 'explicit_host_configuration'
+        from operator_setup import credential_available
+        if not credential_available():
+            return False, 'credential_unavailable'
+        try:
+            from ai_usage import usage_snapshot
+            summary = usage_snapshot(self.ledger, limit=1)['summary']
+            if summary['remaining_units'] < route.reservation_units:
+                return False, 'budget_exhausted'
+            if summary['active_transport_slots'] >= summary['maximum_transport_slots']:
+                return False, 'capacity_unavailable'
+        except (OSError, ValueError, TypeError, KeyError, sqlite3.Error, self.api.CapabilityUnavailable):
+            return False, 'accounting_unavailable'
+        return True, 'ready'
 
     def save_metadata(self):
         tmp = self.metadata_path.with_suffix('.tmp')
@@ -194,6 +232,9 @@ class SoloService:
             if request is None and lookup:
                 return self.unavailable(key, 'unknown_request')
             if request is None:
+                ready, reason = self.readiness()
+                if not ready:
+                    return self.unavailable(key, reason)
                 controlled_actor(record['state'], actor, required=True)
                 if type(data.get('revision')) is not int or record['revision'] != data['revision']:
                     return self.unavailable(key, 'stale_state')

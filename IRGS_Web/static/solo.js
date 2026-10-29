@@ -3,6 +3,7 @@ let soloReview=null,assistanceStatusRequest=0,soloAttempt=null,soloGeneration=0;
 
 function reviewActionValid(){
   if(!soloReview||!soloReview.actor||busy||loadingCampaign||workspaceMode!=='player'||view!=='story'||!current||$('#campaign').value!==current.id||current.id!==soloReview.campaign||current.actor_id!==soloReview.actor||current.revision!==soloReview.revision||campaignRequest!==soloReview.request||current.pending_declaration||transportPending||current.character_available===false)return false;
+  if(soloReview.source==='intent')return validIntentReview(soloReview);
   if(soloReview.source==='communication')return validCommunicationReview(soloReview);
   if(soloReview.source==='process')return validProcessReview(soloReview);
   if(soloReview.source==='local-draft')return current.capabilities?.can_declare===true&&availableRoutineDrafts().some(draft=>draft.id===soloReview.id&&draft.text===soloReview.text&&draft.projection_view===soloReview.projection_view);
@@ -36,6 +37,7 @@ function syncActionReview(){
 }
 function keepReviewedDraft(){
   if(!reviewActionValid())return invalidateActionReview();
+  if(soloReview.source==='intent')return keepIntentDraft();
   if(soloReview.source==='communication')return keepCommunicationDraft();
   const draft=$('#action-review-intent').value;if(!draft.trim())return;
   if(soloReview.source==='local-draft')$('#local-drafts').open=false;
@@ -46,6 +48,7 @@ async function confirmReviewedAction(){
   if(soloReview?.source==='local-draft')return;
   if(!reviewActionValid()||$('#action-review-intent').value!==soloReview.text)return invalidateActionReview();
   const action=soloReview;
+  if(action.source==='intent'){invalidateActionReview();return submitIntent(action);}
   if(action.source==='communication'){invalidateActionReview();return submitCommunication(action);}
   if(action.source==='process'){invalidateActionReview();return submitProcessPhase(action);}
   if(action.source==='proposal'){if(action.edited)return;soloAttempt=null;writeLocal(proposalKey(action),null);invalidateActionReview();const pending={endpoint:'ai/accept',body:{id:action.campaign,revision:action.revision,actor:action.actor,request_id:action.proposal.request_id,intention:action.text,proposal_digest:action.proposal.proposal_digest,explicitly_accepted:true}};stashDraft();storeTransport(pending);return deliverAction(pending);}
@@ -140,7 +143,7 @@ async function renderAssistanceStatus(){
     const result=await api('ai/status',undefined,{creator:true});
     if(request!==assistanceStatusRequest||!assistanceStatusActive())return;
     const details=result.diagnostics||{};
-    $('#content').innerHTML='<section class="panel"><span class="eyebrow">DEVELOPER STATUS</span><h2>AI assistance</h2><p>'+esc(result.message||'AI assistance is unavailable.')+'</p>'+facts({status:result.status||'unavailable',provider_runtime:details.provider_runtime||'not_connected',dispatch_enabled:details.dispatch_enabled===true,model_evaluations:details.model_evaluations||'not_run'})+'<p class="note">Status inspection does not make a provider request or change a campaign. Provider setup, model qualification and live play remain separate.</p><button class="quiet" id="retry-assistance-status">Check again</button></section>';
+    $('#content').innerHTML='<section class="panel"><span class="eyebrow">DEVELOPER STATUS</span><h2>AI assistance</h2><p>'+esc(result.message||'AI assistance is unavailable.')+'</p>'+facts({status:result.status||'unavailable',provider_runtime:details.provider_runtime||'not_connected',dispatch_enabled:details.dispatch_enabled===true,readiness:details.reason_code||'unknown',model:details.model||'Not selected',workload:details.workload||'Not selected',operations:details.operations||[],model_evaluations:details.model_evaluations||'not_run'})+'<p class="note">Status inspection does not make a provider request or change a campaign. Provider setup, model qualification and live play remain separate.</p><button class="quiet" id="retry-assistance-status">Check again</button></section>';
   }catch(error){
     if(request!==assistanceStatusRequest||!assistanceStatusActive())return;
     $('#content').innerHTML='<section class="panel"><h2>AI assistance unavailable</h2><p>'+esc(error.message)+'</p><button class="quiet" id="retry-assistance-status">Retry status check</button></section>';

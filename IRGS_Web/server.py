@@ -265,7 +265,7 @@ class Store:
             raise FileNotFoundError('No saved action result exists for this request')
         if request.get('campaign_id')!=key or request.get('actor')!=actor:
             raise PermissionError('This action result is not available to the selected character')
-        if request['kind'] in ('process_phase', 'communication'):
+        if request['kind'] in ('process_phase', 'communication', 'shared_intent') or request.get('intent_api'):
             sync_parent(self.path(key))  # Finish a prior uncertain directory-sync before acknowledgment.
         result=safe_result(request['result'])
         if request['kind']=='declaration' and request['status']=='withdrawn':
@@ -365,16 +365,36 @@ class Store:
 
 def make_server(port=8765, folder=None, *, reference_library=None, reference_error=None,
                 reference_config=None, reference_manifest=None, reference_manifest_pin=None,
-                reference_cache=None, solo_configuration=None):
+                reference_cache=None, solo_configuration=None, operator_config_path=None):
     references = HistoricalReferences(config=reference_config, manifest=reference_manifest,
         manifest_pin=reference_manifest_pin, cache=reference_cache,
         library=reference_library, error=reference_error)
     store = Store(folder or ROOT / 'saves')
-    solo = SoloService(store, solo_configuration)
+    configuration_error = False
+    if operator_config_path is not None:
+        if solo_configuration is not None:
+            raise ValueError('Choose one server-side assistance configuration')
+        try:
+            from operator_setup import load_operator_configuration
+            solo_configuration = load_operator_configuration(operator_config_path, store.folder)
+        except (ValueError, TypeError, OSError):
+            configuration_error = True
+    try:
+        solo = SoloService(store, solo_configuration, configuration_error=configuration_error)
+    except (ValueError, OSError, sqlite3.Error):
+        if operator_config_path is None: raise
+        solo = SoloService(store, configuration_error=True)
+    except Exception as error:
+        # Only Engine's bounded configuration failure is safe to degrade to offline.
+        from solo_provider import CapabilityUnavailable
+        if operator_config_path is None or not isinstance(error, CapabilityUnavailable): raise
+        solo = SoloService(store, configuration_error=True)
     from process_bridge import ProcessService
     processes = ProcessService(store)
     from communication_bridge import CommunicationService
     communications = CommunicationService(store)
+    from intent_bridge import IntentService
+    intents = IntentService(store)
     token = secrets.token_urlsafe(32)
     from build_identity import running_build
     build = running_build()
@@ -451,6 +471,8 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                         projection['assistance'] = solo.status(record=record, actor=projection['actor_id'])
                         projection['process_control'] = processes.view(record, projection['actor_id']) if projection['character_available'] else {'schema_version': 1, 'processes': [], 'start_available': False, 'view_token': None}
                         projection['communication_control'] = communications.view(record,
+                            projection['actor_id'] if projection['character_available'] else None)
+                        projection['intent_control'] = intents.view(record,
                             projection['actor_id'] if projection['character_available'] else None)
                         from start_preview import capability_summary
                         projection['play_readiness'] = capability_summary(projection,
@@ -577,7 +599,7 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                         self.creator(mode)
                         return self.reply(200, presentation_binding(store.read(path.rsplit('/', 1)[1])['state']))
                 files = {'/': ('index.html', 'text/html'), '/app.js': ('app.js', 'text/javascript'), '/style.css': ('style.css', 'text/css'), '/voyage.svg': ('voyage.svg', 'image/svg+xml'), '/rise.js': ('rise.js', 'text/javascript'), '/catalogue.js': ('catalogue.js', 'text/javascript'), '/solo.js': ('solo.js', 'text/javascript'), '/processes.js': ('processes.js', 'text/javascript'), '/responses.data.js': ('responses.data.js', 'text/javascript'), '/responses.js': ('responses.js', 'text/javascript'), '/routine.js': ('routine.js', 'text/javascript'), '/themes.js': ('themes.js', 'text/javascript'), '/themes.css': ('themes.css', 'text/css')}
-                files.update({'/communications.js': ('communications.js', 'text/javascript'), '/preview.js': ('preview.js', 'text/javascript'),
+                files.update({'/communications.js': ('communications.js', 'text/javascript'), '/intents.js': ('intents.js', 'text/javascript'), '/preview.js': ('preview.js', 'text/javascript'),
                     '/preview.css': ('preview.css', 'text/css'), '/fonts.css': ('fonts.css', 'text/css'),
                     '/historical-landscape.jpg': ('historical-landscape.jpg', 'image/jpeg')})
                 for font in ('newsreader', 'fraunces', 'instrument-sans', 'ibm-plex-mono', 'im-fell-english', 'im-fell-english-sc'):
@@ -641,6 +663,11 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                         operation = {'/api/communication/prepare': communications.prepare,
                                      '/api/communication/execute': communications.execute,
                                      '/api/communication/status': communications.status}[path]
+                        result = operation(data)
+                    elif path in ('/api/intent/prepare', '/api/intent/execute', '/api/intent/status'):
+                        operation = {'/api/intent/prepare': intents.prepare,
+                                     '/api/intent/execute': intents.execute,
+                                     '/api/intent/status': intents.status}[path]
                         result = operation(data)
                     elif path == '/api/declaration':
                         result=store.gameplay_request(data)
@@ -709,14 +736,25 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--port', type=int, default=8765)
     parser.add_argument('--reference-config', type=Path, default=ROOT / 'cache/reference_sources.json')
+    parser.add_argument('--operator-config', type=Path, default=os.environ.get('IRGS_OPERATOR_CONFIG'))
+    parser.add_argument('--check-operator-config', action='store_true')
     args = parser.parse_args()
+    if args.check_operator_config:
+        try:
+            if args.operator_config is None: raise ValueError('No configuration selected')
+            from operator_setup import load_operator_configuration
+            load_operator_configuration(args.operator_config, ROOT / 'saves')
+        except (ValueError, TypeError, OSError):
+            raise SystemExit('Operator configuration is unavailable or invalid; no provider request was made.') from None
+        print('Operator profile passed local route and limit validation. No provider request was made; credentials, ledger and account access were not checked.')
+        raise SystemExit(0)
     from release_integrity import verify_release
     verify_release()
     from app_integrity import verify_app
     verify_app()
     from catalog_paths import verify_catalog
     verify_catalog()
-    server = make_server(args.port, reference_config=args.reference_config)
+    server = make_server(args.port, reference_config=args.reference_config, operator_config_path=args.operator_config)
     print(f'IRGS ready at http://127.0.0.1:{server.server_port}', flush=True)
     try:
         server.serve_forever()

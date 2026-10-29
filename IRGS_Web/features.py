@@ -99,7 +99,7 @@ _children('marketplace', [('marketplace-browse', 'Marketplace Browse'), ('produc
     ('contributor-consent', 'Contributor Consent / Splits'), ('royalties', 'Royalty & Payout Dashboard'),
     ('rights-provenance', 'Rights / Attribution / Provenance')], roles=('creator',))
 _children('ai-network', [('network-map', 'Spiderweb Network Map'), ('directors', 'Directors & Scopes'),
-    ('specialists', 'Specialist Registry'), ('providers-models', 'Providers & Models', {'lifecycle': 'functional', 'backend': 'api/ai/status', 'description': 'Protected availability status. No provider or autonomous Director network is connected.'}), ('capability-broker', 'Capability Broker / Access'),
+    ('specialists', 'Specialist Registry'), ('providers-models', 'Providers & Models', {'lifecycle': 'functional', 'backend': 'api/ai/status', 'description': 'Protected local operator route and readiness status. No provider request is automatic.'}), ('capability-broker', 'Capability Broker / Access'),
     ('usage-budgets', 'Usage & Budgets', {'lifecycle': 'functional', 'backend': 'api/ai/usage', 'description': 'Protected read-only Engine reservations and reported tokens. Charges remain unknown.'}), ('connections-tasks', 'Connections / Tasks'), ('events-fidelity', 'Events / Scheduler / Fidelity'),
     ('execution-traces', 'Execution Traces / Errors'), ('ai-benchmarks', 'Benchmarks / Comparisons / Budgets')], roles=('developer',))
 _children('account', [('profile-settings', 'Profile / Settings'), ('licences', 'Licences & Distribution'),
