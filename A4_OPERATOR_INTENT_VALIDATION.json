@@ -1,0 +1,202 @@
+{
+  "source_commit": "31abc31215746c48285dfcc0abafc7b3761fd8a5",
+  "base_commit": "7e1a5929b2f30479aa315789f75bfa6c46761438",
+  "engine_commit": "296e46a1beed10d0ebf2841f133bb52fade83697",
+  "catalog_commit": "e97d87f0d17a16dbe0ce186badafe663188321a1",
+  "source_sha256": {
+    "IRGS_Web/OPERATOR_SETUP.md": "d17eda9881ec6e984cdf6d62612dfdddcabef99ae2023da1a4c41714f88f5899",
+    "IRGS_Web/README.md": "41b6a9623fb2f9b4ff40793d2320df68d2b94bef2aa664abf55b2725c65b8dcb",
+    "IRGS_Web/assistance.py": "af168df9abcf7edc497f3d202a184e3f1bca8329309e83efd9b18b6464f87b62",
+    "IRGS_Web/features.py": "6fc19aeb1de902af6706f8796225edba9699fdb42d2c43a133b35aec860b866e",
+    "IRGS_Web/gameplay_views.py": "65fe359471751d33a1faf2193bc84d7967a6f37841ed0f69fb44b89bc1a06f6d",
+    "IRGS_Web/intent_bridge.py": "86ca3fd8f94012c961c8310ed900c9ad3bc7fc74c601982b91f7ef591241a046",
+    "IRGS_Web/operator_setup.py": "5cd1201c637849a5114d8f6320025c886821b6066cdccfb39c2e6d7ec37c79e8",
+    "IRGS_Web/release.json": "46e19baebe3fb9c1846eaabc12abf94d57188ddd7ce3677307ecafd46f7c7405",
+    "IRGS_Web/server.py": "8ce7ca84de161c4b2e387f0e485ea2c0b0656ee856f2ebadfcb0e01cdc75fcb9",
+    "IRGS_Web/static/app.js": "96fd8ad2baf4509f686f88d338ebbfba63e1dc632688c446f38c1e345d71fad9",
+    "IRGS_Web/static/index.html": "c9bdb3662bbb33fad96ea7aad3c4820d2de6a52b97822983339be2c4d45c9a6b",
+    "IRGS_Web/static/intents.js": "fd8087b6fbfeadd0eb3198621d8a0a5f3a8c6d0dbca7845b6bf34c5989719dd5",
+    "IRGS_Web/static/preview.js": "93931ebe7803dd86ce3a6db2fe0a109930bff542671a16cbf9637d8e01727a3d",
+    "IRGS_Web/static/solo.js": "bba6ee0d93bb3f91b76b302e51f24501b1cf950d50a0897233d5aa5f2e2ddf28",
+    "IRGS_Web/tests/test_gameplay_ui.js": "bb04fd926f9053c21c7a6070948668cae56287295bf173e4501a556fe9fd47cb",
+    "IRGS_Web/tests/test_host.py": "075a628bc9d9bf575c8eb9325c7e3a17761a838f7d97ddd15e55ae69e500a29f",
+    "IRGS_Web/tests/test_intent_bridge.py": "ebe6190d774d6c750752bf5ca600c248c2591102342dbec934ba40c3e1cc4722",
+    "IRGS_Web/tests/test_operator_setup.py": "2d551a6073c6e49786b157376a941803b3fd1020a1cafa5a373d91d3ab4616b8",
+    "tools/qualify_intent_bridge.js": "39bae9cb978ed239872676625e714868b0f553fb1d62e4216a6729205ea496a8",
+    "tools/qualify_intent_ordinary.js": "3f980bb77cf5eee8c756e6d817680a31debf256d76f3fc4ea292bebde9652964",
+    "tools/qualify_interface_port.js": "9984265f1675540d58003b5c821096ab96f921fdcde66a88e7a4e9afd985e95c"
+  },
+  "checks": {
+    "web_unittest": {
+      "command": "python3 -B -m unittest discover -s IRGS_Web/tests -v",
+      "ran": 272,
+      "passed": 265,
+      "skipped": 7,
+      "skip_reason": "Windows PowerShell launcher tests on non-Windows host"
+    },
+    "operator_focused": {
+      "passed": 8
+    },
+    "intent_focused": {
+      "passed": 6
+    },
+    "frontend": {
+      "passed": 156
+    },
+    "response_formatter": {
+      "passed": 13
+    },
+    "tooling_unittest": {
+      "passed": 1
+    },
+    "engine_provider_unittest": {
+      "passed": 14
+    },
+    "component_verification": {
+      "status": "verified",
+      "app_files": 92,
+      "catalog_files": 216,
+      "behavioral_tests_executed": false
+    },
+    "javascript_syntax": "passed",
+    "browser": {
+      "port": {
+        "status": "passed",
+        "desktop_width": 1568,
+        "mobile_width": 390,
+        "concepts": 44,
+        "reading_preferences_survive_reload": true,
+        "drawers_escape_and_focus": true,
+        "reviewed_character_creation": true,
+        "posts_before_explicit_creation": 0,
+        "explicit_creations": 1,
+        "original_fixture_saves_unchanged": true,
+        "local_assets_only": true,
+        "provider_calls": 0,
+        "browser_errors": 0
+      },
+      "intent": {
+        "status": "passed",
+        "contexts": [
+          {
+            "context": "authored_scene",
+            "explicit_action": "enter-passage",
+            "cancel_no_effect": true,
+            "exact_words": true,
+            "commit_and_reload": true,
+            "retained_draft": true,
+            "mobile_width": 390
+          },
+          {
+            "context": "settlement",
+            "explicit_action": "inspect",
+            "cancel_no_effect": true,
+            "exact_words": true,
+            "commit_and_reload": true,
+            "retained_draft": true,
+            "mobile_width": 390
+          }
+        ],
+        "lost_prepare_reload_recovered": true,
+        "lost_execute_original_result_recovered": true,
+        "provider_calls": 0,
+        "browser_errors": 0,
+        "external_requests": 0
+      },
+      "ordinary": {
+        "status": "passed",
+        "contexts": [
+          {
+            "action": "look-quay",
+            "normal_reviewed_creation": true,
+            "review_cancel_no_effect": true,
+            "actual_commit": true,
+            "exact_words": true,
+            "retained_draft": true,
+            "reload": true,
+            "mobile_width": 390
+          },
+          {
+            "action": "inspect",
+            "normal_reviewed_creation": true,
+            "review_cancel_no_effect": true,
+            "actual_commit": true,
+            "exact_words": true,
+            "retained_draft": true,
+            "reload": true,
+            "mobile_width": 390
+          }
+        ],
+        "provider_calls": 0,
+        "browser_errors": 0,
+        "external_requests": 0
+      },
+      "story": {
+        "status": "passed",
+        "contexts": [
+          {
+            "context": "authored_scene",
+            "entries": 4,
+            "chronological": true,
+            "choices_and_composer_below_tale": true,
+            "one_reading_viewport": true,
+            "review_cancel_no_effect": true,
+            "one_confirmed_commit": true,
+            "draft_and_reload_preserved": true,
+            "widths": [
+              1568,
+              390
+            ]
+          },
+          {
+            "context": "settlement",
+            "entries": 5,
+            "chronological": true,
+            "choices_and_composer_below_tale": true,
+            "one_reading_viewport": true,
+            "review_cancel_no_effect": true,
+            "one_confirmed_commit": true,
+            "draft_and_reload_preserved": true,
+            "widths": [
+              1568,
+              390
+            ]
+          }
+        ],
+        "known_view_replay": null,
+        "browser_errors": 0,
+        "provider_calls": 0,
+        "external_requests": 0,
+        "user_saves_opened": false
+      },
+      "solo": {
+        "status": "passed",
+        "fixture": "Engine authored-scene synthetic fixture; Catalog R00 proposal path unsupported",
+        "two_consecutive_core_actions": 2,
+        "offline_provider_calls": 6,
+        "live_provider_calls": 0,
+        "editable_exact_intent": true,
+        "cancel_and_edit_no_effect": true,
+        "provider_denied_no_effect": true,
+        "lost_acknowledgement_recovered": true,
+        "late_navigation_fenced": true,
+        "elapsed_seconds": 35,
+        "browser_errors": 0
+      }
+    }
+  },
+  "scope": {
+    "live_provider_calls": 0,
+    "synthetic_provider_transport_used": true,
+    "user_saves_opened": false,
+    "native_windows_profile_qualified": false,
+    "alpha_qualified": false,
+    "notes": [
+      "Synthetic test credentials only.",
+      "Component verification is integrity and compatibility data, not a behavioral test.",
+      "Browser suites used temporary synthetic saves; the ordinary journey started with an empty temporary store.",
+      "Reservation units are not a verified provider bill or currency cap.",
+      "Explicit capability selection does not implement general natural-language intent interpretation."
+    ]
+  }
+}

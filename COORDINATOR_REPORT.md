@@ -1,3 +1,31 @@
+# App protected operator setup and reviewed intentions — 29 October 2026
+
+App source `31abc31215746c48285dfcc0abafc7b3761fd8a5` implements the
+A4-APP-01 protected POSIX operator profile and consumes the pinned Engine's
+A4-APP-03 shared-intent contract through explicitly selected, reviewed actions.
+It retains offline play, chronological Story, actor filtering, source status,
+drafts and original-result recovery. The user-selected working branding is
+WorldWard, developed by T!DEMARCH Studios and powered by Fulcrum Engine, subject
+to commercial clearance; IRGS remains the internal development identity.
+
+The exact Engine pin is `296e46a1beed10d0ebf2841f133bb52fade83697`; Catalog is
+`e97d87f0d17a16dbe0ce186badafe663188321a1`. Full Web tests ran 272: 265
+passed and seven Windows PowerShell launcher tests skipped. Frontend checks: 156;
+response formatter: 13; tooling: one; Engine proposal transport: 14. Five real
+Chromium journeys passed, including ordinary reviewed non-Rise and Rise starts,
+selected actions, retained drafts, mobile layout and lost-acknowledgement
+recovery. Component integrity verified 92 App and 216 Catalog files. Only
+synthetic local saves and mocked transport were used; no live provider was called.
+
+Windows profile ACL handling, provider account/model availability and live
+quality remain unqualified. Reservation units are not a verified currency bill.
+General freeform interpretation, broader gameplay and the Alpha gates remain
+open and depend on further Engine contracts and coordinator integration review.
+No version or dependency pin was changed. See [delivery scope](A4_OPERATOR_INTENT_DELIVERY.md)
+and [validation evidence](A4_OPERATOR_INTENT_VALIDATION.json).
+
+---
+
 # App integration harness correction and dependency adoption — 28 October 2026
 
 App source `20853766f62960b615f09cd9bf63d76b56c0a197` corrects both reproduced

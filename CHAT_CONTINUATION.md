@@ -1,5 +1,18 @@
 # Continue IRGS-APP-WEB development
 
+## Operator and intent delivery — 29 October 2026
+
+A4-APP-01 now has explicit protected POSIX operator profiles over the pinned
+Engine's exact reviewed proposal route, finite reservation ledger and non-secret
+readiness. Windows ACL and live-provider qualification remain open. A4-APP-03
+now supports explicitly selecting an Engine capability for reviewed exact words,
+including unresolved declarations, with durable original-result recovery.
+Automatic interpretation and wider Alpha gameplay remain open. The current
+working product branding is WorldWard / T!DEMARCH Studios / Fulcrum Engine;
+IRGS remains the internal project. See [scope](A4_OPERATOR_INTENT_DELIVERY.md)
+and [evidence](A4_OPERATOR_INTENT_VALIDATION.json).
+
+
 Current edition: **3.4.5 Pre-Alpha**. Previous release field: **3.3.3**. Target: functional **4.0.0 Alpha** under ALPHA_4_0_PLAN.md and ALPHA_4_0_ACCEPTANCE.json. All Alpha gates remain open. Next unified edition: **3.4.6**.
 
 This release adopts the user-requested chronological story UI: one reading surface, oldest available entries first, then current choices and the retained response form. Drafts, received statuses, exact result text, source gaps and original request recovery remain. App UI implementation: `7d687616b588b2fda3c4f58d445f82d5a13111e9`; exact release pins are recorded by the coordinator in joined COMPONENTS.json. Engine/Catalog product behavior is the qualified 3.4.4 baseline; their current release changes align guides and edition metadata. This is not a new Alpha or gameplay-resolution claim.
