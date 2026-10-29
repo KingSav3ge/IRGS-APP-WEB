@@ -10,7 +10,7 @@ import json
 
 RESULT_FIELDS = ('request_id', 'action_request_id', 'campaign_id', 'actor', 'declaration',
                  'status', 'revision', 'recorded_sequence', 'elapsed_time', 'narrative',
-                 'kind', 'outcome', 'receipt', 'presentation', 'process', 'communication')
+                 'kind', 'outcome', 'receipt', 'presentation', 'process', 'communication', 'intent_result')
 
 
 def player_ids(state):

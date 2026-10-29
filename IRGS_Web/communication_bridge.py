@@ -10,12 +10,14 @@ import re
 import secrets
 
 import communication_contract as engine
+import supported_intent as intents
 from communication_runtime import CommunicationRequest
 from core_world import CoreWorld
 from gameplay_views import controlled_actor, pending_declaration, safe_result
 from irgs_reference import digest
 from process_bridge import ProcessService
 from assistance import sync_parent
+from shared_runtime import SharedActionUnavailable
 
 
 class CommunicationService(ProcessService):
@@ -56,7 +58,7 @@ class CommunicationService(ProcessService):
                     source['source_ref'] = None
                 source['occurrence_time'] = None
         packet['source_projection'] = 'app-receipt-compatibility-1'
-        return {**packet, 'view_token': self.token(record)}
+        return {**packet, 'view_token': self.token(record), 'intent_schema_version': intents.SCHEMA_VERSION}
 
     def received(self, record, actor, request_id):
         actor = controlled_actor(record['state'], actor, required=True)
@@ -69,10 +71,13 @@ class CommunicationService(ProcessService):
 
     def public_request(self, row):
         request = CommunicationRequest.from_json(row['request'])
-        return {'request_id': row['id'], 'campaign_id': row['branch'], 'actor': request.actor,
+        packet = {'request_id': row['id'], 'campaign_id': row['branch'], 'actor': request.actor,
                 'revision': row['revision'], 'view_token': row['token'], 'status': row['status'],
                 'recipient': request.recipient, 'channel_id': request.channel_id, 'command': request.command,
                 'details': json.loads(request.details_json), 'intention': request.intention}
+        if row.get('capability') is not None:
+            packet['intent_review'] = json.loads(row['capability'])
+        return packet
 
     def saved(self, record, actor, key):
         saved = record.get('gameplay_requests', {}).get(key)
@@ -84,10 +89,16 @@ class CommunicationService(ProcessService):
         return safe_result(saved['result'])
 
     def prepare(self, data):
+        return self._prepare(data, supported=False)
+
+    def prepare_supported(self, data):
+        return self._prepare(data, supported=True)
+
+    def _prepare(self, data, *, supported):
         fields = {'id', 'actor', 'revision', 'view_token', 'request_id', 'recipient',
                   'channel_id', 'command', 'details', 'intention'}
         record, actor, key = self.binding(data, fields)
-        signature = digest(data)
+        signature = digest([intents.SCHEMA_VERSION, data]) if supported else digest(data)
         accepted = self.saved(record, actor, key)
         if accepted:
             if record['gameplay_requests'][key]['payload_digest'] != signature:
@@ -111,18 +122,29 @@ class CommunicationService(ProcessService):
                 raise ValueError('Supply only the explicit proposed terms and received counteroffer reference')
             details['offer_id'] = 'web-offer-' + secrets.token_hex(16)
         scope = self.scope(record)
+        review = None
         try:
-            request = engine.prepare(CoreWorld(state=record['state']), request_id=key, actor=actor,
-                recipient=data['recipient'], channel_id=data['channel_id'], command=data['command'],
-                details=details, intention=data['intention'],
-                source_ref='explicit-player-communication:' + record['id'] + ':' + key,
-                branch_id=scope.branch_id, restore_id=scope.restore_id)
-        except engine.CommunicationUnavailable:
+            world = CoreWorld(state=record['state'])
+            arguments = dict(recipient=data['recipient'], channel_id=data['channel_id'], command=data['command'],
+                details=details, intention=data['intention'], branch_id=scope.branch_id, restore_id=scope.restore_id)
+            source = 'explicit-player-communication:' + record['id'] + ':' + key
+            if supported:
+                review = intents.review_communication(world, actor_id=actor, **arguments)
+                if review['status'] != 'supported':
+                    return {'request_id': key, 'campaign_id': record['id'], 'actor': actor,
+                        'revision': record['revision'], 'view_token': data['view_token'],
+                        'status': review['status'], 'intention': data['intention'], 'intent_review': review}
+                request = intents.prepare_communication(world, request_id=key, actor_id=actor,
+                    review_id=review['review_id'], source_ref=source, **arguments)
+            else:
+                request = engine.prepare(world, request_id=key, actor=actor, source_ref=source, **arguments)
+        except (engine.CommunicationUnavailable, SharedActionUnavailable):
             raise ValueError('This communication cannot be reviewed under the selected received capabilities') from None
         with self.database() as db:
-            db.execute('INSERT INTO requests (branch,id,actor,signature,request,revision,token,status) '
-                       'VALUES (?,?,?,?,?,?,?,?)',
-                (record['id'], key, actor, signature, request.to_json(), record['revision'], data['view_token'], 'prepared'))
+            db.execute('INSERT INTO requests (branch,id,actor,signature,request,revision,token,status,capability) '
+                       'VALUES (?,?,?,?,?,?,?,?,?)',
+                (record['id'], key, actor, signature, request.to_json(), record['revision'], data['view_token'],
+                 'prepared', json.dumps(review) if review is not None else None))
         return self.public_request(self.row(record['id'], key))
 
     def status(self, data):
@@ -159,8 +181,18 @@ class CommunicationService(ProcessService):
         request = CommunicationRequest.from_json(row['request'])
         committed = None
 
-        def persist(expected, candidate, received):
+        def persist(expected, candidate, public):
             nonlocal committed
+            supported = row.get('capability') is not None
+            if supported:
+                if (public.get('schema_version') != intents.SCHEMA_VERSION or public.get('request_id') != key
+                        or public.get('actor_id') != actor or public.get('intention') != request.intention
+                        or public.get('operation_id') != 'execute_local_communication'
+                        or public.get('status') != public.get('communication', {}).get('status')):
+                    raise ValueError('The Engine communication result does not match this reviewed request')
+                received = public['communication']
+            else:
+                received = public
             current = self.store.read(record['id'])
             if current['revision'] != row['revision'] or self.scope(current) != expected:
                 raise ValueError('The campaign changed before this communication could be saved')
@@ -174,6 +206,8 @@ class CommunicationService(ProcessService):
                 'revision': current['revision'] + 1, 'recorded_sequence': received['at'],
                 'declaration': request.intention, 'outcome': {'summary': receipt['exact_text']},
                 'receipt': {'event_id': event}, 'communication': copy.deepcopy(received), 'elapsed_time': None}
+            if supported:
+                result['intent_result'] = copy.deepcopy(public)
             from local_presentation import receipt_presentation
             text = {**received['presentation'], 'actor_id': receipt['actor_id']}
             result['presentation'] = receipt_presentation(world, result, engine_presentation=text)
@@ -183,9 +217,10 @@ class CommunicationService(ProcessService):
             committed = result
 
         try:
-            engine.execute(CoreWorld(state=record['state']), request, current_scope=self.scope(record),
-                           persist=persist, explicitly_accepted=True)
-        except engine.CommunicationUnavailable:
+            execute = intents.execute_communication if row.get('capability') is not None else engine.execute
+            execute(CoreWorld(state=record['state']), request, current_scope=self.scope(record),
+                    persist=persist, explicitly_accepted=True)
+        except (engine.CommunicationUnavailable, SharedActionUnavailable):
             with self.database() as db:
                 db.execute('UPDATE requests SET status=? WHERE branch=? AND id=?', ('rejected', record['id'], key))
             raise ValueError('This communication was not accepted under current Core rules. No communication was committed.') from None

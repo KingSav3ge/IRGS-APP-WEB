@@ -659,8 +659,9 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                         operation = {'/api/process/prepare': processes.prepare, '/api/process/execute': processes.execute,
                                      '/api/process/status': processes.status}[path]
                         result = operation(data)
-                    elif path in ('/api/communication/prepare', '/api/communication/execute', '/api/communication/status'):
+                    elif path in ('/api/communication/prepare', '/api/communication/intent/prepare', '/api/communication/execute', '/api/communication/status'):
                         operation = {'/api/communication/prepare': communications.prepare,
+                                     '/api/communication/intent/prepare': communications.prepare_supported,
                                      '/api/communication/execute': communications.execute,
                                      '/api/communication/status': communications.status}[path]
                         result = operation(data)

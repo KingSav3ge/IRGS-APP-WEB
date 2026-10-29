@@ -4,6 +4,10 @@ function communicationKey(suffix='draft'){return current?.actor_id?`irgs-communi
 function communicationParticipant(packet,channel,recipient){return packet?.channels?.find(item=>item.channel_id===channel)?.participants.find(item=>item.actor_id===recipient);}
 function communicationName(actor){return (current?.known_actors||[]).find(item=>item.id===actor)?.name||actor;}
 function communicationTerms(terms){return facts({from:terms.from,to:terms.to,material:terms.material,quantity:terms.quantity,authority_reference:terms.authority_id});}
+function communicationDetailsMatch(first,second){
+ const normalize=(key,value)=>value&&typeof value==='object'&&!Array.isArray(value)?Object.fromEntries(Object.entries(value).sort(([a],[b])=>a.localeCompare(b))):value;
+ return JSON.stringify(first,normalize)===JSON.stringify(second,normalize);
+}
 function communicationSourcesMarkup(packet){
  const sources=packet?.received_sources;if(!sources?.records?.length)return '<p class="note">No received evidence is supplied for this character.</p>';
  return `<details class="communication-sources"><summary>Received sources · ${esc(sources.total)} records${sources.truncated?' · latest records shown':''}</summary><p class="note">Original attribution and reception are separate. Testimony is not a confirmed fact or proof of current presence.</p>${sources.records.map(item=>`<article class="received-source"><h4>${esc(item.record_id)}</h4><span class="badge">${esc(item.status)}</span><p class="received-source-text">${esc(item.text)}</p>${facts({originator:item.originator||'Not supplied',source:item.source_ref||'Not supplied by this receipt',reception_source:item.receipt_source_ref,recorded_sequence:item.recorded_at,received_sequence:item.received_at,occurrence_time:item.occurrence_time??'Not established'})}</article>`).join('')}</details>`;
@@ -47,18 +51,25 @@ function syncCommunicationControls(){
 function validCommunicationReview(review){
  const packet=current?.communication_control,request=review.packet;
  if(soloAttempt||packet?.view_token!==request.view_token||request.actor!==current.actor_id||!['prepared','save_failed'].includes(request.status))return false;
+ const intent=request.intent_review;
+ if(review.intent_required&&!intent)return false;
+ if(intent&&(intent.schema_version!=='irgs-supported-intent-1'||intent.status!=='supported'||intent.actor_id!==request.actor||intent.intention!==request.intention||intent.selection?.operation_id!=='execute_local_communication'||intent.selection.channel_id!==request.channel_id||intent.selection.recipient!==request.recipient||intent.selection.command!==request.command||!communicationDetailsMatch(intent.selection.details,request.details)))return false;
  const participant=communicationParticipant(packet,request.channel_id,request.recipient);if(!participant)return false;
  if(['speak','offer'].includes(request.command))return participant.supported_commands.includes(request.command);
  const offer=packet.offers.find(item=>item.offer_id===(request.command==='counteroffer'?request.details.counter_to:request.details.offer_id));
  return Boolean(offer&&offer.channel_id===request.channel_id&&offer.supported_commands.some(item=>item.command===request.command)&&(request.command==='counteroffer'?participant.supported_commands.includes('offer'):offer.terms_digest===request.details.terms_digest));
 }
-function showCommunicationReview(packet,request){
+function showCommunicationReview(packet,request,intentRequired=false){
  if(packet.status==='completed_successfully'){writeLocal(communicationKey('review'),null);return finishAction({endpoint:'communication/execute',body:{id:packet.campaign_id,actor:packet.actor}},packet);}
+ if(['unsupported','clarification_required'].includes(packet.status)){
+  writeLocal(communicationKey('review'),null);renderStory();notice(packet.status==='unsupported'?'This selected communication is not supported. Your words remain a draft; choose a received participant and supported command.':'This communication needs clearer selected terms. Your words remain a draft; review the participant, command and terms again.',true);return;
+ }
  if(!['prepared','save_failed'].includes(packet.status)){writeLocal(communicationKey('review'),null);notice('This reviewed communication is '+String(packet.status)+'. Review a fresh request.',true);return;}
- soloReview={source:'communication',campaign:current.id,actor:current.actor_id,revision:packet.revision,request,text:packet.intention,id:packet.request_id,packet};
+ soloReview={source:'communication',campaign:current.id,actor:current.actor_id,revision:packet.revision,request,text:packet.intention,id:packet.request_id,packet,intent_required:intentRequired};
  if(!reviewActionValid()){soloReview=null;notice('The reviewed communication is stale. Reload and review a fresh request.',true);return;}
  $('#action-review-title').textContent='Review communication: '+label(packet.command);
- $('#action-review-description').textContent='To '+communicationName(packet.recipient)+' via '+packet.channel_id+'. Exact words remain testimony. '+(['offer','counteroffer'].includes(packet.command)?'This proposes the reviewed terms; no transfer or acceptance occurs.':packet.command==='accept'?'This explicitly attempts the received transfer; success is fulfilled.':'Only this structured command is submitted.');
+ const participant=communicationParticipant(current.communication_control,packet.channel_id,packet.recipient),channel=current.communication_control.channels.find(item=>item.channel_id===packet.channel_id);
+ $('#action-review-description').textContent='To '+communicationName(packet.recipient)+' via '+packet.channel_id+'. Exact words remain testimony. '+(['offer','counteroffer'].includes(packet.command)?'This proposes the reviewed terms; no transfer or acceptance occurs.':packet.command==='accept'?'This explicitly attempts the received transfer; success is fulfilled.':'Only this structured command is submitted.')+(packet.intent_review?' Supported attempt; current presence, rights and resources are checked on confirmation.':'')+' Received attribution: '+(participant?.source_record_ids||[]).join(', ')+'. Channel source: '+(channel?.source_ref||'Not supplied')+'.';
  const offer=current.communication_control.offers.find(item=>item.offer_id===packet.details.offer_id),terms=packet.details.terms||offer?.terms;
  $('#communication-reviewed-details').hidden=!terms;$('#communication-reviewed-details').innerHTML=terms?'<h3>Reviewed transfer terms</h3>'+communicationTerms(terms)+facts({offer_reference:packet.details.offer_id,counter_to:packet.details.counter_to||'None'}):'';
  $('#action-review-intent').value=packet.intention;$('#action-review-dialog').showModal();syncActionReview();
@@ -68,9 +79,10 @@ async function prepareCommunication(command,recipient,channel,details,intention)
  const campaign=current.id,actor=current.actor_id,request=campaignRequest,storage=communicationKey('review');
  const body={id:campaign,actor,revision:current.revision,view_token:current.communication_control.view_token,
   request_id:crypto.randomUUID(),command,recipient,channel_id:channel,details,intention};
- invalidateActionReview();writeLocal(storage,{body});setBusy(true);let packet;
- try{packet=await api('communication/prepare',body,{creator:false});}catch(error){notice(error.message,true);}finally{setBusy(false);}
- if(current?.id===campaign&&current?.actor_id===actor&&campaignRequest===request){if(packet)showCommunicationReview(packet,request);else renderStory();}
+ const endpoint=current.communication_control.intent_schema_version==='irgs-supported-intent-1'?'communication/intent/prepare':'communication/prepare';
+ invalidateActionReview();writeLocal(storage,{body,prepare_endpoint:endpoint});setBusy(true);let packet;
+ try{packet=await api(endpoint,body,{creator:false});}catch(error){notice(error.message,true);}finally{setBusy(false);}
+ if(current?.id===campaign&&current?.actor_id===actor&&campaignRequest===request){if(packet)showCommunicationReview(packet,request,endpoint==='communication/intent/prepare');else renderStory();}
 }
 function prepareCommunicationForm(){
  saveCommunicationDraft();const draft=readCommunicationDraft();let details={};
@@ -99,9 +111,9 @@ async function recoverCommunicationReview(){
  const saved=readLocal(communicationKey('review')),request=campaignRequest;if(!saved?.body)return;
  const body=saved.body;setBusy(true);let packet;
  try{try{packet=await api('communication/status',{id:body.id,actor:body.actor,request_id:body.request_id},{creator:false});}
-  catch(error){if(error.status!==400&&error.status!==404)throw error;packet=await api('communication/prepare',body,{creator:false});}}
+  catch(error){if(error.status!==400&&error.status!==404)throw error;const endpoint=saved.prepare_endpoint==='communication/intent/prepare'?saved.prepare_endpoint:'communication/prepare';packet=await api(endpoint,body,{creator:false});}}
  catch(error){notice(error.message,true);}finally{setBusy(false);}
- if(current?.id===body.id&&current?.actor_id===body.actor&&campaignRequest===request&&packet)showCommunicationReview(packet,request);
+ if(current?.id===body.id&&current?.actor_id===body.actor&&campaignRequest===request&&packet)showCommunicationReview(packet,request,saved.prepare_endpoint==='communication/intent/prepare');
 }
 function keepCommunicationDraft(){
  const draft=readLocal(communicationKey())||{};writeLocal(communicationKey(),{...draft,intention:$('#action-review-intent').value});writeLocal(communicationKey('review'),null);invalidateActionReview();renderStory();$('#communication-intention')?.focus();notice('Your edited communication draft is kept. Review it again before submitting.');
