@@ -1,5 +1,17 @@
 # IRGS-APP-WEB development
 
+## Story reading update — 29 October 2026
+
+The user's requested story flow is implemented in App source: one chronological
+reading surface, all available actor-received entries and committed presentations,
+then current choices and the retained response form in the same scroll area.
+Read [the layout and qualification](STORY_FLOW_UI.md). Preserve recorded causal
+order, original text, status, source gaps and actor filtering. No simulation,
+save migration, Engine/Catalog pin or coordinated-version change is part of this
+App delivery. Joined publication remains a separately versioned coordinator action.
+Continue the existing shared Alpha operator/intent work after this UI correction.
+
+
 ## Coordinated 3.4.4 Pre-Alpha continuation
 
 Current coordinated edition: **3.4.4 Pre-Alpha**; previous release field: **3.3.3**.

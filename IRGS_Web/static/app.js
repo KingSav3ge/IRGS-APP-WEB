@@ -35,8 +35,8 @@ function valueText(value){if(value===null||value===undefined)return 'Not establi
 function facts(object,empty='No accessible records are established.'){return Object.entries(object||{}).map(([key,value])=>`<div class="list-row"><small>${esc(label(key))}</small><strong>${esc(valueText(value))}</strong></div>`).join('')||`<p class="note">${esc(empty)}</p>`;}
 function records(items,empty){const list=rows(items);return list.length?list.map(item=>`<article class="record-card"><h3>${esc(item.name||item.title||item.description||item.id||'Record')}</h3>${facts(Object.fromEntries(Object.entries(item).filter(([key])=>!['name','title','id'].includes(key))))}</article>`).join(''):`<p class="note">${esc(empty)}</p>`;}
 function viewKey(name=view){return [current?.id||'',current?.actor_id||'',workspaceMode,name].join(':');}
-function rememberScroll(){if(current)scrollPositions.set(viewKey(),$('#content').scrollTop||0);}
-function restoreScroll(){const key=viewKey();requestAnimationFrame(()=>{if(key===viewKey())$('#content').scrollTop=scrollPositions.get(key)||0;});}
+function rememberScroll(){if(current){const area=$('#reading-scroll');scrollPositions.set(viewKey(),{top:area.scrollTop||0,atEnd:area.scrollHeight-area.clientHeight-area.scrollTop<80});}}
+function restoreScroll(){const key=viewKey();requestAnimationFrame(()=>{if(key!==viewKey())return;const area=$('#reading-scroll'),saved=scrollPositions.get(key);area.scrollTop=view==='story'&&(!saved||saved.atEnd)?area.scrollHeight:saved?.top||0;});}
 function draftKey(){return current?`irgs-draft:${current.id}:${current.actor_id||'none'}`:null;}
 function pendingKey(){return current?`irgs-pending:${current.id}:${current.actor_id||'none'}`:null;}
 function stashDraft(){const key=draftKey();if(key)writeLocal(key,$('#declaration').value||'');}
@@ -96,16 +96,15 @@ function entryMarkup(entry){
   const status=entry.status||'',kind=entry.kind||'record',title=entry.title||label(kind),text=entry.text??entry.declaration??entry.assertion??'';
   const times=[['occurred',entry.occurrence_at],['observed',entry.observed_at],['transmitted',entry.transmitted_at],['recorded',entry.recorded_at],['received',entry.received_at]].filter(([,value])=>value!==undefined&&value!==null).map(([name,value])=>name+' '+valueText(value));
   const gap=entry.source_available===false||entry.source_gap;
-  return `<article class="feed-entry ${esc(kind)}" id="entry-${esc(entry.id)}"><div class="entry-meta"><span>${esc(title)}</span>${status?`<span class="badge">${esc(label(status))}</span>`:''}</div><div class="entry-text">${esc(text)}</div>${times.length?`<p class="note">${esc(times.join(' · '))}</p>`:''}${gap?`<p class="source-gap note">${esc(entry.gap_note||'The original source text is unavailable; no transcript has been reconstructed.')}</p>`:''}${entry.source_refs?.length?`<details class="mechanical-detail" ${preferences.mechanics==='expanded'?'open':''}><summary>Source and record details</summary><p>${esc(entry.source_refs.join(' · '))}</p></details>`:''}<button type="button" class="bookmark quiet" data-bookmark="${esc(entry.id)}" aria-pressed="false">Bookmark</button></article>`;
+  return `<article class="feed-entry ${esc(kind)}${entry.lastOutcome?' last-outcome':''}" id="entry-${esc(entry.id)}"><div class="entry-meta"><span>${esc(title)}</span>${status?`<span class="badge">${esc(label(status))}</span>`:''}</div><p class="entry-text">${esc(text)}</p>${gap?`<p class="source-gap note">${esc(entry.gap_note||'The original source text is unavailable; no transcript has been reconstructed.')}</p>`:''}<details class="entry-details" ${preferences.mechanics==='expanded'?'open':''}><summary>Record details</summary>${times.length?`<p class="note">${esc(times.join(' · '))}</p>`:''}${entry.source_refs?.length?`<p class="note">${esc(entry.source_refs.join(' · '))}</p>`:''}<button type="button" class="bookmark quiet" data-bookmark="${esc(entry.id)}" aria-pressed="false">Bookmark</button></details></article>`;
 }
 function renderStory(){
   if(current?.settlement){renderRiseStory();return;}
-  const scene=current.scene||{},entries=storyEntries(),key='irgs-bookmarks:'+current.id,bookmarks=new Set(readLocal(key,[]));
-  $('#content').innerHTML=`<div class="story-reading"><header class="scene-header"><span class="eyebrow">YOUR STORY${current.character?.name?' · '+esc(current.character.name):''}</span><h2>${esc(scene.title||'Your saved checkpoint')}</h2>${openingElapsedMarkup()}${scene.description?`<p class="scene-prose">${esc(valueText(scene.description))}</p>`:''}<span class="chapter-rule" aria-hidden="true">◇</span></header>${playReadinessMarkup()}${latestOutcomeMarkup()}${processControlsMarkup()}${communicationControlsMarkup()}${openingMarkup()}${responseChoicesMarkup()}${supportedActionsMarkup()}<details class="story-limits"><summary>How actions work in this opening</summary><p class="capability-note">${esc(actionCapabilityNote())}</p><p class="note">Looking up a saved record takes no new scene time. Listed opening durations are local gameplay rules; they do not establish a historical hour or advance the campaign calendar.</p></details><details class="story-history"><summary>Earlier in your story <span>${entries.length} received or recorded entries</span></summary><div class="story-tools"><label class="sr-only" for="story-search">Search available scene records</label><input id="story-search" type="search" placeholder="Find a moment in your story…"><button id="jump-latest" class="quiet" type="button">Latest ↓</button></div><div id="story-feed"></div><div id="feed-end" tabindex="-1"></div></details></div>`;
+  const scene=current.scene||{};
+  $('#content').innerHTML=`<div class="story-reading"><header class="scene-header"><span class="eyebrow">YOUR STORY${current.character?.name?' · '+esc(current.character.name):''}</span><h2>${esc(scene.title||'Your saved checkpoint')}</h2>${openingElapsedMarkup()}${scene.description?`<p class="scene-prose">${esc(valueText(scene.description))}</p>`:''}</header>${openingMarkup()}${storyToolsMarkup(`<p class="capability-note">${esc(actionCapabilityNote())}</p><p class="note">Looking up a saved record takes no new scene time. Listed durations are local gameplay rules; they do not establish a historical hour.</p>`)}<div id="story-feed" class="story-feed" aria-label="Your story, oldest to newest"></div><div id="feed-end" tabindex="-1"></div><section class="story-decisions" aria-label="Your next move">${playReadinessMarkup()}${responseChoicesMarkup()}${supportedActionsMarkup()}${processControlsMarkup()}${communicationControlsMarkup()}</section></div>`;
+  bindStoryFeed();
   if($('#browse-supported-start'))$('#browse-supported-start').onclick=()=>changeView('content-library');
   $('#declaration').placeholder=responseChoices().length?'Write your own response, or edit a suggested answer here…':current.opening?.status==='awaiting_first_action'?'Your first move: describe what you say or attempt. A freeform declaration remains pending until resolved.':'Describe what your character says or attempts…';
-  const draw=()=>{const query=$('#story-search').value.toLowerCase();const filtered=entries.filter(entry=>`${entry.text||''} ${entry.title||''}`.toLowerCase().includes(query));$('#story-feed').innerHTML=filtered.map(entryMarkup).join('')||'<div class="story-empty"><h3>The next choice is yours.</h3><p>No matching narrative or action records are available. Your confirmed checkpoint remains intact.</p></div>';document.querySelectorAll('[data-bookmark]').forEach(button=>{button.setAttribute('aria-pressed',String(bookmarks.has(button.dataset.bookmark)));button.textContent=bookmarks.has(button.dataset.bookmark)?'Bookmarked':'Bookmark';button.onclick=()=>{bookmarks.has(button.dataset.bookmark)?bookmarks.delete(button.dataset.bookmark):bookmarks.add(button.dataset.bookmark);writeLocal(key,[...bookmarks]);button.setAttribute('aria-pressed',String(bookmarks.has(button.dataset.bookmark)));button.textContent=bookmarks.has(button.dataset.bookmark)?'Bookmarked':'Bookmark';};});};
-  $('#story-search').oninput=draw;draw();$('#jump-latest').onclick=()=>$('#feed-end').scrollIntoView({behavior:preferences.motion==='reduce'?'instant':'auto',block:'end'});
   const campaign=current.id,actor=current.actor_id,available=supportedActions(),responses=responseChoices();document.querySelectorAll('[data-supported-action]').forEach(button=>{const action=available[Number(button.dataset.supportedAction)];button.onclick=()=>reviewSupportedAction(action,campaign,actor);});document.querySelectorAll('[data-response-choice]').forEach(button=>{const choice=responses[Number(button.dataset.responseChoice)];button.onclick=()=>chooseResponse(choice.id,campaign,actor,choice.text);});if($('#write-own-response'))$('#write-own-response').onclick=focusOwnResponse;bindProcessControls();bindCommunicationControls();syncComposer();
 }
 function renderWorld(){
@@ -404,7 +403,51 @@ async function inspectLibraryEntry(id){
   const request=++inspectorRequest,mode=workspaceMode;$('#inspect-title').textContent='Starting reference · out of character';$('#inspect-content').innerHTML='<p>Loading the selected reference…</p>';if(!$('#inspect-dialog').open)$('#inspect-dialog').showModal();
   try{const result=await api('historical-entry/'+encodeURIComponent(id),undefined,{creator:false});if(request!==inspectorRequest||mode!==workspaceMode||!$('#inspect-dialog').open)return;$('#inspect-content').innerHTML='<h3>'+esc(result.entry?.title||id)+'</h3><p>'+esc(result.entry?.description||'')+'</p>'+(result.snapshot?historicalSnapshotMarkup(result.snapshot):'<p class="reference-note">Proposed reference. Opening date and detailed snapshot are not yet verified; this entry cannot create a playthrough.</p>');}catch(error){if(request===inspectorRequest&&$('#inspect-dialog').open)$('#inspect-content').innerHTML='<p>'+esc(error.message)+'</p>';}
 }
-function storyEntries(){return rows(current?.story||current?.chronicle);}
+function storySequence(entry){
+  // These are causal/receipt positions. Never sort by elapsed time or civil dates.
+  return [entry.sequence,entry.at,entry.received_at,entry.recorded_at].find(Number.isSafeInteger);
+}
+function chronologicalEntries(entries){
+  return [...entries].sort((a,b)=>{
+    const first=storySequence(a),second=storySequence(b);
+    return first===undefined?(second===undefined?0:1):second===undefined?-1:first-second;
+  });
+}
+function storyEntries(){
+  const entries=rows(current?.story||current?.chronicle);
+  return chronologicalEntries(entries.length?entries:(current?.settlement?.receipts||[]).map((entry,index)=>({...entry,id:'received:'+index,kind:'settlement_observation',title:'Received record'})));
+}
+function storyDisplayEntries(){
+  let entries=storyEntries();
+  const outcomes=(current?.completed_actions||[]).filter(result=>result.actor===current.actor_id&&['completed_successfully','completed_unsuccessfully'].includes(result.status)&&typeof result.outcome?.summary==='string');
+  for(const result of outcomes){
+    const text=routineOutcome(result,{elapsed:true,presentation:true}),request=result.request_id,event=result.receipt?.event_id;
+    const related=entry=>Boolean(request&&(entry.id==='outcome:'+request||entry.id==='settlement-receipt:'+request||entry.id==='settlement-receipt:'+request+':inspection')||event&&(entry.source_refs?.includes(event)||entry.id==='settlement-receipt:'+event||entry.id==='settlement-receipt:'+event+':inspection'));
+    // A received presentation can replace its exact transcript fragments only.
+    // Keep any additional evidence/source-gap records, even at the same sequence.
+    const covered=entries.filter(entry=>related(entry)&&entry.source_available!==false&&!entry.source_gap&&typeof entry.text==='string'&&entry.text.trim()&&text.includes(entry.text.trim()));
+    entries=entries.filter(entry=>!covered.includes(entry));
+    entries.push({id:'result:'+request,kind:result.kind||'action_completed',title:result.kind==='communication'?'Received communication · '+label(result.communication?.status||'received'):result.kind==='process_phase'?'Process phase · '+label(result.process?.status||'received'):result.status==='completed_unsuccessfully'?'YOUR ATTEMPT · UNSUCCESSFUL':'Your action',
+      text,status:result.status,recorded_at:result.recorded_sequence??covered[0]?.recorded_at,
+      source_refs:[...new Set([...covered.flatMap(entry=>entry.source_refs||[]),...(event?[event]:[])])],source_available:true,result,lastOutcome:result===outcomes.at(-1)});
+  }
+  return chronologicalEntries(entries);
+}
+function storyToolsMarkup(extra=''){
+  return `<details class="story-tools"><summary>Find a moment & story details</summary><label class="sr-only" for="story-search">Search available scene records</label><input id="story-search" type="search" placeholder="Find a moment in your story…"><button id="jump-latest" class="quiet" type="button">Latest ↓</button>${extra}</details>`;
+}
+function bindStoryFeed(){
+  const entries=storyDisplayEntries(),key='irgs-bookmarks:'+current.id,bookmarks=new Set(readLocal(key,[]));
+  const draw=()=>{
+    const query=$('#story-search').value.toLowerCase(),filtered=entries.filter(entry=>`${entry.text||''} ${entry.title||''}`.toLowerCase().includes(query));
+    $('#story-feed').innerHTML=filtered.map(entryMarkup).join('')||'<p class="story-empty">No matching story entries are available.</p>';
+    document.querySelectorAll('[data-bookmark]').forEach(button=>{
+      const update=()=>{button.setAttribute('aria-pressed',String(bookmarks.has(button.dataset.bookmark)));button.textContent=bookmarks.has(button.dataset.bookmark)?'Bookmarked':'Bookmark';};
+      update();button.onclick=()=>{bookmarks.has(button.dataset.bookmark)?bookmarks.delete(button.dataset.bookmark):bookmarks.add(button.dataset.bookmark);writeLocal(key,[...bookmarks]);update();};
+    });
+  };
+  $('#story-search').oninput=draw;draw();$('#jump-latest').onclick=()=>$('#feed-end').scrollIntoView({behavior:'auto',block:'start'});
+}
 function responseChoices(){return workspaceMode==='player'&&current?.response_prompt?.source_status==='received_prompt'&&Array.isArray(current?.response_choices)?current.response_choices.filter(choice=>choice&&choice.kind==='declaration'&&typeof choice.id==='string'&&choice.id&&typeof choice.text==='string'&&choice.text.trim()):[];}
 function responseChoicesMarkup(){
   if(workspaceMode!=='player'||current?.response_prompt?.source_status!=='received_prompt')return '';
@@ -443,11 +486,7 @@ function supportedActionsMarkup(){
   const opening=actions.some(action=>action.kind==='scene_action');
   return `<section class="supported-actions" aria-labelledby="supported-actions-title"><div class="decision-heading"><span class="eyebrow">THE NEXT MOVE IS YOURS</span><h3 id="supported-actions-title">${opening?'What will you do?':'Your received orders'}</h3></div><p class="choice-guidance">${opening?'Listed approaches can fail. Read the attempt, then review your next move. Selecting an action sends nothing.':'Review an order before confirming it. Authority and available stock are checked on submission.'}</p><div class="adventure-choices">${actions.map((action,index)=>`<article class="supported-action"><button type="button" class="adventure-choice" data-supported-action="${index}" aria-label="${esc(action.title||'Attempt action')}"><span class="choice-number" aria-hidden="true">${String(index+1).padStart(2,'0')}</span><span class="choice-copy"><strong>${esc(action.title||'Attempt action')}</strong>${action.description?`<span>${esc(action.description)}</span>`:''}<small class="record">${esc(action.text)}</small></span><span class="choice-arrow" aria-hidden="true">→</span></button></article>`).join('')}</div></section>`;
 }
-function latestOutcomeMarkup(){
-  const outcomes=(current?.completed_actions||[]).filter(item=>item.actor===current.actor_id&&['completed_successfully','completed_unsuccessfully'].includes(item.status)&&typeof item.outcome?.summary==='string');
-  const latest=outcomes.at(-1);if(!latest)return '';
-  return `<section class="last-outcome ${latest.status==='completed_unsuccessfully'?'attempt-failed':'attempt-completed'}" aria-label="Your last action"><span class="eyebrow">${latest.kind==='communication'?'RECEIVED COMMUNICATION · '+esc(label(latest.communication.status)):latest.kind==='process_phase'?'YOUR LAST PROCESS PHASE · '+esc(label(latest.process?.status||'received')):latest.status==='completed_unsuccessfully'?'YOUR ATTEMPT · UNSUCCESSFUL':'YOUR LAST ACTION · COMPLETED'}</span><p>${esc(routineOutcome(latest,{elapsed:true,presentation:true}))}</p></section>`;
-}
+
 function openingElapsedMarkup(){
   const elapsed=current?.elapsed_time,selected=elapsed?.axis==='authored-opening-seconds'||(current?.capabilities?.elapsed_scope==='selected_start_context'&&current?.start_context?.schema_version==='irgs-start-readiness-1');if(!current?.capabilities?.playable_opening||!selected||!Number.isSafeInteger(elapsed?.seconds)||elapsed.seconds<0)return '';
   return `<p class="opening-elapsed"><span aria-hidden="true">◷</span> ${esc(elapsed.seconds)} seconds elapsed in this selected local context</p>`;

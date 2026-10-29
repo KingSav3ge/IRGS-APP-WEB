@@ -29,8 +29,9 @@
     <div class="main-column">
       <div class="tome-toolbar"><span id="tome-title">Your story</span><div id="story-reading-controls"></div></div>
       <div id="primary-tabs" class="primary-tabs" role="tablist" aria-label="Campaign views"><button id="tab-story" data-view="story" role="tab" aria-controls="content" aria-selected="true">Story</button><button id="tab-world" data-view="world" role="tab" aria-controls="content" aria-selected="false" tabindex="-1">World</button><button id="tab-chronicle" data-view="chronicle" role="tab" aria-controls="content" aria-selected="false" tabindex="-1">Chronicle</button></div>
+      <div id="reading-scroll" class="reading-scroll">
       <section id="content" class="workspace-content" role="tabpanel" aria-label="Campaign workspace" tabindex="0"><div class="empty">Loading your campaigns…</div></section>
-      <details id="own-response-panel" class="own-response-panel" hidden open><summary><span>Write your own response</span><small>Your words, your approach <span aria-hidden="true">↗</span></small></summary><form id="composer-form" class="action-composer" hidden>
+      <details id="own-response-panel" class="own-response-panel" hidden open><summary><span>Your next response</span><small>Choose above, or write your own</small></summary><form id="composer-form" class="action-composer" hidden>
         <div class="composer-heading"><label for="declaration">YOUR NEXT MOVE</label><span id="draft-state" role="status">Draft stays on this device</span></div>
         <textarea id="declaration" name="declaration" maxlength="10000" rows="3" placeholder="Describe what your character says or attempts…" aria-describedby="composer-help action-state"></textarea>
         <details id="local-drafts" class="local-drafts" hidden><summary>Editable draft starters</summary><p class="note">Review or edit these starting words. Keeping a draft submits nothing; freeform intent remains unresolved.</p><div id="local-draft-options" class="local-draft-options"></div></details>
@@ -38,6 +39,7 @@
         <div class="composer-footer"><small id="composer-help">Enter for a new line · Ctrl/Cmd+Enter to submit</small><div><button id="review-assisted-action" type="button" class="quiet" hidden>Review with assistance</button><button id="cancel-assisted-action" type="button" class="quiet" hidden>Cancel proposal</button><button id="retry-action" type="button" class="quiet" hidden>Check / retry saved request</button><button id="withdraw-action" type="button" class="quiet" hidden>Withdraw pending attempt</button><button id="send-declaration" class="primary">Submit declaration →</button></div></div>
         <p id="action-state" class="note" role="status" aria-live="polite"></p>
       </form></details>
+      </div>
     </div>
     <aside id="context-panel" class="context-panel" aria-label="Character and scene context"><div class="context-heading"><span class="eyebrow">YOUR CHARACTER &amp; WORLD</span><button id="close-context" class="quiet" aria-label="Close context panel">Close</button></div><div id="context-content"><p class="note">Select a campaign to inspect its available context.</p></div></aside>
     <aside id="play-tools" class="play-tools" aria-label="Reading and saved story tools" hidden><div class="tools-heading"><span class="eyebrow">YOUR READING ROOM</span><button id="close-tools" type="button" class="quiet">Close</button></div><div id="play-tools-content"></div></aside>

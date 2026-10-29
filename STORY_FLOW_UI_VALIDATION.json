@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "validated_at_utc": "2026-10-29T11:25:54.661030+00:00",
+  "app_baseline_commit": "fe6aeebcb932556949e16a222bfbc16c519bdc69",
+  "coordinated_edition": "3.4.4",
+  "dependencies": {
+    "Engine": "fbf364f491779cdcd75e255e4c5219ddfbad853a",
+    "Catalog": "ecd7dccc747099162ab035238550eb55e31ca054"
+  },
+  "app_manifest_sha256": "8488a0640ae2db2ec7dbbda52011db53fce643ae87ebb0b3c79bb16a03e63d63",
+  "static_sha256": {
+    "app.js": "f451b55b95c151a900024113d1913894cd2e0df17382f4307b1a577c6a10ceed",
+    "index.html": "8a143b999a864218dde70d02e12897399dfbc4841d35316a25a1589a4adb794c",
+    "preview.css": "1ee4b8f286ed63a49121bc6e002e94947e02afb3633f7de6d48056fe1f8c2edd",
+    "processes.js": "cff91a60d3e126db764d5934a29bbfe0ca06b80e56985574401bfcaa07c529c4",
+    "rise.js": "cbad48d45957270c354924aad17b7f6e562cce321dd1c8e82e162465049397cc"
+  },
+  "checks": {
+    "component_integrity": "passed",
+    "frontend": {
+      "passed": 153,
+      "failed": 0
+    },
+    "browser_suites": {
+      "shared_responses": {
+        "status": "passed",
+        "provider_calls": 0,
+        "browser_errors": 0
+      },
+      "process_bridge": {
+        "status": "passed",
+        "provider_calls": 0,
+        "browser_errors": 0
+      },
+      "interface_port": {
+        "status": "passed",
+        "provider_calls": 0,
+        "browser_errors": 0
+      },
+      "interface_refinement": {
+        "status": "passed",
+        "provider_calls": 0,
+        "browser_errors": 0
+      },
+      "start_readiness": {
+        "status": "passed",
+        "provider_calls": 0,
+        "browser_errors": 0
+      },
+      "communication_bridge": {
+        "status": "passed",
+        "provider_calls": 0,
+        "browser_errors": 0
+      },
+      "travel_browser": {
+        "status": "passed",
+        "provider_calls": 0,
+        "browser_errors": 0
+      },
+      "story_flow": {
+        "status": "passed",
+        "provider_calls": 0,
+        "browser_errors": 0
+      },
+      "app_responses": {
+        "status": "passed",
+        "provider_calls": 0,
+        "browser_errors": 0
+      }
+    },
+    "story_flow": {
+      "status": "passed",
+      "contexts": [
+        {
+          "context": "authored_scene",
+          "entries": 4,
+          "chronological": true,
+          "choices_and_composer_below_tale": true,
+          "one_reading_viewport": true,
+          "review_cancel_no_effect": true,
+          "one_confirmed_commit": true,
+          "draft_and_reload_preserved": true,
+          "widths": [
+            1568,
+            390
+          ]
+        },
+        {
+          "context": "settlement",
+          "entries": 5,
+          "chronological": true,
+          "choices_and_composer_below_tale": true,
+          "one_reading_viewport": true,
+          "review_cancel_no_effect": true,
+          "one_confirmed_commit": true,
+          "draft_and_reload_preserved": true,
+          "widths": [
+            1568,
+            390
+          ]
+        }
+      ],
+      "known_view_replay": {
+        "mode": "read_only_browser_projection",
+        "entries": 18,
+        "oldest_to_newest": true,
+        "includes_pending_declaration": true,
+        "projection_unchanged": true,
+        "save_loaded_or_modified": false,
+        "post_requests": 0
+      },
+      "browser_errors": 0,
+      "provider_calls": 0,
+      "external_requests": 0,
+      "user_saves_opened": false
+    }
+  },
+  "scope": [
+    "Rise and non-Rise story reading on one scroll surface",
+    "Recorded/received causal ordering; no inferred dates or elapsed durations",
+    "All available entries, exact committed presentations, preserved source references and source gaps",
+    "Choices and retained response form follow latest tale entry",
+    "Draft preservation, explicit review/cancel/confirm, request recovery and reload",
+    "Desktop/mobile layout plus existing reading palettes/contrast and navigation"
+  ],
+  "engine_or_catalog_source_changed": false,
+  "dependency_pins_changed": false,
+  "save_format_changed": false,
+  "user_saves_opened": false,
+  "attached_known_view_committed": false,
+  "live_provider_calls": 0,
+  "native_windows_checks_executed": false,
+  "unified_main_updated": false,
+  "qualification_limit": "App presentation delivery against unchanged pinned components; next joined publication remains coordinator-gated and versioned."
+}
