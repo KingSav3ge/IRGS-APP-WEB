@@ -4,7 +4,7 @@
   "plan_revision": "alpha-4.0-plan-1",
   "instruction_date": "2026-10-27",
   "current_edition": {
-    "version": "3.4.4",
+    "version": "3.4.5",
     "stage": "pre-alpha",
     "previous_version": "3.3.3"
   },
@@ -280,5 +280,5 @@
     "Every AI provider or specialist model",
     "Unspecified general combat beyond the adopted Alpha profile"
   ],
-  "status_note": "3.4.3 contains qualified bounded foundations. Planned states describe the wider Alpha requirements, not a claim that those foundations are absent or freshly tested. Coordinated 3.4.4 continues bounded shared-system development; no Alpha gate is newly qualified."
+  "status_note": "Coordinated 3.4.5 adopts the chronological story UI and refreshes continuation guides. All functional Alpha gates remain unqualified."
 }
