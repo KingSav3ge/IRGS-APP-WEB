@@ -1,6 +1,6 @@
 # IRGS publication versions
 
-The coordinated edition is **3.4.5 Pre-Alpha** (metadata channel: development).
+The coordinated edition is **3.4.6 Pre-Alpha** (metadata channel: development).
 The previous release version is **3.3.3**, as directed by the user. Earlier
 3.4.0 commits and validation
 records are development history and retain their actual tested identities.
@@ -14,8 +14,8 @@ The target 4.0.0 is a functional Alpha, not a version-only promotion.
 Publish 4.0.0 only after the coordinator qualifies the exact all-three set.
 This instruction-only component update leaves VERSION.json at the coordinated edition.
 
-Every push to unified `KingSav3ge/IRGS/main` increases the coordinated version,
-including guide-only or QA-only publications. The next edition is 3.4.6;
+Every push to unified `KingSav3ge/WorldWard/main` increases the coordinated version,
+including guide-only or QA-only publications. The next edition is 3.4.7;
 continue through 3.4.9, then 3.5 (canonical metadata: 3.5.0). Only a substantial
 milestone satisfying the functional Alpha gates may be assessed as a 4.0.0
 Alpha candidate; record its evidence and limits.

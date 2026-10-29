@@ -1,4 +1,16 @@
-# IRGS App / Web — 3.4.4 Pre-Alpha
+# WORLDWARD-APP-WEB — 3.4.6 Pre-Alpha
+
+## Current 3.4.6 direction — 29 October 2026
+
+Current edition: **3.4.6 Pre-Alpha**; previous_version: **3.3.3**. Next unified main publication: **3.4.7**. Functional 4.0.0 Alpha remains unqualified.
+
+WorldWard is developed by T!DEMARCH Studios and powered by Fulcrum Engine. IRGS remains the internal initiative; technical paths, schemas, fixture identities, saves and original archives retain their existing names. Public repositories are KingSav3ge/WorldWard, KingSav3ge/Fulcrum-Engine, KingSav3ge/WORLDWARD-APP-WEB and KingSav3ge/WorldWard-Catalog. Catalog/Atlas product naming remains open.
+
+This edition joins reviewed intentions, protected server-side POSIX operator setup, bounded communication/offer/world-draft contracts, independent Catalog grounding and recovery consumers, and the public branding. The App preserves one chronological reading surface with choices and the retained response form below the newest entry. Optional offers are explicit attempts, not NPC consent or stock transfer. Draft previews create disposable in-memory candidates, not saved campaigns or a general world editor.
+
+Preserve one authoritative Core, the existing nine K owners and six Directors, actor-scoped information, conserved resources/capacity, atomic rejection and original-result recovery. Distinguish causal sequence, revision, elapsed work and civil time. Broader NPC/institution behavior, needs/recovery, selected conflict, arbitrary world authoring, live-model quality, native Windows and full Alpha qualification remain open.
+
+The current CHAT_CONTINUATION.md and COORDINATOR_WORK_ORDER.md supersede older task ordering below. Dated evidence retains its original scope.
 
 ## Current 3.4.5 guidance — 29 October 2026
 
@@ -41,10 +53,10 @@ records below retain their original tested development identities.
 
 Current development: [guide](DEVELOPMENT.md) · [chat continuation](CHAT_CONTINUATION.md).
 
-Independent App development for IRGS. Campaign catalogue data and designs belong to [IRGS-Catalog](https://github.com/KingSav3ge/IRGS-Catalog), pinned in `Catalog/`. The viewer stays in this repository. This repository owns `IRGS_Web/`; simulation stays in [IRGS-Engine](https://github.com/KingSav3ge/IRGS-Engine). [IRGS/main](https://github.com/KingSav3ge/IRGS) joins all three components.
+Independent App development for IRGS. Campaign catalogue data and designs belong to [IRGS-Catalog](https://github.com/KingSav3ge/WorldWard-Catalog), pinned in `Catalog/`. The viewer stays in this repository. This repository owns `IRGS_Web/`; simulation stays in [IRGS-Engine](https://github.com/KingSav3ge/Fulcrum-Engine). [IRGS/main](https://github.com/KingSav3ge/WorldWard) joins all three components.
 
 ```bash
-git clone --recurse-submodules https://github.com/KingSav3ge/IRGS-APP-WEB.git
+git clone --recurse-submodules https://github.com/KingSav3ge/WORLDWARD-APP-WEB.git
 cd IRGS-APP-WEB
 python -B tools/verify_components.py --component app
 python -B IRGS_Web/server.py --port 8766
@@ -60,7 +72,7 @@ Run `python -B -m unittest discover -s IRGS_Web/tests -v` and `node IRGS_Web/tes
 
 The library offers 44 expanded v0.5 concept previews with filters, 37 supported Century dates, the limited fictional Rise founding slice and the adopted Kira v0.5 world guide. Proposed campaigns remain unreleased. Kira has no playable snapshot. The full C2 resolver, general freeform/combat resolution and the complete institutional cycle remain work.
 
-See [catalogue implementation](Catalog/IRGS_Catalog/design/campaign_catalogue/README.md), [App details](IRGS_Web/README.md), and [joined integration instructions](https://github.com/KingSav3ge/IRGS/blob/main/COMPONENT_REPOSITORIES.md).
+See [catalogue implementation](Catalog/IRGS_Catalog/design/campaign_catalogue/README.md), [App details](IRGS_Web/README.md), and [joined integration instructions](https://github.com/KingSav3ge/WorldWard/blob/main/COMPONENT_REPOSITORIES.md).
 
 [Development status](DEVELOPMENT.md) tracks completed, active, blocked and remaining
 App work. The Creator's **Historical Details** entry preserves explicit local ZIP

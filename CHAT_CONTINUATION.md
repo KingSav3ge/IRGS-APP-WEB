@@ -1,38 +1,21 @@
-# Continue IRGS-APP-WEB development
+# Continue WORLDWARD-APP-WEB
 
-## Operator and intent delivery — 29 October 2026
+Current edition: **3.4.6 Pre-Alpha**; previous_version: **3.3.3**. Next unified main publication: **3.4.7**. Functional 4.0.0 Alpha remains unqualified.
 
-A4-APP-01 now has explicit protected POSIX operator profiles over the pinned
-Engine's exact reviewed proposal route, finite reservation ledger and non-secret
-readiness. Windows ACL and live-provider qualification remain open. A4-APP-03
-now supports explicitly selecting an Engine capability for reviewed exact words,
-including unresolved declarations, with durable original-result recovery.
-Automatic interpretation and wider Alpha gameplay remain open. The current
-working product branding is WorldWard / T!DEMARCH Studios / Fulcrum Engine;
-IRGS remains the internal project. See [scope](A4_OPERATOR_INTENT_DELIVERY.md)
-and [evidence](A4_OPERATOR_INTENT_VALIDATION.json).
+WorldWard is developed by T!DEMARCH Studios and powered by Fulcrum Engine. IRGS remains the internal initiative; technical paths, schemas, fixture identities, saves and original archives retain their existing names. Public repositories are KingSav3ge/WorldWard, KingSav3ge/Fulcrum-Engine, KingSav3ge/WORLDWARD-APP-WEB and KingSav3ge/WorldWard-Catalog. Catalog/Atlas product naming remains open.
 
+This edition joins reviewed intentions, protected server-side POSIX operator setup, bounded communication/offer/world-draft contracts, independent Catalog grounding and recovery consumers, and the public branding. The App preserves one chronological reading surface with choices and the retained response form below the newest entry. Optional offers are explicit attempts, not NPC consent or stock transfer. Draft previews create disposable in-memory candidates, not saved campaigns or a general world editor.
 
-Current edition: **3.4.5 Pre-Alpha**. Previous release field: **3.3.3**. Target: functional **4.0.0 Alpha** under ALPHA_4_0_PLAN.md and ALPHA_4_0_ACCEPTANCE.json. All Alpha gates remain open. Next unified edition: **3.4.6**.
+Preserve one authoritative Core, the existing nine K owners and six Directors, actor-scoped information, conserved resources/capacity, atomic rejection and original-result recovery. Distinguish causal sequence, revision, elapsed work and civil time. Broader NPC/institution behavior, needs/recovery, selected conflict, arbitrary world authoring, live-model quality, native Windows and full Alpha qualification remain open.
 
-This release adopts the user-requested chronological story UI: one reading surface, oldest available entries first, then current choices and the retained response form. Drafts, received statuses, exact result text, source gaps and original request recovery remain. App UI implementation: `7d687616b588b2fda3c4f58d445f82d5a13111e9`; exact release pins are recorded by the coordinator in joined COMPONENTS.json. Engine/Catalog product behavior is the qualified 3.4.4 baseline; their current release changes align guides and edition metadata. This is not a new Alpha or gameplay-resolution claim.
+## Next implementation
 
-Develop IRGS across campaigns and themes, retaining one authoritative Core, nine K owners and the existing six Director categories. Rise R00 is one fictional regression slice. Ordinary speech remains received testimony; an offer is not consent or fulfillment. Storage revision, causal sequence, elapsed work and civil time remain distinct. Full C2, wider autonomous NPC/institution decisions, needs/recovery, selected conflict and sustained AI play remain unfinished. Historical Details is complete; preserve original archive records and canon.
+**A4-APP-03 and WB-APP-01: adopt supported-intent/draft contracts and explicit offer selection.**
 
-## First implementation
+Protected POSIX operator setup, explicit shared-capability review and WorldWard branding are delivered. The current UI uses the shared runtime contract; newer supported-intent communication DTOs, optional start offer-profile choice and world-draft preview/editor are not yet adopted. Add explicit source-bound controls incrementally, preserving exact words, independent drafts, review/cancel/confirmation, original-result recovery and the chronological tale. Keep Windows setup unavailable until ACL handling is implemented and tested; live-provider quality requires a separately authorized eligible route and finite budget.
 
-**A4-APP-01: protected operator/provider setup, then A4-APP-03 supported-intent review.**
+## Development and handoff
 
-Implement server-side operator configuration with validation, exact eligible model/capability selection, finite budget and non-secret readiness feedback. Preserve local offline play. Then consume Engine’s supported-intent DTOs so a player can review supported execution or retain an explicitly unresolved declaration. Preserve the continuous chronological tale, inline response form, editable drafts, explicit review/cancel/confirm, source status and lost-response recovery. Do not rebuild the former nested history/dashboard layout.
+Preserve edits and local commits; fetch the correct origin and fast-forward only clean compatible source. Read AGENTS.md and this current work order. Do not reset, clean or auto-stash over user work. Use temporary synthetic stores; never open private campaign saves for qualification. Refresh only the owning component hashes after intentional changes, then verify and run relevant real HTTP/browser journeys. Report exact commit, pins, actual checks, skips, limitations and remaining work. Historical evidence is not a fresh execution. Push only this owner repository; the coordinator reviews all three compatible deliveries and runs the full versioned joined/package gate. Work orders and watcher reports do not wake chats, implement tasks or qualify a live model/Windows host.
 
-## Resume and deliver
-
-1. Preserve edits and local commits, verify the correct GitHub origin, fetch main and fast-forward only a clean compatible checkout. Read AGENTS.md and the current work order. Do not reset, clean or auto-stash over user work.
-2. Implement the next bounded owner task; publish versioned contracts early when another owner depends on them. Keep unsupported behavior explicit.
-3. Use synthetic stores and relevant actual HTTP/browser checks. Review/cancel must not commit; retry/reload/restore must preserve the original result and effects. Do not open private campaign saves or call a paid model without a configured eligible route and finite authorized budget.
-4. Refresh only the owning component hashes after product edits and verify them. Report actual passed/failed/skipped/unrun checks, complete source SHAs and exact dependency pins. Historical logs are not new execution.
-5. Update task status and push only this owner repository. The coordinator qualifies and packages the compatible set before publishing joined main. Guide-only changes do not complete the broader owner gameplay deliverable.
-
-## Shared World Builder track
-
-Follow WORLD_BUILDER_PLAN.md. Engine owns original world-draft/validation/initialization contracts; App owns the common development/Creator Workshop editor; Catalog owns original world-pack examples and source dossiers. Coordinate through published contracts. No imported vendor code, runtime-qualified binary or implemented editor is implied by the reference assessment. Keep the Alpha gameplay critical path active.
+Follow ALPHA_4_0_PLAN.md, ALPHA_4_0_ACCEPTANCE.json and WORLD_BUILDER_PLAN.md. Preserve original supplied archives, accurate historical evidence, saves and personal settings. Remove superseded generated distributions only after their replacements pass.
