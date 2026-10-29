@@ -1,0 +1,152 @@
+{
+  "source_commit": "51a5294c865373683ea0f3a9821b6465fdca5940",
+  "base_commit": "746c9a381e64b7f985d37edd39a91b5b79b2e027",
+  "checkout": "/workspace/WORLDWARD-APP-WEB",
+  "engine_commit": "fe9c2c10ec3a66f1be590e1b34860119670b22cb",
+  "catalog_commit": "cf69a6cf628a6d9249124cc6b0700dfc59287677",
+  "source_sha256": {
+    "IRGS_Web/static/rise.js": "a6a8daa93987956e9e3ab3c70030615c6b9042dbe20abf4f1b8597acf87ca59e",
+    "IRGS_Web/release.json": "02ecb409bb58107c5034a252e8cd3e10a747f06a8c2035531779e9fbefd5251a",
+    "tools/qualify_rise_offer_ui.js": "6bc1c3153c10ea5e2c8149bd22904f883ae8b42342268164eeba1fe79cb4868f"
+  },
+  "checks": {
+    "web_unittest": {
+      "command": "python3 -B -m unittest discover -s IRGS_Web/tests -v",
+      "ran": 272,
+      "passed": 265,
+      "skipped": 7,
+      "skip_reason": "Windows PowerShell launcher tests on non-Windows host"
+    },
+    "frontend": {
+      "command": "node IRGS_Web/tests/test_gameplay_ui.js",
+      "passed": 156
+    },
+    "component_integrity": {
+      "status": "verified",
+      "app_files": 92,
+      "catalog_files": 230,
+      "behavioral_tests_executed": false
+    },
+    "javascript_syntax": "passed",
+    "browser": {
+      "ordinary_offer_ui": {
+        "status": "passed",
+        "contexts": [
+          {
+            "action": "look-quay",
+            "normal_reviewed_creation": true,
+            "review_cancel_no_effect": true,
+            "actual_commit": true,
+            "exact_words": true,
+            "retained_draft": true,
+            "reload": true,
+            "mobile_width": 390
+          },
+          {
+            "action": "inspect",
+            "normal_reviewed_creation": true,
+            "review_cancel_no_effect": true,
+            "actual_commit": true,
+            "exact_words": true,
+            "retained_draft": true,
+            "reload": true,
+            "mobile_width": 390
+          }
+        ],
+        "optional_profile_default_omitted": true,
+        "reviewed_source_and_scope": true,
+        "back_and_cancel_preserved": true,
+        "lost_creation_acknowledgement_recovered": true,
+        "explicit_offer_review_cancel_confirm": true,
+        "offer_status": "offered",
+        "stock_transfer": false,
+        "npc_control_or_consent": false,
+        "independent_drafts_reload": true,
+        "provider_calls": 0,
+        "browser_errors": 0,
+        "external_requests": 0
+      },
+      "story": {
+        "status": "passed",
+        "contexts": [
+          {
+            "context": "authored_scene",
+            "entries": 4,
+            "chronological": true,
+            "choices_and_composer_below_tale": true,
+            "one_reading_viewport": true,
+            "review_cancel_no_effect": true,
+            "one_confirmed_commit": true,
+            "draft_and_reload_preserved": true,
+            "widths": [
+              1568,
+              390
+            ]
+          },
+          {
+            "context": "settlement",
+            "entries": 5,
+            "chronological": true,
+            "choices_and_composer_below_tale": true,
+            "one_reading_viewport": true,
+            "review_cancel_no_effect": true,
+            "one_confirmed_commit": true,
+            "draft_and_reload_preserved": true,
+            "widths": [
+              1568,
+              390
+            ]
+          }
+        ],
+        "known_view_replay": null,
+        "browser_errors": 0,
+        "provider_calls": 0,
+        "external_requests": 0,
+        "user_saves_opened": false
+      },
+      "communication": {
+        "status": "passed",
+        "contexts": [
+          "selected_non_rise_quay",
+          "selected_R00_transfer"
+        ],
+        "mobile_width": 390,
+        "exact_words_and_testimony": true,
+        "speech_does_not_accept_offer": true,
+        "elapsed_time_unchanged": true,
+        "all_six_structured_commands": true,
+        "conserved_transfers": true,
+        "terminal_statuses_distinct": true,
+        "original_proposal_result_retained": true,
+        "private_actor_record_denied": true,
+        "lost_prepare_ack_reload_recovered": true,
+        "lost_execute_ack_original_result_recovered": true,
+        "independent_own_response_preserved": true,
+        "HTML_is_literal_text": true,
+        "provider_calls": 0,
+        "browser_errors": 0,
+        "external_requests": 0,
+        "prepared": 10,
+        "executed": 10
+      }
+    }
+  },
+  "boundaries": {
+    "actual_pinned_checkout_used": true,
+    "isolated_preview_is_final_evidence": false,
+    "user_saves_opened": false,
+    "provider_calls": 0,
+    "native_windows_executed": false,
+    "live_provider_quality_qualified": false,
+    "newer_supported_intent_module_adopted": false,
+    "world_draft_editor_adopted": false,
+    "alpha_qualified": false
+  },
+  "checkout_transport": {
+    "connection": "user-selected GitHub plugin",
+    "existing_git_objects_reused": true,
+    "imported_object_shas_verified": true,
+    "git_connectivity_check": "passed",
+    "original_checkout_edits_preserved": true
+  }
+}

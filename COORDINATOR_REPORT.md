@@ -1,3 +1,33 @@
+# Optional reviewed Rise offer setup — 29 October 2026
+
+App source `51a5294c865373683ea0f3a9821b6465fdca5940` exposes the Engine's optional
+`founder-household-offer-v1` choice in normal reviewed setup. Omitted selection
+keeps the existing default. The review displays the actual selected source,
+scope, account, authority and no-consent/no-transfer notice. Back/cancel and
+same-ID creation recovery remain. Existing actor-scoped communication execution,
+independent response drafts, exact words and chronological Story are preserved.
+
+Engine remains `fe9c2c10ec3a66f1be590e1b34860119670b22cb`; Catalog remains
+`cf69a6cf628a6d9249124cc6b0700dfc59287677`. Full Web ran 272 tests: 265 passed,
+seven Windows PowerShell launcher tests skipped. Frontend: 156 passed. Three
+Chromium journeys passed, including ordinary non-Rise/Rise creation, lost creation
+response, actual offered status without stock transfer or NPC control, draft
+reload and existing communication/Story recovery. Integrity verified 92 App and
+230 Catalog files. No user save or live provider was used.
+
+The new checkout at `/workspace/WORLDWARD-APP-WEB` uses the user's GitHub plugin
+connection because the CLI credential is invalid. Every imported Git object SHA
+was verified and connectivity passed; the older App checkout and pending edits
+were preserved. Only the App repository is published. No edition or pin changes.
+
+Next: newer supported-intent communication DTOs, grant prerequisites and
+world-draft preview/editor. Native Windows ACL setup, live-provider qualification,
+general NPC/institution behavior and wider Alpha gates remain open. The coordinator
+owns the next qualified joined edition, 3.4.7. See [scope](APP_OFFER_PROFILE_ADOPTION.md)
+and [executed evidence](APP_OFFER_PROFILE_VALIDATION.json).
+
+---
+
 # App protected operator setup and reviewed intentions — 29 October 2026
 
 App source `31abc31215746c48285dfcc0abafc7b3761fd8a5` implements the
