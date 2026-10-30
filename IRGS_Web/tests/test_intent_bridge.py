@@ -103,6 +103,45 @@ class IntentBridgeTests(unittest.TestCase):
         record['revision'] += 1; self.store.write(record)
         self.assertEqual(self.http('/api/intent/execute', self.accept(stale))[0], 400)
 
+    def test_grant_attempt_view_is_own_read_only_information_without_an_offer_oracle(self):
+        before = self.store.path(self.rise).read_bytes()
+        grants = self.view(self.rise, 'founder')['intent_control']['grant_prerequisites']
+        self.assertEqual(grants['actor_id'], 'founder')
+        self.assertEqual(grants['schema_version'], 'irgs-grant-offer-prerequisites-1')
+        self.assertEqual({item['action_id'] for item in grants['actions']}, {'request_grant', 'accept_grant'})
+        self.assertEqual(grants['offer_status'], 'not_inspected')
+        self.assertEqual(grants['consent_status'], 'not_inferred')
+        self.assertFalse(grants['committed'])
+        self.assertTrue(grants['explicit_acceptance_required'])
+        self.assertEqual(self.store.path(self.rise).read_bytes(), before)
+        self.assertEqual(self.view(self.scene, 'pc')['intent_control']['grant_prerequisites']['actions'], [])
+        self.assertEqual(self.http('/api/playthrough/' + self.rise + '?actor_id=oren')[0], 403)
+        record = self.store.read(self.rise)
+        # A conserved synthetic alternative; this does not execute a product transfer.
+        record['state']['stocks']['oren-home']['grain'] += 1
+        record['state']['stocks']['founder-home']['grain'] -= 1
+        self.store.write(record)
+        self.assertEqual(self.view(self.rise, 'founder')['intent_control']['grant_prerequisites'], grants)
+
+    def test_grant_acceptance_is_separate_rejects_without_offer_and_replays_original_request(self):
+        body, _ = self.prepare(self.rise, 'founder', 'accept_grant', 'I accept the terms I received.')
+        before = self.store.path(self.rise).read_bytes()
+        self.assertEqual(self.http('/api/intent/execute', self.accept(body))[0], 400)
+        self.assertEqual(self.store.path(self.rise).read_bytes(), before)
+        request, _ = self.prepare(self.rise, 'founder', 'request_grant', 'I request permission for the camp.')
+        self.assertFalse(self.store.read(self.rise)['state']['grants'])
+        code, offered = self.http('/api/intent/execute', self.accept(request))
+        self.assertEqual(code, 200, offered)
+        self.assertEqual(self.store.read(self.rise)['state']['grants']['founding']['status'], 'offered')
+        acceptance, _ = self.prepare(self.rise, 'founder', 'accept_grant', 'I accept the limited founding grant.')
+        self.assertEqual(self.http('/api/intent/execute', self.accept(acceptance, False))[0], 400)
+        self.assertEqual(self.store.read(self.rise)['state']['grants']['founding']['status'], 'offered')
+        self.assertEqual(self.http('/api/intent/execute', self.accept(acceptance))[0], 200)
+        self.assertEqual(self.store.read(self.rise)['state']['grants']['founding']['status'], 'accepted')
+        saved = self.store.path(self.rise).read_bytes(); self.stop(); self.start()
+        self.assertEqual(self.http('/api/intent/execute', self.accept(request)), (200, offered))
+        self.assertEqual(self.store.path(self.rise).read_bytes(), saved)
+
     def test_restore_invalidates_uncommitted_request_without_changing_save(self):
         body, _ = self.prepare(self.scene, 'pc', 'enter-passage'); before = self.store.path(self.scene).read_bytes()
         self.assertEqual(self.http('/api/delete', {'id': self.scene, 'revision': 1})[0], 200)

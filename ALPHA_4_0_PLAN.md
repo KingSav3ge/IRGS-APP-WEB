@@ -1,5 +1,8 @@
 # IRGS development target: functional Alpha 4.0
 
+Current coordinated edition: **3.4.7 Pre-Alpha**. All Alpha gates remain open. Read current owner work orders for delivered scope and next implementation; older execution records retain their original selections.
+
+
 Current coordinated edition: **3.4.6 Pre-Alpha**. All Alpha gates remain open. Read current owner work orders for delivered scope and next implementation; older execution records retain their original selections.
 
 

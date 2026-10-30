@@ -10,6 +10,7 @@ from irgs_reference import digest
 from process_bridge import ProcessService
 from runtime_contracts import AcceptedIntent
 import shared_runtime as engine
+from supported_intent import grant_offer_prerequisites
 
 
 class IntentService(ProcessService):
@@ -32,11 +33,13 @@ class IntentService(ProcessService):
         empty = {'schema_version': engine.SCHEMA_VERSION, 'capabilities': [], 'view_token': None}
         if not actor: return empty
         try:
-            caps = engine.capabilities(CoreWorld(state=record['state']), actor)
+            world = CoreWorld(state=record['state'])
+            caps = engine.capabilities(world, actor)
+            grants = grant_offer_prerequisites(world, actor_id=actor)
         except engine.SharedActionUnavailable:
             return empty
         return {'schema_version': engine.SCHEMA_VERSION, 'capabilities': [item.public() for item in caps],
-                'view_token': self.token(record)}
+                'view_token': self.token(record), 'grant_prerequisites': grants}
 
     def saved(self, record, actor, key):
         row = record.get('gameplay_requests', {}).get(key)

@@ -1,38 +1,18 @@
 # Continue WORLDWARD-APP-WEB
 
-Current edition: **3.4.6 Pre-Alpha**; previous_version: **3.3.3**. Next unified main publication: **3.4.7**. Functional 4.0.0 Alpha remains unqualified.
+Current edition: **3.4.7 Pre-Alpha**; previous_version: **3.3.3**. Next unified main publication: **3.4.8**. Functional 4.0.0 Alpha remains unqualified.
 
-WorldWard is developed by T!DEMARCH Studios and powered by Fulcrum Engine. IRGS remains the internal initiative; technical paths, schemas, fixture identities, saves and original archives retain their existing names. Public repositories are KingSav3ge/WorldWard, KingSav3ge/Fulcrum-Engine, KingSav3ge/WORLDWARD-APP-WEB and KingSav3ge/WorldWard-Catalog. Catalog/Atlas product naming remains open.
+WorldWard is developed by T!DEMARCH Studios and powered by Fulcrum Engine. IRGS remains the internal initiative. Public repositories are KingSav3ge/WorldWard, KingSav3ge/Fulcrum-Engine, KingSav3ge/WORLDWARD-APP-WEB and KingSav3ge/WorldWard-Catalog. Preserve existing technical paths, schema/fixture IDs, original archives, saves and personal settings; Catalog/Atlas product naming remains open.
 
-This edition joins reviewed intentions, protected server-side POSIX operator setup, bounded communication/offer/world-draft contracts, independent Catalog grounding and recovery consumers, and the public branding. The App preserves one chronological reading surface with choices and the retained response form below the newest entry. Optional offers are explicit attempts, not NPC consent or stock transfer. Draft previews create disposable in-memory candidates, not saved campaigns or a general world editor.
+This edition adopts selected R00 invitation refusal/later agreement and an opt-in fictional quay worker refusal, versioned communication reviews with legacy recovery, explicit optional household-offer setup, and independent consequence/two-profile draft consumers. The composer now reviews grant requests and acceptance separately using Engine-supplied capabilities and exact player words. A completed conversation can be a refusal; an offered proposal is not consent or a transfer. These are bounded authored decisions, not a general NPC model or an implemented Creator world editor.
 
-Preserve one authoritative Core, the existing nine K owners and six Directors, actor-scoped information, conserved resources/capacity, atomic rejection and original-result recovery. Distinguish causal sequence, revision, elapsed work and civil time. Broader NPC/institution behavior, needs/recovery, selected conflict, arbitrary world authoring, live-model quality, native Windows and full Alpha qualification remain open.
-
-## Communication DTO delivery — 29 October 2026
-
-New UI communications now consume the pinned Engine's supported-intent review,
-prepare and immutable result DTOs. Unsupported/clarification statuses keep exact
-words as drafts; supported attempts still require explicit confirmation. Older
-pending/committed communications retain their original recovery path. Read
-[scope](COMMUNICATION_INTENT_ADOPTION.md) and
-[evidence](COMMUNICATION_INTENT_ADOPTION_VALIDATION.json). Grant prerequisites
-and the world-draft preview/editor remain next App work.
-
-## Optional offer setup delivery — 29 October 2026
-
-The normal Rise UI now explicitly selects or omits the Engine's optional
-household-offer profile and displays its source, scope, authority and limits
-before confirmation. Default starts retain speech-only communication. Existing
-communication execution, independent drafts, original creation recovery and
-chronological Story remain in place. Read [scope](APP_OFFER_PROFILE_ADOPTION.md)
-and [evidence](APP_OFFER_PROFILE_VALIDATION.json). This does not adopt the newer
-supported-intent communication module or the world-draft editor.
+Preserve one authoritative Core, nine K owners and the existing six Directors, actor-scoped information, conserved resources/capacity, atomic rejection and original-result recovery. Revision, causal sequence, elapsed work and civil time remain distinct. Broader NPC/institution behavior, needs/recovery, consequential conflict, arbitrary world authoring, live-provider quality, native Windows and functional Alpha qualification remain open.
 
 ## Next implementation
 
-**A4-APP-03 and WB-APP-01: adopt supported-intent/draft contracts and explicit offer selection.**
+**WB-APP-01 and A4-APP-03: bounded Creator drafts and creation recovery.**
 
-Protected POSIX operator setup, explicit shared-capability review and WorldWard branding are delivered. The current UI uses the shared runtime contract; the optional start offer-profile choice is now adopted through normal reviewed Rise creation. New UI communications now adopt supported-intent communication DTOs, while older requests retain their original path. Grant prerequisites and world-draft preview/editor remain unadopted. Add explicit source-bound controls incrementally, preserving exact words, independent drafts, review/cancel/confirmation, original-result recovery and the chronological tale. Keep Windows setup unavailable until ACL handling is implemented and tested; live-provider quality requires a separately authorized eligible route and finite budget.
+Optional offer setup and versioned communication DTOs are adopted. This coordinated increment also consumes the actor-safe grant prerequisite DTO through separate request/acceptance review controls. Implement disposable draft preview and explicit durable playtest creation under engine/DRAFT_HOST_ATOMIC_CONTRACT.md, with ordinary reviewed creation, actor-filtered output, atomic persistence and immutable same-request recovery. Keep the chronological tale, exact words, existing/legacy communication recovery and independent drafts. Native Windows operator ACLs and live-provider quality remain separate unfinished work.
 
 ## Development and handoff
 

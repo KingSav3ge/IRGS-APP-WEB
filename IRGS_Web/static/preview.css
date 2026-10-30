@@ -142,3 +142,5 @@ body[data-workspace=home] .app-footer{display:block;padding:6px 14px}
 .story-feed .entry-details>summary{padding:0;color:var(--reading-muted)}
 .story-feed .entry-details .note{font-size:10px}.story-feed .entry-details .bookmark{min-height:34px;font-size:10px}
 .story-decisions>details.process-controls>summary,.earlier-processes>summary{font:12px/1.7 var(--interface-font);color:var(--reading-muted)}
+
+#grant-intent-actions>div{display:flex;flex-wrap:wrap;gap:6px}#grant-intent-actions button{max-width:100%;white-space:normal}

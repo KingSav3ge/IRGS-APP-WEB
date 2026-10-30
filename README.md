@@ -1,4 +1,16 @@
-# WORLDWARD-APP-WEB — 3.4.6 Pre-Alpha
+# WORLDWARD-APP-WEB — 3.4.7 Pre-Alpha
+
+## Current 3.4.7 direction — 30 October 2026
+
+Current edition: **3.4.7 Pre-Alpha**; previous_version: **3.3.3**. Next unified main publication: **3.4.8**. Functional 4.0.0 Alpha remains unqualified.
+
+WorldWard is developed by T!DEMARCH Studios and powered by Fulcrum Engine. IRGS remains the internal initiative. Public repositories are KingSav3ge/WorldWard, KingSav3ge/Fulcrum-Engine, KingSav3ge/WORLDWARD-APP-WEB and KingSav3ge/WorldWard-Catalog. Preserve existing technical paths, schema/fixture IDs, original archives, saves and personal settings; Catalog/Atlas product naming remains open.
+
+This edition adopts selected R00 invitation refusal/later agreement and an opt-in fictional quay worker refusal, versioned communication reviews with legacy recovery, explicit optional household-offer setup, and independent consequence/two-profile draft consumers. The composer now reviews grant requests and acceptance separately using Engine-supplied capabilities and exact player words. A completed conversation can be a refusal; an offered proposal is not consent or a transfer. These are bounded authored decisions, not a general NPC model or an implemented Creator world editor.
+
+Preserve one authoritative Core, nine K owners and the existing six Directors, actor-scoped information, conserved resources/capacity, atomic rejection and original-result recovery. Revision, causal sequence, elapsed work and civil time remain distinct. Broader NPC/institution behavior, needs/recovery, consequential conflict, arbitrary world authoring, live-provider quality, native Windows and functional Alpha qualification remain open.
+
+The current CHAT_CONTINUATION.md and COORDINATOR_WORK_ORDER.md supersede older task ordering below. Dated evidence retains its original scope.
 
 ## Current 3.4.6 direction — 29 October 2026
 
