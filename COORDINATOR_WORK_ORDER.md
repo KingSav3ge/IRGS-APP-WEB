@@ -1,30 +1,55 @@
 # Current work order — WORLDWARD-APP-WEB
 
-## Rise building allowance — requirement added 31 October 2026
+Current edition: **3.4.8 Pre-Alpha**; previous_version: **3.3.3**.
+Next unified main publication: **3.4.9**. Functional Alpha 4.0 remains unqualified.
 
-Read [COORDINATOR_WORK_ORDER_RISE_EXPANSION_01.md](COORDINATOR_WORK_ORDER_RISE_EXPANSION_01.md) for the user's adopted requirement:
-a finite building allowance, with further construction held until valid expansion
-permission increases settlement size. Numeric profiles and implementation remain
-open. This supplements the existing shared Alpha work; no mechanic or joined
-edition is delivered by these instructions.
+T!DEMARCH Studios is the parent studio, WorldWard the product, and Fulcrum Engine
+the simulation technology. IRGS remains the internal initiative. Canonical public
+repositories are KingSav3ge/WorldWard, KingSav3ge/Fulcrum-Engine,
+KingSav3ge/WORLDWARD-APP-WEB and KingSav3ge/WorldWard-Catalog. Preserve existing
+technical paths, schemas, fixtures, original archives, saves and settings.
 
+This edition consolidates completed design/instruction deliveries, the proposed
+Creator handoff and exact compatible component pins. Runtime mechanics are those
+of the qualified 3.4.7 baseline. Rise building limits and expansion permission are
+a user-adopted requirement; numeric profiles and runtime implementation are still
+open. Creator preview/durable playtest creation is proposed, not executable.
 
-Current edition: **3.4.7 Pre-Alpha**; previous_version: **3.3.3**. Next unified main publication: **3.4.8**. Functional 4.0.0 Alpha remains unqualified.
+Keep one authoritative Core, the nine existing K owners and six Directors,
+actor-scoped information, conserved resources, atomic rejection and immutable
+original-result recovery. Time, causal sequence and storage revision remain
+distinct. No live provider, native Windows, arbitrary world authoring or Alpha
+qualification follows from this documentation update.
 
-WorldWard is developed by T!DEMARCH Studios and powered by Fulcrum Engine. IRGS remains the internal initiative. Public repositories are KingSav3ge/WorldWard, KingSav3ge/Fulcrum-Engine, KingSav3ge/WORLDWARD-APP-WEB and KingSav3ge/WorldWard-Catalog. Preserve existing technical paths, schema/fixture IDs, original archives, saves and personal settings; Catalog/Atlas product naming remains open.
+## Existing owner
 
-This edition adopts selected R00 invitation refusal/later agreement and an opt-in fictional quay worker refusal, versioned communication reviews with legacy recovery, explicit optional household-offer setup, and independent consequence/two-profile draft consumers. The composer now reviews grant requests and acceptance separately using Engine-supplied capabilities and exact player words. A completed conversation can be a refusal; an offered proposal is not consent or a transfer. These are bounded authored decisions, not a general NPC model or an implemented Creator world editor.
+Thread: 01a164a6-687b-723a-ac81-acb55e3d50d2.
 
-Preserve one authoritative Core, nine K owners and the existing six Directors, actor-scoped information, conserved resources/capacity, atomic rejection and original-result recovery. Revision, causal sequence, elapsed work and civil time remain distinct. Broader NPC/institution behavior, needs/recovery, consequential conflict, arbitrary world authoring, live-provider quality, native Windows and functional Alpha qualification remain open.
+## Next bounded work after unification
 
-## Next implementation
+After the unification checkpoint, first reproduce and patch the stale Saves
+revision summary found by the ordinary 30 October playtest, using the existing
+App save/list state and a browser regression. Keep this independent of Engine
+rights/schema work. Then implement only the bounded Creator preview portion of
+WB_APP_01_CREATOR_DRAFT_HANDOFF; durable creation remains disabled until its two
+Engine/coordinator contract questions are resolved. Consume Rise allowance
+controls only after published Engine DTOs and authored Catalog rules. Preserve
+the chronological tale, latest response form, exact words, drafts and recovery.
 
-**WB-APP-01 and A4-APP-03: bounded Creator drafts and creation recovery.**
+Read COORDINATOR_WORK_ORDER_RISE_EXPANSION_01.md for the adopted Rise requirement.
 
-Optional offer setup and versioned communication DTOs are adopted. This coordinated increment also consumes the actor-safe grant prerequisite DTO through separate request/acceptance review controls. Implement disposable draft preview and explicit durable playtest creation under engine/DRAFT_HOST_ATOMIC_CONTRACT.md, with ordinary reviewed creation, actor-filtered output, atomic persistence and immutable same-request recovery. Keep the chronological tale, exact words, existing/legacy communication recovery and independent drafts. Native Windows operator ACLs and live-provider quality remain separate unfinished work.
+## Delivery and coordination
 
-## Development and handoff
+Preserve local work and history. Pull the correct origin/main only into clean
+compatible source; never force-push, auto-stash or reset over user work. Use
+synthetic campaigns, temporary test stores and the existing Core/K/Director
+owners. Report exact commits, pins, executed checks/skips and limitations.
+Only the coordinator joins a reviewed compatible set after integration, fresh
+operation capture, joined regression, browser/independent consumers and a clean
+extracted package. Every joined main push increments the edition.
 
-Preserve edits and local commits; fetch the correct origin and fast-forward only clean compatible source. Read AGENTS.md and this current work order. Do not reset, clean or auto-stash over user work. Use temporary synthetic stores; never open private campaign saves for qualification. Refresh only the owning component hashes after intentional changes, then verify and run relevant real HTTP/browser journeys. Report exact commit, pins, actual checks, skips, limitations and remaining work. Historical evidence is not a fresh execution. Push only this owner repository; the coordinator reviews all three compatible deliveries and runs the full versioned joined/package gate. Work orders and watcher reports do not wake chats, implement tasks or qualify a live model/Windows host.
-
-Follow ALPHA_4_0_PLAN.md, ALPHA_4_0_ACCEPTANCE.json and WORLD_BUILDER_PLAN.md. Preserve original supplied archives, accurate historical evidence, saves and personal settings. Remove superseded generated distributions only after their replacements pass.
+These files do not wake owner chats. Current owner-chat reads/dispatch are
+unavailable through the coordinator bridge. Resume the existing owner, not a
+replacement project/chat. The earlier Vercel source-copy denial remains binding:
+do not retry or route around that transfer. No external deployment is part of
+this work. DLVA is separate and receives no WorldWard files.

@@ -32,5 +32,5 @@ implements the mechanic or qualifies a live provider or native Windows.
 
 This supplement adds a bounded Rise requirement to the existing shared Alpha
 work. It does not replace the general WorldWard development programme. Current
-joined edition remains 3.4.7; the coordinator alone qualifies the next joined
-publication, which must increment to 3.4.8.
+joined edition is 3.4.8; the coordinator alone qualifies the next joined
+publication, which must increment to 3.4.9.

@@ -1,5 +1,30 @@
 # IRGS-APP-WEB development
 
+## Current 3.4.8 direction — 31 October 2026
+
+Current edition: **3.4.8 Pre-Alpha**; previous_version: **3.3.3**.
+Next unified main publication: **3.4.9**. Functional Alpha 4.0 remains unqualified.
+
+T!DEMARCH Studios is the parent studio, WorldWard the product, and Fulcrum Engine
+the simulation technology. IRGS remains the internal initiative. Canonical public
+repositories are KingSav3ge/WorldWard, KingSav3ge/Fulcrum-Engine,
+KingSav3ge/WORLDWARD-APP-WEB and KingSav3ge/WorldWard-Catalog. Preserve existing
+technical paths, schemas, fixtures, original archives, saves and settings.
+
+This edition consolidates completed design/instruction deliveries, the proposed
+Creator handoff and exact compatible component pins. Runtime mechanics are those
+of the qualified 3.4.7 baseline. Rise building limits and expansion permission are
+a user-adopted requirement; numeric profiles and runtime implementation are still
+open. Creator preview/durable playtest creation is proposed, not executable.
+
+Keep one authoritative Core, the nine existing K owners and six Directors,
+actor-scoped information, conserved resources, atomic rejection and immutable
+original-result recovery. Time, causal sequence and storage revision remain
+distinct. No live provider, native Windows, arbitrary world authoring or Alpha
+qualification follows from this documentation update.
+
+Use DEVELOPMENT.md, CHAT_CONTINUATION.md and COORDINATOR_WORK_ORDER.md for current scope. Earlier records retain their actual dates and evidence.
+
 ## Current 3.4.7 direction — 30 October 2026
 
 Current edition: **3.4.7 Pre-Alpha**; previous_version: **3.3.3**. Next unified main publication: **3.4.8**. Functional 4.0.0 Alpha remains unqualified.

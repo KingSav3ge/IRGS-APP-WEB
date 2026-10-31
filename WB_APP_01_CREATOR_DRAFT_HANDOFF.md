@@ -5,7 +5,7 @@ Status: Proposed. Evidence: source inspected through the GitHub connection on
 changed by this handoff. The execution environment failed to start; no new
 Python, browser, filesystem-durability or gameplay qualification was run.
 
-## Current selection and reconciliation
+## Source selection inspected on 30 October 2026
 
 - App: `75ccc9aa7b746f23e1d2c86dc0464c48858469e5`.
 - Engine gitlink: `7f4ef150e2049c7718ac600680cb9c3633353a6a`.
@@ -19,8 +19,8 @@ request/acceptance controls are delivered within their recorded scope. The next
 task is disposable Creator draft preview and explicit durable playtest creation.
 This handoff does not repeat those completed deliveries.
 
-The Design Studio supplies design context and handoffs. Its separate
-Deus-Lo-Vult repository workflow does not relocate WorldWard runtime work.
+The Design Studio supplies design context and handoffs. Deus-Lo-Vult is a
+separate project and is not a source or publication destination for WorldWard.
 Implementation belongs in WORLDWARD-APP-WEB; Core initialization stays in the
 pinned Engine and canonical content stays in Catalog. Dated Studio catalogue
 decisions are not fresh campaign qualification.
