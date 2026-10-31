@@ -1,5 +1,14 @@
 # Current work order — WORLDWARD-APP-WEB
 
+## Rise building allowance — requirement added 31 October 2026
+
+Read [COORDINATOR_WORK_ORDER_RISE_EXPANSION_01.md](COORDINATOR_WORK_ORDER_RISE_EXPANSION_01.md) for the user's adopted requirement:
+a finite building allowance, with further construction held until valid expansion
+permission increases settlement size. Numeric profiles and implementation remain
+open. This supplements the existing shared Alpha work; no mechanic or joined
+edition is delivered by these instructions.
+
+
 Current edition: **3.4.7 Pre-Alpha**; previous_version: **3.3.3**. Next unified main publication: **3.4.8**. Functional 4.0.0 Alpha remains unqualified.
 
 WorldWard is developed by T!DEMARCH Studios and powered by Fulcrum Engine. IRGS remains the internal initiative. Public repositories are KingSav3ge/WorldWard, KingSav3ge/Fulcrum-Engine, KingSav3ge/WORLDWARD-APP-WEB and KingSav3ge/WorldWard-Catalog. Preserve existing technical paths, schema/fixture IDs, original archives, saves and personal settings; Catalog/Atlas product naming remains open.
